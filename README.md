@@ -8,6 +8,6 @@ There are also branches for projects configured with maven and/or gradle for var
 
 ## javafx branch
 
-[![Gitpod Ready-to-Code](https://img.shields.io/badge/Gitpod-Ready--to--Code-blue?logo=gitpod)](https://gitpod.io/#https://gitlab.stud.idi.ntnu.no/it1901/gitpod-templates/tree/javafx-maven)
+[![Gitpod Ready-to-Code](https://img.shields.io/badge/Gitpod-Ready--to--Code-blue?logo=gitpod)](https://gitpod.idi.ntnu.no/#https://gitlab.stud.idi.ntnu.no/it1901/gitpod-templates/tree/javafx-maven)
 
 Contains example of minimal javafx app (with test) built with maven
