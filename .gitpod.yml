@@ -2,7 +2,7 @@ image:
   file: .gitpod.dockerfile
 
 tasks:
-  - init: sdk use java 14.0.1.j9-adpt
+  - init: sdk use java 14.0.2.j9-adpt
   # command: cd my-project
 
 ports:
