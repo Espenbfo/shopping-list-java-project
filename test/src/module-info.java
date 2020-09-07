@@ -1,9 +1,9 @@
-module javafxapp {
+module shoppinglist {
 	requires javafx.fxml;
 	requires transitive javafx.graphics;
 	requires javafx.controls;
 	
-	exports javafxapp;
+	exports shoppinglist;
 
-	opens javafxapp to javafx.fxml;
+	opens shoppinglist to javafx.fxml;
 }

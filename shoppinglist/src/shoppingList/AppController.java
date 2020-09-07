@@ -1,4 +1,4 @@
-package javafxapp;
+package shoppinglist;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
