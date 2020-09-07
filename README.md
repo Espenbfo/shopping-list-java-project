@@ -1,13 +1,8 @@
-[![Gitpod Ready-to-Code](https://img.shields.io/badge/Gitpod-Ready--to--Code-blue?logo=gitpod)](https://gitpod.idi.ntnu.no/#https://gitlab.stud.idi.ntnu.no/it1901/gitpod-templates)
+[![Gitpod Ready-to-Code](https://img.shields.io/badge/Gitpod-Ready--to--Code-violet?logo=gitpod)](https://gitlab.stud.idi.ntnu.no/it1901/groups-2020/gr2049/gr2049.git)
 
-# gitpod-templates
+# Gr2049
 
-This repo contains templates for repositories that support gitpod, i.e. with proper .gitignore, .gitpod.docker and .gitpod.yml files
+This repo contains the project of group 49
 
-There are also branches for projects configured with maven and/or gradle for various purposes
 
-## javafx branch
 
-[![Gitpod Ready-to-Code](https://img.shields.io/badge/Gitpod-Ready--to--Code-blue?logo=gitpod)](https://gitpod.idi.ntnu.no/#https://gitlab.stud.idi.ntnu.no/it1901/gitpod-templates/tree/javafx-maven)
-
-Contains example of minimal javafx app (with test) built with maven
