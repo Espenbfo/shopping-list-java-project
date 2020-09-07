@@ -1,4 +1,4 @@
-module Valutakalkulator{
+module shoppinglist{
 	requires javafx.fxml;
 	requires transitive javafx.graphics;
 	requires javafx.controls;
