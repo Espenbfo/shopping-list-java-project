@@ -1,11 +1,12 @@
 package shoppinglist;
+
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.util.ArrayList;
 
 class FileHandler{
- 
-    public shoppingList readFile(String fileName){
+ /*
+    public shoppinglist readFile(String fileName){
         BufferedReader BFR = new BufferedReader(fileName);
         Arraylist<ShoppingElement> ShoppingElementList = new ArrayList<ShoppingElement>();
         shoppingList out;
@@ -23,5 +24,5 @@ class FileHandler{
         BufferedWriter BFW = new BufferedWriter(shoppingList.getId());
         return false;
     }
-
+ */
 }
