@@ -23,10 +23,10 @@ public class ShoppingList {
     
     public ShoppingList(String title, int id, ArrayList<Person> personList, ArrayList<ShoppingElement> elementList) {
         this.title = title;
-        this.id = id
+        this.id = id;
         this.personList = personList;
         this.elementList = elementList;
-        currentMaxID = Math.max(currentMaxID,id)
+        currentMaxID = Math.max(currentMaxID,id);
     }
 
     public String getTitle() {
