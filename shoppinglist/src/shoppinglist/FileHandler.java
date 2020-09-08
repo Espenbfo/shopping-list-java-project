@@ -37,6 +37,7 @@ class FileHandler{
                 BFW.newLine();
                 BFW.write(x.name + " " + x.measurementType.getValue() + " " + x.measurementType.getBaseName());
             }
+            BFW.close();
         }catch(Exception e){
             e.printStackTrace();
             return false;
