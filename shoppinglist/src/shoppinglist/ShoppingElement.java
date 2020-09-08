@@ -21,7 +21,7 @@ public class ShoppingElement {
         this(name,value,measurementName,true);
     }
 
-    public ShoppingElement(String name, String namePlural, MeasurementType m, boolean shopped) {
+    public ShoppingElement(String name, MeasurementType m, boolean shopped) {
         this.name= name;
         measurementType = m;
         this.shopped = shopped;
