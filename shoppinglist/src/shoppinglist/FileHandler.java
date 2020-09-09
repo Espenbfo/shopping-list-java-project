@@ -5,6 +5,7 @@ import java.io.BufferedWriter;
 import java.util.ArrayList;
 import java.io.FileReader;
 import java.io.FileWriter;
+import java.io.File;
 
 class FileHandler{
 
@@ -31,7 +32,9 @@ class FileHandler{
     public boolean writeFile(ShoppingList listToWrite){
         BufferedWriter BFW;
         try{
-            BFW = new BufferedWriter(new FileWriter("/"+listToWrite.getId()+".txt"));
+            File outfil = new File("/"+listToWrite.getId()+".txt");
+            outfil.createNewFile();
+            BFW = new BufferedWriter(new FileWriter(outfil));
             BFW.write(listToWrite.title);
             for(ShoppingElement x: listToWrite.getElementList()){
                 BFW.newLine();
@@ -43,6 +46,15 @@ class FileHandler{
             return false;
         }
         return true;
+    }
+
+    public static void main(String[] args) {
+        ShoppingList atestlist = new ShoppingList("Denne handlelisten");
+        atestlist.addElement("mjolk", 33, "L");
+        atestlist.addElement("Smør", 8, "Kg");
+        FileHandler ahandler = new FileHandler();
+        ahandler.writeFile(atestlist);
+        
     }
 
 }
