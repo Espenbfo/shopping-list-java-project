@@ -29,7 +29,6 @@ public class AppController {
     
 
     ShoppingList currentShoppingList = new ShoppingList("test"); //vil egt. ikke ha tittel her, men tror endringer må gjøres i ShopppingList.java
-    List<CheckBox> checkboxes = new ArrayList<>();
     
     String itemToAdd = null;
     
@@ -47,8 +46,15 @@ public class AppController {
         ShoppingElement currentElement = new ShoppingElement(itemInputField.getText(), Double.parseDouble(amountInputField.getText()), measurementInputField.getText());
         currentShoppingList.addElement(currentElement);
 
-        System.out.println(currentShoppingList.toString());
+        shoppingListItem.setOnAction(event -> handleItemShopped(currentElement));
+
         
+    }
+
+    @FXML
+    void handleItemShopped(ShoppingElement shoppingElement) {
+        shoppingElement.toggleShopped();
+ 
     }
 
     
