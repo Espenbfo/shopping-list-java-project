@@ -10,8 +10,8 @@ public class ShoppingList {
     ArrayList<ShoppingElement> elementList;
 
     public ShoppingList() {
-        id = currentMaxID;
         currentMaxID += 1;
+        id = currentMaxID;
     }
 
     public ShoppingList(String title) {
