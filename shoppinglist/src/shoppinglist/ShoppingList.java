@@ -1,7 +1,7 @@
 package shoppinglist;
 
 import java.util.ArrayList;
-
+import java.lang.Math;
 public class ShoppingList {
     String title;
     int id;
@@ -19,6 +19,14 @@ public class ShoppingList {
         this.title = title;
         this.elementList = new ArrayList<ShoppingElement>();
         this.personList = new ArrayList<Person>();
+    }
+    
+    public ShoppingList(String title, int id, ArrayList<Person> personList, ArrayList<ShoppingElement> elementList) {
+        this.title = title;
+        this.id = id;
+        this.personList = personList;
+        this.elementList = elementList;
+        currentMaxID = Math.max(currentMaxID,id);
     }
 
     public String getTitle() {
