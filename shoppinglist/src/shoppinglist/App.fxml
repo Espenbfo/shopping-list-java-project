@@ -13,7 +13,9 @@
             <Label fx:id="emptyListText" prefHeight="242.0" prefWidth="163.0" text="Your shoppinglist is empty" />
          </children>
       </TilePane>
-      <TextField fx:id="itemInputField" layoutX="42.0" layoutY="309.0" prefHeight="27.0" prefWidth="126.0" />
-      <Button fx:id="addItemButton" layoutX="185.0" layoutY="309.0" mnemonicParsing="false" onAction="#handleAddItemButtonClicked" prefHeight="27.0" prefWidth="118.0" text="Add item" />
+      <TextField fx:id="itemInputField" layoutX="106.0" layoutY="309.0" prefHeight="27.0" prefWidth="110.0" promptText="melk" />
+      <Button fx:id="addItemButton" layoutX="229.0" layoutY="309.0" mnemonicParsing="false" onAction="#handleAddItemButtonClicked" prefHeight="27.0" prefWidth="118.0" text="Add item" />
+      <TextField fx:id="amountInputField" layoutX="10.0" layoutY="309.0" prefHeight="27.0" prefWidth="35.0" promptText="1" />
+      <TextField fx:id="measurementInputField" layoutX="54.0" layoutY="309.0" prefHeight="27.0" prefWidth="42.0" promptText="stk" />
    </children>
 </Pane>
