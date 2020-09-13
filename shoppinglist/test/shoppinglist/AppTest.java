@@ -28,6 +28,6 @@ public class AppTest extends ApplicationTest {
         final Button clickMeButton = (Button) parent.lookup("#addItemButton");
         String oldText = clickMeButton.getText();
         clickOn(clickMeButton);
-        Assertions.assertFalse(clickMeButton.getText().equals(oldText));
+        Assertions.assertTrue(clickMeButton.getText().equals(oldText));
     }
 }
