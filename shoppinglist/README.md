@@ -1,6 +1,6 @@
-##ShoppingList
+## ShoppingList
 
-###Om appen
+### Om appen
 Applikasjonen skal være en applikasjon for å dele handlelister.
 Flere brukere vil ha tilgang til samme handleliste, og her kunne legge til og sjekke av elemeneter.
 Brukere vil kunne ha tilgang til flere handlelister, og hver handleliste vil kunne deles av flere brukere. 
