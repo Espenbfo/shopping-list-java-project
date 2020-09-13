@@ -26,7 +26,8 @@ public class AppController {
     TilePane shoppingList;
     @FXML 
     Label emptyListText;
-    
+    @FXML
+    TextField loadId;
 
     ShoppingList currentShoppingList = new ShoppingList("test"); //vil egt. ikke ha tittel her, men tror endringer må gjøres i ShopppingList.java
     
@@ -49,6 +50,24 @@ public class AppController {
         shoppingListItem.setOnAction(event -> handleItemShopped(currentElement));
 
         
+    }
+
+    @FXML
+    void saveShoppingList(){
+        FileHandler.writeFile(currentShoppingList);
+    }
+
+    @FXML
+    void loadShoppingList(){
+        currentShoppingList = FileHandler.readFile(Integer.parseInt(loadId.getText()));
+        shoppingList.getChildren().clear();
+        for(ShoppingElement x:currentShoppingList.getElementList()){
+            itemToAdd = x.getValue()+ " " + x.measurementType.getBaseName() + " " + x.getName();
+            CheckBox shoppingListItem = new CheckBox(itemToAdd);
+            shoppingListItem.setPadding(new Insets(10, 10, 10, 10));
+            shoppingList.getChildren().add(shoppingListItem);
+            shoppingListItem.setOnAction(event -> handleItemShopped(x));
+        }
     }
 
     @FXML

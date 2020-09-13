@@ -5,6 +5,7 @@
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.layout.TilePane?>
+<?import javafx.scene.layout.HBox?>
 
 <Pane prefHeight="462.0" prefWidth="370.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="shoppinglist.AppController">
    <children>
@@ -17,5 +18,11 @@
       <Button fx:id="addItemButton" layoutX="229.0" layoutY="309.0" mnemonicParsing="false" onAction="#handleAddItemButtonClicked" prefHeight="27.0" prefWidth="118.0" text="Add item" />
       <TextField fx:id="amountInputField" layoutX="10.0" layoutY="309.0" prefHeight="27.0" prefWidth="35.0" promptText="1" />
       <TextField fx:id="measurementInputField" layoutX="54.0" layoutY="309.0" prefHeight="27.0" prefWidth="42.0" promptText="stk" />
+      <HBox prefHeight="30" prefWidth="370" layoutY="347.0">
+         <Button fx:id="saveButton" layoutY="347.0" prefHeight="27.0" onAction="#saveShoppingList" text="save"/>
+         <TextField fx:id="loadId" layoutY="347.0" prefHeight="27.0" prefWidth="35" promptText="loadID"/>
+         <Button fx:id="loadButton" layoutY="347.0" prefHeight="27.0" onAction="#loadShoppingList" text="load"/>
+      </HBox>
    </children>
 </Pane>
+

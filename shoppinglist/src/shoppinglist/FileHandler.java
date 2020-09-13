@@ -9,13 +9,15 @@ import java.io.File;
 
 class FileHandler{
 
-    public ShoppingList readFile(int id){
+    public static ShoppingList readFile(int id){
         BufferedReader BFR;
         ArrayList<ShoppingElement> ShoppingElementList = new ArrayList<ShoppingElement>();
         ShoppingList out;
         String title = "";
+        File inFile = new File("./"+id+".txt");
+        if(!inFile.exists()) return null;
         try{
-            BFR = new BufferedReader(new FileReader("./"+id+".txt"));
+            BFR = new BufferedReader(new FileReader(inFile));
             title = BFR.readLine();
             String line = BFR.readLine();
             String[] linearray = line.split(" ");
@@ -29,11 +31,11 @@ class FileHandler{
         return out;
     }
 
-    public boolean writeFile(ShoppingList listToWrite){
+    public static boolean writeFile(ShoppingList listToWrite){
         BufferedWriter BFW;
         try{
             File outfil = new File("./"+listToWrite.getId()+".txt");
-            outfil.createNewFile();
+            if(!outfil.exists())outfil.createNewFile();
             BFW = new BufferedWriter(new FileWriter(outfil));
             BFW.write(listToWrite.title);
             for(ShoppingElement x: listToWrite.getElementList()){
