@@ -19,9 +19,11 @@ class FileHandler{
         try{
             BFR = new BufferedReader(new FileReader(inFile));
             title = BFR.readLine();
-            String line = BFR.readLine();
-            String[] linearray = line.split(" ");
-            ShoppingElementList.add(new ShoppingElement(linearray[0], Double.parseDouble(linearray[1]),linearray[2]));
+            while(BFR.ready()){
+                String line = BFR.readLine();
+                String[] linearray = line.split(" ");
+                ShoppingElementList.add(new ShoppingElement(linearray[0], Double.parseDouble(linearray[1]),linearray[2]));
+            }
             BFR.close();
 
         }catch(Exception e){
