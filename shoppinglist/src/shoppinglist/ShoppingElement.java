@@ -43,6 +43,18 @@ public class ShoppingElement {
         shopped = !shopped;
     }
 
+    public boolean isShopped() {
+        return shopped;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void getName(String newName) {
+        name = newName;
+    }
+
     @Override
     public String toString() {
         return "name='" + name + '\'' + "\n" +

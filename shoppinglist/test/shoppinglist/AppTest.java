@@ -8,6 +8,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 import javafx.scene.control.Button;
+import javafx.scene.control.TextField;
 
 public class AppTest extends ApplicationTest {
 
@@ -26,8 +27,18 @@ public class AppTest extends ApplicationTest {
     @Test
     public void testController() {
         final Button clickMeButton = (Button) parent.lookup("#addItemButton");
-        String oldText = clickMeButton.getText();
+        final TextField itemInputField = (TextField) parent.lookup("#itemInputField");
+        final TextField amountInputField = (TextField) parent.lookup("#amountInputField");
+        final TextField measurementInputField = (TextField) parent.lookup("#measurementInputField");
+        clickOn(amountInputField);
+        write("1");
+        clickOn(measurementInputField);
+        write("testMeasurement");
+        clickOn(itemInputField);
+        write("testName");
+        String oldText = itemInputField.getText();
         clickOn(clickMeButton);
-        Assertions.assertTrue(clickMeButton.getText().equals(oldText));
+        System.out.println(controller.currentShoppingList);
+        Assertions.assertTrue(oldText.equals(controller.currentShoppingList.getElement(0).getName()));
     }
 }
