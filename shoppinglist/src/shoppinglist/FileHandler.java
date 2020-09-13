@@ -15,7 +15,7 @@ class FileHandler{
         ShoppingList out;
         String title = "";
         try{
-            BFR = new BufferedReader(new FileReader("/"+id+".txt"));
+            BFR = new BufferedReader(new FileReader("./"+id+".txt"));
             title = BFR.readLine();
             String line = BFR.readLine();
             String[] linearray = line.split(" ");
@@ -32,7 +32,7 @@ class FileHandler{
     public boolean writeFile(ShoppingList listToWrite){
         BufferedWriter BFW;
         try{
-            File outfil = new File("/"+listToWrite.getId()+".txt");
+            File outfil = new File("./"+listToWrite.getId()+".txt");
             outfil.createNewFile();
             BFW = new BufferedWriter(new FileWriter(outfil));
             BFW.write(listToWrite.title);
@@ -40,6 +40,7 @@ class FileHandler{
                 BFW.newLine();
                 BFW.write(x.name + " " + x.measurementType.getValue() + " " + x.measurementType.getBaseName());
             }
+            BFW.flush();
             BFW.close();
         }catch(Exception e){
             e.printStackTrace();

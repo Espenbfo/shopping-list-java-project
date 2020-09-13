@@ -25,7 +25,7 @@ public class AppTest extends ApplicationTest {
 
     @Test
     public void testController() {
-        final Button clickMeButton = (Button) parent.lookup("#clickMeButton");
+        final Button clickMeButton = (Button) parent.lookup("#addItemButton");
         String oldText = clickMeButton.getText();
         clickOn(clickMeButton);
         Assertions.assertFalse(clickMeButton.getText().equals(oldText));
