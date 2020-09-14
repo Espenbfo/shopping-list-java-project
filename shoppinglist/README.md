@@ -11,3 +11,4 @@ Vi ønsker at en bruker skal kunne åpne en eksisterende handleliste, enten en d
 Deretter vil brukeren kunne se alle tidligere elementer, samt kunne legge til nye, fjerne og sjekke av elementer. 
 
 
+![](screenshot.png)
