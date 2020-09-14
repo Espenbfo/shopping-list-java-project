@@ -7,16 +7,16 @@ Brukere vil kunne ha tilgang til flere handlelister, og hver handleliste vil kun
 
 ## Organisering av koden
 
-# Domenelaget
+### Domenelaget
 
-# Brukergrensesnittlaget
+### Brukergrensesnittlaget
 Brukergrensesnittet er laget med JavaFX og FXML. Filene App.fxml, App.java og AppController.java danner brukergrensesnittet av handlelisten.
 Her vises handlelistelementene, samt knapper for å legge til og fjerne elementer. I brukergrensesnittet vil det også være felt og knapper for innhenting av tidligere lagrede handlelister. 
 
-# Persistenslaget 
+### Persistenslaget 
 Persistenslaget inneholder logikk for lagring av handlelistene. Per nå lagres og hentes handlelistene som tekstfiler.
 
-# Bygging med maven 
+### Bygging med maven 
 
 
 ## Brukerhistorie
