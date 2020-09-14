@@ -6,6 +6,9 @@ Flere brukere vil ha tilgang til samme handleliste, og her kunne legge til og sj
 Brukere vil kunne ha tilgang til flere handlelister, og hver handleliste vil kunne deles av flere brukere. 
 
 ## Organisering av koden
+Prosjektet er organisert i:
+**shoppinglist/src/shoppinglist** for javakoden
+**shoppinglist/test** for tester 
 
 ### Domenelaget
 Inneholder klasser for logikken i applikasjonen.
@@ -16,10 +19,12 @@ Ligger i [shoppinglist.core](https://gitlab.stud.idi.ntnu.no/it1901/groups-2020/
 
 ### Brukergrensesnittlaget
 Brukergrensesnittet er laget med JavaFX og FXML. Filene App.fxml, App.java og AppController.java danner brukergrensesnittet av handlelisten.
-Her vises handlelistelementene, samt knapper for å legge til og fjerne elementer. I brukergrensesnittet vil det også være felt og knapper for innhenting av tidligere lagrede handlelister. 
+Her vises handlelistelementene, samt knapper for å legge til og fjerne elementer. I brukergrensesnittet vil det også være felt og knapper for innhenting av tidligere lagrede handlelister.
+Ligger i [shoppinglist.gui](https://gitlab.stud.idi.ntnu.no/it1901/groups-2020/gr2049/gr2049/-/tree/master/shoppinglist%2Fsrc%2Fshoppinglist%2Fgui)
 
 ### Persistenslaget 
 Persistenslaget inneholder logikk for lagring av handlelistene. Per nå lagres og hentes handlelistene som tekstfiler.
+Ligger i [shoppinglist.storage](https://gitlab.stud.idi.ntnu.no/it1901/groups-2020/gr2049/gr2049/-/tree/master/shoppinglist%2Fsrc%2Fshoppinglist%2Fstorage)
 
 ### Bygging med maven 
 
