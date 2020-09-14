@@ -3,7 +3,9 @@ module shoppinglist{
 	requires transitive javafx.graphics;
 	requires javafx.controls;
 	
-	exports shoppinglist;
+	exports shoppinglist.core;
+	exports shoppinglist.storage;
+	exports shoppinglist.gui;
 
-	opens shoppinglist to javafx.fxml;
+	opens shoppinglist.gui to javafx.fxml;
 }

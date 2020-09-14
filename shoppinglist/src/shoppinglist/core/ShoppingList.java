@@ -1,4 +1,4 @@
-package shoppinglist;
+package shoppinglist.core;
 
 import java.util.ArrayList;
 import java.lang.Math;

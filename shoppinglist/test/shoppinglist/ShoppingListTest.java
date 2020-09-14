@@ -8,6 +8,9 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 import javafx.scene.control.Button;
+import shoppinglist.core.ShoppingList;
+import shoppinglist.gui.AppController;
+
 
 public class ShoppingListTest extends ApplicationTest {
 

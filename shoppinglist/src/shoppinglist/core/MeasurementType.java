@@ -1,4 +1,4 @@
-package shoppinglist;
+package shoppinglist.core;
 
 public class MeasurementType {
     boolean allowDouble = false;

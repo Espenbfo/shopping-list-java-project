@@ -1,4 +1,4 @@
-package shoppinglist;
+package shoppinglist.gui;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -11,6 +11,8 @@ import javafx.scene.control.CheckBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.TilePane;
+import shoppinglist.core.*;
+import shoppinglist.storage.FileHandler;
 
 public class AppController {
 
@@ -29,7 +31,7 @@ public class AppController {
     @FXML
     TextField loadId;
 
-    ShoppingList currentShoppingList = new ShoppingList("test"); //vil egt. ikke ha tittel her, men tror endringer må gjøres i ShopppingList.java
+    public ShoppingList currentShoppingList = new ShoppingList("test"); //vil egt. ikke ha tittel her, men tror endringer må gjøres i ShopppingList.java
     
     String itemToAdd = null;
     
@@ -62,7 +64,7 @@ public class AppController {
         currentShoppingList = FileHandler.readFile(Integer.parseInt(loadId.getText()));
         shoppingList.getChildren().clear();
         for(ShoppingElement x:currentShoppingList.getElementList()){
-            itemToAdd = x.getValue()+ " " + x.measurementType.getBaseName() + " " + x.getName();
+            itemToAdd = x.getValue()+ " l" + " " + x.getName();
             CheckBox shoppingListItem = new CheckBox(itemToAdd);
             shoppingListItem.setPadding(new Insets(10, 10, 10, 10));
             shoppingList.getChildren().add(shoppingListItem);

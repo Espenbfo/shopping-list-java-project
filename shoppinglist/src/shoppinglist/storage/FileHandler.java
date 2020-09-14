@@ -1,4 +1,4 @@
-package shoppinglist;
+package shoppinglist.storage;
 
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
@@ -6,8 +6,12 @@ import java.util.ArrayList;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.File;
+import shoppinglist.core.ShoppingList;
+import shoppinglist.core.MeasurementType;
+import shoppinglist.core.ShoppingElement;
+import shoppinglist.core.Person;
 
-class FileHandler{
+public class FileHandler{
 
     public static ShoppingList readFile(int id){
         BufferedReader BFR;
@@ -39,10 +43,10 @@ class FileHandler{
             File outfil = new File("./"+listToWrite.getId()+".txt");
             if(!outfil.exists())outfil.createNewFile();
             BFW = new BufferedWriter(new FileWriter(outfil));
-            BFW.write(listToWrite.title);
+            BFW.write(listToWrite.getTitle());
             for(ShoppingElement x: listToWrite.getElementList()){
                 BFW.newLine();
-                BFW.write(x.name + " " + x.measurementType.getValue() + " " + x.measurementType.getBaseName());
+                BFW.write(x.getName() + " " + x.getValue() + " l");
             }
             BFW.flush();
             BFW.close();

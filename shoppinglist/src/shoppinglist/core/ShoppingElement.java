@@ -1,4 +1,4 @@
-package shoppinglist;
+package shoppinglist.core;
 
 public class ShoppingElement {
     String name;

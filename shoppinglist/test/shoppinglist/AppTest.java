@@ -9,6 +9,8 @@ import javafx.scene.Scene;
 import javafx.stage.Stage;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
+import shoppinglist.gui.AppController;
+import shoppinglist.core.ShoppingList;
 
 public class AppTest extends ApplicationTest {
 
