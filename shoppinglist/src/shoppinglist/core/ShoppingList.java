@@ -12,13 +12,14 @@ public class ShoppingList {
     public ShoppingList() {
         currentMaxID += 1;
         id = currentMaxID;
+        this.elementList = new ArrayList<ShoppingElement>();
+        this.personList = new ArrayList<Person>();
+        this.title = "";
     }
-
+    
     public ShoppingList(String title) {
         this();
         this.title = title;
-        this.elementList = new ArrayList<ShoppingElement>();
-        this.personList = new ArrayList<Person>();
     }
     
     public ShoppingList(String title, int id, ArrayList<Person> personList, ArrayList<ShoppingElement> elementList) {
