@@ -27,7 +27,7 @@ Persistenslaget inneholder logikk for lagring av handlelistene. Per nå lagres o
 Ligger i [shoppinglist.storage](https://gitlab.stud.idi.ntnu.no/it1901/groups-2020/gr2049/gr2049/-/tree/master/shoppinglist%2Fsrc%2Fshoppinglist%2Fstorage)
 
 ### Bygging med maven 
-
+Prosjektet er konfiguerert med maven, og kan kjøres ved javafx:run og testes med mvn test
 
 ## Brukerhistorie
 Vi ønsker at en bruker skal kunne åpne en eksisterende handleliste, enten en den selv har laget tidligere, eller en del har fått tildelt av en annen bruker.
