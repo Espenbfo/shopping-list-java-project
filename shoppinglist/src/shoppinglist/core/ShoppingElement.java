@@ -117,6 +117,8 @@ public class ShoppingElement {
      *
      * @param newName the new name
      */
+
+    public String getBaseName(){return measurementType.getBaseName();}
     public void setName(String newName) {
         name = newName;
     }

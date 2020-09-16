@@ -13,6 +13,11 @@ import shoppinglist.core.Person;
 
 public class FileHandler{
 
+    /**
+     * This is a method to read the saved shoppinglists
+     * @param id the id of the ShoppingList that should be read
+     * @return the Shoppinglist which has been read
+     */
     public static ShoppingList readFile(int id){
         BufferedReader BFR;
         ArrayList<ShoppingElement> ShoppingElementList = new ArrayList<ShoppingElement>();
@@ -37,6 +42,11 @@ public class FileHandler{
         return out;
     }
 
+    /**
+     * a method to save a Shoppinglist as a file
+     * @param listToWrite the shoppinglist which should be written to a file
+     * @return true if the file was written, false if it was not
+     */
     public static boolean writeFile(ShoppingList listToWrite){
         BufferedWriter BFW;
         try{
@@ -46,7 +56,7 @@ public class FileHandler{
             BFW.write(listToWrite.getTitle());
             for(ShoppingElement x: listToWrite.getElementList()){
                 BFW.newLine();
-                BFW.write(x.getName() + " " + x.getValue() + " l");
+                BFW.write(x.getName() + " " + x.getValue() + " " + x.getBaseName());
             }
             BFW.flush();
             BFW.close();
