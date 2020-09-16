@@ -34,6 +34,10 @@ public class AppController {
     public ShoppingList currentShoppingList = new ShoppingList("test"); //vil egt. ikke ha tittel her, men tror endringer må gjøres i ShopppingList.java
     
     String itemToAdd = null;
+
+    /**
+     * Add element to shoppinglist when button is clicked 
+     */
     
     @FXML
     void handleAddItemButtonClicked() {
@@ -53,12 +57,17 @@ public class AppController {
 
         
     }
-
+    /**
+     * Saves shoppinglist to file 
+     */
     @FXML
     void saveShoppingList(){
         FileHandler.writeFile(currentShoppingList);
     }
 
+    /**
+     * Loads existing shoppinglist from file
+     */
     @FXML
     void loadShoppingList(){
         currentShoppingList = FileHandler.readFile(Integer.parseInt(loadId.getText()));
@@ -72,6 +81,11 @@ public class AppController {
         }
     }
 
+    /**
+     * Changes status of shoppingitem from not shopped to shopped 
+     * 
+     * @param shoppingElement
+     */
     @FXML
     void handleItemShopped(ShoppingElement shoppingElement) {
         shoppingElement.toggleShopped();
