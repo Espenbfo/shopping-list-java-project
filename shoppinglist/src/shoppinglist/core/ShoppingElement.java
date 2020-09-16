@@ -19,7 +19,13 @@ public class ShoppingElement {
     }
 
     /**
-     * Initialize a ShoppingElement with name, value, measurementName, and if the element not only is represented by integers.
+     * Initialize a ShoppingElement with name, value, measurementName, and whether the element can be represented by non-integers
+     *
+     * @param name the name
+     * @param value the value
+     * @param measurementName the measurement name
+     * @param allowDouble whether the element can be represented by non-integers
+     *
      */
     public ShoppingElement(String name, double value, String measurementName, boolean allowDouble) {
         this.name= name;
@@ -28,6 +34,11 @@ public class ShoppingElement {
     }
     /**
      * Initialize a ShoppingElement with name, value, measurementName.
+     *
+     * @param name the name
+     * @param value the value
+     * @param measurementName the measurement name
+     *
      */
     public ShoppingElement(String name, double value, String measurementName) {
         this(name,value,measurementName,true);
@@ -35,6 +46,11 @@ public class ShoppingElement {
 
     /**
      * Initialize a ShoppingElement with name, a predefined MeasurementType, and if the item has been shopped.
+     *
+     * @param name the name
+     * @param m the MeasurementType instance
+     * @param shopped the boolean representing if the element is shopped
+     *
      */
     public ShoppingElement(String name, MeasurementType m, boolean shopped) {
         this.name= name;
@@ -55,6 +71,7 @@ public class ShoppingElement {
      * Sets the value
      *
      * @param newValue the new value
+     *
      */
     public void setValue(double newValue) {
         measurementType.setValue(newValue);
@@ -64,6 +81,7 @@ public class ShoppingElement {
      * Changes the value
      *
      * @param difference the number to change the value by
+     *
      */
     public void changeValue(double difference) {
         measurementType.changeValue(difference);
