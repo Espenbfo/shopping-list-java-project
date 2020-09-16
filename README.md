@@ -2,7 +2,7 @@
 
 # Gr2049
 
-This repo contains the project of group 49
+The Code is in the src folder in the shoppinglist project
 
 [Google Disk](https://drive.google.com/drive/folders/10KHM6JSvfrWcrQkHPEovQ5cBZe_7T9WN?usp=sharing) 
 
