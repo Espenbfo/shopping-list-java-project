@@ -31,7 +31,7 @@ public class AppController {
     @FXML
     TextField loadId;
 
-    public ShoppingList currentShoppingList = new ShoppingList("test"); //vil egt. ikke ha tittel her, men tror endringer må gjøres i ShopppingList.java
+    public ShoppingList currentShoppingList = new ShoppingList("test"); //vil egt. ikke ha tittel her, men tror endringer må gjøres i ShoppingList.java
     
     String itemToAdd = null;
 
