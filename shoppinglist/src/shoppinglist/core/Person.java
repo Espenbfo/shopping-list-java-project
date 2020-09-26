@@ -52,9 +52,24 @@ public class Person {
         return shoppingLists.get(index);
     }
 
-
+    /**
+     * get list of shoppingLists
+     * @return list of shoppingLists
+     */
     public ArrayList<ShoppingList> getShoppingLists() {
         return shoppingLists;
+    }
+
+    /**
+     * get list of shoppinglist ids
+     * @return integer list of IDs
+     */
+    ArrayList<Integer> getIDList() {
+        ArrayList<Integer> l =  new ArrayList<Integer>();
+        for (ShoppingList s:getShoppingLists()) {
+            l.add(s.getId());
+        }
+        return l;
     }
 
     /**
@@ -81,6 +96,7 @@ public class Person {
         for (int i = 0; i < getShoppingLists().size(); i++) {
             if (!getShoppingList(i).equals(p.getShoppingList(i))) return false;
         }
+
 
 
         return true;
