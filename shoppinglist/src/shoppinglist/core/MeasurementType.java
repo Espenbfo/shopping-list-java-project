@@ -117,10 +117,7 @@ public class MeasurementType {
         }
 
         MeasurementType m = (MeasurementType) o;
-        if (getBaseName() != m.getBaseName()) {
-            return false;
-        }
-        if (getValue() != m.getValue()) {
+        if (!getBaseName().equals(m.getBaseName())) {
             return false;
         }
         if (getValue() != m.getValue()) {

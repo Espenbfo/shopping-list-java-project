@@ -171,7 +171,7 @@ public class ShoppingElement {
             return false;
         }
 
-        if (isShopped() == e.isShopped()) {
+        if (isShopped() != e.isShopped()) {
             return false;
         }
 

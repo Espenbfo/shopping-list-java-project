@@ -1,4 +1,4 @@
-package shoppinglist;
+package shoppinglist.gui;
 
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;

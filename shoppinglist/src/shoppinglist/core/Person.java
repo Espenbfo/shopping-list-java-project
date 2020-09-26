@@ -8,6 +8,26 @@ public class Person {
 
 
     /**
+     * Constructor for already existing person with shoppinglists
+     * @param userName the name of the user
+     * @param shoppingLists the shoppinglists this Person has made formerly
+     */
+    Person(String userName, ArrayList<ShoppingList> shoppingLists){
+        this.userName = userName;
+        this.shoppingLists = shoppingLists;
+    }
+
+    /**
+     * a constructor for a new Person who has not created any shoppinglists formerly
+     * @param userName the name of the user
+     */
+    Person(String userName){
+        this.userName = userName;
+        this.shoppingLists = new ArrayList<ShoppingList>();
+    }
+
+
+    /**
      * Gets the username
      * @return the username
      */
