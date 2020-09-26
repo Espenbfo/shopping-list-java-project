@@ -93,6 +93,15 @@ public class ShoppingList {
     }
 
     /**
+     * Gets the person at an index
+     * @param index the index
+     * @return the person at the specified index
+     */
+    public Person getPerson(int index) {
+        return getPersonList().get(index);
+    }
+
+    /**
      * Adds an element to the end of the elementList
      * @param e the element to be added
      */
@@ -162,20 +171,44 @@ public class ShoppingList {
                 "elements:\n" + elementString;
     }
 
-    public static void main(String[] Args) {
-        ShoppingList l = new ShoppingList("Liste 1");
-        l.addElement("Egg",2.0, "stk",false);
-        l.addElement("Melk",1.0,"l");
-        l.addElement("Ost",0.5, "kg");
+    /**
+     * Checks if instance equals another
+     *
+     * @return true if equal, false else
+     */
+    @Override
+    public boolean equals(Object o) {
+        if (!o.getClass().equals(this.getClass())) {
+            return false;
+        }
 
-        ShoppingList l2 = new ShoppingList("Liste 2");
-        l2.addElement("Sparkesykkel",1.0,"stk",false);
-        l2.addElement("ballonger",10.0,"stk",false);
-        l2.getElement(1).setValue(4.0);
-        l2.getElement(1).toggleShopped();
+        ShoppingList e = (ShoppingList) o;
 
-        System.out.println(l);
-        System.out.println(l2);
+        if (!getTitle().equals(e.getTitle())) {
+            return false;
+        }
+
+        if (getId() != e.getId()) {
+            return false;
+        }
+
+        if (getElementList().size() != e.getElementList().size()) {
+            return false;
+        }
+
+        for (int i = 0; i < getElementList().size(); i++) {
+            if (!getElement(i).equals(e.getElement(i))) return false;
+        }
+
+        if (getPersonList().size() != e.getPersonList().size()) {
+            return false;
+        }
+
+        for (int i = 0; i < getPersonList().size(); i++) {
+            if (!getPerson(i).equals(e.getPerson(i))) return false;
+        }
+
+
+        return true;
     }
-
 }

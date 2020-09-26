@@ -73,7 +73,7 @@ public class AppController {
         currentShoppingList = FileHandler.readFile(Integer.parseInt(loadId.getText()));
         shoppingList.getChildren().clear();
         for(ShoppingElement x:currentShoppingList.getElementList()){
-            itemToAdd = x.getValue()+ " l" + " " + x.getName();
+            itemToAdd = x.getValue()+ " " + x.getMeasurementName()+ " " + x.getName();
             CheckBox shoppingListItem = new CheckBox(itemToAdd);
             shoppingListItem.setPadding(new Insets(10, 10, 10, 10));
             shoppingList.getChildren().add(shoppingListItem);
