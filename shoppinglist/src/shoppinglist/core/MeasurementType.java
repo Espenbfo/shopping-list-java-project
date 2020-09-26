@@ -96,4 +96,21 @@ public class MeasurementType {
         return baseName;
     }
 
+    public boolean equals(MeasurementType m) {
+        if (getBaseName() != m.getBaseName()) {
+            return false;
+        }
+        if (getValue() != m.getValue()) {
+            return false;
+        }
+        if (getValue() != m.getValue()) {
+            return false;
+        }
+
+        if (allowDouble != m.allowDouble) {
+            return false;
+        }
+        return true;
+    }
+
 }
