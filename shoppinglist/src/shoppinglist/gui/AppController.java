@@ -15,6 +15,8 @@ import shoppinglist.core.*;
 import shoppinglist.storage.FileHandler;
 
 public class AppController {
+    private static Person loggedin;
+
 
     @FXML
     Button addItemButton;

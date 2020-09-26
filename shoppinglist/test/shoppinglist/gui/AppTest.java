@@ -12,6 +12,8 @@ import javafx.scene.control.TextField;
 import shoppinglist.gui.AppController;
 import shoppinglist.core.ShoppingList;
 
+import java.awt.*;
+
 public class AppTest extends ApplicationTest {
 
     private Parent parent;
@@ -42,5 +44,14 @@ public class AppTest extends ApplicationTest {
         clickOn(clickMeButton);
         System.out.println(controller.currentShoppingList);
         Assertions.assertTrue(oldText.equals(controller.currentShoppingList.getElement(0).getName()));
+    }
+    @test
+    public void testLogIn(){
+        final Button loginButton = (Button) parent.lookup("#loginButton");
+        final TextField usernameField = (TextField) parent.lookup("#usernameField");
+        clickOn(usernameField);
+        write("Gud");
+        clickOn(loginButton);
+        Assertions.assertTrue(controller.getCurrentPerson().getName().equals("Gud"));
     }
 }
