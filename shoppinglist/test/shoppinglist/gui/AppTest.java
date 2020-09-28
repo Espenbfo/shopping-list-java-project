@@ -47,7 +47,8 @@ public class AppTest extends ApplicationTest {
         System.out.println(controller.currentShoppingList);
         Assertions.assertTrue(oldText.equals(controller.currentShoppingList.getElement(0).getName()));
     }
-    @test
+
+    @Test
     public void testLogIn(){
         final Button loginButton = (Button) parent.lookup("#loginButton");
         final TextField usernameField = (TextField) parent.lookup("#usernameField");

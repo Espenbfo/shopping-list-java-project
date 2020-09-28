@@ -138,7 +138,10 @@ public class Person {
         return true;
     }
 
-
+    /**
+     * to string of the name and number of lists this Person has
+     * @return the name of number of lists of this person
+     */
     @Override
     public String toString(){
         return userName + " " + shoppingLists.size();
