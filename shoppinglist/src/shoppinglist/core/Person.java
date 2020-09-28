@@ -53,6 +53,18 @@ public class Person {
     }
 
     /**
+     * Gets the shoppinglist by its id
+     * @param id the id
+     * @return the shoppinglist which has the specified id
+     */
+    public ShoppingList getShoppingListById(int id){
+        for(ShoppingList x:shoppingLists){
+            if(x.getId() == id) return x;
+        }
+        return null;
+    }
+
+    /**
      * get list of shoppingLists
      * @return list of shoppingLists
      */
@@ -70,6 +82,22 @@ public class Person {
             l.add(s.getId());
         }
         return l;
+    }
+
+    /**
+     * remove a shoppinglist associated with this person
+     * @param index the index of the shoppinglist you want to remove
+     */
+    public void removeShoppingList(int index){
+        shoppingLists.remove(index);
+    }
+
+    /**
+     * remova a shoppinglist associated with this person
+     * @param id id of the shoppinglist you want to remove
+     */
+    public void removeShoppingListById(int id){
+        shoppingLists.removeIf(shoppingList -> (shoppingList.getId() == id));
     }
 
     /**
