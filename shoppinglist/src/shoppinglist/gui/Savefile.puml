@@ -1,7 +1,0 @@
-actor Person
-Person -> SaveButton: press
-SaveButton -> Controller: pressed
-Controller -> FileHandler: write(shoppingList)
-FileHandler -> shoppingList: getId()
-shoppingList -> FileHandler: Return
-FileHandler -> Controller: Return
