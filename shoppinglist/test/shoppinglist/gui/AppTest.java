@@ -11,6 +11,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 import shoppinglist.gui.AppController;
 import shoppinglist.core.ShoppingList;
+import shoppinglist.core.Client;
 
 import java.awt.*;
 
@@ -52,6 +53,6 @@ public class AppTest extends ApplicationTest {
         clickOn(usernameField);
         write("Gud");
         clickOn(loginButton);
-        Assertions.assertTrue(controller.getCurrentPerson().getName().equals("Gud"));
+        Assertions.assertTrue(Client.getCurrentPerson().getName().equals("Gud"));
     }
 }

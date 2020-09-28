@@ -15,7 +15,7 @@ import shoppinglist.core.*;
 import shoppinglist.storage.FileHandler;
 
 public class AppController {
-    private static Person loggedin;
+    private static Person currentPerson;
 
 
     @FXML
@@ -93,6 +93,7 @@ public class AppController {
         shoppingElement.toggleShopped();
  
     }
+
 
     
   
