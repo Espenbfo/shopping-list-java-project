@@ -101,6 +101,14 @@ public class Person {
     }
 
     /**
+     * adds a shoppinglist to the list of shopppinglists
+     * @param l the shoppinglist which is to be added to the list of shoppinglists
+     */
+    public void addShoppingList(ShoppingList l){
+        shoppingLists.add(l);
+    }
+
+    /**
      * Checks if instance equals another
      *
      * @return true if equal, false else
@@ -129,4 +137,11 @@ public class Person {
 
         return true;
     }
+
+
+    @Override
+    public String toString(){
+        return userName + " " + shoppingLists.size();
+    }
+
 }
