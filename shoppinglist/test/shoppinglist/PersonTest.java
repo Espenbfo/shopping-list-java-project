@@ -1,7 +1,7 @@
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import java.util.ArrayList;
-import java.util.List;
+import java.util.List; 
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -38,7 +38,7 @@ public void init(){
     s3.addElement(e3);
 
     Person p1 = new Person();
-    Person p2 = new Person();
+    Person p2 = new Person(); 
 
     p1.addShoppingList(s1);
     p1.addShoppingList(s2);
