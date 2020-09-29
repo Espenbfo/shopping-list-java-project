@@ -44,7 +44,7 @@
 	</dependencies>
 
 	<properties>
-		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 	</properties>
 
 	<build>
@@ -92,7 +92,8 @@
                 </configuration>
 			</plugin>
 
-			<!-- Running JavaFX code -->
+            <!-- Running JavaFX code -->
+        
 			<plugin>
 				<groupId>org.openjfx</groupId>
 				<artifactId>javafx-maven-plugin</artifactId>
@@ -100,7 +101,27 @@
 				<configuration>
 					<mainClass>shoppinglist.gui.App</mainClass>
 				</configuration>
-			</plugin>
+            </plugin>
+            <!-- Jacoco plugins -->
+            <plugin>
+    <groupId>org.jacoco</groupId>
+    <artifactId>jacoco-maven-plugin</artifactId>
+    <version>0.7.7.201606060606</version>
+    <executions>
+        <execution>
+            <goals>
+                <goal>prepare-agent</goal>
+            </goals>
+        </execution>
+        <execution>
+            <id>report</id>
+            <phase>prepare-package</phase>
+            <goals>
+                <goal>report</goal>
+            </goals>
+        </execution>
+    </executions>
+</plugin>
 		</plugins>
 	</build>
 </project>
