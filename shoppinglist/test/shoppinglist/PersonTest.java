@@ -10,11 +10,6 @@ import org.testfx.framework.junit5.ApplicationTest;
 import shoppinglist.core.Person;
 import shoppinglist.core.ShoppingElement;
 import shoppinglist.core.ShoppingList;
-
-// om den lager nytt objekt 
-// get shoppinglister, get shoppinglistbyid
-// add shoppinglist, remove 
-// sjekk equals
  
 
 public class PersonTest extends ApplicationTest {
@@ -51,6 +46,18 @@ public void init(){
     shoppingLists.add(s3);
 }
 
+@Test
+public void testPerson(){
+    Person p3 = new Person("Benedicte");
+    p1.setUserName("Benedicte");
+    assertTrue(p3.equals(p1));
+
+    assertTrue(p2.getShoppingLists().contains(s2));
+    p2.removeShoppingList(0);
+    assertFalse(p2.getShoppingLists().contains(s2));
+    p2.addShoppingList(s2);
+    assertTrue(p2.getShoppingLists().contains(s2));
+}
 
 @Test 
 public void testPersonListRelation(){
