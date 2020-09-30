@@ -15,7 +15,7 @@ public class MeasurementTypeTest extends ApplicationTest {
 
 
 @BeforeEach
-public void setUp(){
+public void init(){
     MeasurementType m1 = new MeasurementType();
 } 
 
