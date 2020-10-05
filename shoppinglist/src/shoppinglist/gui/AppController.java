@@ -15,6 +15,8 @@ import shoppinglist.core.*;
 import shoppinglist.storage.FileHandler;
 
 public class AppController {
+    private static Person currentPerson;
+
 
     @FXML
     Button addItemButton;
@@ -31,7 +33,7 @@ public class AppController {
     @FXML
     TextField loadId;
 
-    public ShoppingList currentShoppingList = new ShoppingList("test"); //vil egt. ikke ha tittel her, men tror endringer må gjøres i ShopppingList.java
+    public ShoppingList currentShoppingList = new ShoppingList("test"); //vil egt. ikke ha tittel her, men tror endringer må gjøres i ShoppingList.java
     
     String itemToAdd = null;
 
@@ -73,7 +75,7 @@ public class AppController {
         currentShoppingList = FileHandler.readFile(Integer.parseInt(loadId.getText()));
         shoppingList.getChildren().clear();
         for(ShoppingElement x:currentShoppingList.getElementList()){
-            itemToAdd = x.getValue()+ " l" + " " + x.getName();
+            itemToAdd = x.getValue()+ " " + x.getMeasurementName()+ " " + x.getName();
             CheckBox shoppingListItem = new CheckBox(itemToAdd);
             shoppingListItem.setPadding(new Insets(10, 10, 10, 10));
             shoppingList.getChildren().add(shoppingListItem);
@@ -91,6 +93,7 @@ public class AppController {
         shoppingElement.toggleShopped();
  
     }
+
 
     
   

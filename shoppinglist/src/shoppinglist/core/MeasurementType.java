@@ -5,9 +5,9 @@ package shoppinglist.core;
  */
 
 public class MeasurementType {
-    boolean allowDouble = true;
-    String baseName;
-    double value;
+    private boolean allowDouble = true;
+    private String baseName;
+    private double value;
 
     /**
      * Initialize a MeasurementType with default values.
@@ -94,6 +94,40 @@ public class MeasurementType {
      */
     public String getBaseName() {
         return baseName;
+    }
+
+    /**
+     * whether value can be double
+     *
+     * @return whether value can be double
+     */
+    public boolean allowDouble() {
+        return allowDouble;
+    }
+
+    /**
+     * Checks if instance equals another
+     *
+     * @return true if equal, false else
+     */
+    @Override
+    public boolean equals(Object o) {
+        if (!o.getClass().equals(this.getClass())) {
+            return false;
+        }
+
+        MeasurementType m = (MeasurementType) o;
+        if (!getBaseName().equals(m.getBaseName())) {
+            return false;
+        }
+        if (getValue() != m.getValue()) {
+            return false;
+        }
+
+        if (allowDouble() != m.allowDouble()) {
+            return false;
+        }
+        return true;
     }
 
 }

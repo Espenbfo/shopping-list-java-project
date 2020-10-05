@@ -1,4 +1,4 @@
-package shoppinglist;
+package shoppinglist.gui;
 
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
@@ -11,6 +11,10 @@ import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 import shoppinglist.gui.AppController;
 import shoppinglist.core.ShoppingList;
+import shoppinglist.core.Person;
+import shoppinglist.core.Client;
+
+import java.awt.*;
 
 public class AppTest extends ApplicationTest {
 
@@ -42,5 +46,15 @@ public class AppTest extends ApplicationTest {
         clickOn(clickMeButton);
         System.out.println(controller.currentShoppingList);
         Assertions.assertTrue(oldText.equals(controller.currentShoppingList.getElement(0).getName()));
+    }
+
+    @Test
+    public void testLogIn(){
+        final Button loginButton = (Button) parent.lookup("#loginButton");
+        final TextField usernameField = (TextField) parent.lookup("#usernameField");
+        clickOn(usernameField);
+        write("Gud");
+        clickOn(loginButton);
+        Assertions.assertTrue(Client.getCurrentPerson().getUserName().equals("Gud"));
     }
 }

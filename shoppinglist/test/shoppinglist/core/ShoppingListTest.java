@@ -1,4 +1,4 @@
-package shoppinglist;
+package shoppinglist.core;
 
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
@@ -14,8 +14,6 @@ import shoppinglist.gui.AppController;
 
 public class ShoppingListTest extends ApplicationTest {
 
-    private Parent parent;
-    private AppController controller;
 
 
     @Test

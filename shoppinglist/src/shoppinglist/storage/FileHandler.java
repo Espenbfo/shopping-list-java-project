@@ -56,7 +56,7 @@ public class FileHandler{
             BFW.write(listToWrite.getTitle());
             for(ShoppingElement x: listToWrite.getElementList()){
                 BFW.newLine();
-                BFW.write(x.getName() + " " + x.getValue() + " " + x.getBaseName());
+                BFW.write(x.getName() + " " + x.getValue() + " " + x.getMeasurementName());
             }
             BFW.flush();
             BFW.close();

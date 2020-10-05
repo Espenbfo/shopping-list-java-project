@@ -5,9 +5,9 @@ package shoppinglist.core;
  */
 
 public class ShoppingElement {
-    String name;
-    MeasurementType measurementType;
-    boolean shopped;
+    private String name;
+    private final MeasurementType measurementType;
+    private boolean shopped;
 
     /**
      * Initialize a ShoppingElement with default values.
@@ -118,9 +118,24 @@ public class ShoppingElement {
      * @param newName the new name
      */
 
-    public String getBaseName(){return measurementType.getBaseName();}
     public void setName(String newName) {
         name = newName;
+    }
+
+    /**
+     * Gets measurement name
+     *
+     * @return measurement name
+     */
+
+    public String getMeasurementName(){return measurementType.getBaseName();}
+    /**
+     * Gets measurement instance
+     *
+     * @return measurement instance
+     */
+    public MeasurementType getMeasurementType() {
+        return measurementType;
     }
 
     /**
@@ -133,5 +148,33 @@ public class ShoppingElement {
         return "name='" + name + '\'' + "\n" +
                 "value=" + getValue() + " " + measurementType.getBaseName() + "\n" +
                 "shopped=" + shopped;
+    }
+
+    /**
+     * Checks if instance equals another
+     *
+     * @return true if equal, false else
+     */
+    @Override
+    public boolean equals(Object o) {
+        if (!o.getClass().equals(this.getClass())) {
+            return false;
+        }
+
+        ShoppingElement e = (ShoppingElement) o;
+
+        if (!getMeasurementType().equals(e.getMeasurementType())) {
+            return false;
+        }
+
+        if (!getName().equals(e.getName())) {
+            return false;
+        }
+
+        if (isShopped() != e.isShopped()) {
+            return false;
+        }
+
+        return true;
     }
 }

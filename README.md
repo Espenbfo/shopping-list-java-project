@@ -6,5 +6,13 @@ The code is in the src folder in the shoppinglist project
 
 [Google Disk](https://drive.google.com/drive/folders/10KHM6JSvfrWcrQkHPEovQ5cBZe_7T9WN?usp=sharing) 
 
-
+```plantuml
+actor Person
+Person -> SaveButton: press
+SaveButton -> Controller: pressed
+Controller -> FileHandler: write(shoppingList)
+FileHandler -> shoppingList: getId()
+shoppingList -> FileHandler: Return
+FileHandler -> Controller: Return
+```
 
