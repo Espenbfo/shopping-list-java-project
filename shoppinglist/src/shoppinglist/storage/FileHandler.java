@@ -10,36 +10,26 @@ import shoppinglist.core.ShoppingList;
 import shoppinglist.core.MeasurementType;
 import shoppinglist.core.ShoppingElement;
 import shoppinglist.core.Person;
-
+import com.fasterxml.jackson.databind.ObjectMapper;
+import java.nio.file.Paths;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+@JsonIgnoreProperties(ignoreUnknown = true)
 public class FileHandler{
-
     /**
      * This is a method to read the saved shoppinglists
      * @param id the id of the ShoppingList that should be read
      * @return the Shoppinglist which has been read
      */
     public static ShoppingList readFile(int id){
-        BufferedReader BFR;
-        ArrayList<ShoppingElement> ShoppingElementList = new ArrayList<ShoppingElement>();
-        ShoppingList out;
-        String title = "";
-        File inFile = new File("./"+id+".txt");
-        if(!inFile.exists()) return null;
-        try{
-            BFR = new BufferedReader(new FileReader(inFile));
-            title = BFR.readLine();
-            while(BFR.ready()){
-                String line = BFR.readLine();
-                String[] linearray = line.split(" ");
-                ShoppingElementList.add(new ShoppingElement(linearray[0], Double.parseDouble(linearray[1]),linearray[2]));
-            }
-            BFR.close();
-
-        }catch(Exception e){
+        try {
+            String filename = id + ".json";
+            ObjectMapper mapper = new ObjectMapper();
+            ShoppingList out = mapper.readValue(Paths.get(id + ".json").toFile(), ShoppingList.class);
+            return out;
+        }catch(Exception e) {
             e.printStackTrace();
         }
-        out = new ShoppingList(title,id,new ArrayList<Person>(),ShoppingElementList);
-        return out;
+        return null;
     }
 
     /**
@@ -48,23 +38,14 @@ public class FileHandler{
      * @return true if the file was written, false if it was not
      */
     public static boolean writeFile(ShoppingList listToWrite){
-        BufferedWriter BFW;
-        try{
-            File outfil = new File("./"+listToWrite.getId()+".txt");
-            if(!outfil.exists())outfil.createNewFile();
-            BFW = new BufferedWriter(new FileWriter(outfil));
-            BFW.write(listToWrite.getTitle());
-            for(ShoppingElement x: listToWrite.getElementList()){
-                BFW.newLine();
-                BFW.write(x.getName() + " " + x.getValue() + " " + x.getMeasurementName());
-            }
-            BFW.flush();
-            BFW.close();
-        }catch(Exception e){
+        try {
+            ObjectMapper mapper = new ObjectMapper();
+            mapper.writeValue(Paths.get(listToWrite.getId() + ".json").toFile(), listToWrite);
+            return true;
+        }catch (Exception e) {
             e.printStackTrace();
-            return false;
         }
-        return true;
+        return false;
     }
 
     public static void main(String[] args) {

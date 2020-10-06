@@ -1,12 +1,13 @@
 package shoppinglist.core;
-
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+@JsonIgnoreProperties(ignoreUnknown = true)
 /**
  * Represents an element in a shoppingList.
  */
 
 public class ShoppingElement {
     private String name;
-    private final MeasurementType measurementType;
+    private MeasurementType measurementType;
     private boolean shopped;
 
     /**
@@ -104,6 +105,12 @@ public class ShoppingElement {
     }
 
     /**
+     * set whether it is shopped
+     * @param shopped to set to
+     */
+    public void setShopped(boolean shopped){this.shopped = shopped;}
+
+    /**
      * Gets the name
      *
      * @return the name
@@ -134,9 +141,16 @@ public class ShoppingElement {
      *
      * @return measurement instance
      */
+
     public MeasurementType getMeasurementType() {
         return measurementType;
     }
+
+    /**
+     * sets measurementtype
+     * @param measurementType to set to
+     */
+    public void setMeasurementType(MeasurementType measurementType){this.measurementType = measurementType;}
 
     /**
      * Gets a description of the element
