@@ -122,9 +122,12 @@ public class AppController {
     		Pane list = new Pane();
     		Label listName = new Label(shoppingList.getTitle());
             Button listButton = new Button("Open");
-            
+            list.setMinSize(200, 50);
             list.getChildren().addAll(listName, listButton);
-    		listsOverview.getChildren().add(list);
+            listsOverview.getChildren().add(list);
+            
+
+            listButton.setOnAction(event -> handleListButtonClicked(shoppingList));
         }
 
         
@@ -138,7 +141,7 @@ public class AppController {
     }
 
     @FXML 
-    void handleListButtonClicked(){
+    void handleListButtonClicked(ShoppingList shoppingList){
         //display clicked list
     }
 
