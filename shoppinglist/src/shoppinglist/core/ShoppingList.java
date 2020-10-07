@@ -118,6 +118,9 @@ public class ShoppingList {
      *
      */
     public void addPerson(Person p) {
+        if (!p.getShoppingLists().contains(this)) {
+            p.addShoppingList(this);
+        }
         getPersonList().add(p);
     }
 

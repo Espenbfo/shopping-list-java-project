@@ -107,7 +107,10 @@ public class Person {
      * @param l the shoppinglist which is to be added to the list of shoppinglists
      */
     public void addShoppingList(ShoppingList l){
-        shoppingLists.add(l);
+        if (!l.getPersonList().contains(this)) {
+            l.addPerson(this);
+        }
+        addShoppingList(l);
     }
 
     /**
