@@ -113,6 +113,15 @@ public class ShoppingList {
     }
 
     /**
+     * add the person to PersonList
+     * @param p the Person to add
+     *
+     */
+    public void addPerson(Person p) {
+        getPersonList().add(p);
+    }
+
+    /**
      * Adds an element to the end of the elementList
      * @param e the element to be added
      */
