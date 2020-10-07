@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.control.CheckBox?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.TilePane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.text.Text?>
+
+
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.text.TextFlow?>
+<?import javafx.scene.control.Separator?>
+
+<Pane prefHeight="500.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="shoppinglist.gui.AppController" id="window">
+   <children>
+      <Label id="shoppingTitle" layoutX="0.0" prefWidth="400.0" layoutY="25.0" text="Tittel til liste" alignment="CENTER"></Label>
+      <ScrollPane layoutX="50.0" layoutY="75.0" prefHeight="250.0" prefWidth="300.0" id="scroll">
+         <TilePane fx:id="shoppingList" layoutX="50.0" layoutY="50.0" prefHeight="250.0" prefWidth="280.0" id="shoppingList" prefRows="1" prefTileWidth="280" alignment="BASELINE_LEFT">
+            <children>
+               <Label fx:id="emptyListText" prefHeight="242.0" prefWidth="163.0" text="Your shoppinglist is empty" />
+            </children>
+         </TilePane>
+      </ScrollPane>
+
+      <TextField fx:id="itemInputField" layoutX="150.0" layoutY="350.0" prefHeight="27.0" prefWidth="90.0" promptText="melk" />
+      <Button fx:id="addItemButton" layoutX="250.0" layoutY="350.0" mnemonicParsing="false" onAction="#handleAddItemButtonClicked" prefHeight="27.0" prefWidth="100.0" text="Add item"  id="addItemButton"/>
+      <TextField fx:id="amountInputField" layoutX="50.0" layoutY="350.0" prefHeight="27.0" prefWidth="40.0" promptText="1" />
+      <TextField fx:id="measurementInputField" layoutX="100.0" layoutY="350.0" prefHeight="27.0" prefWidth="40.0" promptText="stk" />
+
+      <Separator layoutX="100.0" layoutY="375.0"  prefHeight="27.0" prefWidth="200.0"></Separator>
+
+
+      <Button fx:id="saveButton" layoutX="100.0" layoutY="440.0"  prefHeight="27.0" prefWidth="40.0" onAction="#saveShoppingList" text="save"/>
+      <TextField fx:id="loadId" layoutX="150.0" layoutY="440.0" prefHeight="27.0" prefWidth="90.0" promptText="loadID"/>
+      <Button fx:id="loadButton" layoutX="250.0" layoutY="440.0" prefHeight="27.0" prefWidth="40.0" onAction="#loadShoppingList" text="load"/>
+
+      <Pane layoutX="461.0" layoutY="6.0" prefHeight="462.0" prefWidth="299.0">
+         <children>
+            <TextField fx:id="personInputField" layoutX="53.0" layoutY="43.0" onKeyPressed="#handlePersonInput" prefHeight="30.0" prefWidth="180.0" />
+            <TilePane fx:id="listsOverview" layoutX="5.0" layoutY="92.0" prefHeight="337.0" prefWidth="245.0" />
+         </children>
+      </Pane>
+   </children>
+</Pane>
+

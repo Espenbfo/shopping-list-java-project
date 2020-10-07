@@ -1,0 +1,22 @@
+@startuml
+
+component core {
+	package shoppinglist.core
+	package shoppinglist.storage
+}
+
+component gui {
+	package shoppinglist.gui
+}
+
+component javafx {
+	component fxml {
+	}
+}
+
+shoppinglist.gui ..> shoppinglist.core
+shoppinglist.gui ..> shoppinglist.storage
+gui ..> javafx
+gui ..> fxml
+
+@enduml
