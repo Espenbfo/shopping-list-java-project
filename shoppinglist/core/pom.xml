@@ -4,7 +4,7 @@
 	<modelVersion>4.0.0</modelVersion>
 	
     <parent>
-        <groupId>it1901.shoppinglist</groupId>
+        <groupId>gr2049.shoppinglist</groupId>
         <artifactId>parent</artifactId>
         <version>0.0.1-SNAPSHOT</version>
     </parent>
@@ -12,45 +12,57 @@
     <artifactId>core</artifactId>
 
 	<dependencies>
+		<!-- https://mvnrepository.com/artifact/com.fasterxml.jackson.core/jackson-annotations -->
+		<dependency>
+			<groupId>com.fasterxml.jackson.core</groupId>
+			<artifactId>jackson-annotations</artifactId>
+		</dependency>
+		<!-- https://mvnrepository.com/artifact/com.fasterxml.jackson.core/jackson-core -->
+		<dependency>
+			<groupId>com.fasterxml.jackson.core</groupId>
+			<artifactId>jackson-core</artifactId>
+		</dependency>
+		<!-- https://mvnrepository.com/artifact/com.fasterxml.jackson.core/jackson-databind -->
+		<dependency>
+			<groupId>com.fasterxml.jackson.core</groupId>
+			<artifactId>jackson-databind</artifactId>
+		</dependency>
+
+		<!-- https://mvnrepository.com/artifact/org.openjfx/javafx-fxml -->
+		<dependency>
+			<groupId>org.openjfx</groupId>
+			<artifactId>javafx-fxml</artifactId>
+		</dependency>
 
 		<!-- Test with JUnit5 -->
 		<dependency>
 			<groupId>org.junit.jupiter</groupId>
 			<artifactId>junit-jupiter-api</artifactId>
-			<version>5.4.2</version>
-			<scope>test</scope>
 		</dependency>
 		<dependency>
 			<groupId>org.junit.jupiter</groupId>
 			<artifactId>junit-jupiter-engine</artifactId>
-			<version>5.4.2</version>
-			<scope>test</scope>
 		</dependency>
 
 		<!-- Test with TextFX -->
 		<dependency>
 			<groupId>org.testfx</groupId>
 			<artifactId>testfx-core</artifactId>
-			<version>4.0.16-alpha</version>
-			<scope>test</scope>
 		</dependency>
 		<dependency>
 			<groupId>org.testfx</groupId>
 			<artifactId>testfx-junit5</artifactId>
-			<version>4.0.16-alpha</version>
-			<scope>test</scope>
 		</dependency>
 	</dependencies>
-
 	<properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 	</properties>
 
 	<build>
-		<sourceDirectory>src</sourceDirectory>
+		<sourceDirectory>src/main</sourceDirectory>
 		<resources>
 			<resource>
-				<directory>src</directory>
+				<directory>src/main</directory>
 				<includes>
 					<include>**/*.fxml</include>
                     <include>**/*.png</include>
@@ -58,10 +70,10 @@
 				</includes>
 			</resource>
 		</resources>
-		<testSourceDirectory>test</testSourceDirectory>
+		<testSourceDirectory>src/test</testSourceDirectory>
 		<testResources>
 			<testResource>
-				<directory>test</directory>
+				<directory>src/test</directory>
 				<includes>
 					<include>**/*.fxml</include>
                     <include>**/*.png</include>
@@ -91,7 +103,7 @@
 			</plugin>
 
 
-            <!-- Jacoco plugins -->
+			<!-- Jacoco plugins -->
               <plugin>
                 <groupId>org.jacoco</groupId>
                 <artifactId>jacoco-maven-plugin</artifactId>

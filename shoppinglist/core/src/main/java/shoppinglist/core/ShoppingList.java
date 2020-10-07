@@ -118,10 +118,11 @@ public class ShoppingList {
      *
      */
     public void addPerson(Person p) {
+        getPersonList().add(p);
         if (!p.getShoppingLists().contains(this)) {
             p.addShoppingList(this);
         }
-        getPersonList().add(p);
+
     }
 
     /**
@@ -234,7 +235,7 @@ public class ShoppingList {
         }
 
         for (int i = 0; i < getPersonList().size(); i++) {
-            if (!getPerson(i).equals(e.getPerson(i))) return false;
+            if (!getPerson(i).getUserName().equals(e.getPerson(i).getUserName())) return false;
         }
 
 
