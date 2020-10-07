@@ -54,6 +54,7 @@
 				<directory>src</directory>
 				<includes>
 					<include>**/*.fxml</include>
+					<include>**/*.css</include>
                     <include>**/*.png</include>
                     <include>**/Resources/*</include>
 				</includes>
@@ -64,7 +65,7 @@
 			<testResource>
 				<directory>test</directory>
 				<includes>
-					<include>**/*.fxml</include>
+					<include>**/*.css</include>
                     <include>**/*.png</include>
 				</includes>
 			</testResource>

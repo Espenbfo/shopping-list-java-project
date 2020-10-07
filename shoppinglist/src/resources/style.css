@@ -1,0 +1,57 @@
+* {
+    -pri-color: rgb(143, 186, 255);
+    -pri-color-highlight: rgb(163, 206, 255);
+    -pri-color-shadow: rgb(123, 166, 235);
+    -sec-color: rgb(50, 50, 50);
+    -bg-color: rgb(250, 250, 250);
+}
+
+#window {
+    -fx-background-color:-bg-color;
+}
+
+.button {
+    -fx-background-color:-pri-color;
+}
+.button:hover {
+    -fx-background-color:-pri-color-highlight;
+}
+
+.button:pressed {
+    -fx-background-color:-pri-color-shadow;
+}
+
+
+#scroll {
+    -fx-border-color: -sec-color;
+    -fx-background-color:#FFFFFF;
+}
+
+.scroll-bar:vertical {
+    color: #FFFFFF;
+    -fx-background-color:#FFFFFF;
+}
+
+.scroll-bar:vertical .thumb {
+    -fx-background-color:#F0F0F0;
+}
+
+.scroll-bar:horizontal {
+    -fx-background-color: null;
+}
+#shoppingList {
+    -fx-insets:20;
+    -fx-background-color:#FFFFFF;
+}
+
+.check-box {
+    -fx-background-radius:20px;
+    -fx-background-insets:5px;
+    -fx-background-color: #F0F0F0;
+    -fx-padding:15;
+}
+
+#shoppingTitle {
+    -fx-font-size: 30px;
+    -fx-text-fill: -sec-color;
+}
