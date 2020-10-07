@@ -13,6 +13,7 @@
 <?import javafx.scene.control.ScrollPane?>
 <?import javafx.scene.text.TextFlow?>
 <?import javafx.scene.control.Separator?>
+
 <Pane prefHeight="500.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="shoppinglist.gui.AppController" id="window">
    <children>
       <Label id="shoppingTitle" layoutX="0.0" prefWidth="400.0" layoutY="25.0" text="Tittel til liste" alignment="CENTER"></Label>
@@ -26,8 +27,8 @@
 
       <TextField fx:id="itemInputField" layoutX="150.0" layoutY="350.0" prefHeight="27.0" prefWidth="90.0" promptText="melk" />
       <Button fx:id="addItemButton" layoutX="250.0" layoutY="350.0" mnemonicParsing="false" onAction="#handleAddItemButtonClicked" prefHeight="27.0" prefWidth="100.0" text="Add item"  id="addItemButton"/>
-      <TextField fx:id="amountInputField" layoutX="100.0" layoutY="350.0" prefHeight="27.0" prefWidth="40.0" promptText="1" />
-      <TextField fx:id="measurementInputField" layoutX="50.0" layoutY="350.0" prefHeight="27.0" prefWidth="40.0" promptText="stk" />
+      <TextField fx:id="amountInputField" layoutX="50.0" layoutY="350.0" prefHeight="27.0" prefWidth="40.0" promptText="1" />
+      <TextField fx:id="measurementInputField" layoutX="100.0" layoutY="350.0" prefHeight="27.0" prefWidth="40.0" promptText="stk" />
 
       <Separator layoutX="100.0" layoutY="375.0"  prefHeight="27.0" prefWidth="200.0"></Separator>
 
@@ -36,20 +37,6 @@
       <TextField fx:id="loadId" layoutX="150.0" layoutY="440.0" prefHeight="27.0" prefWidth="90.0" promptText="loadID"/>
       <Button fx:id="loadButton" layoutX="250.0" layoutY="440.0" prefHeight="27.0" prefWidth="40.0" onAction="#loadShoppingList" text="load"/>
 
-      <TilePane fx:id="shoppingList" layoutX="42.0" layoutY="64.0" prefHeight="245.0" prefWidth="126.0">
-         <children>
-            <Label fx:id="emptyListText" prefHeight="242.0" prefWidth="163.0" text="Your shoppinglist is empty" />
-         </children>
-      </TilePane>
-      <TextField fx:id="itemInputField" layoutX="106.0" layoutY="309.0" prefHeight="27.0" prefWidth="110.0" promptText="melk" />
-      <Button fx:id="addItemButton" layoutX="229.0" layoutY="309.0" mnemonicParsing="false" onAction="#handleAddItemButtonClicked" prefHeight="27.0" prefWidth="118.0" text="Add item" />
-      <TextField fx:id="amountInputField" layoutX="10.0" layoutY="309.0" prefHeight="27.0" prefWidth="35.0" promptText="1" />
-      <TextField fx:id="measurementInputField" layoutX="54.0" layoutY="309.0" prefHeight="27.0" prefWidth="42.0" promptText="stk" />
-      <HBox prefHeight="30" prefWidth="370" layoutY="347.0">
-         <Button fx:id="saveButton" layoutY="347.0" prefHeight="27.0" onAction="#saveShoppingList" text="save"/>
-         <TextField fx:id="loadId" layoutY="347.0" prefHeight="27.0" prefWidth="35" promptText="loadID"/>
-         <Button fx:id="loadButton" layoutY="347.0" prefHeight="27.0" onAction="#loadShoppingList" text="load"/>
-      </HBox>
       <Pane layoutX="461.0" layoutY="6.0" prefHeight="462.0" prefWidth="299.0">
          <children>
             <TextField fx:id="personInputField" layoutX="53.0" layoutY="43.0" onKeyPressed="#handlePersonInput" prefHeight="30.0" prefWidth="180.0" />

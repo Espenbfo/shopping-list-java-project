@@ -12,8 +12,6 @@ public class App extends Application {
   public void start(final Stage primaryStage) throws Exception {
     final Parent parent = FXMLLoader.load(getClass().getResource("/resources/App.fxml"));
     Scene scene  = new Scene(parent);
-    System.out.println(getClass().getResource("/resources/style.css"));
-    System.out.println(getClass().getResource("/resources/App.fxml"));
     scene.getStylesheets().add(getClass().getResource("/resources/style.css").toExternalForm());
     //scene.getStylesheets().add("/resources/style.css");
     primaryStage.setScene(scene);
