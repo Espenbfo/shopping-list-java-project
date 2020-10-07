@@ -48,6 +48,29 @@ public class FileHandler{
         return false;
     }
 
+    public static boolean writePerson(Person persToWrite){
+        try {
+            ObjectMapper mapper = new ObjectMapper();
+            mapper.writeValue(Paths.get(persToWrite.getUserName() + ".json").toFile(), persToWrite);
+            return true;
+        }catch (Exception e) {
+            e.printStackTrace();
+        }
+        return false;
+    }
+
+    public static Person readFile(String personName){
+        try {
+            String filename = personName + ".json";
+            ObjectMapper mapper = new ObjectMapper();
+            Person out = mapper.readValue(Paths.get(personName + ".json").toFile(), Person.class);
+            return out;
+        }catch(Exception e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
+
     public static void main(String[] args) {
         ShoppingList atestlist = new ShoppingList("Denne handlelisten");
         atestlist.addElement("mjolk", 33, "L");
@@ -56,5 +79,7 @@ public class FileHandler{
         ahandler.writeFile(atestlist);
         
     }
+
+
 
 }
