@@ -76,6 +76,12 @@ public class ShoppingList {
     }
 
     /**
+     * set the id
+     * @param id to set to
+     */
+    public void setId(int id){this.id = id;}
+
+    /**
      * Gets the list of elements
      * @return the elementList
      */
@@ -83,6 +89,11 @@ public class ShoppingList {
         return elementList;
     }
 
+    /**
+     * Sets the list of elements
+     * @param elementList the list to set to
+     */
+    public void setElementList(ArrayList<ShoppingElement> elementList){this.elementList = elementList;}
     /**
      * Gets the element at an index
      * @param index the index
@@ -153,6 +164,12 @@ public class ShoppingList {
     public ArrayList<Person> getPersonList() {
         return personList;
     }
+
+    /**
+     * set the personlist
+     * @param personList the personlist to set to
+     */
+    public void setPersonList(ArrayList<Person> personList){this.personList = personList;}
 
     /**
      * Gets a description of the list, and all the elements in it

@@ -52,6 +52,8 @@ public class Person {
         return shoppingLists.get(index);
     }
 
+    public void setShoppingLists(ArrayList<ShoppingList> shoppingLists){this.shoppingLists = shoppingLists;}
+
     /**
      * Gets the shoppinglist by its id
      * @param id the id
