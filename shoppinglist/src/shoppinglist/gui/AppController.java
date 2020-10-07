@@ -49,7 +49,7 @@ public class AppController {
     	
     	itemToAdd = amountInputField.getText() + " " + measurementInputField.getText() + " " + itemInputField.getText();
     	CheckBox shoppingListItem = new CheckBox(itemToAdd);
-    	shoppingListItem.setPadding(new Insets(10, 10, 10, 10));
+    	//shoppingListItem.setPadding(new Insets(10, 10, 10, 10));
         shoppingList.getChildren().add(shoppingListItem);
 
         ShoppingElement currentElement = new ShoppingElement(itemInputField.getText(), Double.parseDouble(amountInputField.getText()), measurementInputField.getText());
