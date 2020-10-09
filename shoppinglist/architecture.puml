@@ -14,6 +14,9 @@ component javafx {
 	}
 }
 
+component jackson{
+}
+
 shoppinglist.gui ..> shoppinglist.core
 shoppinglist.gui ..> shoppinglist.storage
 gui ..> javafx
