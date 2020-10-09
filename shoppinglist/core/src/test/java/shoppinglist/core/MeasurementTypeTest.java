@@ -6,12 +6,11 @@ import static org.junit.jupiter.api.Assertions.fail;
 import org.assertj.core.api.Fail;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import org.testfx.framework.junit5.ApplicationTest;
 
 import shoppinglist.core.MeasurementType;
 
 
-public class MeasurementTypeTest extends ApplicationTest {
+public class MeasurementTypeTest{
 
 
 @BeforeEach

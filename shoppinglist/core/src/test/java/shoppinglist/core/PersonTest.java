@@ -9,14 +9,13 @@ import java.util.List;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import org.testfx.framework.junit5.ApplicationTest;
 
 import shoppinglist.core.Person;
 import shoppinglist.core.ShoppingElement;
 import shoppinglist.core.ShoppingList;
  
 
-public class PersonTest extends ApplicationTest {
+public class PersonTest{
 
 ShoppingList s1;
 ShoppingList s2;

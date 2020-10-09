@@ -2,11 +2,10 @@ package shoppinglist.storage;
 
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
-import org.testfx.framework.junit5.ApplicationTest;
 import shoppinglist.core.*;
 import shoppinglist.storage.FileHandler;
 
-public class PersistencyTest extends ApplicationTest{
+public class PersistencyTest{
 
     @Test
     public void testStorage(){
