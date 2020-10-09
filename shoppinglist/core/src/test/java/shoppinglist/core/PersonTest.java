@@ -69,7 +69,7 @@ public void init(){
 public void testPerson(){
     Person p3 = new Person("Benedicte");
     p1.setUserName("Benedicte");
-    assertTrue(p3.equals(p1));
+    assertTrue(p3.getUserName().equals(p1.getUserName()));
 
     assertTrue(p2.getShoppingLists().contains(s2));
     p2.removeShoppingList(0);

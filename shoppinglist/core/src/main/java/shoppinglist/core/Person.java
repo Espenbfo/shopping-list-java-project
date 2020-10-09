@@ -124,16 +124,17 @@ public class Person {
             return false;
         }
 
+        if(getUserName().equals("Benedicte")) System.out.println("hie");
         Person p = (Person) o;
-
         if (!getUserName().equals(p.getUserName())) {
             return false;
         }
+        if(getUserName().equals("Benedicte")) System.out.println("he" + getShoppingLists().size() +" " + p.getShoppingLists().size());
 
         if (getShoppingLists().size() != p.getShoppingLists().size()) {
             return false;
         }
-
+        if(getUserName().equals("Benedicte")) System.out.println("h");
         for (int i = 0; i < getShoppingLists().size(); i++) {
             if (!getShoppingList(i).equals(p.getShoppingList(i))) return false;
         }
