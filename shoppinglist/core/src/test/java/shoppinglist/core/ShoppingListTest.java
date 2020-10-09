@@ -2,13 +2,11 @@ package shoppinglist.core;
 
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
-import org.testfx.framework.junit5.ApplicationTest;
-
 import shoppinglist.core.ShoppingList;
 /*import shoppinglist.gui.AppController;*/
 
 
-public class ShoppingListTest extends ApplicationTest {
+public class ShoppingListTest{
 
 
 
