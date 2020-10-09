@@ -1,4 +1,4 @@
-### Shoppinglist
+# Shoppinglist
 
 ## Om appen
 Applikasjonen skal være en applikasjon for å dele handlelister.
@@ -8,7 +8,7 @@ Brukere vil kunne ha tilgang til flere handlelister, og hver handleliste vil kun
 Prosjektet er konfigurert som et multi-modul-prosjekt
 Prosjektet er her delt i et core-lag og et fxui-lag, der applikasjonens domene- og persistenslag ligger i core, og brukergrensesnittet ligger i fxui. 
 
-#Konfigurering med Maven
+###Konfigurering med Maven
 Prosjektet er konfigurert med Maven, og kan gjøres med mvn javafx:run og testes med mvn test
 
 
