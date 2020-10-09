@@ -18,5 +18,6 @@ shoppinglist.gui ..> shoppinglist.core
 shoppinglist.gui ..> shoppinglist.storage
 gui ..> javafx
 gui ..> fxml
+shoppinglist.storage ..> jackson
 
 @enduml
