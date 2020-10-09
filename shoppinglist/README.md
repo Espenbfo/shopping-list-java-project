@@ -1,4 +1,4 @@
-###Shoppinglist
+### Shoppinglist
 
 ## Om appen
 Applikasjonen skal være en applikasjon for å dele handlelister.
