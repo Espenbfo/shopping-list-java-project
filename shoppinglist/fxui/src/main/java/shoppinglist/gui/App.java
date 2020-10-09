@@ -10,10 +10,10 @@ public class App extends Application {
 
   @Override
   public void start(final Stage primaryStage) throws Exception {
-    final Parent parent = FXMLLoader.load(getClass().getResource("/resources/App.fxml"));
+    System.out.println(getClass().getResource("/resources/shoppinglist/gui/App.fxml"));
+    final Parent parent = FXMLLoader.load(getClass().getResource("/resources/shoppinglist/gui/App.fxml"));;
     Scene scene  = new Scene(parent);
-    scene.getStylesheets().add(getClass().getResource("/resources/style.css").toExternalForm());
-    //scene.getStylesheets().add("/resources/style.css");
+    scene.getStylesheets().add(getClass().getResource("/resources/shoppinglist/gui/style.css").toExternalForm());
     primaryStage.setScene(scene);
     primaryStage.show();
   }

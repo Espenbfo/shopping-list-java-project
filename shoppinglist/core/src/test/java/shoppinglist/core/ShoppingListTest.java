@@ -3,11 +3,7 @@ package shoppinglist.core;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.testfx.framework.junit5.ApplicationTest;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
-import javafx.stage.Stage;
-import javafx.scene.control.Button;
+
 import shoppinglist.core.ShoppingList;
 /*import shoppinglist.gui.AppController;*/
 
