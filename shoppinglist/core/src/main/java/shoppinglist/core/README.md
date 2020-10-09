@@ -1,1 +1,1 @@
-[](shoppinglist.png)
+![](shoppinglist.png)
