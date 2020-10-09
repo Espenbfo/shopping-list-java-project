@@ -1,18 +1,25 @@
-[![Gitpod Ready-to-Code](https://img.shields.io/badge/Gitpod-Ready--to--Code-purple?logo=gitpod)](https://gitpod.idi.ntnu.no/#https://gitlab.stud.idi.ntnu.no/it1901/groups-2020/gr2049/gr2049.git)
+# Shoppinglist
 
-# Gr2049
+## Om appen
+Applikasjonen skal være en applikasjon for å dele handlelister.
+Flere brukere vil ha tilgang til samme handleliste, og her kunne legge til og sjekke av elemeneter.
+Brukere vil kunne ha tilgang til flere handlelister, og hver handleliste vil kunne deles av flere brukere. 
 
-The code is in the src folder in the shoppinglist project
+Prosjektet er konfigurert som et multi-modul-prosjekt
+Prosjektet er her delt i et core-lag og et fxui-lag, der applikasjonens domene- og persistenslag ligger i core, og brukergrensesnittet ligger i fxui. 
 
-[Google Disk](https://drive.google.com/drive/folders/10KHM6JSvfrWcrQkHPEovQ5cBZe_7T9WN?usp=sharing) 
+### Konfigurering med Maven
+Prosjektet er konfigurert med Maven, og kan gjøres med mvn javafx:run og testes med mvn test
 
-```plantuml
-actor Person
-Person -> SaveButton: press
-SaveButton -> Controller: pressed
-Controller -> FileHandler: write(shoppingList)
-FileHandler -> shoppingList: getId()
-shoppingList -> FileHandler: Return
-FileHandler -> Controller: Return
-```
+
+## Arkitekturdiagram
+![](architecture.png)
+
+
+
+## Brukerhistorie
+Vi ønsker at en bruker skal kunne åpne en eksisterende handleliste, enten en den selv har laget tidligere, eller en del har fått tildelt av en annen bruker.
+Deretter vil brukeren kunne se alle tidligere elementer, samt kunne legge til nye, fjerne og sjekke av elementer. 
+
+![](screenshot.png)
 
