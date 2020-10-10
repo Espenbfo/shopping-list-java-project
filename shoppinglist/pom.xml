@@ -129,19 +129,9 @@
                     <version>4.0.4</version>
                     <configuration>
                         <effort>Max</effort>
-                        <threshold>low</threshold>
                         <xmlOutput>false</xmlOutput>
                         <htmlOutput>true</htmlOutput>
                     </configuration>
-                    <executions>
-                        <execution>
-                        <id>spotbugs-check</id>
-                        <phase>verify</phase>
-                        <goals>
-                            <goal>check</goal>
-                        </goals>
-                        </execution>
-                    </executions>
                 </plugin>
         </plugins>
     </pluginManagement>
