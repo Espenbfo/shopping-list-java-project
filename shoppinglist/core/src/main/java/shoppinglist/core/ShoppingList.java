@@ -241,4 +241,9 @@ public class ShoppingList {
 
         return true;
     }
+
+    @Override
+    public int hashCode() {
+        return 4;
+    }
 }
