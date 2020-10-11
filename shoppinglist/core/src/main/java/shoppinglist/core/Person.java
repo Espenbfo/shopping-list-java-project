@@ -101,10 +101,18 @@ public class Person {
 
     /**
      * adds a shoppinglist to the list of shopppinglists
-     * @param l the shoppinglist which is to be added to the list of shoppinglists
+     * @param i the ID of the shoppinglist
      */
     public void addShoppingList(Integer i){
         shoppingLists.add(i);
+    }
+
+    /**
+     * adds a shoppinglist to the list of shopppinglists
+     * @param l the shoppinglist which is to be added to the list of shoppinglists
+     */
+    public void addShoppingList(ShoppingList l){
+        shoppingLists.add(l.getId());
     }
 
     /**
@@ -118,17 +126,15 @@ public class Person {
             return false;
         }
 
-        if(getUserName().equals("Benedicte")) System.out.println("hie");
         Person p = (Person) o;
         if (!getUserName().equals(p.getUserName())) {
             return false;
         }
-        if(getUserName().equals("Benedicte")) System.out.println("he" + getShoppingLists().size() +" " + p.getShoppingLists().size());
 
         if (getShoppingLists().size() != p.getShoppingLists().size()) {
             return false;
         }
-        if(getUserName().equals("Benedicte")) System.out.println("h");
+
         for (int i = 0; i < getShoppingLists().size(); i++) {
             if (!getShoppingList(i).equals(p.getShoppingList(i))) return false;
         }
