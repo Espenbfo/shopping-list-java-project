@@ -17,7 +17,7 @@
 
 <Pane prefHeight="500.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="shoppinglist.gui.AppController" id="window">
    <children>
-      <Button fx:id="backToLoginButton" layoutX="10.0" layoutY="10.0"  prefHeight="27.0" prefWidth="60.0" onAction="#loginScreen" text="Login"/>
+      <Button fx:id="backToLoginButton" layoutX="10.0" layoutY="10.0"  prefHeight="27.0" prefWidth="60.0" onAction="#loginScreen" text="Logout"/>
       <TextField fx:id = "shoppingTitleTextField" id="shoppingTitle" layoutX="100.0" prefWidth="200.0" layoutY="25.0" promptText="List title" alignment="CENTER"></TextField>
       <ScrollPane layoutX="50.0" layoutY="75.0" prefHeight="250.0" prefWidth="300.0" id="scroll">
          <TilePane fx:id="shoppingList" layoutX="50.0" layoutY="50.0" prefHeight="250.0" prefWidth="280.0" id="shoppingList" prefRows="1" prefTileWidth="280" alignment="BASELINE_LEFT">
