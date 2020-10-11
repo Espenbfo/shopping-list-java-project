@@ -37,12 +37,11 @@ public class LoginScreenControllerTest extends ApplicationTest {
     
     @Test
     public void testLogIn() {
-        final Button loginButton = (Button) parent.lookup("#loginButton");
+        final Button registerButton = (Button) parent.lookup("#registerButton");
         final TextField usernameInputField = (TextField) parent.lookup("#usernameInputField");
         clickOn(usernameInputField);
         write("Gud");
-        clickOn(loginButton);
-
+        clickOn(registerButton);
         Assertions.assertTrue(Client.getCurrentPerson().getUserName().equals("Gud"));
     }
     
