@@ -209,8 +209,14 @@ public class AppController {
 
     @FXML
     void newList() {
-        currentShoppingList = new ShoppingList();
+        currentShoppingList = new ShoppingList("New List");
         loadShoppingListWithList(currentShoppingList);
+        saveShoppingList();
+    }
+
+    @FXML
+    void sokList() {
+        fillTitleList();
     }
 
     @FXML
