@@ -4,17 +4,29 @@ import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import shoppinglist.core.*;
 import shoppinglist.storage.FileHandler;
+import org.junit.jupiter.api.BeforeAll;
+import java.io.File;
 
 public class PersistencyTest{
 
-    @Test
-    public void testStorage(){
-        ShoppingList l = new ShoppingList();
+    private static ShoppingList l;
+
+    @BeforeAll
+    public static void init(){
+        l = new ShoppingList();
         l.setTitle("Andedam");
         l.addElement("kaal",34,"kg");
         l.addElement("loek",3,"stk");
         l.addElement("And",43,"unger");
-        FileHandler.writeFile(l);
+    }
+
+    @Test
+    public void testWriteFile(){
+        Assertions.assertTrue(FileHandler.writeFile(l));
+    }
+    @Test
+    public void testReadfile(){
+        System.out.println(l.toString());
         ShoppingList tl = FileHandler.readFile(l.getId());
         for(int i = 0; i < l.getElementList().size(); i++){
             Assertions.assertTrue(l.getElement(i).equals(tl.getElement(i)));
