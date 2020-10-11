@@ -36,7 +36,7 @@ public class LoginScreenControllerTest extends ApplicationTest {
 
     
     @Test
-    public void testLogIn() {
+    public void testRegister() {
         final Button registerButton = (Button) parent.lookup("#registerButton");
         final TextField usernameInputField = (TextField) parent.lookup("#usernameInputField");
         clickOn(usernameInputField);
