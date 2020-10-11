@@ -191,4 +191,9 @@ public class ShoppingElement {
 
         return true;
     }
+
+    @Override
+    public int hashCode() {
+        return 3;
+    }
 }

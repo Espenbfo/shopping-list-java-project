@@ -130,4 +130,8 @@ public class MeasurementType {
         return true;
     }
 
+    @Override
+    public int hashCode() {
+        return 1;
+    }
 }

@@ -147,4 +147,9 @@ public class Person {
         return userName + " " + shoppingLists.size();
     }
 
+    @Override
+    public int hashCode() {
+        return 2;
+    }
+
 }
