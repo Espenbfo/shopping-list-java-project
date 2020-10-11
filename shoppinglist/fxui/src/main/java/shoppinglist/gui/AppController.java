@@ -77,7 +77,6 @@ public class AppController {
     /**
      * Add element to shoppinglist when button is clicked 
      */
-    
     @FXML
     void handleAddItemButtonClicked() {
         
@@ -161,7 +160,9 @@ public class AppController {
  
     }
 
-
+    /**
+     * Updates the list of shoppinglists, filtered by person, on the right side of the gui
+     */
     void fillTitleList() {
         String personString = personInputField.getText();
         if(personString.equals("") || personString == null) return;
@@ -197,6 +198,10 @@ public class AppController {
     	
     }
 
+    /**
+     * Loads the ShoppingList clicked
+     * @param shoppingList The ShoppingList to load
+     */
     @FXML 
     void handleListButtonClicked(ShoppingList shoppingList){
         System.out.println("clicked");
@@ -207,6 +212,9 @@ public class AppController {
         //display clicked list
     }
 
+    /**
+     * Creates a new empty shoppinglist
+     */
     @FXML
     void newList() {
         currentShoppingList = new ShoppingList("New List");
@@ -214,11 +222,19 @@ public class AppController {
         saveShoppingList();
     }
 
+    /**
+     * filters the list of shoppinglists
+     */
     @FXML
     void sokList() {
         fillTitleList();
     }
 
+    /**
+     * loads the loginscreen
+     * @param e the event that calls the scenechange
+     * @throws IOException
+     */
     @FXML
     void loginScreen(ActionEvent e) throws IOException {
         Parent loginParent =   FXMLLoader.load(getClass().getResource("/resources/shoppinglist/gui/LoginScreen.fxml"));

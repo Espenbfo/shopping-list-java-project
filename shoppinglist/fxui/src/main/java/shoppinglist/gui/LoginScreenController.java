@@ -48,7 +48,12 @@ public class LoginScreenController {
     /**
      * Add element to shoppinglist when button is clicked 
      */
-    
+
+    /**
+     * Logs in a user
+     * @param e the event calling the login
+     * @throws IOException if the user doesn't exist
+     */
     @FXML
     void handleLogin(ActionEvent e) throws IOException {
 
@@ -68,6 +73,11 @@ public class LoginScreenController {
 
     }
 
+    /**
+     * Registers a user
+     * @param e the event calling the registration
+     * @throws IOException if the person couldn't be written or the login throws an exception
+     */
     @FXML
     void handleRegister(ActionEvent e) throws IOException {
         String name = usernameInputField.getText();
@@ -78,6 +88,11 @@ public class LoginScreenController {
         handleLogin(e);
     }
 
+    /**
+     * Loads the main screen of the gui
+     * @param e the event calling the method
+     * @throws IOException
+     */
     void mainScreen(ActionEvent e) throws IOException {
         Parent loginParent =   FXMLLoader.load(getClass().getResource("/resources/shoppinglist/gui/App.fxml"));
         Scene loginScene = new Scene(loginParent);

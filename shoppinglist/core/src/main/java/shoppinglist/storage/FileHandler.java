@@ -49,6 +49,11 @@ public class FileHandler{
         return false;
     }
 
+    /**
+     * A method to write a person to JSON
+     * @param persToWrite the instance of Person to be written
+     * @return true if successful
+     */
     public static boolean writePerson(Person persToWrite){
         try {
             ObjectMapper mapper = new ObjectMapper();
@@ -60,6 +65,11 @@ public class FileHandler{
         return false;
     }
 
+    /**
+     * Reads a Person from file
+     * @param personName the name of the Person to be read
+     * @return read Person
+     */
     public static Person readPerson(String personName){
         try {
 
@@ -74,6 +84,11 @@ public class FileHandler{
         return null;
     }
 
+    /**
+     * Writes the MaxID of shoppinglists to file
+     * @param id the MaxID to be written
+     * @return true if successful
+     */
     public static boolean writeMaxID(int id){
         try {
             ObjectMapper mapper = new ObjectMapper();
@@ -85,6 +100,10 @@ public class FileHandler{
         return false;
     }
 
+    /**
+     * reads the max id
+     * @return the MaxID
+     */
     public static int readMaxID(){
         try {
 
