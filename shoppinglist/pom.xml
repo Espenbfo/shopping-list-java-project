@@ -131,7 +131,17 @@
                         <effort>Max</effort>
                         <xmlOutput>false</xmlOutput>
                         <htmlOutput>true</htmlOutput>
+                        <failOnError>false</failOnError>
                     </configuration>
+                    <executions>
+                        <execution>
+                            <phase>verify</phase>
+                            <id>spotbugs-check</id>
+                            <goals>
+                                <goal>check</goal>
+                            </goals>
+                        </execution>
+                    </executions>
                 </plugin>
         </plugins>
     </pluginManagement>
