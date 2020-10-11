@@ -23,7 +23,7 @@ Som bruker ønsker jeg å kunne lagre lister for meg selv og andre brukere. Jeg 
 
 Som bruker ønsker jeg en applikasjon der jeg registrere meg og ha egene handlelister lagret.
 
-Som bruker ønsker jeg å kunne redigere innholdet i lister ved supplering, avhuking, sletting av elementer. 
+Som bruker ønsker jeg å kunne redigere innholdet i lister ved supplering, avhuking og sletting av elementer. 
 
 
 ![](1.PNG) 
