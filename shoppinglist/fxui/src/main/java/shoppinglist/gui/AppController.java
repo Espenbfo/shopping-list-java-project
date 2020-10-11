@@ -165,7 +165,7 @@ public class AppController {
      */
     void fillTitleList() {
         String personString = personInputField.getText();
-        if(personString.equals("") || personString == null) return;
+        if(personString.equals("")) return;
         Person currenttPerson = FileHandler.readPerson(personString);// set currentPerson til inputperson, ikke lage ny – lagret i annen klasse?
         //currentPerson.addShoppingList(new ShoppingList("test")); //kun for testing
         //currentPerson.addShoppingList(new ShoppingList("test2")); //kun for testing
