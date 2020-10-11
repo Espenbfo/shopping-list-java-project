@@ -44,6 +44,7 @@ public class AppTest extends ApplicationTest {
         final Button saveButton = (Button)parent.lookup("#saveButton");
         final TextField personInputField = (TextField)parent.lookup("#personInputField");
         clickOn(amountInputField);
+        amountInputField.setText("");
         write("1");
         clickOn(measurementInputField);
         write("testMeasurement");
