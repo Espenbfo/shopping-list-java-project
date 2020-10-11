@@ -75,3 +75,9 @@
     -fx-background-insets:5px;
     -fx-background-color: #F0F0F0;
 }
+
+#loginNameLabel {
+    -fx-alignment: center;
+    -fx-border-color: #CCCCCC;
+    -fx-background-color: #FFFFFF;
+}
