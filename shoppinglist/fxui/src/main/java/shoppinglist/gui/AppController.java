@@ -19,6 +19,14 @@ import javafx.scene.text.TextAlignment;
 import shoppinglist.core.*;
 import shoppinglist.storage.FileHandler;
 
+import javafx.application.Application;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
+import javafx.stage.Stage;
+import javafx.event.ActionEvent;
+import java.io.IOException;
+
 public class AppController {
     private static Person currentPerson;
 
@@ -27,6 +35,8 @@ public class AppController {
     Button addItemButton;
     @FXML
     TextField itemInputField;
+    @FXML
+    TextField shoppingTitleTextField;
     @FXML
     TextField amountInputField;
     @FXML
@@ -43,10 +53,25 @@ public class AppController {
     TilePane listsOverview;
     @FXML
     HBox hbox;
+    @FXML
+    TextField peopleInputField;
 
-    public ShoppingList currentShoppingList = new ShoppingList("test"); //vil egt. ikke ha tittel her, men tror endringer må gjøres i ShoppingList.java
+    public ShoppingList currentShoppingList; //vil egt. ikke ha tittel her, men tror endringer må gjøres i ShoppingList.java
     
     String itemToAdd = null;
+
+    @FXML
+    public void initialize() {
+        ShoppingList.setCurrentMaxID(FileHandler.readMaxID());
+        currentShoppingList = new ShoppingList("test");
+
+        if (Client.getCurrentPerson() != null) {
+            personInputField.setText(Client.getCurrentPerson().getUserName());
+            fillTitleList();
+            peopleInputField.setText(Client.getCurrentPerson().getUserName());
+
+        }
+    }
 
     /**
      * Add element to shoppinglist when button is clicked 
@@ -75,7 +100,30 @@ public class AppController {
      */
     @FXML
     void saveShoppingList(){
+        String peopleText = peopleInputField.getText();
+        peopleText = peopleText.replaceAll("\\s","");
+        String[] peopleNames = peopleText.split(",");
+        System.out.println(peopleNames);
+        for (String name : peopleNames) {
+            try {
+                Person p = FileHandler.readPerson(name);
+                System.out.println(p);
+                Integer prevList = currentShoppingList.getId();
+                if (!p.getShoppingLists().contains(prevList)) {
+                    p.addShoppingList(prevList);
+                    FileHandler.writePerson(p);
+                }
+            }
+            catch (Exception ex) {
+                System.out.println(ex);
+            }
+        }
+        if (currentShoppingList.getId() > FileHandler.readMaxID()) {
+            FileHandler.writeMaxID(currentShoppingList.getId());
+        }
+        currentShoppingList.setTitle(shoppingTitleTextField.getText());
         FileHandler.writeFile(currentShoppingList);
+        fillTitleList();
     }
 
     /**
@@ -83,7 +131,15 @@ public class AppController {
      */
     @FXML
     void loadShoppingList(){
-        currentShoppingList = FileHandler.readFile(Integer.parseInt(loadId.getText()));
+        loadShoppingListWithList(FileHandler.readFile(Integer.parseInt(loadId.getText())));
+    }
+
+    /**
+     * Loads existing shoppinglist from file
+     */
+    @FXML
+    void loadShoppingListWithList(ShoppingList l){
+        currentShoppingList = l;
         shoppingList.getChildren().clear();
         for(ShoppingElement x:currentShoppingList.getElementList()){
             itemToAdd = x.getValue()+ " " + x.getMeasurementName()+ " " + x.getName();
@@ -92,8 +148,8 @@ public class AppController {
             shoppingList.getChildren().add(shoppingListItem);
             shoppingListItem.setOnAction(event -> handleItemShopped(x));
         }
+        shoppingTitleTextField.setText(currentShoppingList.getTitle());
     }
-
     /**
      * Changes status of shoppingitem from not shopped to shopped 
      * 
@@ -104,6 +160,27 @@ public class AppController {
         shoppingElement.toggleShopped();
  
     }
+
+
+    void fillTitleList() {
+        String personString = personInputField.getText();
+        Person currentPerson = FileHandler.readPerson(personString);// set currentPerson til inputperson, ikke lage ny – lagret i annen klasse?
+        //currentPerson.addShoppingList(new ShoppingList("test")); //kun for testing
+        //currentPerson.addShoppingList(new ShoppingList("test2")); //kun for testing
+        listsOverview.getChildren().clear();
+        for (Integer id : currentPerson.getShoppingLists()) {
+            ShoppingList l = FileHandler.readFile(id);
+            System.out.println(l.getTitle());
+            Pane list = new Pane();
+            Label listName = new Label(l.getTitle());
+            listName.setPrefWidth(1000.);
+            listName.getStyleClass().add("listTitleListElement");
+            listsOverview.getChildren().add(listName);
+
+
+            listName.setOnMouseClicked(event -> handleListButtonClicked(l));
+        }
+    }
     /**
      * Finds and displays the lists of a given person
      * 
@@ -112,38 +189,39 @@ public class AppController {
     @FXML
     void handlePersonInput(KeyEvent enter){
 
-    if(enter.getCode() == KeyCode.ENTER) {
-        String personString = personInputField.getText();
-        Person currentPerson = new Person(personString);// set currentPerson til inputperson, ikke lage ny – lagret i annen klasse?
-        currentPerson.addShoppingList(new ShoppingList("test")); //kun for testing
-        currentPerson.addShoppingList(new ShoppingList("test2")); //kun for testing
-    	for (ShoppingList shoppingList : currentPerson.getShoppingLists()) {
-            System.out.println(shoppingList.getTitle());
-    		Pane list = new Pane();
-    		Label listName = new Label(shoppingList.getTitle());
-            Button listButton = new Button("Open");
-            list.setMinSize(200, 50);
-            list.getChildren().addAll(listName, listButton);
-            listsOverview.getChildren().add(list);
-            
+        if(enter.getCode() == KeyCode.ENTER) {
+            fillTitleList();
 
-            listButton.setOnAction(event -> handleListButtonClicked(shoppingList));
         }
-
-        
-        
-    }
-
-
-    	
-    	
     	
     }
 
     @FXML 
     void handleListButtonClicked(ShoppingList shoppingList){
+        System.out.println("clicked");
+        currentShoppingList = shoppingList;
+        loadId.setText(Integer.toString(currentShoppingList.getId()));
+        loadShoppingList();
+        loadId.setText("");
+
         //display clicked list
     }
+
+    @FXML
+    void newList() {
+        currentShoppingList = new ShoppingList();
+        loadShoppingListWithList(currentShoppingList);
+    }
+
+    @FXML
+    void loginScreen(ActionEvent e) throws IOException {
+        Parent loginParent =   FXMLLoader.load(getClass().getResource("/resources/shoppinglist/gui/LoginScreen.fxml"));
+        Scene loginScene = new Scene(loginParent);
+        loginScene.getStylesheets().add(getClass().getResource("/resources/shoppinglist/gui/style.css").toExternalForm());
+        Stage appStage = (Stage) ((Node)e.getSource()).getScene().getWindow();
+        appStage.setScene(loginScene);
+    }
+
 
 
     

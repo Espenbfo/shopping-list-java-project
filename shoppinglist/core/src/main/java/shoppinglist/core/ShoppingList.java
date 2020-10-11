@@ -11,7 +11,6 @@ public class ShoppingList {
     String title;
     int id;
     static int currentMaxID = 0;
-    ArrayList<Person> personList;
     ArrayList<ShoppingElement> elementList;
 
     /**
@@ -21,7 +20,6 @@ public class ShoppingList {
         currentMaxID += 1;
         id = currentMaxID;
         this.elementList = new ArrayList<ShoppingElement>();
-        this.personList = new ArrayList<Person>();
         this.title = "";
     }
 
@@ -35,21 +33,25 @@ public class ShoppingList {
         this.title = title;
     }
 
+
     /**
-     * Initialize a ShoppingList with a title, id, personList, and elementList.
+     * Initialize a ShoppingList with a title, id, and elementList.
      *
      * @param title the title
      * @param id the ID
-     * @param personList the list of people
      * @param elementList the list of elements
      */
-    public ShoppingList(String title, int id, ArrayList<Person> personList, ArrayList<ShoppingElement> elementList) {
+    public ShoppingList(String title, int id, ArrayList<ShoppingElement> elementList) {
         this.title = title;
         this.id = id;
-        this.personList = personList;
         this.elementList = elementList;
         currentMaxID = Math.max(currentMaxID,id);
     }
+
+    public static void setCurrentMaxID(int id) {
+        currentMaxID = id;
+    }
+
 
     /**
      * Gets the title
@@ -103,27 +105,7 @@ public class ShoppingList {
         return elementList.get(index);
     }
 
-    /**
-     * Gets the person at an index
-     * @param index the index
-     * @return the person at the specified index
-     */
-    public Person getPerson(int index) {
-        return getPersonList().get(index);
-    }
 
-    /**
-     * add the person to PersonList
-     * @param p the Person to add
-     *
-     */
-    public void addPerson(Person p) {
-        getPersonList().add(p);
-        if (!p.getShoppingLists().contains(this)) {
-            p.addShoppingList(this);
-        }
-
-    }
 
     /**
      * Adds an element to the end of the elementList
@@ -170,25 +152,7 @@ public class ShoppingList {
         elementList.remove(e);
     }
 
-    /**
-     * Gets the personList
-     * @return the personList
-     */
-    public ArrayList<Person> getPersonList() {
-        return personList;
-    }
 
-    /**
-     * set the personlist
-     * @param personList the personlist to set to
-     */
-    public void setPersonList(ArrayList<Person> personList){this.personList = personList;}
-
-    /**
-     * Gets a description of the list, and all the elements in it
-     *
-     * @return a String representation of the list
-     */
     public String toString() {
         String elementString = "";
         for (ShoppingElement e : getElementList()) {
@@ -228,14 +192,6 @@ public class ShoppingList {
 
         for (int i = 0; i < getElementList().size(); i++) {
             if (!getElement(i).equals(e.getElement(i))) return false;
-        }
-
-        if (getPersonList().size() != e.getPersonList().size()) {
-            return false;
-        }
-
-        for (int i = 0; i < getPersonList().size(); i++) {
-            if (!getPerson(i).getUserName().equals(e.getPerson(i).getUserName())) return false;
         }
 
 
