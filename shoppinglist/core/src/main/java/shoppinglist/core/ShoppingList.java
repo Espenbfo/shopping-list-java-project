@@ -52,6 +52,10 @@ public class ShoppingList {
         currentMaxID = id;
     }
 
+    public static int getCurrentMaxID() {
+        return currentMaxID;
+    }
+
 
     /**
      * Gets the title

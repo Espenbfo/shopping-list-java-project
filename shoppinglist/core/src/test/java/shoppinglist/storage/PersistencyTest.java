@@ -6,6 +6,7 @@ import shoppinglist.core.*;
 import shoppinglist.storage.FileHandler;
 import org.junit.jupiter.api.BeforeAll;
 import java.io.File;
+import java.io.FileNotFoundException;
 
 public class PersistencyTest{
 
@@ -33,5 +34,28 @@ public class PersistencyTest{
         }
         Assertions.assertTrue(tl.equals(l));
     }
+
+    @Test
+    public void testWritePerson(){
+        Assertions.assertTrue(FileHandler.writePerson(new Person("TestIndivid")));
+        Assertions.assertFalse(FileHandler.writePerson(new Person("@<>/7.json")));
+    }
+
+    @Test
+    public void testReadPerson(){
+        Person p = FileHandler.readPerson("TestIndivid");
+        Assertions.assertTrue(p.equals(new Person("TestIndivid")));
+    }
+
+    @Test
+    public void testWriteMaxID(){
+        Assertions.assertTrue(FileHandler.writeMaxID(l.getCurrentMaxID()));
+    }
+
+    @Test
+    public void testReadMaxID(){
+        Assertions.assertTrue(FileHandler.readMaxID() == l.getCurrentMaxID());
+    }
+
 
 }
