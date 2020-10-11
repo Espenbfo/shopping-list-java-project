@@ -21,8 +21,16 @@
     -fx-background-color:-pri-color-shadow;
 }
 
+.scroll-pane > .viewport {
+    -fx-background-color: transparent;
+}
 
 #scroll {
+    -fx-border-color: -sec-color;
+    -fx-background-color:#FFFFFF;
+}
+
+#scrollRight {
     -fx-border-color: -sec-color;
     -fx-background-color:#FFFFFF;
 }
@@ -52,6 +60,18 @@
 }
 
 #shoppingTitle {
-    -fx-font-size: 30px;
+    -fx-font-size: 20px;
     -fx-text-fill: -sec-color;
+}
+
+#listTitleList {
+    -fx-background-color: #FFFFFF;
+}
+
+.listTitleListElement {
+    -fx-alignment: center;
+    -fx-padding:10px;
+    -fx-background-radius:20px;
+    -fx-background-insets:5px;
+    -fx-background-color: #F0F0F0;
 }

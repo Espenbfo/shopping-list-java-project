@@ -8,11 +8,12 @@ import javafx.stage.Stage;
 
 public class App extends Application {
 
+  Scene scene;
   @Override
   public void start(final Stage primaryStage) throws Exception {
     System.out.println(getClass().getResource("/resources/shoppinglist/gui/App.fxml"));
-    final Parent parent = FXMLLoader.load(getClass().getResource("/resources/shoppinglist/gui/App.fxml"));;
-    Scene scene  = new Scene(parent);
+    final Parent parent = FXMLLoader.load(getClass().getResource("/resources/shoppinglist/gui/LoginScreen.fxml"));;
+    scene  = new Scene(parent);
     scene.getStylesheets().add(getClass().getResource("/resources/shoppinglist/gui/style.css").toExternalForm());
     primaryStage.setScene(scene);
     primaryStage.show();
@@ -21,4 +22,5 @@ public class App extends Application {
   public static void main(final String[] args) {
     launch(args);
   }
+
 }

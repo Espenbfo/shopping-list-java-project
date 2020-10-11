@@ -4,7 +4,7 @@ import java.util.ArrayList;
 
 public class Person {
     private String userName;
-    private ArrayList<ShoppingList> shoppingLists;
+    private ArrayList<Integer> shoppingLists;
 
 
     /**
@@ -12,7 +12,7 @@ public class Person {
      * @param userName the name of the user
      * @param shoppingLists the shoppinglists this Person has made formerly
      */
-    public Person(String userName, ArrayList<ShoppingList> shoppingLists){
+    public Person(String userName, ArrayList<Integer> shoppingLists){
         this.userName = userName;
         this.shoppingLists = shoppingLists;
     }
@@ -23,7 +23,16 @@ public class Person {
      */
     public Person(String userName){
         this.userName = userName;
-        this.shoppingLists = new ArrayList<ShoppingList>();
+        this.shoppingLists = new ArrayList<Integer>();
+    }
+
+    /**
+     * a constructor for a new Person who has not created any shoppinglists formerly
+     * @param userName the name of the user
+     */
+    public Person(){
+        this.userName = "";
+        this.shoppingLists = new ArrayList<Integer>();
     }
 
 
@@ -48,20 +57,20 @@ public class Person {
      * @param index the index
      * @return the shoppinlist at the specified index
      */
-    public ShoppingList getShoppingList(int index) {
+    public Integer getShoppingList(int index) {
         return shoppingLists.get(index);
     }
 
-    public void setShoppingLists(ArrayList<ShoppingList> shoppingLists){this.shoppingLists = shoppingLists;}
+    public void setShoppingLists(ArrayList<Integer> shoppingLists){this.shoppingLists = shoppingLists;}
 
     /**
      * Gets the shoppinglist by its id
      * @param id the id
      * @return the shoppinglist which has the specified id
      */
-    public ShoppingList getShoppingListById(int id){
-        for(ShoppingList x:shoppingLists){
-            if(x.getId() == id) return x;
+    public Integer getShoppingListById(int id){
+        for(Integer i:shoppingLists){
+            if(i == id) return i;
         }
         return null;
     }
@@ -70,20 +79,8 @@ public class Person {
      * get list of shoppingLists
      * @return list of shoppingLists
      */
-    public ArrayList<ShoppingList> getShoppingLists() {
+    public ArrayList<Integer> getShoppingLists() {
         return shoppingLists;
-    }
-
-    /**
-     * get list of shoppinglist ids
-     * @return integer list of IDs
-     */
-    ArrayList<Integer> getIDList() {
-        ArrayList<Integer> l =  new ArrayList<Integer>();
-        for (ShoppingList s:getShoppingLists()) {
-            l.add(s.getId());
-        }
-        return l;
     }
 
     /**
@@ -99,18 +96,15 @@ public class Person {
      * @param id id of the shoppinglist you want to remove
      */
     public void removeShoppingListById(int id){
-        shoppingLists.removeIf(shoppingList -> (shoppingList.getId() == id));
+        shoppingLists.removeIf(shoppingList -> (shoppingList == id));
     }
 
     /**
      * adds a shoppinglist to the list of shopppinglists
      * @param l the shoppinglist which is to be added to the list of shoppinglists
      */
-    public void addShoppingList(ShoppingList l){
-        shoppingLists.add(l);
-        if (!l.getPersonList().contains(this)) {
-            l.addPerson(this);
-        }
+    public void addShoppingList(Integer i){
+        shoppingLists.add(i);
     }
 
     /**
@@ -151,6 +145,11 @@ public class Person {
     @Override
     public String toString(){
         return userName + " " + shoppingLists.size();
+    }
+
+    @Override
+    public int hashCode() {
+        return 2;
     }
 
 }

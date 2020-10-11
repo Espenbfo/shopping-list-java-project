@@ -10,6 +10,7 @@ import shoppinglist.core.ShoppingList;
 import shoppinglist.core.MeasurementType;
 import shoppinglist.core.ShoppingElement;
 import shoppinglist.core.Person;
+import shoppinglist.core.MaxID;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import java.nio.file.Paths;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
@@ -59,16 +60,41 @@ public class FileHandler{
         return false;
     }
 
-    public static Person readFile(String personName){
+    public static Person readPerson(String personName){
         try {
+
             String filename = personName + ".json";
             ObjectMapper mapper = new ObjectMapper();
             Person out = mapper.readValue(Paths.get(personName + ".json").toFile(), Person.class);
+            System.out.println(out);
             return out;
         }catch(Exception e) {
             e.printStackTrace();
         }
         return null;
+    }
+
+    public static boolean writeMaxID(int id){
+        try {
+            ObjectMapper mapper = new ObjectMapper();
+            mapper.writeValue(Paths.get("maxID.json").toFile(), new MaxID(id));
+            return true;
+        }catch (Exception e) {
+            e.printStackTrace();
+        }
+        return false;
+    }
+
+    public static int readMaxID(){
+        try {
+
+            ObjectMapper mapper = new ObjectMapper();
+            MaxID out = mapper.readValue(Paths.get("maxID.json").toFile(), MaxID.class);
+            return out.getId();
+        }catch(Exception e) {
+            e.printStackTrace();
+        }
+        return -1;
     }
 
     public static void main(String[] args) {

@@ -23,10 +23,13 @@ public class AppTest extends ApplicationTest {
 
     @Override
     public void start(final Stage stage) throws Exception {
-        final FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/resources/App.fxml"));
+        final FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/resources/shoppinglist/gui/App.fxml"));
         parent = fxmlLoader.load();
         controller = fxmlLoader.getController();
-        stage.setScene(new Scene(parent));
+        Scene scene = new Scene(parent);
+        scene.getStylesheets().add(getClass().getResource("/resources/shoppinglist/gui/style.css").toExternalForm());
+
+        stage.setScene(scene);
         stage.show();
     }
 
@@ -48,6 +51,7 @@ public class AppTest extends ApplicationTest {
         Assertions.assertTrue(oldText.equals(controller.currentShoppingList.getElement(0).getName()));
     }
 
+    /*
     @Test
     public void testLogIn(){
         final Button loginButton = (Button) parent.lookup("#loginButton");
@@ -57,4 +61,5 @@ public class AppTest extends ApplicationTest {
         clickOn(loginButton);
         Assertions.assertTrue(Client.getCurrentPerson().getUserName().equals("Gud"));
     }
+    */
 }
