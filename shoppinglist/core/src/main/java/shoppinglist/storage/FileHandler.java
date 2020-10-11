@@ -97,15 +97,6 @@ public class FileHandler{
         return -1;
     }
 
-    public static void main(String[] args) {
-        ShoppingList atestlist = new ShoppingList("Denne handlelisten");
-        atestlist.addElement("mjolk", 33, "L");
-        atestlist.addElement("Smør", 8, "Kg");
-        FileHandler ahandler = new FileHandler();
-        ahandler.writeFile(atestlist);
-        
-    }
-
 
 
 }
