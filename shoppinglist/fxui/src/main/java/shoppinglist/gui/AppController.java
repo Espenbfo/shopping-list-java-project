@@ -55,6 +55,8 @@ public class AppController {
     HBox hbox;
     @FXML
     TextField peopleInputField;
+    @FXML
+    Label loginNameLabel;
 
     public ShoppingList currentShoppingList; //vil egt. ikke ha tittel her, men tror endringer må gjøres i ShoppingList.java
     
@@ -68,8 +70,7 @@ public class AppController {
         if (Client.getCurrentPerson() != null) {
             personInputField.setText(Client.getCurrentPerson().getUserName());
             fillTitleList();
-            peopleInputField.setText(Client.getCurrentPerson().getUserName());
-
+            loginNameLabel.setText(Client.getCurrentPerson().getUserName());
         }
     }
 
@@ -100,10 +101,9 @@ public class AppController {
      */
     @FXML
     void saveShoppingList(){
-        String peopleText = peopleInputField.getText();
+        String peopleText = loginNameLabel.getText() + "," + peopleInputField.getText();
         peopleText = peopleText.replaceAll("\\s","");
         String[] peopleNames = peopleText.split(",");
-        System.out.println(peopleNames);
         for (String name : peopleNames) {
             try {
                 Person p = FileHandler.readPerson(name);
@@ -200,9 +200,8 @@ public class AppController {
     void handleListButtonClicked(ShoppingList shoppingList){
         System.out.println("clicked");
         currentShoppingList = shoppingList;
-        loadId.setText(Integer.toString(currentShoppingList.getId()));
-        loadShoppingList();
-        loadId.setText("");
+        loginNameLabel.setText(personInputField.getText());
+        loadShoppingListWithList(FileHandler.readFile(currentShoppingList.getId()));
 
         //display clicked list
     }
