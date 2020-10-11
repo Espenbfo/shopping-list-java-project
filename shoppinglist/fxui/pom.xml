@@ -67,18 +67,19 @@
                     <include>**/*.fxml</include>
                     <include>**/*.png</include>
                     <include>**/*.css</include>
-                    <include>**/Resources/*</include>
+                    <include>**/resources/*</include>
                 </includes>
             </resource>
         </resources>
-        <testSourceDirectory>test/main</testSourceDirectory>
+        <testSourceDirectory>src/test</testSourceDirectory>
         <testResources>
             <testResource>
-                <directory>test/main</directory>
+                <directory>src/test</directory>
                 <includes>
                     <include>**/*.fxml</include>
                     <include>**/*.png</include>
                     <include>**/*.css</include>
+                    <include>**/resources/*</include>
                 </includes>
             </testResource>
         </testResources>
