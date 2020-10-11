@@ -42,6 +42,7 @@ public class AppTest extends ApplicationTest {
         final TextField measurementInputField = (TextField) parent.lookup("#measurementInputField");
         final TextField peopleInputField = (TextField) parent.lookup("#peopleInputField");
         final Button saveButton = (Button)parent.lookup("#saveButton");
+        final TextField personInputField = (TextField)parent.lookup("#personInputField");
         clickOn(amountInputField);
         write("1");
         clickOn(measurementInputField);
@@ -50,6 +51,8 @@ public class AppTest extends ApplicationTest {
         write("testName");
         String oldText = itemInputField.getText();
         clickOn(clickMeButton);
+        clickOn(personInputField);
+        write("TestIndivid");
         clickOn(peopleInputField);
         write("TestIndivid");
         clickOn(saveButton);
