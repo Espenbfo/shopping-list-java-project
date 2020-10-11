@@ -26,6 +26,6 @@ Som bruker ønsker jeg en applikasjon der jeg registrere meg og ha egene handlel
 Som bruker ønsker jeg å kunne redigere innholdet i lister ved supplering, avhuking, sletting av elementer. 
 
 
-![](1.png) 
-![](2.png) 
+![](1.PNG) 
+![](2.PNG) 
 
