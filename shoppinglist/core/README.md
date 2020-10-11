@@ -10,5 +10,5 @@ Persistenslaget inneholder logikk for lagring med JSON. Det kan da produseres te
 Logikken støtter også opphenting av slike filer. 
 
 ## Kodekvalitetsanalyse
-Jacoco produserer en rapport for testdekningsgrad av koden. Kjøres av mvn test, og produserer rapport ved mvn jacoco:report. Denne kan hentes ut under core. 
+Jacoco produserer en rapport for testdekningsgrad av koden. Kjøres av mvn test, og produserer rapport ved mvn jacoco:report. Denne kan hentes ut under core. Spotbugs brukes for å gjennkjenne bugs og bugsmønster i koden. 
 
