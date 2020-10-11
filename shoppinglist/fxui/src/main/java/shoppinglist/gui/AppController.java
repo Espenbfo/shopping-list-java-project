@@ -164,11 +164,12 @@ public class AppController {
 
     void fillTitleList() {
         String personString = personInputField.getText();
-        Person currentPerson = FileHandler.readPerson(personString);// set currentPerson til inputperson, ikke lage ny – lagret i annen klasse?
+        if(personString.equals("") || personString == null) return;
+        Person currenttPerson = FileHandler.readPerson(personString);// set currentPerson til inputperson, ikke lage ny – lagret i annen klasse?
         //currentPerson.addShoppingList(new ShoppingList("test")); //kun for testing
         //currentPerson.addShoppingList(new ShoppingList("test2")); //kun for testing
         listsOverview.getChildren().clear();
-        for (Integer id : currentPerson.getShoppingLists()) {
+        for (Integer id : currenttPerson.getShoppingLists()) {
             ShoppingList l = FileHandler.readFile(id);
             System.out.println(l.getTitle());
             Pane list = new Pane();

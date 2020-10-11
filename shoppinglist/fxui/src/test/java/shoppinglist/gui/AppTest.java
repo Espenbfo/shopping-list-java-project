@@ -13,6 +13,7 @@ import shoppinglist.gui.AppController;
 import shoppinglist.core.ShoppingList;
 import shoppinglist.core.Person;
 import shoppinglist.core.Client;
+import shoppinglist.storage.FileHandler;
 
 import java.awt.*;
 
@@ -39,6 +40,8 @@ public class AppTest extends ApplicationTest {
         final TextField itemInputField = (TextField) parent.lookup("#itemInputField");
         final TextField amountInputField = (TextField) parent.lookup("#amountInputField");
         final TextField measurementInputField = (TextField) parent.lookup("#measurementInputField");
+        final TextField peopleInputField = (TextField) parent.lookup("#peopleInputField");
+        final Button saveButton = (Button)parent.lookup("#saveButton");
         clickOn(amountInputField);
         write("1");
         clickOn(measurementInputField);
@@ -47,8 +50,12 @@ public class AppTest extends ApplicationTest {
         write("testName");
         String oldText = itemInputField.getText();
         clickOn(clickMeButton);
+        clickOn(peopleInputField);
+        write("TestIndivid");
+        clickOn(saveButton);
         System.out.println(controller.currentShoppingList);
         Assertions.assertTrue(oldText.equals(controller.currentShoppingList.getElement(0).getName()));
+        Assertions.assertTrue(controller.currentShoppingList.equals(FileHandler.readFile(controller.currentShoppingList.getId())));
     }
 
     /*
