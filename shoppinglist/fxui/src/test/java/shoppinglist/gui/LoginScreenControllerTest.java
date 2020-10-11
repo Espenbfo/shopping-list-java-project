@@ -9,7 +9,6 @@ import javafx.scene.Scene;
 import javafx.stage.Stage;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
-import shoppinglist.gui.AppController;
 import shoppinglist.gui.LoginScreenController;
 import shoppinglist.core.ShoppingList;
 import shoppinglist.core.Person;
@@ -24,7 +23,7 @@ public class LoginScreenControllerTest extends ApplicationTest {
 
     @Override
     public void start(final Stage stage) throws Exception {
-        final FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/resources/shoppinglist/gui/App.fxml"));
+        final FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/resources/shoppinglist/gui/LoginScreen.fxml"));
         parent = fxmlLoader.load();
         controller = fxmlLoader.getController();
         Scene scene = new Scene(parent);
@@ -39,10 +38,11 @@ public class LoginScreenControllerTest extends ApplicationTest {
     @Test
     public void testLogIn() {
         final Button loginButton = (Button) parent.lookup("#loginButton");
-        final TextField usernameField = (TextField) parent.lookup("#usernameField");
-        clickOn(usernameField);
+        final TextField usernameInputField = (TextField) parent.lookup("#usernameInputField");
+        clickOn(usernameInputField);
         write("Gud");
         clickOn(loginButton);
+
         Assertions.assertTrue(Client.getCurrentPerson().getUserName().equals("Gud"));
     }
     
