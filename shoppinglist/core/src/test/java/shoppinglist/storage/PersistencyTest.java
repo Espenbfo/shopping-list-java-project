@@ -36,26 +36,21 @@ public class PersistencyTest{
     }
 
     @Test
-    public void testWritePerson(){
+    public void testWriteReadPerson(){
         Assertions.assertTrue(FileHandler.writePerson(new Person("TestIndivid")));
         Assertions.assertFalse(FileHandler.writePerson(new Person("@<>/7.json")));
-    }
-
-    @Test
-    public void testReadPerson(){
         Person p = FileHandler.readPerson("TestIndivid");
         Assertions.assertTrue(p.equals(new Person("TestIndivid")));
     }
 
-    @Test
-    public void testWriteMaxID(){
-        Assertions.assertTrue(FileHandler.writeMaxID(l.getCurrentMaxID()));
-    }
 
     @Test
-    public void testReadMaxID(){
+    public void testWriteReadMaxID(){
+
+        Assertions.assertTrue(FileHandler.writeMaxID(l.getCurrentMaxID()));
         Assertions.assertTrue(FileHandler.readMaxID() == l.getCurrentMaxID());
     }
+
 
 
 }
