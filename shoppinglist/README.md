@@ -17,9 +17,14 @@ Prosjektet er konfigurert med Maven, og kan gjøres med mvn javafx:run og testes
 
 
 
-## Brukerhistorie
-Vi ønsker at en bruker skal kunne åpne en eksisterende handleliste, enten en den selv har laget tidligere, eller en del har fått tildelt av en annen bruker.
-Deretter vil brukeren kunne se alle tidligere elementer, samt kunne legge til nye, fjerne og sjekke av elementer. 
+## Brukerhistorier
+
+Som bruker ønsker jeg å kunne lagre lister for meg selv og andre brukere. Jeg ønsker å ha oversikt over hvilke lister jeg er en del av. 
+
+Som bruker ønsker jeg en applikasjon der jeg registrere meg og ha egene handlelister lagret.
+
+Som bruker ønsker jeg å kunne redigere innholdet i lister ved supplering, avhuking, sletting av elementer. 
+
 
 ![](screenshot.png)
 
