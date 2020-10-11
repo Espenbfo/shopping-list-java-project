@@ -2,7 +2,8 @@
 
 # Gr2049
 
-The code is in the src folder in the shoppinglist project
+The code is in the src folder in the shoppinglist project. 
+Ready for delivery 2. 
 
 [Google Disk](https://drive.google.com/drive/folders/10KHM6JSvfrWcrQkHPEovQ5cBZe_7T9WN?usp=sharing) 
 
