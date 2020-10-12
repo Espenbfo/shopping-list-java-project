@@ -52,6 +52,7 @@ public class AppTest extends ApplicationTest {
         write("testName");
         String oldText = itemInputField.getText();
         clickOn(clickMeButton);
+        personInputField.setText("");
         clickOn(personInputField);
         write("TestIndivid");
         clickOn(peopleInputField);
