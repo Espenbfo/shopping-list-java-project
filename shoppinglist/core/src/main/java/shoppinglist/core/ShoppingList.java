@@ -48,10 +48,18 @@ public class ShoppingList {
         currentMaxID = Math.max(currentMaxID,id);
     }
 
+    /**
+     * Sets the maxID for all shoppingLists.
+     * @param id the new max ID
+     */
     public static void setCurrentMaxID(int id) {
         currentMaxID = id;
     }
 
+    /**
+     * Gets the max ID for all shoppinglists
+     * @return the currentMaxID
+     */
     public static int getCurrentMaxID() {
         return currentMaxID;
     }
@@ -156,7 +164,10 @@ public class ShoppingList {
         elementList.remove(e);
     }
 
-
+    /**
+     * Gets a string representation of the object
+     * @return a string with basic information about the instance
+     */
     public String toString() {
         String elementString = "";
         for (ShoppingElement e : getElementList()) {

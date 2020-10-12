@@ -61,6 +61,10 @@ public class Person {
         return shoppingLists.get(index);
     }
 
+    /**
+     * Sets the shoppinglists
+     * @param shoppingLists the new shoppingLists
+     */
     public void setShoppingLists(ArrayList<Integer> shoppingLists){this.shoppingLists = shoppingLists;}
 
     /**
@@ -92,7 +96,7 @@ public class Person {
     }
 
     /**
-     * remova a shoppinglist associated with this person
+     * remove a shoppinglist associated with this person
      * @param id id of the shoppinglist you want to remove
      */
     public void removeShoppingListById(int id){
@@ -100,7 +104,7 @@ public class Person {
     }
 
     /**
-     * adds a shoppinglist to the list of shopppinglists
+     * adds a shoppinglist to the list of shoppinglists
      * @param i the ID of the shoppinglist
      */
     public void addShoppingList(Integer i){

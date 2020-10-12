@@ -1,5 +1,8 @@
 package shoppinglist.core;
 
+/**
+ * This class stores information between scenes in the App.
+ */
 public class Client {
 
     /**
