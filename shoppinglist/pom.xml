@@ -150,6 +150,6 @@
     <modules>
         <module>core</module>
         <module>fxui</module>
-        <module>rest-api-server</module>
+        <module>restapiserver</module>
     </modules>
 </project>
