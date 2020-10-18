@@ -10,6 +10,8 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.io.OutputStream;
+import java.net.URI;
+import java.net.URL;
 import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.ProtocolException;
@@ -24,7 +26,9 @@ import org.glassfish.jersey.logging.LoggingFeature;
 import org.glassfish.jersey.test.TestProperties;
 import org.glassfish.jersey.test.spi.TestContainerException;
 import org.glassfish.jersey.test.spi.TestContainerFactory;
-
+import org.glassfish.grizzly.http.server.HttpServer;
+import org.glassfish.jersey.grizzly2.httpserver.GrizzlyHttpServerFactory;
+import shoppinglist.restapiserver.ShoppingGrizzlyApp;
 import shoppinglist.core.*;
 
 
@@ -42,7 +46,19 @@ public class ServerTest extends JerseyTest{
         return new GrizzlyTestContainerFactory();
     }
 
-
+    @Test
+    public void testServerStart(){
+        try {
+            ShoppingGrizzlyApp.main(null);
+            URL clientUrl = new URL("http://localhost:8080/index");
+            HttpURLConnection connection = (HttpURLConnection) clientUrl.openConnection();
+            int response = connection.getResponseCode();
+            assertEquals(response, 200);
+        }
+        catch(Exception e){
+            e.printStackTrace();
+        }
+    }
 
     @Test
     public void testPost(){
