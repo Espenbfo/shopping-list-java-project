@@ -4,7 +4,7 @@
     <modelVersion>4.0.0</modelVersion>
 
     <parent>
-        <groupId>it1901.shoppinglist</groupId>
+        <groupId>gr2049.shoppinglist</groupId>
         <artifactId>parent</artifactId>
         <version>0.0.1-SNAPSHOT</version>
     </parent>
@@ -13,7 +13,7 @@
 
     <dependencies>
         <dependency>
-            <groupId>it1901.shoppinglist</groupId>
+            <groupId>gr2049.shoppinglist</groupId>
             <artifactId>core</artifactId>
             <version>0.0.1-SNAPSHOT</version>
         </dependency>
@@ -76,3 +76,4 @@
         </plugins>
     </build>
 </project>
+
