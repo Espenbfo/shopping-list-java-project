@@ -9,6 +9,8 @@ import javax.ws.rs.core.MediaType;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import shoppinglist.core.Person;
+import shoppinglist.core.ShoppingList;
+import shoppinglist.restapi.PersonResource;
 
 @Path(PersonService.PERSON_SERVICE_PATH)
 public class PersonService {
@@ -27,15 +29,15 @@ public class PersonService {
   }
 
   /**
-   * Returns the shoppinglist with the provided name
+   * Returns the shoppinglist with the provided id
    * (as a resource to support chaining path elements).
    *
-   * @param title the title of the shoppinglist
+   * @param id the id of the shoppinglist
    */
-  @Path("/{title}")
-  public PersonResource getPerson(@PathParam("title") String title) {
-    ShoppingList shoppinglist  = getPerson().getShoppingList(title);
-    LOG.debug("Sub-resource for Person " + title + ": " + shoppinglist);
-    return new PersonResource(person, title, shoppinglist);
+  @Path("/{id}")
+  public PersonResource getShoppingList(@PathParam("id") int id) {
+    ShoppingList shoppinglist  = person.getShoppingListById(id);
+    LOG.debug("Sub-resource for Person " + id + ": " + shoppinglist);
+    return new PersonResource(person, id, shoppinglist);
   }
 }
