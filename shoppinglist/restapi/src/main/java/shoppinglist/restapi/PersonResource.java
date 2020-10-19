@@ -41,7 +41,7 @@ public class PersonResource {
    */
   @GET
   @Produces(MediaType.APPLICATION_JSON)
-  public TodoList getShoppingList() {
+  public ShoppingList getShoppingList() {
     if (this.shoppingList == null) {
       this.shoppingList = new ShoppingList(this.title);
     }
@@ -79,5 +79,4 @@ public class PersonResource {
    
   }
 
-  
 }
