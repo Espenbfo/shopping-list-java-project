@@ -52,7 +52,7 @@ public class ServerTest extends JerseyTest{
         try {
             h = ShoppingGrizzlyApp.start();
             //h = ShoppingGrizzlyApp.start();
-            URL clientUrl = new URL("http://localhost:8080/index/testPage");
+            URL clientUrl = new URL("http://localhost:8087/index/testPage");
             HttpURLConnection connection = (HttpURLConnection) clientUrl.openConnection();
             int response = connection.getResponseCode();
             assertEquals(response, 200);

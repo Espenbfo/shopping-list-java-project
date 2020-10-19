@@ -10,22 +10,23 @@ import java.util.logging.Logger;
 import org.glassfish.grizzly.http.server.HttpServer;
 import org.glassfish.jersey.grizzly2.httpserver.GrizzlyHttpServerFactory;
 import org.glassfish.jersey.server.ResourceConfig;
-
+import shoppinglist.restapiserver.testPage;
 
 public class ShoppingGrizzlyApp{
 
-    private static URI serverUri = URI.create("http://localhost:8080/index/");
+    private static URI serverUri = URI.create("http://localhost:8087/index/");
 
 
     public static HttpServer start() throws IOException{
         int waitTime = 5;
-        ResourceConfig rc = new ResourceConfig().packages("shoppinglist.restapiserver.testPage");
+        ResourceConfig rc = new ResourceConfig();
+        rc.register(testPage.class);
         System.out.println(rc);
         HttpServer httpServer = GrizzlyHttpServerFactory.createHttpServer(serverUri,rc);
         System.out.println(httpServer);
         while (waitTime>0){
             try {
-                URL clientUrl = new URL("http://localhost:8080/index/testPage");
+                URL clientUrl = new URL("http://localhost:8087/index/testPage");
                 HttpURLConnection connection = (HttpURLConnection) clientUrl.openConnection();
                 connection.connect();
                 int responseCode = connection.getResponseCode();
