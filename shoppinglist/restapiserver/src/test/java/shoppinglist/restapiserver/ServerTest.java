@@ -48,15 +48,19 @@ public class ServerTest extends JerseyTest{
 
     @Test
     public void testServerStart(){
+        HttpServer h;
         try {
-            ShoppingGrizzlyApp.main(null);
-            URL clientUrl = new URL("http://localhost:8080/index");
+            h = ShoppingGrizzlyApp.start();
+            //h = ShoppingGrizzlyApp.start();
+            URL clientUrl = new URL("http://localhost:8080/index/testPage");
             HttpURLConnection connection = (HttpURLConnection) clientUrl.openConnection();
             int response = connection.getResponseCode();
             assertEquals(response, 200);
+            ShoppingGrizzlyApp.stop(h);
         }
         catch(Exception e){
             e.printStackTrace();
+            assertTrue(false);
         }
     }
 

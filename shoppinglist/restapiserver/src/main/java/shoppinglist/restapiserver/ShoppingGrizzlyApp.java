@@ -14,16 +14,20 @@ import org.glassfish.jersey.server.ResourceConfig;
 
 public class ShoppingGrizzlyApp{
 
-    private static URI serverUri = URI.create("http://localhost:8080/");
+    private static URI serverUri = URI.create("http://localhost:8080/index/");
 
 
     public static HttpServer start() throws IOException{
-        int waitTime = 10;
-        HttpServer httpServer = GrizzlyHttpServerFactory.createHttpServer(serverUri, new ResourceConfig());
+        int waitTime = 5;
+        ResourceConfig rc = new ResourceConfig().packages("shoppinglist.restapiserver.testPage");
+        System.out.println(rc);
+        HttpServer httpServer = GrizzlyHttpServerFactory.createHttpServer(serverUri,rc);
+        System.out.println(httpServer);
         while (waitTime>0){
             try {
-                URL clientUrl = new URL("http://localhost:8080");
+                URL clientUrl = new URL("http://localhost:8080/index/testPage");
                 HttpURLConnection connection = (HttpURLConnection) clientUrl.openConnection();
+                connection.connect();
                 int responseCode = connection.getResponseCode();
                 System.out.println("Trying " + clientUrl + ": " + responseCode);
                 connection.disconnect();
@@ -44,7 +48,7 @@ public class ShoppingGrizzlyApp{
         return null;
     }
 
-    public void stop(HttpServer server){
+    public static void stop(HttpServer server){
         server.shutdown();
     }
 
