@@ -23,8 +23,8 @@ public class ShoppingListResource {
   /**
    * Initializes this TodoListResource with appropriate context information.
    *
-   * @param todoModel the TodoModel
-   * @param name the todo list name
+   * @param shoppinglistModel the ShoppinglistModel
+   * @param name the shoppinglist name
    * @param shoppingList the TodoList, or null
    */
   public ShoppingListResource(String name, ShoppingList shoppingList) {
