@@ -21,9 +21,9 @@ public class ShoppingGrizzlyApp{
         int waitTime = 5;
         ResourceConfig rc = new ResourceConfig();
         rc.register(testPage.class);
-        System.out.println(rc);
+
         HttpServer httpServer = GrizzlyHttpServerFactory.createHttpServer(serverUri,rc);
-        System.out.println(httpServer);
+
         while (waitTime>0){
             try {
                 URL clientUrl = new URL("http://localhost:8087/index/testPage");
