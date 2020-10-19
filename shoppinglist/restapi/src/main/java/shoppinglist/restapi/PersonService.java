@@ -8,11 +8,12 @@ import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import shoppinglist.core.Person;
 
 @Path(PersonService.PERSON_SERVICE_PATH)
 public class PersonService {
 
-  public static final String PERSON_SERVICE_PATH = "name"; //?
+  public static final String PERSON_SERVICE_PATH = "Gud"; //?
 
   private static final Logger LOG = LoggerFactory.getLogger(PersonService.class);
 

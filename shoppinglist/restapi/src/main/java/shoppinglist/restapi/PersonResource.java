@@ -11,6 +11,9 @@ import javax.ws.rs.QueryParam;
 import javax.ws.rs.core.MediaType;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import shoppinglist.core.Person;
+import shoppinglist.core.ShoppingList;
+
 
 
 public class PersonResource {
@@ -30,7 +33,7 @@ public class PersonResource {
    */
   public PersonResource(Person person, String title, ShoppingList shoppingList) {
     this.person = person;
-    this.name = title;
+    this.title = title;
     this.shoppingList = shoppingList;
   }
 
@@ -61,21 +64,9 @@ public class PersonResource {
   @Consumes(MediaType.APPLICATION_JSON)
   @Produces(MediaType.APPLICATION_JSON)
   public boolean addShoppingList(ShoppingList shoppingList) {
+        LOG.debug("addShoppingList({})", shoppinglist);
+        return this.person.addShoppingList(shoppingList) == null;
 
-    ShoppingList tmpShoppingList;
-
-    //nei?
-    int maxID = Filehandler.readMaxID();
-    for (int i = 0; i <= maxID; i++){
-        tmpShoppingList = Filehandler.readFile(i);
-        if (this.title == tmpShoppingList.getTitle())
-            this.person.addShoppingList(tmpShoppingList);
-            return true;
-    }
-    tmpShoppingList = new ShoppingList(this.title);
-    this.person.addShoppingList(tmpShoppingList);
-    LOG.debug("addShoppingList({})", shoppingList);
-    return false;
    
   }
 
