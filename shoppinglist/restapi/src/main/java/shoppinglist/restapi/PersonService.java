@@ -20,7 +20,7 @@ public class PersonService {
   private static final Logger LOG = LoggerFactory.getLogger(PersonService.class);
 
   @Inject
-  private Person person;
+  private java.shoppinglist.core.Person person;
 
   @GET
   @Produces(MediaType.APPLICATION_JSON)
@@ -36,7 +36,7 @@ public class PersonService {
    */
   @Path("/{id}")
   public PersonResource getShoppingList(@PathParam("id") int id) {
-    ShoppingList shoppinglist  = person.getShoppingListById(id);
+    ShoppingList shoppinglist  = person.getShoppingList(person.getShoppingListById(id));
     LOG.debug("Sub-resource for Person " + id + ": " + shoppinglist);
     return new PersonResource(person, id, shoppinglist);
   }
