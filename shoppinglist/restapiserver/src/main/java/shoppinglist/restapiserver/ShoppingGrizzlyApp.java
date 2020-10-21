@@ -28,7 +28,7 @@ public class ShoppingGrizzlyApp{
 
         while (waitTime>0){
             try {
-                URL clientUrl = new URL(clientUri + PersonService.PERSON_SERVICE_PATH);
+                URL clientUrl = new URL(serverUri + PersonService.PERSON_SERVICE_PATH);
                 HttpURLConnection connection = (HttpURLConnection) clientUrl.openConnection();
                 connection.connect();
                 int responseCode = connection.getResponseCode();

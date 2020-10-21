@@ -6,7 +6,7 @@ import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 
 /* Root resource (exposed at "testPage" path) */
-@Path("testPage")
+@Path("Gud")
 public class testPage {
 
     @GET
