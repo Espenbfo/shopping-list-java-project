@@ -1,5 +1,6 @@
 package shoppinglist.restapi;
 
+
 import javax.inject.Inject;
 import javax.ws.rs.GET;
 import javax.ws.rs.Path;
@@ -11,6 +12,7 @@ import org.slf4j.LoggerFactory;
 import shoppinglist.core.Person;
 import shoppinglist.core.ShoppingList;
 import shoppinglist.restapi.PersonResource;
+import shoppinglist.storage.FileHandler;
 
 @Path(PersonService.PERSON_SERVICE_PATH)
 public class PersonService {
@@ -20,7 +22,7 @@ public class PersonService {
   private static final Logger LOG = LoggerFactory.getLogger(PersonService.class);
 
   @Inject
-  private java.shoppinglist.core.Person person;
+  private Person person;
 
   @GET
   @Produces(MediaType.APPLICATION_JSON)
@@ -36,7 +38,7 @@ public class PersonService {
    */
   @Path("/{id}")
   public PersonResource getShoppingList(@PathParam("id") int id) {
-    ShoppingList shoppinglist  = person.getShoppingList(person.getShoppingListById(id));
+    ShoppingList shoppinglist  = FileHandler.readFile(id);
     LOG.debug("Sub-resource for Person " + id + ": " + shoppinglist);
     return new PersonResource(person, id, shoppinglist);
   }
