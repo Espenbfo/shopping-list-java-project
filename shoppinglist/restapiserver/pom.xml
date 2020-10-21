@@ -13,6 +13,12 @@
 
     <artifactId>restapiserver</artifactId>
 
+    <properties>
+        <slf4jVersion>1.7.25</slf4jVersion>
+        <jerseyVersion>2.28</jerseyVersion>
+    </properties>
+
+
     <dependencies>
 
         <dependency>
@@ -21,11 +27,11 @@
             <version>0.0.1-SNAPSHOT</version>
         </dependency>
 
-        <!--<dependency>
+        <dependency>
             <groupId>gr2049.shoppinglist</groupId>
             <artifactId>restapi</artifactId>
             <version>0.0.1-SNAPSHOT</version>
-        </dependency>-->
+        </dependency>
 
         <!-- https://mvnrepository.com/artifact/com.fasterxml.jackson.core/jackson-core -->
         <dependency>
@@ -46,6 +52,28 @@
             <groupId>org.junit.jupiter</groupId>
             <artifactId>junit-jupiter-engine</artifactId>
         </dependency>
+
+         <!-- https://mvnrepository.com/artifact/org.mockito/mockito-core -->
+        <dependency>
+            <groupId>org.mockito</groupId>
+            <artifactId>mockito-core</artifactId>
+        </dependency>
+
+        <!-- Her kommer web-server-avhengighetene -->
+
+        <!-- Logging med slf4j -->
+        <dependency>
+            <groupId>org.slf4j</groupId>
+            <artifactId>slf4j-api</artifactId>
+            <version>${slf4jVersion}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.slf4j</groupId>
+            <artifactId>slf4j-simple</artifactId>
+            <version>${slf4jVersion}</version>
+        </dependency>
+
+
 
 
         <dependency>

@@ -51,7 +51,7 @@
 	</properties>
 
 	<build>
-		<sourceDirectory>src/main</sourceDirectory>
+<!--		<sourceDirectory>src/main</sourceDirectory>
 		<resources>
 			<resource>
 				<directory>src/main</directory>
@@ -71,7 +71,7 @@
                     <include>**/*.png</include>
 				</includes>
 			</testResource>
-		</testResources>
+		</testResources>-->
 
 		<plugins>
 			<!-- Compiling code -->

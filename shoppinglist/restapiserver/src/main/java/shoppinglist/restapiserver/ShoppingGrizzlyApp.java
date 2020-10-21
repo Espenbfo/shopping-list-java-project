@@ -11,6 +11,7 @@ import org.glassfish.grizzly.http.server.HttpServer;
 import org.glassfish.jersey.grizzly2.httpserver.GrizzlyHttpServerFactory;
 import org.glassfish.jersey.server.ResourceConfig;
 import shoppinglist.restapiserver.testPage;
+import shoppinglist.restapi.PersonService;
 
 public class ShoppingGrizzlyApp{
 
@@ -21,12 +22,13 @@ public class ShoppingGrizzlyApp{
         int waitTime = 5;
         ResourceConfig rc = new ResourceConfig();
         rc.register(testPage.class);
+        rc.register(PersonService.class);
 
         HttpServer httpServer = GrizzlyHttpServerFactory.createHttpServer(serverUri,rc);
 
         while (waitTime>0){
             try {
-                URL clientUrl = new URL("http://localhost:8087/index/testPage");
+                URL clientUrl = new URL(clientUri + PersonService.PERSON_SERVICE_PATH);
                 HttpURLConnection connection = (HttpURLConnection) clientUrl.openConnection();
                 connection.connect();
                 int responseCode = connection.getResponseCode();
