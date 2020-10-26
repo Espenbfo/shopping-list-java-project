@@ -22,7 +22,7 @@ public class PersonDataAccess  {
 
     private final String baseUrlString;
 
-    public ShoppingListDataAccess(final String baseUrlString) {
+    public PersonDataAccess(final String baseUrlString) {
         this.baseUrlString = baseUrlString;
     }
 
@@ -36,7 +36,7 @@ public class PersonDataAccess  {
 
     public void putPerson(final Person person) {
         try {
-            String name = person.getName();
+            String name = person.getUserName();
             ObjectMapper mapper = new ObjectMapper();
             final HttpRequest request = HttpRequest.newBuilder(getRequestUri("/Persons/" + name))
                     .header("Content-Type", "application/json")
