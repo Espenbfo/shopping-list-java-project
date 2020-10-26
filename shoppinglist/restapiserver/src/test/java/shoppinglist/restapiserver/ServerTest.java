@@ -1,12 +1,14 @@
 package shoppinglist.restapiserver;
 import com.fasterxml.jackson.core.JsonGenerationException;
 import com.fasterxml.jackson.core.JsonParseException;
+import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.JsonMappingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.junit.jupiter.api.Assertions.fail;
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.io.OutputStream;
@@ -19,6 +21,7 @@ import java.util.Collections;
 import javax.ws.rs.client.Entity;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
+
 import org.glassfish.jersey.test.JerseyTest;
 import org.glassfish.jersey.test.grizzly.GrizzlyTestContainerFactory;
 import org.glassfish.jersey.server.ResourceConfig;
@@ -29,6 +32,7 @@ import org.glassfish.jersey.test.spi.TestContainerFactory;
 import org.glassfish.grizzly.http.server.HttpServer;
 import org.glassfish.jersey.grizzly2.httpserver.GrizzlyHttpServerFactory;
 import shoppinglist.restapiserver.ShoppingGrizzlyApp;
+import shoppinglist.restapi.PersonService;
 import shoppinglist.core.*;
 
 
@@ -65,18 +69,31 @@ public class ServerTest extends JerseyTest{
     }
 
     @Test
-    public void testPost(){
-        assertTrue(true);
+    public void testPost() {
+        Person p = new Person("testPerson");
+        ObjectMapper mapper = new ObjectMapper();
+        final Response postResponse = target(PersonService.PERSON_SERVICE_PATH)
+                .request(MediaType.APPLICATION_JSON + ";" + MediaType.CHARSET_PARAMETER + "-UTF-8")
+                .post(Entity.entity(mapper.writeValueAsString(p), MediaType.APPLICATION_JSON));
+        assertEquals(200, postResponse.getStatus());
+        // Må muligens legge til postresponse getEntity
     }
 
     @Test
-    public void testGet(){
-        assertTrue(true);
-    }
-
-    @Test
-    public void testWrite(){
-        assertTrue(true);
+    public void testGet() {
+        Response getResponse = target(PersonService.PERSON_SERVICE_PATH)
+                .path("testPerson")
+                .request(MediaType.APPLICATION_JSON + ";" + MediaType.CHARSET_PARAMETER + "-UTF-8")
+                .get();
+        assertEquals(200, getResponse.getStatus());
+        try {
+            ObjectMapper mapper = new ObjectMapper();
+            Person person = mapper.readValue(getResponse.readEntity(String.class), Person.class);
+            assertEquals("testPerson", person.getUserName());
+        }
+        catch (JsonProcessingException e) {
+            fail(e.getMessage());
+        }
     }
 }
 
