@@ -30,6 +30,15 @@ public class PersonService {
     return new Person();
   }
 
+  @GET
+  @Path("/{username}")
+  @Produces(MediaType.APPLICATION_JSON)
+  public Person getPerson(@PathParam("username") String username) {
+    return FileHandler.readPerson(username);
+  }
+
+
+
   /**
    * Returns the shoppinglist with the provided id
    * (as a resource to support chaining path elements).
