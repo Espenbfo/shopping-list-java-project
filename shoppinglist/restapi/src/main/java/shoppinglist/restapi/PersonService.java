@@ -21,7 +21,7 @@ import shoppinglist.storage.FileHandler;
 public class PersonService {
 
   public static final String PERSON_SERVICE_PATH = "Persons";
-  private static Arraylist<Person> persons = new ArrayList<Person>;
+  private static Arraylist<Person> persons = new ArrayList<Person>();
   private static final Logger LOG = LoggerFactory.getLogger(PersonService.class);
   /*
   @Inject
