@@ -71,12 +71,17 @@ public class ServerTest extends JerseyTest{
     @Test
     public void testPost() {
         Person p = new Person("testPerson");
-        ObjectMapper mapper = new ObjectMapper();
-        final Response postResponse = target(PersonService.PERSON_SERVICE_PATH)
-                .request(MediaType.APPLICATION_JSON + ";" + MediaType.CHARSET_PARAMETER + "-UTF-8")
-                .post(Entity.entity(mapper.writeValueAsString(p), MediaType.APPLICATION_JSON));
-        assertEquals(200, postResponse.getStatus());
-        // Må muligens legge til postresponse getEntity
+        try {
+            ObjectMapper mapper = new ObjectMapper();
+            final Response postResponse = target(PersonService.PERSON_SERVICE_PATH)
+                    .request(MediaType.APPLICATION_JSON + ";" + MediaType.CHARSET_PARAMETER + "-UTF-8")
+                    .post(Entity.entity(mapper.writeValueAsString(p), MediaType.APPLICATION_JSON));
+            assertEquals(200, postResponse.getStatus());
+            // Må muligens legge til postresponse getEntity
+        }
+        catch (JsonProcessingException e) {
+            fail(e.getMessage());
+        }
     }
 
     @Test
