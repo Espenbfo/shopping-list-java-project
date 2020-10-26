@@ -35,7 +35,6 @@ public class ShoppingListDataAccessTest {
 
     @Test
     public void getShoppingList() {
-
         final ShoppingList sl = access.getShoppingList(0);
         Assertions.assertTrue(true);
     }

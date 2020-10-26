@@ -23,23 +23,42 @@ public class ShoppingListDataAccess  {
     private final String baseUrlString;
 
     public ShoppingListDataAccess(final String baseUrlString) {
-        System.out.println(baseUrlString);
         this.baseUrlString = baseUrlString;
     }
 
     private URI getRequestUri(final String path) {
         try {
-            System.out.println("new URL: " + baseUrlString + path);
             return new URI(baseUrlString + path);
         } catch (final URISyntaxException e) {
             throw new IllegalArgumentException(e);
         }
     }
 
+    public void putShoppingList(final ShoppingList shoppingList) {
+        try {
+            int index = shoppingList.getId();
+            ObjectMapper mapper = new ObjectMapper();
+            final HttpRequest request = HttpRequest.newBuilder(getRequestUri("/Shoppinglists/" + index))
+                    .header("Content-Type", "application/json")
+                    .header("Accept", "application/json")
+                    .PUT(BodyPublishers.ofString(mapper.writeValueAsString(shoppingList)))
+                    .build();
+            final HttpResponse<InputStream> response =
+                    HttpClient.newBuilder().build().send(
+                            request, HttpResponse.BodyHandlers.ofInputStream()
+                    );
+
+        } catch (final JsonProcessingException e) {
+            throw new RuntimeException(e);
+        } catch (IOException | InterruptedException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
     public ShoppingList getShoppingList(final int id) {
 
         final HttpRequest request =
-                HttpRequest.newBuilder(getRequestUri("/" + id))
+                HttpRequest.newBuilder(getRequestUri("/Shoppinglists/" + id))
                         .header("Accept", "application/json").GET().build();
         try {
             final HttpResponse<InputStream> response =
