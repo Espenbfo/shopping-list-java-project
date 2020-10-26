@@ -3,7 +3,15 @@ package shoppinglist.core;
 import java.util.ArrayList;
 
 public class Person {
+
+    /**
+     * The alias of the Person.
+     */
     private String userName;
+
+    /**
+     * The ShoppingLists the Person participates in
+     */
     private ArrayList<Integer> shoppingLists;
 
 
@@ -12,7 +20,7 @@ public class Person {
      * @param userName the name of the user
      * @param shoppingLists the shoppinglists this Person has made formerly
      */
-    public Person(String userName, ArrayList<Integer> shoppingLists){
+    public Person(final String userName, final ArrayList<Integer> shoppingLists) {
         this.userName = userName;
         this.shoppingLists = shoppingLists;
     }
@@ -21,7 +29,7 @@ public class Person {
      * a constructor for a new Person who has not created any shoppinglists formerly.
      * @param userName the name of the user
      */
-    public Person(String userName){
+    public Person(String userName) {
         this.userName = userName;
         this.shoppingLists = new ArrayList<Integer>();
     }
@@ -30,7 +38,7 @@ public class Person {
      * a constructor for a new Person who has not created any shoppinglists formerly.
      * @param userName the name of the user
      */
-    public Person(){
+    public Person() {
         this.userName = "";
         this.shoppingLists = new ArrayList<Integer>();
     }
@@ -48,7 +56,7 @@ public class Person {
      * Sets the username.
      * @param newName new name
      */
-    public void setUserName(String newName) {
+    public void setUserName(final String newName) {
         userName = newName;
     }
 
@@ -57,7 +65,7 @@ public class Person {
      * @param index the index
      * @return the shoppinlist at the specified index
      */
-    public Integer getShoppingList(int index) {
+    public Integer getShoppingList(final int index) {
         return shoppingLists.get(index);
     }
 
@@ -65,16 +73,20 @@ public class Person {
      * Sets the shoppinglists.
      * @param shoppingLists the new shoppingLists
      */
-    public void setShoppingLists(ArrayList<Integer> shoppingLists){this.shoppingLists = shoppingLists;}
+    public void setShoppingLists(final ArrayList<Integer> shoppingLists) {
+        this.shoppingLists = shoppingLists;
+    }
 
     /**
      * Gets the shoppinglist by its id.
      * @param id the id
      * @return the shoppinglist which has the specified id
      */
-    public Integer getShoppingListById(int id){
+    public Integer getShoppingListById(final int id) {
         for(Integer i:shoppingLists){
-            if(i == id) return i;
+            if(i == id) {
+                return i;
+            }
         }
         return null;
     }
@@ -91,7 +103,7 @@ public class Person {
      * remove a shoppinglist associated with this person.
      * @param index the index of the shoppinglist you want to remove
      */
-    public void removeShoppingList(int index){
+    public void removeShoppingList(final int index) {
         shoppingLists.remove(index);
     }
 
@@ -99,7 +111,7 @@ public class Person {
      * remove a shoppinglist associated with this person.
      * @param id id of the shoppinglist you want to remove
      */
-    public void removeShoppingListById(int id){
+    public void removeShoppingListById(final int id) {
         shoppingLists.removeIf(shoppingList -> (shoppingList == id));
     }
 
@@ -107,7 +119,7 @@ public class Person {
      * adds a shoppinglist to the list of shoppinglists.
      * @param i the ID of the shoppinglist
      */
-    public void addShoppingList(Integer i){
+    public void addShoppingList(final Integer i) {
         shoppingLists.add(i);
     }
 
@@ -115,7 +127,7 @@ public class Person {
      * adds a shoppinglist to the list of shopppinglists.
      * @param l the shoppinglist which is to be added to the list of shoppinglists
      */
-    public void addShoppingList(ShoppingList l){
+    public void addShoppingList(final ShoppingList l) {
         shoppingLists.add(l.getId());
     }
 

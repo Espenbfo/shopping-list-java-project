@@ -1,12 +1,24 @@
 package shoppinglist.core;
 
 /**
- * Represents an elements measurement type. The value is also stored in this class, as the value only has meaning related to a measurement type.
+ * Represents an elements measurement type.
+ * The value is also stored in this class.
  */
-
 public class MeasurementType {
+
+    /**
+     * Whether the measurement can be written with decimals.
+     */
     private boolean allowDouble = true;
+
+    /**
+     * The name of the measurementtype.
+     */
     private String baseName;
+
+    /**
+     * The value of the ShoppingElement.
+     */
     private double value;
 
     /**
@@ -18,14 +30,14 @@ public class MeasurementType {
     }
 
     /**
-     * Initialize a MeasurementType with provided baseName, value and if the measurement allows non-integer values.
+     * Initialize a MeasurementType with provided baseName, value and allowDouble.
      *
      * @param baseName the measurement name
      * @param value the measurement value
      * @param allowDouble allow double values?
      *
      */
-    public MeasurementType(String baseName, double value, boolean allowDouble) {
+    public MeasurementType(final String baseName, final double value, final boolean allowDouble) {
         this.baseName = baseName;
         this.allowDouble = allowDouble;
         setValue(value);
@@ -38,8 +50,8 @@ public class MeasurementType {
      * @param value the measurement value
      *
      */
-    public MeasurementType(String baseName, double value) {
-        this(baseName,value,true);
+    public MeasurementType(final String baseName, final double value) {
+        this(baseName, value, true);
     }
 
     /**
@@ -56,12 +68,12 @@ public class MeasurementType {
      *
      * @param newValue the new value
      */
-    public void setValue(double newValue) {
+    public void setValue(final double newValue) {
         if (newValue < 0.0) {
             throw new IllegalArgumentException();
         }
         if (!allowDouble) {
-            if (newValue%1 != 0.0) {
+            if (newValue % 1 != 0.0) {
                 throw new IllegalArgumentException();
             }
         }
@@ -73,8 +85,8 @@ public class MeasurementType {
      *
      * @param difference the number to change the value by
      */
-    public void changeValue(double difference) {
-        double newValue = value+difference;
+    public void changeValue(final double difference) {
+        double newValue = value + difference;
         setValue(newValue);
     }
 
@@ -83,7 +95,7 @@ public class MeasurementType {
      *
      * @param name the new name
      */
-    public void setBaseName(String name) {
+    public void setBaseName(final String name) {
         baseName = name;
     }
 
@@ -111,8 +123,11 @@ public class MeasurementType {
      * @return true if equal, false else
      */
     @Override
-    public boolean equals(Object o) {
-        if(o == null) return false;
+    public boolean equals(final Object o) {
+        if (o == null) {
+            return false;
+        }
+
         if (!o.getClass().equals(this.getClass())) {
             return false;
         }
