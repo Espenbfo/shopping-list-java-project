@@ -31,7 +31,7 @@ public class PersonService {
   }
 
   @GET
-  @Path("/{username}")
+  @Path("/Persons/{username}")
   @Produces(MediaType.APPLICATION_JSON)
   public Person getPerson(@PathParam("username") String username) {
     return FileHandler.readPerson(username);
@@ -45,7 +45,7 @@ public class PersonService {
    *
    * @param id the id of the shoppinglist
    */
-  @Path("/{id}")
+  @Path("/Shoppinglists/{id}")
   public PersonResource getShoppingList(@PathParam("id") int id) {
     ShoppingList shoppinglist  = FileHandler.readFile(id);
     LOG.debug("Sub-resource for Person " + id + ": " + shoppinglist);
