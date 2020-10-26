@@ -20,14 +20,14 @@ public class PersonService {
   public static final String PERSON_SERVICE_PATH = "Gud"; //?
 
   private static final Logger LOG = LoggerFactory.getLogger(PersonService.class);
-
+  /*
   @Inject
   private Person person;
-
+*/
   @GET
   @Produces(MediaType.APPLICATION_JSON)
   public Person getPerson() {
-    return person;
+    return new Person();
   }
 
   /**
@@ -40,6 +40,7 @@ public class PersonService {
   public PersonResource getShoppingList(@PathParam("id") int id) {
     ShoppingList shoppinglist  = FileHandler.readFile(id);
     LOG.debug("Sub-resource for Person " + id + ": " + shoppinglist);
+    Person person = new Person();
     return new PersonResource(person, id, shoppinglist);
   }
 }
