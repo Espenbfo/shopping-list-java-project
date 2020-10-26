@@ -7,6 +7,7 @@ import javax.ws.rs.POST;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
+import java.utils.ArrayList;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.core.MediaType;
 import org.slf4j.Logger;
@@ -19,8 +20,8 @@ import shoppinglist.storage.FileHandler;
 @Path(PersonService.PERSON_SERVICE_PATH)
 public class PersonService {
 
-  public static final String PERSON_SERVICE_PATH = "Persons"; //?
-
+  public static final String PERSON_SERVICE_PATH = "Persons";
+  private static Arraylist<Person> persons = new ArrayList<Person>;
   private static final Logger LOG = LoggerFactory.getLogger(PersonService.class);
   /*
   @Inject
@@ -39,11 +40,12 @@ public class PersonService {
     return FileHandler.readPerson(username);
   }
 
-  @POST
+  @PUT
   @Consumes(MediaType.APPLICATION_JSON)
   @Produces(MediaType.APPLICATION_JSON)
   public int addPerson(final Person person) {
-    return FileHandler.writePerson(person) ? 1 : 0;
+    LOG.debug("addShoppingList({})", shoppingList);
+    return persons.add(person) ? 1 : 0;
   }
 
   @Path("/ShoppingLists/{id}")
