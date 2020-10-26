@@ -3,41 +3,49 @@ package shoppinglist.core;
 import java.util.ArrayList;
 
 public class Person {
+
+    /**
+     * The alias of the Person.
+     */
     private String userName;
+
+    /**
+     * The ShoppingLists the Person participates in
+     */
     private ArrayList<Integer> shoppingLists;
 
 
     /**
-     * Constructor for already existing person with shoppinglists
+     * Constructor for already existing person with shoppinglists.
      * @param userName the name of the user
      * @param shoppingLists the shoppinglists this Person has made formerly
      */
-    public Person(String userName, ArrayList<Integer> shoppingLists){
+    public Person(final String userName, final ArrayList<Integer> shoppingLists) {
         this.userName = userName;
         this.shoppingLists = shoppingLists;
     }
 
     /**
-     * a constructor for a new Person who has not created any shoppinglists formerly
+     * a constructor for a new Person who has not created any shoppinglists formerly.
      * @param userName the name of the user
      */
-    public Person(String userName){
+    public Person(String userName) {
         this.userName = userName;
         this.shoppingLists = new ArrayList<Integer>();
     }
 
     /**
-     * a constructor for a new Person who has not created any shoppinglists formerly
+     * a constructor for a new Person who has not created any shoppinglists formerly.
      * @param userName the name of the user
      */
-    public Person(){
+    public Person() {
         this.userName = "";
         this.shoppingLists = new ArrayList<Integer>();
     }
 
 
     /**
-     * Gets the username
+     * Gets the username.
      * @return the username
      */
     public String getUserName() {
@@ -45,42 +53,46 @@ public class Person {
     }
 
     /**
-     * Sets the username
+     * Sets the username.
      * @param newName new name
      */
-    public void setUserName(String newName) {
+    public void setUserName(final String newName) {
         userName = newName;
     }
 
     /**
-     * Gets the shoppinglist at an index
+     * Gets the shoppinglist at an index.
      * @param index the index
      * @return the shoppinlist at the specified index
      */
-    public Integer getShoppingList(int index) {
+    public Integer getShoppingList(final int index) {
         return shoppingLists.get(index);
     }
 
     /**
-     * Sets the shoppinglists
+     * Sets the shoppinglists.
      * @param shoppingLists the new shoppingLists
      */
-    public void setShoppingLists(ArrayList<Integer> shoppingLists){this.shoppingLists = shoppingLists;}
+    public void setShoppingLists(final ArrayList<Integer> shoppingLists) {
+        this.shoppingLists = shoppingLists;
+    }
 
     /**
-     * Gets the shoppinglist by its id
+     * Gets the shoppinglist by its id.
      * @param id the id
      * @return the shoppinglist which has the specified id
      */
-    public Integer getShoppingListById(int id){
+    public Integer getShoppingListById(final int id) {
         for(Integer i:shoppingLists){
-            if(i == id) return i;
+            if(i == id) {
+                return i;
+            }
         }
         return null;
     }
 
     /**
-     * get list of shoppingLists
+     * get list of shoppingLists.
      * @return list of shoppingLists
      */
     public ArrayList<Integer> getShoppingLists() {
@@ -88,39 +100,39 @@ public class Person {
     }
 
     /**
-     * remove a shoppinglist associated with this person
+     * remove a shoppinglist associated with this person.
      * @param index the index of the shoppinglist you want to remove
      */
-    public void removeShoppingList(int index){
+    public void removeShoppingList(final int index) {
         shoppingLists.remove(index);
     }
 
     /**
-     * remove a shoppinglist associated with this person
+     * remove a shoppinglist associated with this person.
      * @param id id of the shoppinglist you want to remove
      */
-    public void removeShoppingListById(int id){
+    public void removeShoppingListById(final int id) {
         shoppingLists.removeIf(shoppingList -> (shoppingList == id));
     }
 
     /**
-     * adds a shoppinglist to the list of shoppinglists
+     * adds a shoppinglist to the list of shoppinglists.
      * @param i the ID of the shoppinglist
      */
-    public void addShoppingList(Integer i){
+    public void addShoppingList(final Integer i) {
         shoppingLists.add(i);
     }
 
     /**
-     * adds a shoppinglist to the list of shopppinglists
+     * adds a shoppinglist to the list of shopppinglists.
      * @param l the shoppinglist which is to be added to the list of shoppinglists
      */
-    public void addShoppingList(ShoppingList l){
+    public void addShoppingList(final ShoppingList l) {
         shoppingLists.add(l.getId());
     }
 
     /**
-     * Checks if instance equals another
+     * Checks if instance equals another.
      *
      * @return true if equal, false else
      */
@@ -150,7 +162,7 @@ public class Person {
     }
 
     /**
-     * to string of the name and number of lists this Person has
+     * to string of the name and number of lists this Person has.
      * @return the name of number of lists of this person
      */
     @Override

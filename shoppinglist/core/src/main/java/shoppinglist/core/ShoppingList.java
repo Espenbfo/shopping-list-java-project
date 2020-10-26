@@ -57,7 +57,7 @@ public class ShoppingList {
     }
 
     /**
-     * Gets the max ID for all shoppinglists
+     * Gets the max ID for all shoppinglists.
      * @return the currentMaxID
      */
     public static int getCurrentMaxID() {
@@ -66,7 +66,7 @@ public class ShoppingList {
 
 
     /**
-     * Gets the title
+     * Gets the title.
      * @return the Title
      */
     public String getTitle() {
@@ -74,7 +74,7 @@ public class ShoppingList {
     }
 
     /**
-     * Sets the title
+     * Sets the title.
      * @param newTitle the new title
      */
     public void setTitle(String newTitle) {
@@ -82,7 +82,7 @@ public class ShoppingList {
     }
 
     /**
-     * Gets the id
+     * Gets the id.
      * @return the Id
      */
     public int getId() {
@@ -90,13 +90,13 @@ public class ShoppingList {
     }
 
     /**
-     * set the id
+     * set the id.
      * @param id to set to
      */
     public void setId(int id){this.id = id;}
 
     /**
-     * Gets the list of elements
+     * Gets the list of elements.
      * @return the elementList
      */
     public ArrayList<ShoppingElement> getElementList() {
@@ -104,12 +104,12 @@ public class ShoppingList {
     }
 
     /**
-     * Sets the list of elements
+     * Sets the list of elements.
      * @param elementList the list to set to
      */
     public void setElementList(ArrayList<ShoppingElement> elementList){this.elementList = elementList;}
     /**
-     * Gets the element at an index
+     * Gets the element at an index.
      * @param index the index
      * @return the element at the specified index
      */
@@ -120,7 +120,7 @@ public class ShoppingList {
 
 
     /**
-     * Adds an element to the end of the elementList
+     * Adds an element to the end of the elementList.
      * @param e the element to be added
      */
     public void addElement(ShoppingElement e) {
@@ -128,7 +128,7 @@ public class ShoppingList {
     }
 
     /**
-     * Adds a new element with the specified values
+     * Adds a new element with the specified values.
      * @param name the name
      * @param value the value
      * @param measurementName the measurement name
@@ -139,7 +139,7 @@ public class ShoppingList {
     }
 
     /**
-     * Adds a new element with the specified values
+     * Adds a new element with the specified values.
      * @param name the name
      * @param value the value
      * @param measurementName the measurement name
@@ -149,7 +149,7 @@ public class ShoppingList {
     }
 
     /**
-     * Removes the element at the specified index
+     * Removes the element at the specified index.
      * @param index the index
      */
     public void removeElement(int index) {
@@ -157,7 +157,7 @@ public class ShoppingList {
     }
 
     /**
-     * Removes the specified element
+     * Removes the specified element.
      * @param e the element to be removed
      */
     public void removeElement(ShoppingElement e) {
@@ -165,7 +165,7 @@ public class ShoppingList {
     }
 
     /**
-     * Gets a string representation of the object
+     * Gets a string representation of the object.
      * @return a string with basic information about the instance
      */
     public String toString() {
@@ -181,7 +181,7 @@ public class ShoppingList {
     }
 
     /**
-     * Checks if instance equals another
+     * Checks if instance equals another.
      *
      * @return true if equal, false else
      */

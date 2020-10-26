@@ -20,7 +20,7 @@ public class ShoppingElement {
     }
 
     /**
-     * Initialize a ShoppingElement with name, value, measurementName, and whether the element can be represented by non-integers
+     * Initialize a ShoppingElement with name, value, measurementName, and whether the element can be represented by non-integers.
      *
      * @param name the name
      * @param value the value
@@ -60,7 +60,7 @@ public class ShoppingElement {
     }
 
     /**
-     * Gets the value
+     * Gets the value.
      *
      * @return the value
      */
@@ -69,7 +69,7 @@ public class ShoppingElement {
     }
 
     /**
-     * Sets the value
+     * Sets the value.
      *
      * @param newValue the new value
      *
@@ -79,7 +79,7 @@ public class ShoppingElement {
     }
 
     /**
-     * Changes the value
+     * Changes the value.
      *
      * @param difference the number to change the value by
      *
@@ -89,14 +89,14 @@ public class ShoppingElement {
     }
 
     /**
-     * Toggles if the element is shopped
+     * Toggles if the element is shopped.
      */
     public void toggleShopped() {
         shopped = !shopped;
     }
 
     /**
-     * Gets whether the element is shopped or not
+     * Gets whether the element is shopped or not.
      *
      * @return shopped
      */
@@ -105,13 +105,13 @@ public class ShoppingElement {
     }
 
     /**
-     * set whether it is shopped
+     * set whether it is shopped.
      * @param shopped to set to
      */
     public void setShopped(boolean shopped){this.shopped = shopped;}
 
     /**
-     * Gets the name
+     * Gets the name.
      *
      * @return the name
      */
@@ -120,7 +120,7 @@ public class ShoppingElement {
     }
 
     /**
-     * Sets the name
+     * Sets the name.
      *
      * @param newName the new name
      */
@@ -130,14 +130,14 @@ public class ShoppingElement {
     }
 
     /**
-     * Gets measurement name
+     * Gets measurement name.
      *
      * @return measurement name
      */
 
     public String getMeasurementName(){return measurementType.getBaseName();}
     /**
-     * Gets measurement instance
+     * Gets measurement instance.
      *
      * @return measurement instance
      */
@@ -147,13 +147,13 @@ public class ShoppingElement {
     }
 
     /**
-     * sets measurementtype
+     * sets measurementtype.
      * @param measurementType to set to
      */
     public void setMeasurementType(MeasurementType measurementType){this.measurementType = measurementType;}
 
     /**
-     * Gets a description of the element
+     * Gets a description of the element.
      *
      * @return a String representation of the element
      */
@@ -165,7 +165,7 @@ public class ShoppingElement {
     }
 
     /**
-     * Checks if instance equals another
+     * Checks if instance equals another.
      *
      * @return true if equal, false else
      */
