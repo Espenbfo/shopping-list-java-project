@@ -8,7 +8,7 @@ public class Person {
 
 
     /**
-     * Constructor for already existing person with shoppinglists
+     * Constructor for already existing person with shoppinglists.
      * @param userName the name of the user
      * @param shoppingLists the shoppinglists this Person has made formerly
      */
@@ -18,7 +18,7 @@ public class Person {
     }
 
     /**
-     * a constructor for a new Person who has not created any shoppinglists formerly
+     * a constructor for a new Person who has not created any shoppinglists formerly.
      * @param userName the name of the user
      */
     public Person(String userName){
@@ -27,7 +27,7 @@ public class Person {
     }
 
     /**
-     * a constructor for a new Person who has not created any shoppinglists formerly
+     * a constructor for a new Person who has not created any shoppinglists formerly.
      * @param userName the name of the user
      */
     public Person(){
@@ -37,7 +37,7 @@ public class Person {
 
 
     /**
-     * Gets the username
+     * Gets the username.
      * @return the username
      */
     public String getUserName() {
@@ -45,7 +45,7 @@ public class Person {
     }
 
     /**
-     * Sets the username
+     * Sets the username.
      * @param newName new name
      */
     public void setUserName(String newName) {
@@ -53,7 +53,7 @@ public class Person {
     }
 
     /**
-     * Gets the shoppinglist at an index
+     * Gets the shoppinglist at an index.
      * @param index the index
      * @return the shoppinlist at the specified index
      */
@@ -62,13 +62,13 @@ public class Person {
     }
 
     /**
-     * Sets the shoppinglists
+     * Sets the shoppinglists.
      * @param shoppingLists the new shoppingLists
      */
     public void setShoppingLists(ArrayList<Integer> shoppingLists){this.shoppingLists = shoppingLists;}
 
     /**
-     * Gets the shoppinglist by its id
+     * Gets the shoppinglist by its id.
      * @param id the id
      * @return the shoppinglist which has the specified id
      */
@@ -80,7 +80,7 @@ public class Person {
     }
 
     /**
-     * get list of shoppingLists
+     * get list of shoppingLists.
      * @return list of shoppingLists
      */
     public ArrayList<Integer> getShoppingLists() {
@@ -88,7 +88,7 @@ public class Person {
     }
 
     /**
-     * remove a shoppinglist associated with this person
+     * remove a shoppinglist associated with this person.
      * @param index the index of the shoppinglist you want to remove
      */
     public void removeShoppingList(int index){
@@ -96,7 +96,7 @@ public class Person {
     }
 
     /**
-     * remove a shoppinglist associated with this person
+     * remove a shoppinglist associated with this person.
      * @param id id of the shoppinglist you want to remove
      */
     public void removeShoppingListById(int id){
@@ -104,7 +104,7 @@ public class Person {
     }
 
     /**
-     * adds a shoppinglist to the list of shoppinglists
+     * adds a shoppinglist to the list of shoppinglists.
      * @param i the ID of the shoppinglist
      */
     public void addShoppingList(Integer i){
@@ -112,7 +112,7 @@ public class Person {
     }
 
     /**
-     * adds a shoppinglist to the list of shopppinglists
+     * adds a shoppinglist to the list of shopppinglists.
      * @param l the shoppinglist which is to be added to the list of shoppinglists
      */
     public void addShoppingList(ShoppingList l){
@@ -120,7 +120,7 @@ public class Person {
     }
 
     /**
-     * Checks if instance equals another
+     * Checks if instance equals another.
      *
      * @return true if equal, false else
      */
@@ -150,7 +150,7 @@ public class Person {
     }
 
     /**
-     * to string of the name and number of lists this Person has
+     * to string of the name and number of lists this Person has.
      * @return the name of number of lists of this person
      */
     @Override

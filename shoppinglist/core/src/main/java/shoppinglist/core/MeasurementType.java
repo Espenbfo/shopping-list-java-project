@@ -43,7 +43,7 @@ public class MeasurementType {
     }
 
     /**
-     * Gets the value
+     * Gets the value.
      *
      * @return the value
      */
@@ -52,7 +52,7 @@ public class MeasurementType {
     }
 
     /**
-     * Sets the value
+     * Sets the value.
      *
      * @param newValue the new value
      */
@@ -69,7 +69,7 @@ public class MeasurementType {
     }
 
     /**
-     * Changes the value
+     * Changes the value.
      *
      * @param difference the number to change the value by
      */
@@ -79,7 +79,7 @@ public class MeasurementType {
     }
 
     /**
-     * Sets the name
+     * Sets the name.
      *
      * @param name the new name
      */
@@ -88,7 +88,7 @@ public class MeasurementType {
     }
 
     /**
-     * Gets the name
+     * Gets the name.
      *
      * @return the name
      */
@@ -97,7 +97,7 @@ public class MeasurementType {
     }
 
     /**
-     * whether value can be double
+     * whether value can be double.
      *
      * @return whether value can be double
      */
@@ -106,7 +106,7 @@ public class MeasurementType {
     }
 
     /**
-     * Checks if instance equals another
+     * Checks if instance equals another.
      *
      * @return true if equal, false else
      */
