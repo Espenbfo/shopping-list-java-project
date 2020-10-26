@@ -3,9 +3,11 @@ package shoppinglist.restapi;
 
 import javax.inject.Inject;
 import javax.ws.rs.GET;
+import javax.ws.rs.POST;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
+import javax.ws.rs.Consumes;
 import javax.ws.rs.core.MediaType;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -17,7 +19,7 @@ import shoppinglist.storage.FileHandler;
 @Path(PersonService.PERSON_SERVICE_PATH)
 public class PersonService {
 
-  public static final String PERSON_SERVICE_PATH = "Gud"; //?
+  public static final String PERSON_SERVICE_PATH = "Persons"; //?
 
   private static final Logger LOG = LoggerFactory.getLogger(PersonService.class);
   /*
@@ -31,25 +33,25 @@ public class PersonService {
   }
 
   @GET
-  @Path("/Persons/{username}")
+  @Path("/{username}")
   @Produces(MediaType.APPLICATION_JSON)
   public Person getPerson(@PathParam("username") String username) {
     return FileHandler.readPerson(username);
   }
 
+  @POST
+  @Consumes(MediaType.APPLICATION_JSON)
+  @Produces(MediaType.APPLICATION_JSON)
+  public int addPerson(final Person person) {
+    return FileHandler.writePerson(person) ? 1 : 0;
+  }
 
-
-  /**
-   * Returns the shoppinglist with the provided id
-   * (as a resource to support chaining path elements).
-   *
-   * @param id the id of the shoppinglist
-   */
-  @Path("/Shoppinglists/{id}")
+  @Path("/ShoppingLists/{id}")
   public PersonResource getShoppingList(@PathParam("id") int id) {
-    ShoppingList shoppinglist  = FileHandler.readFile(id);
+    ShoppingList shoppinglist = FileHandler.readFile(id);
     LOG.debug("Sub-resource for Person " + id + ": " + shoppinglist);
     Person person = new Person();
     return new PersonResource(person, id, shoppinglist);
   }
+
 }
