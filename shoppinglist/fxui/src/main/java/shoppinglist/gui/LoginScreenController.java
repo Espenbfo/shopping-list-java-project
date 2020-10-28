@@ -57,7 +57,7 @@ public class LoginScreenController {
     @FXML
     void handleLogin(ActionEvent e) throws IOException {
 
-        String name = usernameInputField.getText();
+        String name = usernameInputField.getText().toLowerCase();
         String password = passwordInputField.getText();
 
         try {
@@ -86,7 +86,7 @@ public class LoginScreenController {
      */
     @FXML
     void handleRegister(ActionEvent e) throws IOException {
-        String name = usernameInputField.getText();
+        String name = usernameInputField.getText().toLowerCase();
         String password = passwordInputField.getText();
         Person p = new Person(name);
         byte[] salt = p.getSalt();

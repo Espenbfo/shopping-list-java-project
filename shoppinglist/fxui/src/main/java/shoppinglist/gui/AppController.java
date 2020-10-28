@@ -68,9 +68,11 @@ public class AppController {
         currentShoppingList = new ShoppingList("test");
 
         if (Client.getCurrentPerson() != null) {
-            personInputField.setText(Client.getCurrentPerson().getUserName());
+            String userName = Client.getCurrentPerson().getUserName();
+            userName = userName.substring(0, 1).toUpperCase() + userName.substring(1);
+            personInputField.setText(userName);
             fillTitleList();
-            loginNameLabel.setText(Client.getCurrentPerson().getUserName());
+            loginNameLabel.setText(userName);
         }
     }
 
@@ -100,8 +102,9 @@ public class AppController {
      */
     @FXML
     void saveShoppingList(){
-        String peopleText = loginNameLabel.getText() + "," + peopleInputField.getText();
+        String peopleText = loginNameLabel.getText().toLowerCase() + "," + peopleInputField.getText().toLowerCase();
         peopleText = peopleText.replaceAll("\\s","");
+
         String[] peopleNames = peopleText.split(",");
         for (String name : peopleNames) {
             try {
@@ -164,7 +167,7 @@ public class AppController {
      * Updates the list of shoppinglists, filtered by person, on the right side of the gui
      */
     void fillTitleList() {
-        String personString = personInputField.getText();
+        String personString = personInputField.getText().toLowerCase();
         if(personString.equals("")) return;
         Person currenttPerson = FileHandler.readPerson(personString);// set currentPerson til inputperson, ikke lage ny – lagret i annen klasse?
         //currentPerson.addShoppingList(new ShoppingList("test")); //kun for testing
@@ -206,7 +209,9 @@ public class AppController {
     void handleListButtonClicked(ShoppingList shoppingList){
         System.out.println("clicked");
         currentShoppingList = shoppingList;
-        loginNameLabel.setText(personInputField.getText());
+        String inputText = personInputField.getText();
+        inputText = inputText.substring(0, 1).toUpperCase() + inputText.substring(1);
+        loginNameLabel.setText(inputText);
         loadShoppingListWithList(FileHandler.readFile(currentShoppingList.getId()));
 
         //display clicked list
