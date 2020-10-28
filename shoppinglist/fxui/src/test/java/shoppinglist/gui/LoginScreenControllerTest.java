@@ -13,6 +13,8 @@ import shoppinglist.gui.LoginScreenController;
 import shoppinglist.core.ShoppingList;
 import shoppinglist.core.Person;
 import shoppinglist.core.Client;
+import shoppinglist.core.Passwords;
+import shoppinglist.storage.FileHandler;
 
 import java.awt.*;
 
@@ -31,6 +33,11 @@ public class LoginScreenControllerTest extends ApplicationTest {
 
         stage.setScene(scene);
         stage.show();
+
+        Client.setPasswords(FileHandler.readPasswords());
+        if (Client.getPasswords() == null) {
+            Client.setPasswords(new Passwords());
+        }
     }
 
 
@@ -39,8 +46,12 @@ public class LoginScreenControllerTest extends ApplicationTest {
     public void testRegister() {
         final Button registerButton = (Button) parent.lookup("#registerButton");
         final TextField usernameInputField = (TextField) parent.lookup("#usernameInputField");
+        final TextField passwordInputField = (TextField) parent.lookup("#passwordInputField");
+
         clickOn(usernameInputField);
         write("Gud");
+        clickOn(passwordInputField);
+        write("duG");
         clickOn(registerButton);
         Assertions.assertTrue(Client.getCurrentPerson().getUserName().equals("Gud"));
     }
