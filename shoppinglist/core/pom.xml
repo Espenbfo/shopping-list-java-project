@@ -45,6 +45,11 @@
 			<artifactId>assertj-core</artifactId>
 		</dependency>
 
+		<dependency>
+			<groupId>commons-codec</groupId>
+			<artifactId>commons-codec</artifactId>
+			<version>1.15</version>
+		</dependency>
 	</dependencies>
 	<properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>

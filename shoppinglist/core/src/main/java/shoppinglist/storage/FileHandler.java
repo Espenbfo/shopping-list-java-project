@@ -11,6 +11,7 @@ import shoppinglist.core.MeasurementType;
 import shoppinglist.core.ShoppingElement;
 import shoppinglist.core.Person;
 import shoppinglist.core.MaxID;
+import shoppinglist.core.Passwords;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import java.nio.file.Paths;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
@@ -75,7 +76,7 @@ public class FileHandler{
 
             String filename = personName + ".json";
             ObjectMapper mapper = new ObjectMapper();
-            Person out = mapper.readValue(Paths.get(personName + ".json").toFile(), Person.class);
+            Person out = mapper.readValue(Paths.get(filename).toFile(), Person.class);
             System.out.println(out);
             return out;
         }catch(Exception e) {
@@ -116,6 +117,39 @@ public class FileHandler{
         return -1;
     }
 
+    /**
+     * A method to write the passwords to JSON
+     * @param passwordsToWrite the instance of Passwords to write
+     * @return true if successful
+     */
+    public static boolean writePasswords(Passwords passwordsToWrite){
+        try {
+            ObjectMapper mapper = new ObjectMapper();
+            mapper.writeValue(Paths.get("passwords.json").toFile(), passwordsToWrite);
+            return true;
+        }catch (Exception e) {
+            e.printStackTrace();
+        }
+        return false;
+    }
+
+    /**
+     * Reads passwords from file
+     * @return read Passwords
+     */
+    public static Passwords readPasswords(){
+        try {
+
+            String filename = "passwords.json";
+            ObjectMapper mapper = new ObjectMapper();
+            Passwords out = mapper.readValue(Paths.get(filename).toFile(), Passwords.class);
+            System.out.println(out);
+            return out;
+        }catch(Exception e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
 
 
 }
