@@ -58,12 +58,18 @@ public class LoginScreenController {
     void handleLogin(ActionEvent e) throws IOException {
 
         String name = usernameInputField.getText();
+        String password = passwordInputField.getText();
 
         try {
             Person p = FileHandler.readPerson(name);
             System.out.println(p.getUserName());
             Client.setCurrentPerson(p);
-            mainScreen(e);
+            if (Client.getPasswords().checkPassword(Client.getCurrentPerson(), password)) {
+                mainScreen(e);
+            }
+            else {
+                errorLabel.setText("Login mislykket, er passordet ditt riktig?");
+            }
         }
         catch (Exception ex){
             ex.printStackTrace();
@@ -81,9 +87,12 @@ public class LoginScreenController {
     @FXML
     void handleRegister(ActionEvent e) throws IOException {
         String name = usernameInputField.getText();
+        String password = passwordInputField.getText();
         Person p = new Person(name);
-        System.out.println(p.getUserName());
+        byte[] salt = p.getSalt();
+        Client.getPasswords().setPassword(p,password);
         FileHandler.writePerson(p);
+        FileHandler.writePasswords(Client.getPasswords());
         System.out.println("register");
         handleLogin(e);
     }

@@ -15,6 +15,26 @@ final public class Client {
     private static Person currentPerson;
 
     /**
+     * The passwords (This will be stored on the server later)
+     */
+    private static Passwords passwords;
+
+    /**
+     * get passwords
+     * @return passwords
+     */
+    public static Passwords getPasswords() {
+        return passwords;
+    }
+
+    /**
+     * set passwords
+     * @param passwords new passwords
+     */
+    public static void setPasswords(Passwords passwords) {
+        Client.passwords = passwords;
+    }
+    /**
      * Change the Person that currently is active on this client.
      * @param p the  Person to be the new active user
      */

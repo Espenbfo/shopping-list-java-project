@@ -29,8 +29,15 @@ public class Passwords {
         return this.hashes;
     }
 
+    public void setPassword(Person p, String password) {
+        String hashedPassword = Passwords.hash(password,p.getSalt());
+        hashes.put(p.getUserName(),hashedPassword);
+    }
     public boolean checkPassword(String userName, String password, byte[] salt) {
         String hashedPassword = Passwords.hash(password, salt);
+        if (hashes.get(userName) == null) {
+            return false;
+        }
         if (hashes.get(userName).equals(hashedPassword)) {
             return true;
         }
