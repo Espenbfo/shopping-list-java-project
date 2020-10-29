@@ -45,6 +45,22 @@ public class LoginScreenController {
 
     String itemToAdd = null;
 
+
+    private PersonDataAccess dataAccess;
+
+    protected PersonDataAccess getDataAccess() {
+        return dataAccess;
+     }
+
+    public void setDataAccess(final PersonDataAccess dataAccess) {
+        this.dataAccess = dataAccess;
+     }
+
+
+    @FXML
+    public void initialize() {
+        setDataAccess(new PersonDataAccess("http://localhost:8087/index"));
+    }
     /**
      * Add element to shoppinglist when button is clicked 
      */
@@ -60,7 +76,7 @@ public class LoginScreenController {
         String name = usernameInputField.getText();
 
         try {
-            Person p = FileHandler.readPerson(name);
+            Person p = dataAccess.getPerson(name);
             System.out.println(p.getUserName());
             Client.setCurrentPerson(p);
             mainScreen(e);
@@ -83,7 +99,7 @@ public class LoginScreenController {
         String name = usernameInputField.getText();
         Person p = new Person(name);
         System.out.println(p.getUserName());
-        FileHandler.writePerson(p);
+        dataAccess.putPerson(p);
         System.out.println("register");
         handleLogin(e);
     }

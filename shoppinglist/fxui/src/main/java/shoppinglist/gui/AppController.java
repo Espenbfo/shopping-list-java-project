@@ -58,7 +58,7 @@ public class AppController {
     @FXML
     Label loginNameLabel;
 
-    public ShoppingList currentShoppingList; //vil egt. ikke ha tittel her, men tror endringer må gjøres i ShoppingList.java
+    public ShoppingList currentShoppingList; 
     
     String itemToAdd = null;
 
