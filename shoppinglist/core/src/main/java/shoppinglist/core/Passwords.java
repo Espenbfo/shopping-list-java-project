@@ -97,7 +97,7 @@ public class Passwords {
      */
     public static String hash(String password, byte[] salt) {
         try {
-            SecretKeyFactory f = SecretKeyFactory.getInstance("PBKDF2WithHmacSHA1");
+            SecretKeyFactory f = SecretKeyFactory.getInstance("PBKDF2WithHmacSHA512");
             SecretKey key = f.generateSecret(new PBEKeySpec(
                     password.toCharArray(), salt, hashIterations, hashLength));
             return Base64.encodeBase64String(key.getEncoded());

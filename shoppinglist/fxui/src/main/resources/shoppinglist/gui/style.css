@@ -22,14 +22,14 @@
 }
 
 .delete {
-    -fx-background-color:#A84040;
+    -fx-background-color: #e03939;
 }
 .delete:hover {
-    -fx-background-color:#B05050;
+    -fx-background-color:#e05050;
 }
 
 .delete:pressed {
-    -fx-background-color:#904040;
+    -fx-background-color:#e02020;
 }
 
 .scroll-pane > .viewport {

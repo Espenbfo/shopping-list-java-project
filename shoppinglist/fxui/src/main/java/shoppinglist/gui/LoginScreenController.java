@@ -87,14 +87,19 @@ public class LoginScreenController {
     @FXML
     void handleRegister(ActionEvent e) throws IOException {
         String name = usernameInputField.getText().toLowerCase();
-        String password = passwordInputField.getText();
-        Person p = new Person(name);
-        byte[] salt = p.getSalt();
-        Client.getPasswords().setPassword(p,password);
-        FileHandler.writePerson(p);
-        FileHandler.writePasswords(Client.getPasswords());
-        System.out.println("register");
-        handleLogin(e);
+        if (FileHandler.readPerson(name)==null) {
+            String password = passwordInputField.getText();
+            Person p = new Person(name);
+            byte[] salt = p.getSalt();
+            Client.getPasswords().setPassword(p,password);
+            FileHandler.writePerson(p);
+            FileHandler.writePasswords(Client.getPasswords());
+            System.out.println("register");
+            handleLogin(e);
+        }
+        else {
+            errorLabel.setText("brukernavn tatt");
+        }
     }
 
     /**

@@ -29,7 +29,7 @@ public class FileHandler{
             ShoppingList out = mapper.readValue(Paths.get(id + ".json").toFile(), ShoppingList.class);
             return out;
         }catch(Exception e) {
-            e.printStackTrace();
+
         }
         return null;
     }
@@ -80,7 +80,7 @@ public class FileHandler{
             System.out.println(out);
             return out;
         }catch(Exception e) {
-            e.printStackTrace();
+
         }
         return null;
     }

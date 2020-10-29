@@ -21,6 +21,17 @@
     -fx-background-color:-pri-color-shadow;
 }
 
+.delete {
+    -fx-background-color: #e03939;
+}
+.delete:hover {
+    -fx-background-color:#e05050;
+}
+
+.delete:pressed {
+    -fx-background-color:#e02020;
+}
+
 .scroll-pane > .viewport {
     -fx-background-color: transparent;
 }
@@ -53,10 +64,9 @@
 }
 
 .check-box {
-    -fx-background-radius:20px;
-    -fx-background-insets:5px;
+
     -fx-background-color: #F0F0F0;
-    -fx-padding:15;
+
 }
 
 #shoppingTitle {

@@ -53,7 +53,8 @@ public class LoginScreenControllerTest extends ApplicationTest {
         clickOn(passwordInputField);
         write("duG");
         clickOn(registerButton);
-        Assertions.assertTrue(Client.getCurrentPerson().getUserName().equals("Gud"));
+        System.out.println(Client.getCurrentPerson().getUserName());
+        Assertions.assertTrue(Client.getCurrentPerson().getUserName().equals("gud"));
     }
     
 }
