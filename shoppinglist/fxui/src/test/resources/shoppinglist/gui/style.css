@@ -91,3 +91,8 @@
     -fx-border-color: #CCCCCC;
     -fx-background-color: #FFFFFF;
 }
+
+.table-view .column-header,
+.table-view .column-header-background .filler {
+    -fx-background-color:  white;
+}

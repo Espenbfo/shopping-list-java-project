@@ -15,6 +15,7 @@ import shoppinglist.core.Person;
 import shoppinglist.core.Client;
 import shoppinglist.core.Passwords;
 import shoppinglist.storage.FileHandler;
+import java.io.File;
 
 import java.awt.*;
 
@@ -47,7 +48,7 @@ public class LoginScreenControllerTest extends ApplicationTest {
         final Button registerButton = (Button) parent.lookup("#registerButton");
         final TextField usernameInputField = (TextField) parent.lookup("#usernameInputField");
         final TextField passwordInputField = (TextField) parent.lookup("#passwordInputField");
-
+        new File("gud.json").delete();
         clickOn(usernameInputField);
         write("Gud");
         clickOn(passwordInputField);

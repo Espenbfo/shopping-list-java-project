@@ -59,6 +59,10 @@ public class LoginScreenController {
 
         String name = usernameInputField.getText().toLowerCase();
         String password = passwordInputField.getText();
+        if (name.length() == 0 || password.length() == 0) {
+            errorLabel.setText("Could not log in with empty field(s)");
+            return;
+        }
 
         try {
             Person p = FileHandler.readPerson(name);
@@ -68,12 +72,12 @@ public class LoginScreenController {
                 mainScreen(e);
             }
             else {
-                errorLabel.setText("Login mislykket, er passordet ditt riktig?");
+                errorLabel.setText("Login failed, is your password correct?");
             }
         }
         catch (Exception ex){
             ex.printStackTrace();
-            errorLabel.setText("Login mislykket, har du husket å registrere profilen din?");
+            errorLabel.setText("Login failed. Are you registred?");
         }
         System.out.println("login");
 
@@ -89,6 +93,10 @@ public class LoginScreenController {
         String name = usernameInputField.getText().toLowerCase();
         if (FileHandler.readPerson(name)==null) {
             String password = passwordInputField.getText();
+            if (name.length() == 0 || password.length() == 0) {
+                errorLabel.setText("Could register in with empty field(s)");
+                return;
+            }
             Person p = new Person(name);
             byte[] salt = p.getSalt();
             Client.getPasswords().setPassword(p,password);
@@ -98,7 +106,7 @@ public class LoginScreenController {
             handleLogin(e);
         }
         else {
-            errorLabel.setText("brukernavn tatt");
+            errorLabel.setText("Username taken");
         }
     }
 
@@ -114,7 +122,4 @@ public class LoginScreenController {
         Stage appStage = (Stage) ((Node)e.getSource()).getScene().getWindow();
         appStage.setScene(loginScene);
     }
-
-    
-  
 }

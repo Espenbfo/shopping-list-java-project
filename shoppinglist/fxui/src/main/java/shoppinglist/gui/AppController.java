@@ -121,7 +121,7 @@ public class AppController {
             public TableCell<ShoppingElement, Void> call(final TableColumn<ShoppingElement, Void> param) {
                 final TableCell<ShoppingElement, Void> cell = new TableCell<ShoppingElement, Void>() {
 
-                    private final Button btn = new Button("");
+                    private final Button btn = new Button("delete");
 
                     {
                         btn.setOnAction((ActionEvent event) -> {
@@ -154,7 +154,7 @@ public class AppController {
     }
 
     private void addCheckBoxToTable() {
-        TableColumn<ShoppingElement, Void> colCB = new TableColumn("Bought?");
+        TableColumn<ShoppingElement, Void> colCB = new TableColumn("Done");
 
         Callback<TableColumn<ShoppingElement, Void>, TableCell<ShoppingElement, Void>> cellFactory = new Callback<TableColumn<ShoppingElement, Void>, TableCell<ShoppingElement, Void>>() {
             @Override
