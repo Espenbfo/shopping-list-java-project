@@ -12,19 +12,19 @@ import org.glassfish.jersey.grizzly2.httpserver.GrizzlyHttpServerFactory;
 import org.glassfish.jersey.server.ResourceConfig;
 import shoppinglist.restapiserver.testPage;
 import shoppinglist.restapi.PersonService;
+import shoppinglist.core.Person;
+import org.glassfish.hk2.utilities.binding.AbstractBinder;
 
 public class ShoppingGrizzlyApp{
 
     private static URI serverUri = URI.create("http://localhost:8087/index/");
-
+    
 
     public static HttpServer start() throws IOException{
         int waitTime = 5;
-        ResourceConfig rc = new ResourceConfig();
-        rc.register(testPage.class);
-        rc.register(PersonService.class);
-
-        HttpServer httpServer = GrizzlyHttpServerFactory.createHttpServer(serverUri,rc);
+        
+        ResourceConfig resourceConfig = new PersonConfig();
+        HttpServer httpServer = GrizzlyHttpServerFactory.createHttpServer(serverUri,resourseConfig);
 
         while (waitTime>0){
             try {
@@ -54,6 +54,9 @@ public class ShoppingGrizzlyApp{
     public static void stop(HttpServer server){
         server.shutdown();
     }
+
+    
+
 
     public static void main(final String[] args) throws IOException {
         try {
