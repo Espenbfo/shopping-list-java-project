@@ -1,4 +1,4 @@
-package shoppinglist.gui;
+/*package shoppinglist.gui;
 
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
@@ -73,5 +73,6 @@ public class AppTest extends ApplicationTest {
         clickOn(loginButton);
         Assertions.assertTrue(Client.getCurrentPerson().getUserName().equals("Gud"));
     }
-    */
+    
 }
+*/
