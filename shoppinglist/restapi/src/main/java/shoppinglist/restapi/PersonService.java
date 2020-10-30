@@ -23,10 +23,10 @@ public class PersonService {
   public static final String PERSON_SERVICE_PATH = "Persons";
   private static ArrayList<Person> persons = new ArrayList<Person>();
   private static final Logger LOG = LoggerFactory.getLogger(PersonService.class);
-  /*
+  
   @Inject
   private Person person;
-*/
+
   @GET
   @Produces(MediaType.APPLICATION_JSON)
   public Person getPerson() {
