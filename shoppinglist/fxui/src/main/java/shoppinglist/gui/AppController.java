@@ -62,8 +62,20 @@ public class AppController {
     
     String itemToAdd = null;
 
+    private PersonDataAccess dataAccess;
+
+    protected PersonDataAccess getDataAccess() {
+        return dataAccess;
+     }
+
+    public void setDataAccess(final PersonDataAccess dataAccess) {
+        this.dataAccess = dataAccess;
+     }
+
     @FXML
     public void initialize() {
+        setDataAccess(new PersonDataAccess("http://localhost:8087/index"));
+
         ShoppingList.setCurrentMaxID(FileHandler.readMaxID());
         currentShoppingList = new ShoppingList("test");
 
@@ -165,10 +177,8 @@ public class AppController {
      */
     void fillTitleList() {
         String personString = personInputField.getText();
-        if(personString.equals("")) return;
-        Person currenttPerson = FileHandler.readPerson(personString);// set currentPerson til inputperson, ikke lage ny – lagret i annen klasse?
-        //currentPerson.addShoppingList(new ShoppingList("test")); //kun for testing
-        //currentPerson.addShoppingList(new ShoppingList("test2")); //kun for testing
+        if (personString.equals("")) return;
+        Person currenttPerson = dataAccess.getPerson(personString);
         listsOverview.getChildren().clear();
         for (Integer id : currenttPerson.getShoppingLists()) {
             ShoppingList l = FileHandler.readFile(id);
