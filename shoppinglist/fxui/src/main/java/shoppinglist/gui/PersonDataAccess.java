@@ -58,7 +58,7 @@ public class PersonDataAccess  {
     public Person getPerson(final String person) {
 
         final HttpRequest request =
-                HttpRequest.newBuilder(getRequestUri("/Shoppinglists/" + person))
+                HttpRequest.newBuilder(getRequestUri("/Persons/" + person))
                         .header("Accept", "application/json").GET().build();
         try {
             final HttpResponse<InputStream> response =
