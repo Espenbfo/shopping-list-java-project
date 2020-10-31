@@ -77,7 +77,7 @@ public class LoginScreenController {
 
         try {
             Person p = dataAccess.getPerson(name);
-            System.out.println(p.getUserName());
+            System.out.println(dataAccess.getPerson(name));
             Client.setCurrentPerson(p);
             mainScreen(e);
         }
@@ -98,7 +98,6 @@ public class LoginScreenController {
     void handleRegister(ActionEvent e) throws IOException {
         String name = usernameInputField.getText();
         Person p = new Person(name);
-        System.out.println(p.getUserName());
         dataAccess.putPerson(p);
         System.out.println("register");
         handleLogin(e);
