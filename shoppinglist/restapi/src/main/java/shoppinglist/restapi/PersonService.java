@@ -1,6 +1,5 @@
 package shoppinglist.restapi;
 
-
 import javax.inject.Inject;
 import javax.ws.rs.GET;
 import javax.ws.rs.PUT;
@@ -21,11 +20,11 @@ import shoppinglist.storage.FileHandler;
 public class PersonService {
 
   public static final String PERSON_SERVICE_PATH = "Persons";
-  private static ArrayList<Person> persons = new ArrayList<Person>();
-  private static final Logger LOG = LoggerFactory.getLogger(PersonService.class);
+
+  //private static final Logger LOG = LoggerFactory.getLogger(PersonService.class);
   
   @Inject
-  private Person person;
+  private ArrayList<Person> persons;
 
   @GET
   @Produces(MediaType.APPLICATION_JSON)
@@ -37,23 +36,29 @@ public class PersonService {
   @Path("/{username}")
   @Produces(MediaType.APPLICATION_JSON)
   public Person getPerson(@PathParam("username") String username) {
-    return FileHandler.readPerson(username);
+      for (Person p : persons) {
+          if (p.getUserName() == username){
+              return p;
+          }
+      }
+    return null;
   }
 
   @PUT
   @Consumes(MediaType.APPLICATION_JSON)
   @Produces(MediaType.APPLICATION_JSON)
   public int addPerson(final Person person) {
-    LOG.debug("addShoppingList({})", person);
+    //LOG.debug("addShoppingList({})", person);
     return persons.add(person) ? 1 : 0;
   }
 
   @Path("/ShoppingLists/{id}")
   public PersonResource getShoppingList(@PathParam("id") int id) {
     ShoppingList shoppinglist = FileHandler.readFile(id);
-    LOG.debug("Sub-resource for Person " + id + ": " + shoppinglist);
+    //LOG.debug("Sub-resource for Person " + id + ": " + shoppinglist);
     Person person = new Person();
     return new PersonResource(person, id, shoppinglist);
   }
+  
 
 }
