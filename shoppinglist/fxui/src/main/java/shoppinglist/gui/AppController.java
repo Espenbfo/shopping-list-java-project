@@ -2,12 +2,16 @@ package shoppinglist.gui;
 
 import java.util.ArrayList;
 import java.util.List;
-
+import javafx.application.Application;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.event.ActionEvent;
 import javafx.geometry.Insets;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.scene.Node;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.CheckBox;
 import javafx.scene.control.Label;
@@ -22,15 +26,9 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.TilePane;
 import javafx.scene.text.TextAlignment;
+import javafx.stage.Stage;
 import shoppinglist.core.*;
 import shoppinglist.storage.FileHandler;
-
-import javafx.application.Application;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
-import javafx.stage.Stage;
-import javafx.event.ActionEvent;
 import java.io.IOException;
 import javafx.util.Callback;
 
@@ -282,7 +280,6 @@ public class AppController {
             listName.getStyleClass().add("listTitleListElement");
             listsOverview.getChildren().add(listName);
 
-
             listName.setOnMouseClicked(event -> handleListButtonClicked(l));
         }
     }
@@ -292,29 +289,27 @@ public class AppController {
      * @param enter key to press to evoke method
      */
     @FXML
-    void handlePersonInput(KeyEvent enter){
+    void handlePersonInput(KeyEvent enter) {
 
-        if(enter.getCode() == KeyCode.ENTER) {
+        if (enter.getCode() == KeyCode.ENTER) {
             fillTitleList();
-
         }
     	
     }
 
     /**
      * Loads the ShoppingList clicked
+     * 
      * @param shoppingList The ShoppingList to load
      */
     @FXML 
-    void handleListButtonClicked(ShoppingList shoppingList){
+    void handleListButtonClicked(ShoppingList shoppingList) {
         System.out.println("clicked");
         currentShoppingList = shoppingList;
         String inputText = personInputField.getText();
         inputText = inputText.substring(0, 1).toUpperCase() + inputText.substring(1);
         loginNameLabel.setText(inputText);
         loadShoppingListWithList(FileHandler.readFile(currentShoppingList.getId()));
-
-        //display clicked list
     }
 
     /**
@@ -328,7 +323,7 @@ public class AppController {
     }
 
     /**
-     * filters the list of shoppinglists
+     * Filters the list of shoppinglists
      */
     @FXML
     void sokList() {
@@ -336,7 +331,8 @@ public class AppController {
     }
 
     /**
-     * loads the loginscreen
+     * Loads the loginscreen
+     * 
      * @param e the event that calls the scenechange
      * @throws IOException
      */
