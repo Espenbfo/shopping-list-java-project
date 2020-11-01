@@ -8,9 +8,11 @@ import javafx.stage.Stage;
 import shoppinglist.core.Client;
 import shoppinglist.core.Passwords;
 import shoppinglist.storage.FileHandler;
+
 public class App extends Application {
 
   Scene scene;
+  
   @Override
   public void start(final Stage primaryStage) throws Exception {
     System.out.println(getClass().getResource("/resources/shoppinglist/gui/App.fxml"));

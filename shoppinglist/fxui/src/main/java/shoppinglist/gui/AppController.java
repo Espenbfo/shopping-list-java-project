@@ -137,7 +137,7 @@ public class AppController {
                     }
 
                     @Override
-                    public void updateItem(Void item, boolean empty) { ;
+                    public void updateItem(Void item, boolean empty) { 
                         super.updateItem(item, empty);
                         if (empty) {
                             setGraphic(null);
@@ -202,7 +202,7 @@ public class AppController {
      * Saves shoppinglist to file 
      */
     @FXML
-    void saveShoppingList(){
+    void saveShoppingList() {
         String peopleText = loginNameLabel.getText().toLowerCase() + "," + peopleInputField.getText().toLowerCase();
         peopleText = peopleText.replaceAll("\\s","");
 
@@ -216,7 +216,7 @@ public class AppController {
                     p.addShoppingList(prevList);
                     FileHandler.writePerson(p);
                 }
-            }
+        }
             catch (Exception ex) {
                 System.out.println(ex);
             }
@@ -233,7 +233,7 @@ public class AppController {
      * Loads existing shoppinglist from file
      */
     @FXML
-    void loadShoppingList(){
+    void loadShoppingList() {
         loadShoppingListWithList(FileHandler.readFile(Integer.parseInt(loadId.getText())));
     }
 
@@ -241,11 +241,11 @@ public class AppController {
      * Loads existing shoppinglist from file
      */
     @FXML
-    void loadShoppingListWithList(ShoppingList l){
+    void loadShoppingListWithList(ShoppingList l) {
         currentShoppingList = l;
         //shoppingList.getChildren().clear();
         data.clear();
-        for(ShoppingElement x:currentShoppingList.getElementList()){
+        for (ShoppingElement x : currentShoppingList.getElementList()){
             data.add(x);
         }
         shoppingTitleTextField.setText(currentShoppingList.getTitle());

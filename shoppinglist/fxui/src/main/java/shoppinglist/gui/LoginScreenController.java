@@ -88,7 +88,7 @@ public class LoginScreenController {
     @FXML
     void handleRegister(ActionEvent e) throws IOException {
         String name = usernameInputField.getText().toLowerCase();
-        if (FileHandler.readPerson(name)==null) {
+        if (FileHandler.readPerson(name) == null) {
             String password = passwordInputField.getText();
             if (name.length() == 0 || password.length() == 0) {
                 errorLabel.setText("Could register in with empty field(s)");
