@@ -245,7 +245,7 @@ public class AppController {
         currentShoppingList = l;
         //shoppingList.getChildren().clear();
         data.clear();
-        for (ShoppingElement x : currentShoppingList.getElementList()){
+        for (ShoppingElement x : currentShoppingList.getElementList()) {
             data.add(x);
         }
         shoppingTitleTextField.setText(currentShoppingList.getTitle());
@@ -266,7 +266,7 @@ public class AppController {
      */
     void fillTitleList() {
         String personString = personInputField.getText().toLowerCase();
-        if(personString.equals("")) return;
+        if (personString.equals("")) return;
         Person currenttPerson = FileHandler.readPerson(personString);// set currentPerson til inputperson, ikke lage ny – lagret i annen klasse?
         //currentPerson.addShoppingList(new ShoppingList("test")); //kun for testing
         //currentPerson.addShoppingList(new ShoppingList("test2")); //kun for testing
@@ -332,7 +332,6 @@ public class AppController {
 
     /**
      * Loads the loginscreen
-     * 
      * @param e the event that calls the scenechange
      * @throws IOException
      */
