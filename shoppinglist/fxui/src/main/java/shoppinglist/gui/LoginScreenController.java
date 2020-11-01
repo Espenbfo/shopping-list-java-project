@@ -90,7 +90,7 @@ public class LoginScreenController {
         if (FileHandler.readPerson(name) == null) {
             String password = passwordInputField.getText();
             if (name.length() == 0 || password.length() == 0) {
-                errorLabel.setText("Could register in with empty field(s)");
+                errorLabel.setText("Could not register with empty field(s)");
                 return;
             }
             Person p = new Person(name);
