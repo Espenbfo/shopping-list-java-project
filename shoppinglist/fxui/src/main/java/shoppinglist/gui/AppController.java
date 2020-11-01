@@ -7,6 +7,8 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.event.ActionEvent;
 import javafx.geometry.Insets;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
@@ -14,6 +16,10 @@ import javafx.scene.control.Button;
 import javafx.scene.control.CheckBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
+import javafx.scene.control.TableView;
+import javafx.scene.control.TableCell;
+import javafx.scene.control.TableColumn;
+import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.HBox;
@@ -24,6 +30,7 @@ import javafx.stage.Stage;
 import shoppinglist.core.*;
 import shoppinglist.storage.FileHandler;
 import java.io.IOException;
+import javafx.util.Callback;
 
 public class AppController {
     private static Person currentPerson;
@@ -40,7 +47,7 @@ public class AppController {
     @FXML
     TextField measurementInputField;
     @FXML
-    TilePane shoppingList;
+    TableView shoppingList;
     @FXML 
     Label emptyListText;
     @FXML
@@ -56,49 +63,149 @@ public class AppController {
     @FXML
     Label loginNameLabel;
 
+    private final ObservableList<ShoppingElement> data = FXCollections.observableArrayList();
     public ShoppingList currentShoppingList; //vil egt. ikke ha tittel her, men tror endringer må gjøres i ShoppingList.java
     
     String itemToAdd = null;
 
+    /**
+     * Sets up the application
+     */
     @FXML
     public void initialize() {
         ShoppingList.setCurrentMaxID(FileHandler.readMaxID());
         currentShoppingList = new ShoppingList("test");
 
         if (Client.getCurrentPerson() != null) {
-            personInputField.setText(Client.getCurrentPerson().getUserName());
+            String userName = Client.getCurrentPerson().getUserName();
+            userName = userName.substring(0, 1).toUpperCase() + userName.substring(1);
+            personInputField.setText(userName);
             fillTitleList();
-            loginNameLabel.setText(Client.getCurrentPerson().getUserName());
+            loginNameLabel.setText(userName);
         }
+
+
+        TableColumn<ShoppingElement, Double> colNum = new TableColumn<>("Num");
+        colNum.setCellValueFactory(new PropertyValueFactory<ShoppingElement, Double>("value"));
+
+        TableColumn<ShoppingElement, String> colName = new TableColumn<>("Name");
+        colName.setCellValueFactory(new PropertyValueFactory<ShoppingElement, String>("name"));
+
+        TableColumn<ShoppingElement, String> colType = new TableColumn<>("Type");
+        colType.setCellValueFactory(new PropertyValueFactory<ShoppingElement, String>("measurementName"));
+        colName.setPrefWidth(100);
+        colType.setPrefWidth(50);
+        colNum.setPrefWidth(50);
+        addCheckBoxToTable();
+        shoppingList.getColumns().addAll(colNum, colType, colName);
+        shoppingList.setItems(data);
+        addButtonToTable();
     }
 
     /**
      * Add element to shoppinglist when button is clicked 
      */
+
     @FXML
     void handleAddItemButtonClicked() {
-        
-        shoppingList.getChildren().remove(emptyListText);
-    	
-    	itemToAdd = amountInputField.getText() + " " + measurementInputField.getText() + " " + itemInputField.getText();
-    	CheckBox shoppingListItem = new CheckBox(itemToAdd);
-    	//shoppingListItem.setPadding(new Insets(10, 10, 10, 10));
-        shoppingList.getChildren().add(shoppingListItem);
 
         ShoppingElement currentElement = new ShoppingElement(itemInputField.getText(), Double.parseDouble(amountInputField.getText()), measurementInputField.getText());
+        data.add(currentElement);
         currentShoppingList.addElement(currentElement);
+    }
 
-        shoppingListItem.setOnAction(event -> handleItemShopped(currentElement));
+    /**
+     * Adds the buttonrow to the TableView
+     */
+    private void addButtonToTable() {
+        TableColumn<ShoppingElement, Void> colBtn = new TableColumn("Delete?");
 
-        
+        Callback<TableColumn<ShoppingElement, Void>, TableCell<ShoppingElement, Void>> cellFactory = new Callback<TableColumn<ShoppingElement, Void>, TableCell<ShoppingElement, Void>>() {
+            @Override
+            public TableCell<ShoppingElement, Void> call(final TableColumn<ShoppingElement, Void> param) {
+                final TableCell<ShoppingElement, Void> cell = new TableCell<ShoppingElement, Void>() {
+
+                    private final Button btn = new Button("delete");
+
+                    {
+                        btn.setOnAction((ActionEvent event) -> {
+                            ShoppingElement e = getTableView().getItems().get(getIndex());
+                            currentShoppingList.removeElement(e);
+                            data.remove(e);
+                            System.out.println("selectedData: " + e);
+                        });
+                    }
+
+                    @Override
+                    public void updateItem(Void item, boolean empty) { ;
+                        super.updateItem(item, empty);
+                        if (empty) {
+                            setGraphic(null);
+                        } else {
+                            btn.setPrefWidth(50);
+                            btn.getStyleClass().add("delete");
+                            setGraphic(btn);
+                        }
+                    }
+                };
+                return cell;
+            }
+        };
+
+        colBtn.setCellFactory(cellFactory);
+        colBtn.setPrefWidth(60);
+        shoppingList.getColumns().add(colBtn);
+    }
+
+    /**
+     * Adds the CheckBoxrow to the TableView
+     */
+    private void addCheckBoxToTable() {
+        TableColumn<ShoppingElement, Void> colCB = new TableColumn("Done");
+
+        Callback<TableColumn<ShoppingElement, Void>, TableCell<ShoppingElement, Void>> cellFactory = new Callback<TableColumn<ShoppingElement, Void>, TableCell<ShoppingElement, Void>>() {
+            @Override
+            public TableCell<ShoppingElement, Void> call(final TableColumn<ShoppingElement, Void> param) {
+                final TableCell<ShoppingElement, Void> cell = new TableCell<ShoppingElement, Void>() {
+
+                    private final CheckBox cb = new CheckBox();
+
+                    {
+                        cb.setOnAction((ActionEvent event) -> {
+                            ShoppingElement e = getTableView().getItems().get(getIndex());
+                            e.toggleShopped();
+                            System.out.println(e);
+                        });
+                    }
+
+                    @Override
+                    public void updateItem(Void item, boolean empty) {
+                        super.updateItem(item, empty);
+                        if (empty) {
+                            setGraphic(null);
+                        } else {
+                            ShoppingElement e = getTableView().getItems().get(getIndex());
+                            cb.setSelected(e.isShopped());
+                            setGraphic(cb);
+                        }
+                    }
+                };
+                return cell;
+            }
+        };
+
+        colCB.setCellFactory(cellFactory);
+        colCB.setPrefWidth(40);
+        shoppingList.getColumns().add(colCB);
     }
     /**
      * Saves shoppinglist to file 
      */
     @FXML
     void saveShoppingList(){
-        String peopleText = loginNameLabel.getText() + "," + peopleInputField.getText();
+        String peopleText = loginNameLabel.getText().toLowerCase() + "," + peopleInputField.getText().toLowerCase();
         peopleText = peopleText.replaceAll("\\s","");
+
         String[] peopleNames = peopleText.split(",");
         for (String name : peopleNames) {
             try {
@@ -136,13 +243,10 @@ public class AppController {
     @FXML
     void loadShoppingListWithList(ShoppingList l){
         currentShoppingList = l;
-        shoppingList.getChildren().clear();
+        //shoppingList.getChildren().clear();
+        data.clear();
         for(ShoppingElement x:currentShoppingList.getElementList()){
-            itemToAdd = x.getValue()+ " " + x.getMeasurementName()+ " " + x.getName();
-            CheckBox shoppingListItem = new CheckBox(itemToAdd);
-            shoppingListItem.setPadding(new Insets(10, 10, 10, 10));
-            shoppingList.getChildren().add(shoppingListItem);
-            shoppingListItem.setOnAction(event -> handleItemShopped(x));
+            data.add(x);
         }
         shoppingTitleTextField.setText(currentShoppingList.getTitle());
     }
@@ -161,8 +265,8 @@ public class AppController {
      * Updates the list of shoppinglists, filtered by person, on the right side of the gui
      */
     void fillTitleList() {
-        String personString = personInputField.getText();
-        if (personString.equals("")) return;
+        String personString = personInputField.getText().toLowerCase();
+        if(personString.equals("")) return;
         Person currenttPerson = FileHandler.readPerson(personString);// set currentPerson til inputperson, ikke lage ny – lagret i annen klasse?
         //currentPerson.addShoppingList(new ShoppingList("test")); //kun for testing
         //currentPerson.addShoppingList(new ShoppingList("test2")); //kun for testing
@@ -202,7 +306,9 @@ public class AppController {
     void handleListButtonClicked(ShoppingList shoppingList) {
         System.out.println("clicked");
         currentShoppingList = shoppingList;
-        loginNameLabel.setText(personInputField.getText());
+        String inputText = personInputField.getText();
+        inputText = inputText.substring(0, 1).toUpperCase() + inputText.substring(1);
+        loginNameLabel.setText(inputText);
         loadShoppingListWithList(FileHandler.readFile(currentShoppingList.getId()));
     }
 
@@ -238,9 +344,4 @@ public class AppController {
         Stage appStage = (Stage) ((Node)e.getSource()).getScene().getWindow();
         appStage.setScene(loginScene);
     }
-
-
-
-    
-  
 }

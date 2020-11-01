@@ -45,9 +45,6 @@ public class LoginScreenController {
 
     String itemToAdd = null;
 
-    /**
-     * Add element to shoppinglist when button is clicked 
-     */
 
     /**
      * Logs in a user
@@ -57,17 +54,27 @@ public class LoginScreenController {
     @FXML
     void handleLogin(ActionEvent e) throws IOException {
 
-        String name = usernameInputField.getText();
+        String name = usernameInputField.getText().toLowerCase();
+        String password = passwordInputField.getText();
+        if (name.length() == 0 || password.length() == 0) {
+            errorLabel.setText("Could not log in with empty field(s)");
+            return;
+        }
 
         try {
             Person p = FileHandler.readPerson(name);
             System.out.println(p.getUserName());
             Client.setCurrentPerson(p);
-            mainScreen(e);
+            if (Client.getPasswords().checkPassword(Client.getCurrentPerson(), password)) {
+                mainScreen(e);
+            }
+            else {
+                errorLabel.setText("Login failed, is your password correct?");
+            }
         }
         catch (Exception ex){
             ex.printStackTrace();
-            errorLabel.setText("Login mislykket, har du husket å registrere profilen din?");
+            errorLabel.setText("Login failed. Are you registred?");
         }
         System.out.println("login");
 
@@ -80,12 +87,24 @@ public class LoginScreenController {
      */
     @FXML
     void handleRegister(ActionEvent e) throws IOException {
-        String name = usernameInputField.getText();
-        Person p = new Person(name);
-        System.out.println(p.getUserName());
-        FileHandler.writePerson(p);
-        System.out.println("register");
-        handleLogin(e);
+        String name = usernameInputField.getText().toLowerCase();
+        if (FileHandler.readPerson(name)==null) {
+            String password = passwordInputField.getText();
+            if (name.length() == 0 || password.length() == 0) {
+                errorLabel.setText("Could register in with empty field(s)");
+                return;
+            }
+            Person p = new Person(name);
+            byte[] salt = p.getSalt();
+            Client.getPasswords().setPassword(p,password);
+            FileHandler.writePerson(p);
+            FileHandler.writePasswords(Client.getPasswords());
+            System.out.println("register");
+            handleLogin(e);
+        }
+        else {
+            errorLabel.setText("Username taken");
+        }
     }
 
     /**
@@ -100,7 +119,4 @@ public class LoginScreenController {
         Stage appStage = (Stage) ((Node)e.getSource()).getScene().getWindow();
         appStage.setScene(loginScene);
     }
-
-    
-  
 }
