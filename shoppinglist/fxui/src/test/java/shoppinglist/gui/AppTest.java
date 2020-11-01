@@ -54,12 +54,12 @@ public class AppTest extends ApplicationTest {
         clickOn(clickMeButton);
         personInputField.setText("");
 
-        Person testIndivid = new Person("testIndivid");
+        Person testIndivid = new Person("testindivid");
         FileHandler.writePerson(testIndivid);
         clickOn(personInputField);
-        write("TestIndivid");
+        write("testindivid");
         clickOn(peopleInputField);
-        write("TestIndivid");
+        write("testindivid");
         clickOn(saveButton);
         System.out.println(controller.currentShoppingList);
         Assertions.assertTrue(oldText.equals(controller.currentShoppingList.getElement(0).getName()));
