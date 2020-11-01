@@ -15,7 +15,7 @@ import shoppinglist.core.Person;
  */
 public class Passwords {
 
-    HashMap<String, String> hashes; //User, Password
+    private HashMap<String, String> hashes; //User, Password
     private static int hashLength = 256;
     private static int hashIterations = 10000;
     private static int saltLength = 16;
@@ -61,6 +61,12 @@ public class Passwords {
         hashes.put(p.getUserName(),hashedPassword);
     }
 
+     /** Gets a password belonging til user P
+     * @param p the Person
+     */
+    public String getPassword(Person p) {
+        return hashes.get(p.getUserName());
+    }
     /**
      * Checks if a password is valid with a username
      * @param userName The username
