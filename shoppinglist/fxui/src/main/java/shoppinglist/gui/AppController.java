@@ -70,6 +70,9 @@ public class AppController {
     
     String itemToAdd = null;
 
+    /**
+     * Sets up the application
+     */
     @FXML
     public void initialize() {
         ShoppingList.setCurrentMaxID(FileHandler.readMaxID());
@@ -113,6 +116,9 @@ public class AppController {
         currentShoppingList.addElement(currentElement);
     }
 
+    /**
+     * Adds the buttonrow to the TableView
+     */
     private void addButtonToTable() {
         TableColumn<ShoppingElement, Void> colBtn = new TableColumn("Delete?");
 
@@ -153,6 +159,9 @@ public class AppController {
         shoppingList.getColumns().add(colBtn);
     }
 
+    /**
+     * Adds the CheckBoxrow to the TableView
+     */
     private void addCheckBoxToTable() {
         TableColumn<ShoppingElement, Void> colCB = new TableColumn("Done");
 
@@ -339,9 +348,4 @@ public class AppController {
         Stage appStage = (Stage) ((Node)e.getSource()).getScene().getWindow();
         appStage.setScene(loginScene);
     }
-
-
-
-    
-  
 }

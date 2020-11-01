@@ -45,9 +45,6 @@ public class LoginScreenController {
 
     String itemToAdd = null;
 
-    /**
-     * Add element to shoppinglist when button is clicked 
-     */
 
     /**
      * Logs in a user
