@@ -14,13 +14,14 @@ import java.net.http.HttpRequest.BodyPublishers;
 import java.net.http.HttpResponse;
 import java.util.Collection;
 import java.util.Collections;
-import shoppinglist.core.ShoppingList;
 import shoppinglist.core.Person;
+import shoppinglist.core.ShoppingList;
+
 
 
 public class PersonDataAccess  {
 
-    private final String baseUrlString;
+private final String baseUrlString;
 
     public PersonDataAccess(final String baseUrlString) {
         this.baseUrlString = baseUrlString;

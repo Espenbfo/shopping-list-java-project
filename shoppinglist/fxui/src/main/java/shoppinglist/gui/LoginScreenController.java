@@ -3,7 +3,10 @@ package shoppinglist.gui;
 import java.util.ArrayList;
 import java.util.List;
 
+import javafx.application.Application;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.geometry.Insets;
 import javafx.scene.Node;
 import javafx.scene.control.Button;
@@ -17,16 +20,12 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.TilePane;
 import javafx.scene.text.TextAlignment;
-import shoppinglist.core.*;
-import shoppinglist.storage.FileHandler;
-
-import javafx.application.Application;
-import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
-import javafx.event.ActionEvent;
 import java.io.IOException;
+import shoppinglist.core.*;
+import shoppinglist.storage.FileHandler;
 
 public class LoginScreenController {
     private static Person currentPerson;
@@ -96,11 +95,11 @@ public class LoginScreenController {
             }
             Person p = new Person(name);
             byte[] salt = p.getSalt();
-            Client.getPasswords().setPassword(p,password);
+            Client.getPasswords().setPassword(p, password);
             FileHandler.writePerson(p);
             FileHandler.writePasswords(Client.getPasswords());
             System.out.println("register");
-            handleLogin(e);
+            handleLogin(e); 
         }
         else {
             errorLabel.setText("Username taken");
@@ -109,7 +108,8 @@ public class LoginScreenController {
 
     /**
      * Loads the main screen of the gui
-     * @param e the event calling the method
+     * @param e 
+     * the event calling the method
      * @throws IOException
      */
     void mainScreen(ActionEvent e) throws IOException {
