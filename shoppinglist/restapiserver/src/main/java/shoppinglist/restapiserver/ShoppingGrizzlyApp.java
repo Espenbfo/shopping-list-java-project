@@ -10,7 +10,7 @@ import java.util.logging.Logger;
 import org.glassfish.grizzly.http.server.HttpServer;
 import org.glassfish.jersey.grizzly2.httpserver.GrizzlyHttpServerFactory;
 import org.glassfish.jersey.server.ResourceConfig;
-import shoppinglist.restapiserver.testPage;
+import shoppinglist.restapiserver.TestPage;
 import shoppinglist.restapi.PersonService;
 
 public class ShoppingGrizzlyApp{
@@ -21,7 +21,7 @@ public class ShoppingGrizzlyApp{
     public static HttpServer start() throws IOException{
         int waitTime = 5;
         ResourceConfig rc = new ResourceConfig();
-        rc.register(testPage.class);
+        rc.register(TestPage.class);
         rc.register(PersonService.class);
 
         HttpServer httpServer = GrizzlyHttpServerFactory.createHttpServer(serverUri,rc);
