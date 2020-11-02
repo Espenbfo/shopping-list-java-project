@@ -130,7 +130,7 @@
                         </execution>
                     </executions>
                 </plugin>
-                 <!-- Run the checkstyle code quality tool -->
+            <!-- Run the checkstyle code quality tool -->
                 <plugin>
                     <groupId>org.apache.maven.plugins</groupId>
                     <artifactId>maven-checkstyle-plugin</artifactId>
@@ -158,8 +158,8 @@
                         </goals>
                         </execution>
                     </executions>
-                </plugin>
-                <!-- Run the spotbugs code quality tool -->
+               </plugin>
+             <!-- Run the spotbugs code quality tool -->
                 <plugin>
                     <groupId>com.github.spotbugs</groupId>
                     <artifactId>spotbugs-maven-plugin</artifactId>
