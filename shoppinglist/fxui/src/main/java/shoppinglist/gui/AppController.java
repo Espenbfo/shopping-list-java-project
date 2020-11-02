@@ -304,13 +304,12 @@ public class AppController {
      * Updates the list of shoppinglists, filtered by person, on the right side of the gui
      */
     void fillTitleList() {
-        String personString = personInputField.getText();
+        String personString = personInputField.getText().toLowerCase();
         if (personString.equals("")) return;
         Person currenttPerson = dataAccess.getPerson(personString);
         listsOverview.getChildren().clear();
         for (Integer id : currenttPerson.getShoppingLists()) {
             ShoppingList l = shoppingAccess.getShoppingList(id);
-            System.out.println(l.getTitle());
             Pane list = new Pane();
             Label listName = new Label(l.getTitle());
             listName.setPrefWidth(1000.);
