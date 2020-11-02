@@ -15,7 +15,7 @@ public class PersonConfig extends ResourceConfig {
 
     public PersonConfig() {
 
-        register(testPage.class);
+        register(TestPage.class);
         register(PersonService.class);
 
         register(new AbstractBinder() {
