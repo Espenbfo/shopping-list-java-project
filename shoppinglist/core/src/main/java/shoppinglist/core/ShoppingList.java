@@ -12,6 +12,7 @@ public class ShoppingList {
     int id;
     static int currentMaxID = 0;
     ArrayList<ShoppingElement> elementList;
+    ArrayList<String> personList;
 
     /**
      * Initialize a ShoppingList with default values.
@@ -20,6 +21,7 @@ public class ShoppingList {
         currentMaxID += 1;
         id = currentMaxID;
         this.elementList = new ArrayList<ShoppingElement>();
+        this.personList = new ArrayList<String>();
         this.title = "";
     }
 
@@ -45,6 +47,22 @@ public class ShoppingList {
         this.title = title;
         this.id = id;
         this.elementList = elementList;
+        this.personList = new ArrayList<String>();
+        currentMaxID = Math.max(currentMaxID,id);
+    }
+
+    /**
+     * Initialize a ShoppingList with a title, id, and elementList.
+     *
+     * @param title the title
+     * @param id the ID
+     * @param elementList the list of elements
+     */
+    public ShoppingList(String title, int id, ArrayList<ShoppingElement> elementList, ArrayList<String> personList) {
+        this.title = title;
+        this.id = id;
+        this.elementList = elementList;
+        this.personList = personList;
         currentMaxID = Math.max(currentMaxID,id);
     }
 
@@ -95,6 +113,50 @@ public class ShoppingList {
      */
     public void setId(int id){this.id = id;}
 
+    /**
+     * Gets the list of userNames
+     * @return an arraylist of person usernames
+     */
+    public ArrayList<String> getPersonList() {
+        return personList;
+    }
+
+    /**
+     * Sets a personlist
+     * @param personList the arraylist of username to be set
+     */
+    public void setPersonList(ArrayList<String> personList) {
+        this.personList = personList;
+    }
+
+    /**
+     * Adds person with username p to the arrayList
+     * @param p the username
+     */
+    public void addPerson(String p) {
+        if (!personList.contains(p)) {
+            personList.add(p);
+        }
+    }
+
+    /**
+     * Adds person p to the arrayList
+     * @param p the Person
+     */
+    public void addPerson(Person p) {
+        if (!personList.contains(p.getUserName())) {
+            personList.add(p.getUserName());
+        }
+    }
+    /**
+     * Remove person with a username p
+     * @param p the username
+     */
+    public void removePerson(String p) {
+        if (personList.contains(p)) {
+            personList.remove(p);
+        }
+    }
     /**
      * Gets the list of elements.
      * @return the elementList

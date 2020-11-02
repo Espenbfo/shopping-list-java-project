@@ -1,6 +1,7 @@
 package shoppinglist.gui;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import javafx.application.Application;
 import javafx.fxml.FXML;
@@ -132,7 +133,6 @@ public class AppController {
                             ShoppingElement e = getTableView().getItems().get(getIndex());
                             currentShoppingList.removeElement(e);
                             data.remove(e);
-                            System.out.println("selectedData: " + e);
                         });
                     }
 
@@ -174,7 +174,6 @@ public class AppController {
                         cb.setOnAction((ActionEvent event) -> {
                             ShoppingElement e = getTableView().getItems().get(getIndex());
                             e.toggleShopped();
-                            System.out.println(e);
                         });
                     }
 
@@ -203,19 +202,37 @@ public class AppController {
      */
     @FXML
     void saveShoppingList() {
-        String peopleText = loginNameLabel.getText().toLowerCase() + "," + peopleInputField.getText().toLowerCase();
+        String peopleText = personInputField.getText().toLowerCase() + "," + peopleInputField.getText().toLowerCase();
         peopleText = peopleText.replaceAll("\\s","");
 
-        String[] peopleNames = peopleText.split(",");
+        List<String> peopleNames = Arrays.asList(peopleText.split(","));
+        ArrayList<String> toBeRemoved = new ArrayList<String>();
+        System.out.println(peopleNames);
+        System.out.println(currentShoppingList.getPersonList());
+        for (String p : currentShoppingList.getPersonList()) {
+            try {
+                if (!peopleNames.contains(p)) {
+                    System.out.println(p);
+                    Person person = FileHandler.readPerson(p);
+                    person.removeShoppingListById(currentShoppingList.getId());
+                    FileHandler.writePerson(person);
+                    toBeRemoved.add(person.getUserName());
+                }
+            }
+            catch (Exception ex) {
+                System.out.println(ex);
+            }
+        }
+        currentShoppingList.getPersonList().removeAll(toBeRemoved);
         for (String name : peopleNames) {
             try {
                 Person p = FileHandler.readPerson(name);
-                System.out.println(p);
                 Integer prevList = currentShoppingList.getId();
                 if (!p.getShoppingLists().contains(prevList)) {
                     p.addShoppingList(prevList);
                     FileHandler.writePerson(p);
                 }
+                currentShoppingList.addPerson(name);
         }
             catch (Exception ex) {
                 System.out.println(ex);
@@ -248,6 +265,20 @@ public class AppController {
         for (ShoppingElement x : currentShoppingList.getElementList()) {
             data.add(x);
         }
+        String currentUser = Client.getCurrentPerson().getUserName();
+        if (currentShoppingList.getPersonList().contains(Client.getCurrentPerson())) {
+            personInputField.setText(currentUser);
+        }
+        String people = "";
+        for (String name : currentShoppingList.getPersonList()) {
+            if (!name.equals(currentUser)) {
+                people += name.substring(0,1).toUpperCase()+name.substring(1) + ", ";
+            }
+        }
+        if (people.length() > 2) {
+            people = people.substring(0,people.length()-2);
+        }
+        peopleInputField.setText(people);
         shoppingTitleTextField.setText(currentShoppingList.getTitle());
     }
     /**
@@ -273,7 +304,6 @@ public class AppController {
         listsOverview.getChildren().clear();
         for (Integer id : currenttPerson.getShoppingLists()) {
             ShoppingList l = FileHandler.readFile(id);
-            System.out.println(l.getTitle());
             Pane list = new Pane();
             Label listName = new Label(l.getTitle());
             listName.setPrefWidth(1000.);
@@ -304,7 +334,6 @@ public class AppController {
      */
     @FXML 
     void handleListButtonClicked(ShoppingList shoppingList) {
-        System.out.println("clicked");
         currentShoppingList = shoppingList;
         String inputText = personInputField.getText();
         inputText = inputText.substring(0, 1).toUpperCase() + inputText.substring(1);
