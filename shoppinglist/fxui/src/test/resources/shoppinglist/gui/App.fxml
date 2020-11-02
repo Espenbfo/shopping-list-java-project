@@ -4,6 +4,7 @@
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.control.CheckBox?>
+<?import javafx.scene.control.TableView?>
 <?import javafx.scene.control.Tooltip?>
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.layout.TilePane?>
@@ -19,19 +20,15 @@
    <children>
       <Button fx:id="backToLoginButton" layoutX="10.0" layoutY="10.0"  prefHeight="27.0" prefWidth="60.0" onAction="#loginScreen" text="Logout"/>
       <TextField fx:id = "shoppingTitleTextField" id="shoppingTitle" layoutX="100.0" prefWidth="200.0" layoutY="25.0" promptText="List title" alignment="CENTER"></TextField>
-      <ScrollPane layoutX="50.0" layoutY="75.0" prefHeight="250.0" prefWidth="300.0" id="scroll">
-         <TilePane fx:id="shoppingList" layoutX="50.0" layoutY="50.0" prefHeight="250.0" prefWidth="280.0" id="shoppingList" prefRows="1" prefTileWidth="280" alignment="BASELINE_LEFT">
-            <children>
-               <Label fx:id="emptyListText" prefHeight="242.0" prefWidth="163.0" text="Your shoppinglist is empty" />
-            </children>
-         </TilePane>
-      </ScrollPane>
 
+      <TableView layoutX="50.0" layoutY="75.0" prefHeight="250.0" prefWidth="300.0" fx:id="shoppingList">
+
+      </TableView>
       
       <Button fx:id="addItemButton" layoutX="250.0" layoutY="350.0" mnemonicParsing="false" onAction="#handleAddItemButtonClicked" prefHeight="27.0" prefWidth="100.0" text="Add item"  id="addItemButton"/>
-      <TextField fx:id="amountInputField" layoutX="50.0" layoutY="350.0" prefHeight="27.0" prefWidth="40.0" promptText="1" />
-      <TextField fx:id="measurementInputField" layoutX="100.0" layoutY="350.0" prefHeight="27.0" prefWidth="40.0" promptText="unit" />
-      <TextField fx:id="itemInputField" layoutX="150.0" layoutY="350.0" prefHeight="27.0" prefWidth="90.0" promptText="milk" />
+      <TextField fx:id="amountInputField" layoutX="50.0" layoutY="350.0" prefHeight="27.0" prefWidth="40.0" promptText="1" onAction="#handleAddItemButtonClicked" />
+      <TextField fx:id="measurementInputField" layoutX="100.0" layoutY="350.0" prefHeight="27.0" prefWidth="40.0" promptText="unit"  onAction="#handleAddItemButtonClicked" />
+      <TextField fx:id="itemInputField" layoutX="150.0" layoutY="350.0" prefHeight="27.0" prefWidth="90.0" promptText="milk" onAction="#handleAddItemButtonClicked" />
 
       <Separator layoutX="100.0" layoutY="375.0"  prefHeight="27.0" prefWidth="200.0"></Separator>
 

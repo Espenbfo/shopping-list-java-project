@@ -3,7 +3,10 @@ package shoppinglist.gui;
 import java.util.ArrayList;
 import java.util.List;
 
+import javafx.application.Application;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.geometry.Insets;
 import javafx.scene.Node;
 import javafx.scene.control.Button;
@@ -17,16 +20,12 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.TilePane;
 import javafx.scene.text.TextAlignment;
-import shoppinglist.core.*;
-import shoppinglist.storage.FileHandler;
-
-import javafx.application.Application;
-import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
-import javafx.event.ActionEvent;
 import java.io.IOException;
+import shoppinglist.core.*;
+import shoppinglist.storage.FileHandler;
 
 public class LoginScreenController {
     private static Person currentPerson;
@@ -73,17 +72,27 @@ public class LoginScreenController {
     @FXML
     void handleLogin(ActionEvent e) throws IOException {
 
-        String name = usernameInputField.getText();
+        String name = usernameInputField.getText().toLowerCase();
+        String password = passwordInputField.getText();
+        if (name.length() == 0 || password.length() == 0) {
+            errorLabel.setText("Could not log in with empty field(s)");
+            return;
+        }
 
         try {
             Person p = dataAccess.getPerson(name);
             System.out.println(dataAccess.getPerson(name));
             Client.setCurrentPerson(p);
-            mainScreen(e);
+            if (Client.getPasswords().checkPassword(Client.getCurrentPerson(), password)) {
+                mainScreen(e);
+            }
+            else {
+                errorLabel.setText("Login failed, is your password correct?");
+            }
         }
         catch (Exception ex){
             ex.printStackTrace();
-            errorLabel.setText("Login mislykket, har du husket å registrere profilen din?");
+            errorLabel.setText("Login failed. Are you registred?");
         }
         System.out.println("login");
 
@@ -111,7 +120,8 @@ public class LoginScreenController {
 
     /**
      * Loads the main screen of the gui
-     * @param e the event calling the method
+     * @param e 
+     * the event calling the method
      * @throws IOException
      */
     void mainScreen(ActionEvent e) throws IOException {
@@ -121,7 +131,4 @@ public class LoginScreenController {
         Stage appStage = (Stage) ((Node)e.getSource()).getScene().getWindow();
         appStage.setScene(loginScene);
     }
-
-    
-  
 }

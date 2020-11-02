@@ -5,9 +5,9 @@ import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 
-/* Root resource (exposed at "testPage" path) */
+/* Root resource (exposed at "TestPage" path) */
 @Path("Gud")
-public class testPage {
+public class TestPage {
 
     @GET
     @Produces(MediaType.TEXT_PLAIN)

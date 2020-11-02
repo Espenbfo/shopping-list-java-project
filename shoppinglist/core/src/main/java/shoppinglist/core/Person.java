@@ -1,6 +1,7 @@
 package shoppinglist.core;
 
 import java.util.ArrayList;
+import shoppinglist.core.Passwords;
 
 public class Person {
 
@@ -8,6 +9,12 @@ public class Person {
      * The alias of the Person.
      */
     private String userName;
+
+    /**
+     * The salt for hashing this persons password
+     */
+    private byte[] salt;
+
 
     /**
      * The ShoppingLists the Person participates in
@@ -23,6 +30,7 @@ public class Person {
     public Person(final String userName, final ArrayList<Integer> shoppingLists) {
         this.userName = userName;
         this.shoppingLists = shoppingLists;
+        randomSalt();
     }
 
     /**
@@ -32,8 +40,19 @@ public class Person {
     public Person(String userName) {
         this.userName = userName;
         this.shoppingLists = new ArrayList<Integer>();
+        randomSalt();
     }
 
+    /**
+     * Constructor for already existing person with shoppinglists and salt.
+     * @param userName the name of the user
+     * @param shoppingLists the shoppinglists this Person has made formerly
+     * @param salt the salt for hashing this persons password
+     */
+    public Person(final String userName, final ArrayList<Integer> shoppingLists, final byte[] salt) {
+        this(userName,shoppingLists);
+        this.salt = salt;
+    }
     /**
      * a constructor for a new Person who has not created any shoppinglists formerly.
      * @param userName the name of the user
@@ -41,6 +60,7 @@ public class Person {
     public Person() {
         this.userName = "";
         this.shoppingLists = new ArrayList<Integer>();
+        randomSalt();
     }
 
 
@@ -58,6 +78,31 @@ public class Person {
      */
     public void setUserName(final String newName) {
         userName = newName;
+    }
+
+    /**
+     * Gets the salt
+     * @return the salt
+     */
+    public byte[] getSalt() {
+        return salt;
+    }
+
+    /**
+     * Sets the salt
+     * @param salt new salt
+     */
+    public void setSalt(final byte[] salt) {
+        this.salt = salt;
+    }
+
+
+    /**
+     * creates a random salt
+     */
+
+    public void randomSalt() {
+        this.salt = Passwords.randomSalt();
     }
 
     /**

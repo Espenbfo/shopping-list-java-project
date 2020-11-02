@@ -10,6 +10,7 @@ import java.util.logging.Logger;
 import org.glassfish.grizzly.http.server.HttpServer;
 import org.glassfish.jersey.grizzly2.httpserver.GrizzlyHttpServerFactory;
 import org.glassfish.jersey.server.ResourceConfig;
+import shoppinglist.restapiserver.TestPage;
 import shoppinglist.restapi.PersonService;
 import shoppinglist.core.Person;
 import org.glassfish.hk2.utilities.binding.AbstractBinder;
