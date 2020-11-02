@@ -45,6 +45,25 @@ public class LoginScreenController {
     String itemToAdd = null;
 
 
+    private PersonDataAccess dataAccess;
+
+    protected PersonDataAccess getDataAccess() {
+        return dataAccess;
+     }
+
+    public void setDataAccess(final PersonDataAccess dataAccess) {
+        this.dataAccess = dataAccess;
+     }
+
+
+    @FXML
+    public void initialize() {
+        setDataAccess(new PersonDataAccess("http://localhost:8087/index"));
+    }
+    /**
+     * Add element to shoppinglist when button is clicked 
+     */
+
     /**
      * Logs in a user
      * @param e the event calling the login
@@ -61,8 +80,8 @@ public class LoginScreenController {
         }
 
         try {
-            Person p = FileHandler.readPerson(name);
-            System.out.println(p.getUserName());
+            Person p = dataAccess.getPerson(name);
+            System.out.println(dataAccess.getPerson(name));
             Client.setCurrentPerson(p);
             if (Client.getPasswords().checkPassword(Client.getCurrentPerson(), password)) {
                 mainScreen(e);
@@ -87,7 +106,7 @@ public class LoginScreenController {
     @FXML
     void handleRegister(ActionEvent e) throws IOException {
         String name = usernameInputField.getText().toLowerCase();
-        if (FileHandler.readPerson(name) == null) {
+        if (dataAccess.getPerson(name) == null) {
             String password = passwordInputField.getText();
             if (name.length() == 0 || password.length() == 0) {
                 errorLabel.setText("Could not register with empty field(s)");
@@ -96,7 +115,7 @@ public class LoginScreenController {
             Person p = new Person(name);
             byte[] salt = p.getSalt();
             Client.getPasswords().setPassword(p, password);
-            FileHandler.writePerson(p);
+            dataAccess.putPerson(p);
             FileHandler.writePasswords(Client.getPasswords());
             System.out.println("register");
             handleLogin(e); 

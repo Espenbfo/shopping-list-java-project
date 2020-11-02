@@ -15,8 +15,8 @@ import java.net.http.HttpResponse;
 import java.util.Collection;
 import java.util.Collections;
 import shoppinglist.core.Person;
-import shoppinglist.core.ShoppingList;
-
+import java.io.BufferedReader;
+import java.io.InputStreamReader;
 
 
 public class PersonDataAccess  {
@@ -59,7 +59,7 @@ private final String baseUrlString;
     public Person getPerson(final String person) {
 
         final HttpRequest request =
-                HttpRequest.newBuilder(getRequestUri("/Shoppinglists/" + person))
+                HttpRequest.newBuilder(getRequestUri("/Persons/" + person))
                         .header("Accept", "application/json").GET().build();
         try {
             final HttpResponse<InputStream> response =
@@ -70,9 +70,12 @@ private final String baseUrlString;
             Person out = mapper.readValue(response.body(), Person.class);
             return out;
         } catch (IOException | InterruptedException e) {
+            System.out.println("3");
             System.err.println(e.toString());
         }
         return null;
     }
+
+
 
 }

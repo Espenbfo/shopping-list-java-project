@@ -38,11 +38,12 @@ public class ShoppingListDataAccess  {
         try {
             int index = shoppingList.getId();
             ObjectMapper mapper = new ObjectMapper();
-            final HttpRequest request = HttpRequest.newBuilder(getRequestUri("/Shoppinglists/" + index))
+            final HttpRequest request = HttpRequest.newBuilder(getRequestUri("/Persons/ShoppingLists/" + index))
                     .header("Content-Type", "application/json")
                     .header("Accept", "application/json")
                     .PUT(BodyPublishers.ofString(mapper.writeValueAsString(shoppingList)))
                     .build();
+            System.out.println(mapper.writeValueAsString(shoppingList));
             final HttpResponse<InputStream> response =
                     HttpClient.newBuilder().build().send(
                             request, HttpResponse.BodyHandlers.ofInputStream()
@@ -58,7 +59,7 @@ public class ShoppingListDataAccess  {
     public ShoppingList getShoppingList(final int id) {
 
         final HttpRequest request =
-                HttpRequest.newBuilder(getRequestUri("/Shoppinglists/" + id))
+                HttpRequest.newBuilder(getRequestUri("/Persons/ShoppingLists/" + id))
                         .header("Accept", "application/json").GET().build();
         try {
             final HttpResponse<InputStream> response =
@@ -69,6 +70,7 @@ public class ShoppingListDataAccess  {
             ShoppingList out = mapper.readValue(response.body(), ShoppingList.class);
             return out;
         } catch (IOException | InterruptedException e) {
+            System.out.println("6");
             System.err.println(e.toString());
         }
         return null;

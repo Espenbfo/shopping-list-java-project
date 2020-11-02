@@ -52,6 +52,17 @@ public class PersonResource {
     return this.shoppingList;
   }
 
+  /**
+   * Gets the 
+   *
+   * @return the 
+   */
+  @GET
+  @Produces(MediaType.APPLICATION_JSON)
+  public String getUserName() {
+    return this.person.getUserName();
+  }
+
   
   /**
    * Replaces or adds a shoppingList.
