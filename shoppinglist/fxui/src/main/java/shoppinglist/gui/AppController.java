@@ -243,7 +243,7 @@ public class AppController {
                     dataAccess.putPerson(p);
                 }
                 currentShoppingList.addPerson(name);
-        }
+            }
             catch (Exception ex) {
                 System.out.println(ex);
             }
@@ -257,7 +257,7 @@ public class AppController {
      * Loads existing shoppinglist from server
      */
     @FXML
-    void loadShoppingList(){
+    void loadShoppingList() {
         loadShoppingListWithList(shoppingAccess.getShoppingList(Integer.parseInt(loadId.getText())));
     }
 
@@ -279,11 +279,11 @@ public class AppController {
         String people = "";
         for (String name : currentShoppingList.getPersonList()) {
             if (!name.equals(currentUser)) {
-                people += name.substring(0,1).toUpperCase()+name.substring(1) + ", ";
+                people += name.substring(0,1).toUpperCase() + name.substring(1) + ", ";
             }
         }
         if (people.length() > 2) {
-            people = people.substring(0,people.length()-2);
+            people = people.substring(0, people.length()- 2);
         }
         peopleInputField.setText(people);
         shoppingTitleTextField.setText(currentShoppingList.getTitle());
@@ -292,6 +292,7 @@ public class AppController {
      * Changes status of shoppingitem from not shopped to shopped 
      * 
      * @param shoppingElement
+     * 
      */
     @FXML
     void handleItemShopped(ShoppingElement shoppingElement) {
