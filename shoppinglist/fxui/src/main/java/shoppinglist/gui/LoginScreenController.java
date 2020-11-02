@@ -105,17 +105,24 @@ public class LoginScreenController {
      */
     @FXML
     void handleRegister(ActionEvent e) throws IOException {
-        String name = usernameInputField.getText();
-        if(dataAccess.getPerson(name) != null){
-            System.out.println("f");
-            errorLabel.setText("Denne personen er alt registrert.");
-            return;
+        String name = usernameInputField.getText().toLowerCase();
+        if (dataAccess.getPerson(name) == null) {
+            String password = passwordInputField.getText();
+            if (name.length() == 0 || password.length() == 0) {
+                errorLabel.setText("Could not register with empty field(s)");
+                return;
+            }
+            Person p = new Person(name);
+            byte[] salt = p.getSalt();
+            Client.getPasswords().setPassword(p, password);
+            dataAccess.putPerson(p);
+            FileHandler.writePasswords(Client.getPasswords());
+            System.out.println("register");
+            handleLogin(e); 
         }
-        Person p = new Person(name);
-        System.out.println(p);
-        dataAccess.putPerson(p);
-        System.out.println("register");
-        handleLogin(e);
+        else {
+            errorLabel.setText("Username taken");
+        }
     }
 
     /**

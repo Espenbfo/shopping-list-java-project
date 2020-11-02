@@ -341,7 +341,9 @@ public class AppController {
     @FXML 
     void handleListButtonClicked(ShoppingList shoppingList) {
         currentShoppingList = shoppingList;
-        loginNameLabel.setText(personInputField.getText());
+        String inputText = personInputField.getText();
+        inputText = inputText.substring(0, 1).toUpperCase() + inputText.substring(1);
+        loginNameLabel.setText(inputText);
         loadShoppingListWithList(shoppingAccess.getShoppingList(currentShoppingList.getId()));
 
         //display clicked list
