@@ -19,7 +19,7 @@ Prosjektet er konfigurert med Maven, og kan gjøres med mvn javafx:run og testes
 
 ## Brukerhistorier
 
-Som bruker ønsker jeg å kunne lagre lister for meg selv og andre brukere. Jeg ønsker å ha oversikt over hvilke lister jeg er en del av. 
+Som bruker ønsker jeg å kunne lagre lister for meg selv og andre brukere. Jeg ønsker å ha oversikt over hvilke lister jeg er en del av. Jeg ønsker også å kunne legge til og fjerne andre brukere fra listen min når som helst.
 
 Som bruker ønsker jeg en applikasjon der jeg registrere meg og ha egne handlelister lagret.
 
