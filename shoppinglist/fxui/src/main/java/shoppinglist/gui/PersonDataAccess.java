@@ -16,6 +16,8 @@ import java.util.Collection;
 import java.util.Collections;
 import shoppinglist.core.ShoppingList;
 import shoppinglist.core.Person;
+import java.io.BufferedReader;
+import java.io.InputStreamReader;
 
 
 public class PersonDataAccess  {
@@ -69,9 +71,12 @@ public class PersonDataAccess  {
             Person out = mapper.readValue(response.body(), Person.class);
             return out;
         } catch (IOException | InterruptedException e) {
+            System.out.println("3");
             System.err.println(e.toString());
         }
         return null;
     }
+
+
 
 }

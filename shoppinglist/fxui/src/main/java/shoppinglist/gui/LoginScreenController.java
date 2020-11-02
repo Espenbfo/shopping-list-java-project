@@ -97,7 +97,13 @@ public class LoginScreenController {
     @FXML
     void handleRegister(ActionEvent e) throws IOException {
         String name = usernameInputField.getText();
+        if(dataAccess.getPerson(name) != null){
+            System.out.println("f");
+            errorLabel.setText("Denne personen er alt registrert.");
+            return;
+        }
         Person p = new Person(name);
+        System.out.println(p);
         dataAccess.putPerson(p);
         System.out.println("register");
         handleLogin(e);

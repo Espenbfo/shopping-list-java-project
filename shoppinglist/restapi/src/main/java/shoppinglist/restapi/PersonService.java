@@ -41,13 +41,16 @@ public class PersonService {
   }
 
   @PUT
+  @Path("/{username}")
   @Consumes(MediaType.APPLICATION_JSON)
   @Produces(MediaType.APPLICATION_JSON)
   public int addPerson(final Person person) {
     LOG.debug("addShoppingList({})", person);
+    System.out.println("person);
     return FileHandler.writePerson(person) ? 1 : 0;
   }
 
+  @GET
   @Path("/ShoppingLists/{id}")
   public PersonResource getShoppingList(@PathParam("id") int id) {
     ShoppingList shoppinglist = FileHandler.readFile(id);

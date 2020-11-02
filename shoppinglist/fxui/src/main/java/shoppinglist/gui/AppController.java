@@ -78,7 +78,7 @@ public class AppController {
 
         ShoppingList.setCurrentMaxID(FileHandler.readMaxID());
         currentShoppingList = new ShoppingList("test");
-
+        System.out.println(Client.getCurrentPerson() + "fasd");
         if (Client.getCurrentPerson() != null) {
             personInputField.setText(Client.getCurrentPerson().getUserName());
             fillTitleList();
