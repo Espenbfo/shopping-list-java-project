@@ -63,6 +63,7 @@ public class AppController {
     String itemToAdd = null;
 
     private PersonDataAccess dataAccess;
+    private ShoppingListDataAccess shoppingAccess;
 
     protected PersonDataAccess getDataAccess() {
         return dataAccess;
@@ -75,8 +76,7 @@ public class AppController {
     @FXML
     public void initialize() {
         setDataAccess(new PersonDataAccess("http://localhost:8087/index"));
-
-        ShoppingList.setCurrentMaxID(FileHandler.readMaxID());
+        shoppingAccess = new ShoppingListDataAccess("http://localhost:8087/index");
         currentShoppingList = new ShoppingList("test");
         System.out.println(Client.getCurrentPerson() + "fasd");
         if (Client.getCurrentPerson() != null) {
@@ -108,7 +108,7 @@ public class AppController {
         
     }
     /**
-     * Saves shoppinglist to file 
+     * Saves shoppinglist to server
      */
     @FXML
     void saveShoppingList(){
@@ -117,36 +117,33 @@ public class AppController {
         String[] peopleNames = peopleText.split(",");
         for (String name : peopleNames) {
             try {
-                Person p = FileHandler.readPerson(name);
+                Person p = dataAccess.getPerson(name);
                 System.out.println(p);
                 Integer prevList = currentShoppingList.getId();
                 if (!p.getShoppingLists().contains(prevList)) {
                     p.addShoppingList(prevList);
-                    FileHandler.writePerson(p);
+                    dataAccess.putPerson(p);
                 }
             }
             catch (Exception ex) {
                 System.out.println(ex);
             }
         }
-        if (currentShoppingList.getId() > FileHandler.readMaxID()) {
-            FileHandler.writeMaxID(currentShoppingList.getId());
-        }
         currentShoppingList.setTitle(shoppingTitleTextField.getText());
-        FileHandler.writeFile(currentShoppingList);
+        shoppingAccess.putShoppingList(currentShoppingList);
         fillTitleList();
     }
 
     /**
-     * Loads existing shoppinglist from file
+     * Loads existing shoppinglist from server
      */
     @FXML
     void loadShoppingList(){
-        loadShoppingListWithList(FileHandler.readFile(Integer.parseInt(loadId.getText())));
+        loadShoppingListWithList(shoppingAccess.getShoppingList(Integer.parseInt(loadId.getText())));
     }
 
     /**
-     * Loads existing shoppinglist from file
+     * Loads existing shoppinglist from server
      */
     @FXML
     void loadShoppingListWithList(ShoppingList l){
@@ -181,7 +178,7 @@ public class AppController {
         Person currenttPerson = dataAccess.getPerson(personString);
         listsOverview.getChildren().clear();
         for (Integer id : currenttPerson.getShoppingLists()) {
-            ShoppingList l = FileHandler.readFile(id);
+            ShoppingList l = shoppingAccess.getShoppingList(id);
             System.out.println(l.getTitle());
             Pane list = new Pane();
             Label listName = new Label(l.getTitle());
@@ -217,7 +214,7 @@ public class AppController {
         System.out.println("clicked");
         currentShoppingList = shoppingList;
         loginNameLabel.setText(personInputField.getText());
-        loadShoppingListWithList(FileHandler.readFile(currentShoppingList.getId()));
+        loadShoppingListWithList(shoppingAccess.getShoppingList(currentShoppingList.getId()));
 
         //display clicked list
     }

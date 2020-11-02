@@ -18,6 +18,8 @@ public class ShoppingGrizzlyApp {
 
     private static URI serverUri = URI.create("http://localhost:8087/index/");
 
+
+
     public static HttpServer start() throws IOException {
         int waitTime = 5;
 
