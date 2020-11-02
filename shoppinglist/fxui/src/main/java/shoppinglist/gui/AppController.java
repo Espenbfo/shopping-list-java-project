@@ -65,7 +65,8 @@ public class AppController {
     Label loginNameLabel;
 
     public ShoppingList currentShoppingList; 
-    
+    private final ObservableList<ShoppingElement> data = FXCollections.observableArrayList();
+
     String itemToAdd = null;
 
     private PersonDataAccess dataAccess;
