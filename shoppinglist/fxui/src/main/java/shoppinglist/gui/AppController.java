@@ -65,7 +65,7 @@ public class AppController {
     Label loginNameLabel;
 
     private final ObservableList<ShoppingElement> data = FXCollections.observableArrayList();
-    public ShoppingList currentShoppingList; //vil egt. ikke ha tittel her, men tror endringer må gjøres i ShoppingList.java
+    public ShoppingList currentShoppingList; 
     
     String itemToAdd = null;
 
