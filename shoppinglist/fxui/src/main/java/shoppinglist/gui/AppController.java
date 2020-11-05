@@ -215,10 +215,15 @@ public class AppController {
         String peopleText = personInputField.getText().toLowerCase() + "," + peopleInputField.getText().toLowerCase();
         peopleText = peopleText.replaceAll("\\s","");
 
+
         List<String> peopleNames = Arrays.asList(peopleText.split(","));
         ArrayList<String> toBeRemoved = new ArrayList<String>();
-        System.out.println(peopleNames);
-        System.out.println(currentShoppingList.getPersonList());
+
+        if (currentShoppingList.getOwner() == null) {
+            String ownerText = loginNameLabel.getText().toLowerCase() + "," + loginNameLabel.getText().toLowerCase();
+            currentShoppingList.setOwner(dataAccess.getPerson(ownerText));
+            currentShoppingList.addPerson(ownerText);
+        }
         for (String p : currentShoppingList.getPersonList()) {
             try {
                 if (!peopleNames.contains(p)) {
