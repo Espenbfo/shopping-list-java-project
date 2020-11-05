@@ -84,11 +84,12 @@ public class AppController {
     public void initialize() {
         setDataAccess(new PersonDataAccess("http://localhost:8087/index"));
         shoppingAccess = new ShoppingListDataAccess("http://localhost:8087/index");
-        currentShoppingList = new ShoppingList("test");
-        System.out.println(Client.getCurrentPerson() + "fasd");
+        currentShoppingList = new ShoppingList();
         if (Client.getCurrentPerson() != null) {
             String userName = Client.getCurrentPerson().getUserName();
             userName = userName.substring(0, 1).toUpperCase() + userName.substring(1);
+            currentShoppingList.setOwner(Client.getCurrentPerson());
+            System.out.println("c" + currentShoppingList.getOwner());
             personInputField.setText(userName);
             fillTitleList();
             loginNameLabel.setText(userName);
@@ -214,10 +215,15 @@ public class AppController {
         String peopleText = personInputField.getText().toLowerCase() + "," + peopleInputField.getText().toLowerCase();
         peopleText = peopleText.replaceAll("\\s","");
 
+
         List<String> peopleNames = Arrays.asList(peopleText.split(","));
         ArrayList<String> toBeRemoved = new ArrayList<String>();
-        System.out.println(peopleNames);
-        System.out.println(currentShoppingList.getPersonList());
+
+        if (currentShoppingList.getOwner() == null) {
+            String ownerText = loginNameLabel.getText().toLowerCase() + "," + loginNameLabel.getText().toLowerCase();
+            currentShoppingList.setOwner(dataAccess.getPerson(ownerText));
+            currentShoppingList.addPerson(ownerText);
+        }
         for (String p : currentShoppingList.getPersonList()) {
             try {
                 if (!peopleNames.contains(p)) {
@@ -263,6 +269,7 @@ public class AppController {
 
     /**
      * Loads existing shoppinglist from server
+     * @param l shoppinglist to load
      */
     @FXML
     void loadShoppingListWithList(ShoppingList l) {
@@ -278,7 +285,7 @@ public class AppController {
         }
         String people = "";
         for (String name : currentShoppingList.getPersonList()) {
-            if (!name.equals(currentUser)) {
+            if (!name.equals(l.getOwner().getUserName().toLowerCase())) {
                 people += name.substring(0,1).toUpperCase() + name.substring(1) + ", ";
             }
         }
@@ -341,9 +348,8 @@ public class AppController {
     @FXML 
     void handleListButtonClicked(ShoppingList shoppingList) {
         currentShoppingList = shoppingList;
-        String inputText = personInputField.getText();
-        inputText = inputText.substring(0, 1).toUpperCase() + inputText.substring(1);
-        loginNameLabel.setText(inputText);
+        String ownerUserName = shoppingList.getOwner().getUserName();
+        loginNameLabel.setText(ownerUserName.substring(0, 1).toUpperCase() + ownerUserName.substring(1));
         loadShoppingListWithList(shoppingAccess.getShoppingList(currentShoppingList.getId()));
 
         //display clicked list
