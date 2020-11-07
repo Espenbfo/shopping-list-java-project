@@ -14,6 +14,7 @@ public class ShoppingList {
     private ArrayList<ShoppingElement> elementList;
     private ArrayList<String> personList;
     private Person owner;
+    //private boolean publicList;
 
     /**
      * Initialize a ShoppingList with default values.
@@ -253,6 +254,13 @@ public class ShoppingList {
      */
     public Person getOwner() {
         return this.owner;
+    }
+
+    /**
+     * 
+     */
+    public boolean listIsPublic(){
+        return true;
     }
 
     /**
