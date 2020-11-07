@@ -24,6 +24,10 @@ public class FileHandler{
      */
     public static ShoppingList readFile(int id){
         try {
+            File dir = new File("./shoppinglists/");
+            if(!dir.exists()){
+                dir.mkdir();
+            }
             ObjectMapper mapper = new ObjectMapper();
             ShoppingList out = mapper.readValue(Paths.get("./shoppinglists/" + id + ".json").toFile(), ShoppingList.class);
             return out;
@@ -40,6 +44,10 @@ public class FileHandler{
      */
     public static boolean writeFile(ShoppingList listToWrite){
         try {
+            File dir = new File("./shoppinglists/");
+            if(!dir.exists()){
+                dir.mkdir();
+            }
             ObjectMapper mapper = new ObjectMapper();
             mapper.writeValue(Paths.get("./shoppinglists/" + listToWrite.getId() + ".json").toFile(), listToWrite);
             return true;
@@ -56,6 +64,10 @@ public class FileHandler{
      */
     public static boolean writePerson(Person persToWrite){
         try {
+            File dir = new File("./persons/");
+            if(!dir.exists()){
+                dir.mkdir();
+            }
             ObjectMapper mapper = new ObjectMapper();
             mapper.writeValue(Paths.get("./persons/" + persToWrite.getUserName() + ".json").toFile(), persToWrite);
             return true;
@@ -72,7 +84,10 @@ public class FileHandler{
      */
     public static Person readPerson(String personName){
         try {
-
+            File dir = new File("./persons/");
+            if(!dir.exists()){
+                dir.mkdir();
+            }
             String filename = "./persons/"+ personName + ".json";
             ObjectMapper mapper = new ObjectMapper();
             Person out = mapper.readValue(Paths.get(filename).toFile(), Person.class);
@@ -91,6 +106,10 @@ public class FileHandler{
      */
     public static boolean writeMaxID(int id){
         try {
+            File dir = new File("./shoppinglists/");
+            if(!dir.exists()){
+                dir.mkdir();
+            }
             ObjectMapper mapper = new ObjectMapper();
             mapper.writeValue(Paths.get("./shoppinglists/maxID.json").toFile(), new MaxID(id));
             return true;
@@ -106,7 +125,10 @@ public class FileHandler{
      */
     public static int readMaxID(){
         try {
-
+            File dir = new File("./shoppinglists/");
+            if(!dir.exists()){
+                dir.mkdir();
+            }
             ObjectMapper mapper = new ObjectMapper();
             MaxID out = mapper.readValue(Paths.get("./shoppinglists/maxID.json").toFile(), MaxID.class);
             return out.getId();
@@ -123,6 +145,10 @@ public class FileHandler{
      */
     public static boolean writePasswords(Passwords passwordsToWrite){
         try {
+            File dir = new File("./shoppinglists/");
+            if(!dir.exists()){
+                dir.mkdir();
+            }
             ObjectMapper mapper = new ObjectMapper();
             mapper.writeValue(Paths.get("./shoppinglists/passwords.json").toFile(), passwordsToWrite);
             return true;
@@ -141,6 +167,10 @@ public class FileHandler{
 
             String filename = "./shoppinglists/passwords.json";
             ObjectMapper mapper = new ObjectMapper();
+            File dir = new File("./shoppinglists/");
+            if(!dir.exists()){
+                dir.mkdir();
+            }
             Passwords out = mapper.readValue(Paths.get(filename).toFile(), Passwords.class);
             System.out.println(out);
             return out;
