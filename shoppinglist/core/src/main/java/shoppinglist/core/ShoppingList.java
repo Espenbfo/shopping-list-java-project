@@ -12,7 +12,7 @@ public class ShoppingList {
     int id;
     ArrayList<ShoppingElement> elementList;
     ArrayList<String> personList;
-
+    private Person owner;
     /**
      * Initialize a ShoppingList with default values.
      */
@@ -21,6 +21,7 @@ public class ShoppingList {
         this.elementList = new ArrayList<ShoppingElement>();
         this.personList = new ArrayList<String>();
         this.title = "";
+        this.owner = null;
     }
 
     /**
@@ -46,6 +47,7 @@ public class ShoppingList {
         this.id = id;
         this.elementList = elementList;
         this.personList = new ArrayList<String>();
+        this.owner = null;
     }
 
     /**
@@ -221,6 +223,21 @@ public class ShoppingList {
      */
     public void removeElement(ShoppingElement e) {
         elementList.remove(e);
+    }
+
+    /**
+     * Sets owner to given person
+     * @param owner the person to be set as owner 
+     */
+    public void setOwner(Person owner) {
+        this.owner = owner;
+    }
+
+    /**
+     * Get the owner of the list 
+     */
+    public Person getOwner() {
+        return this.owner;
     }
 
     /**

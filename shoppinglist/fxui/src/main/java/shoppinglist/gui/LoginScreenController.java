@@ -1,8 +1,8 @@
 package shoppinglist.gui;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
-
 import javafx.application.Application;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -12,18 +12,17 @@ import javafx.scene.Node;
 import javafx.scene.control.Button;
 import javafx.scene.control.CheckBox;
 import javafx.scene.control.Label;
-import javafx.scene.control.TextField;
 import javafx.scene.control.PasswordField;
+import javafx.scene.control.TextField;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.TilePane;
-import javafx.scene.text.TextAlignment;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
-import java.io.IOException;
+import javafx.scene.text.TextAlignment;
 import shoppinglist.core.*;
 import shoppinglist.storage.FileHandler;
 
@@ -61,14 +60,15 @@ public class LoginScreenController {
         setDataAccess(new PersonDataAccess("http://localhost:8087/index"));
     }
     /**
-     * Add element to shoppinglist when button is clicked 
-     */
+    * Add element to shoppinglist when button is clicked 
+    */
 
     /**
-     * Logs in a user
-     * @param e the event calling the login
-     * @throws IOException if the user doesn't exist
-     */
+    * Logs in a user
+    * @param e the event calling the login
+    * @throws IOException if the user doesn't exist
+    */
+
     @FXML
     void handleLogin(ActionEvent e) throws IOException {
 
@@ -85,12 +85,10 @@ public class LoginScreenController {
             Client.setCurrentPerson(p);
             if (Client.getPasswords().checkPassword(Client.getCurrentPerson(), password)) {
                 mainScreen(e);
-            }
-            else {
+            } else {
                 errorLabel.setText("Login failed, is your password correct?");
             }
-        }
-        catch (Exception ex){
+        } catch (Exception ex) {
             ex.printStackTrace();
             errorLabel.setText("Login failed. Are you registred?");
         }
@@ -132,9 +130,9 @@ public class LoginScreenController {
      * @throws IOException
      */
     void mainScreen(ActionEvent e) throws IOException {
-        Parent loginParent =   FXMLLoader.load(getClass().getResource("/resources/shoppinglist/gui/App.fxml"));
+        Parent loginParent = FXMLLoader.load(getClass().getResource("/resources/shoppinglist/gui/App.fxml"));
         Scene loginScene = new Scene(loginParent);
-        loginScene.getStylesheets().add(getClass().getResource("/resources/shoppinglist/gui/style.css").toExternalForm());
+        loginScene.getStylesheets().add( getClass().getResource("/resources/shoppinglist/gui/style.css").toExternalForm());
         Stage appStage = (Stage) ((Node)e.getSource()).getScene().getWindow();
         appStage.setScene(loginScene);
     }
