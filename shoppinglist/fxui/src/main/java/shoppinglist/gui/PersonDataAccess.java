@@ -35,6 +35,10 @@ private final String baseUrlString;
         }
     }
 
+    /**
+     * PUTs a person to the server
+     * @param person the Person to PUT
+     */
     public void putPerson(final Person person) {
         try {
             String name = person.getUserName().toLowerCase();
@@ -56,6 +60,11 @@ private final String baseUrlString;
         }
     }
 
+    /**
+     * getPerson from the server
+     * @param person the username of the person to get
+     * @return the Person with corresponding username
+     */
     public Person getPerson(final String person) {
         String personLC = person.toLowerCase();
         final HttpRequest request =

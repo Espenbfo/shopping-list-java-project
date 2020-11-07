@@ -34,6 +34,11 @@ public class ShoppingListDataAccess  {
         }
     }
 
+    /**
+     * PUTs a shoppinglist to server
+     * @param shoppingList the shoppinglist to PUT
+     * @return the id of the ShoppingList that was PUT after the PUT
+     */
     public int putShoppingList(final ShoppingList shoppingList) {
         int id = shoppingList.getId();
         try {
@@ -59,6 +64,11 @@ public class ShoppingListDataAccess  {
 
     }
 
+    /**
+     * GETs a shoppinglist from server
+     * @param id the id of the shoppinglist to GET
+     * @return the shoppinglist with the id
+     */
     public ShoppingList getShoppingList(final int id) {
 
         final HttpRequest request =
