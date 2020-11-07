@@ -47,8 +47,8 @@ public class PersistencyTest{
     @Test
     public void testWriteReadMaxID(){
 
-        Assertions.assertTrue(FileHandler.writeMaxID(l.getCurrentMaxID()));
-        Assertions.assertTrue(FileHandler.readMaxID() == l.getCurrentMaxID());
+        Assertions.assertTrue(FileHandler.writeMaxID(4));
+        Assertions.assertTrue(FileHandler.readMaxID() == 4);
     }
 
 

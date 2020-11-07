@@ -6,6 +6,7 @@ import java.util.ArrayList;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.File;
+import java.io.IOException;
 import shoppinglist.core.ShoppingList;
 import shoppinglist.core.MeasurementType;
 import shoppinglist.core.ShoppingElement;
@@ -132,7 +133,11 @@ public class FileHandler{
             ObjectMapper mapper = new ObjectMapper();
             MaxID out = mapper.readValue(Paths.get("./shoppinglists/maxID.json").toFile(), MaxID.class);
             return out.getId();
-        }catch(Exception e) {
+        }catch(IOException e) {
+            writeMaxID(0);
+            return 0;
+        }
+        catch(Exception e) {
             e.printStackTrace();
         }
         return -1;

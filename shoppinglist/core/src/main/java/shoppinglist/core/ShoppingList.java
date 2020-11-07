@@ -10,7 +10,6 @@ import java.lang.Math;
 public class ShoppingList {
     String title;
     int id;
-    static int currentMaxID = 0;
     ArrayList<ShoppingElement> elementList;
     ArrayList<String> personList;
 
@@ -18,8 +17,7 @@ public class ShoppingList {
      * Initialize a ShoppingList with default values.
      */
     public ShoppingList() {
-        currentMaxID += 1;
-        id = currentMaxID;
+        id = -1;
         this.elementList = new ArrayList<ShoppingElement>();
         this.personList = new ArrayList<String>();
         this.title = "";
@@ -48,7 +46,6 @@ public class ShoppingList {
         this.id = id;
         this.elementList = elementList;
         this.personList = new ArrayList<String>();
-        currentMaxID = Math.max(currentMaxID,id);
     }
 
     /**
@@ -63,24 +60,24 @@ public class ShoppingList {
         this.id = id;
         this.elementList = elementList;
         this.personList = personList;
-        currentMaxID = Math.max(currentMaxID,id);
+        //currentMaxID = Math.max(currentMaxID,id);
     }
 
     /**
      * Sets the maxID for all shoppingLists.
      * @param id the new max ID
      */
-    public static void setCurrentMaxID(int id) {
+   /* public static void setCurrentMaxID(int id) {
         currentMaxID = id;
-    }
+    }*/
 
     /**
      * Gets the max ID for all shoppinglists.
      * @return the currentMaxID
      */
-    public static int getCurrentMaxID() {
+    /*public static int getCurrentMaxID() {
         return currentMaxID;
-    }
+    }*/
 
 
     /**

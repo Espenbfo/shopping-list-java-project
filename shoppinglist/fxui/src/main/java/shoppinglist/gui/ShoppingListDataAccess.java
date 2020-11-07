@@ -34,7 +34,8 @@ public class ShoppingListDataAccess  {
         }
     }
 
-    public void putShoppingList(final ShoppingList shoppingList) {
+    public int putShoppingList(final ShoppingList shoppingList) {
+        int id = shoppingList.getId();
         try {
             int index = shoppingList.getId();
             ObjectMapper mapper = new ObjectMapper();
@@ -48,12 +49,14 @@ public class ShoppingListDataAccess  {
                     HttpClient.newBuilder().build().send(
                             request, HttpResponse.BodyHandlers.ofInputStream()
                     );
-
+            id = mapper.readValue(response.body(), int.class);
         } catch (final JsonProcessingException e) {
             throw new RuntimeException(e);
         } catch (IOException | InterruptedException e) {
             throw new RuntimeException(e);
         }
+        return id;
+
     }
 
     public ShoppingList getShoppingList(final int id) {

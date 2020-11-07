@@ -100,9 +100,23 @@ public class PersonService {
   @Path("/ShoppingLists/{id}")
   @Consumes(MediaType.APPLICATION_JSON)
   @Produces(MediaType.APPLICATION_JSON)
-  public void addShoppingList(final ShoppingList shoppinglist) {
+  public int addShoppingList(final ShoppingList shoppinglist) {
+    int newId = shoppinglist.getId();
     System.out.println(shoppinglist);
+    if(newId == -1){
+      newId = FileHandler.readMaxID();
+      newId++;
+      shoppinglist.setId(newId);
+      FileHandler.writeMaxID(newId);
+    }
+    for(String x:shoppinglist.getPersonList()){
+      Person aperson = FileHandler.readPerson(x);
+      if(!aperson.getShoppingLists().contains(newId) && aperson != null){
+        aperson.addShoppingList(newId);
+        FileHandler.writePerson(aperson);}
+    }
     FileHandler.writeFile(shoppinglist);
+    return newId;
   }
 
 }
