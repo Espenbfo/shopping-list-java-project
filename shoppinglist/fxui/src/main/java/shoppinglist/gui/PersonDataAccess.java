@@ -37,7 +37,7 @@ private final String baseUrlString;
 
     public void putPerson(final Person person) {
         try {
-            String name = person.getUserName();
+            String name = person.getUserName().toLowerCase();
             ObjectMapper mapper = new ObjectMapper();
             final HttpRequest request = HttpRequest.newBuilder(getRequestUri("/Persons/" + name))
                     .header("Content-Type", "application/json")
@@ -57,9 +57,9 @@ private final String baseUrlString;
     }
 
     public Person getPerson(final String person) {
-
+        String personLC = person.toLowerCase();
         final HttpRequest request =
-                HttpRequest.newBuilder(getRequestUri("/Persons/" + person))
+                HttpRequest.newBuilder(getRequestUri("/Persons/" + personLC))
                         .header("Accept", "application/json").GET().build();
         try {
             final HttpResponse<InputStream> response =
