@@ -1,26 +1,27 @@
 package shoppinglist.gui;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import javafx.application.Application;
-import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
-import javafx.event.ActionEvent;
-import javafx.geometry.Insets;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.event.ActionEvent;
+import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.geometry.Insets;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.control.CheckBox;
 import javafx.scene.control.Label;
-import javafx.scene.control.TextField;
-import javafx.scene.control.TableView;
 import javafx.scene.control.TableCell;
 import javafx.scene.control.TableColumn;
-import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.control.TableView;
+import javafx.scene.control.TextField;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.HBox;
@@ -28,10 +29,9 @@ import javafx.scene.layout.Pane;
 import javafx.scene.layout.TilePane;
 import javafx.scene.text.TextAlignment;
 import javafx.stage.Stage;
+import javafx.util.Callback;
 import shoppinglist.core.*;
 import shoppinglist.storage.FileHandler;
-import java.io.IOException;
-import javafx.util.Callback;
 
 public class AppController {
     private static Person currentPerson;
@@ -249,8 +249,7 @@ public class AppController {
                     dataAccess.putPerson(p);
                 }
                 currentShoppingList.addPerson(name);
-            }
-            catch (Exception ex) {
+            } catch (Exception ex) {
                 System.out.println(ex);
             }
         }
@@ -271,6 +270,7 @@ public class AppController {
      * Loads existing shoppinglist from server
      * @param l shoppinglist to load
      */
+
     @FXML
     void loadShoppingListWithList(ShoppingList l) {
         currentShoppingList = l;
@@ -286,21 +286,23 @@ public class AppController {
         String people = "";
         for (String name : currentShoppingList.getPersonList()) {
             if (!name.equals(l.getOwner().getUserName().toLowerCase())) {
-                people += name.substring(0,1).toUpperCase() + name.substring(1) + ", ";
+                people += name.substring(0, 1).toUpperCase() + name.substring(1) + ", ";
             }
         }
         if (people.length() > 2) {
-            people = people.substring(0, people.length()- 2);
+            people = people.substring(0, people.length() - 2);
         }
         peopleInputField.setText(people);
         shoppingTitleTextField.setText(currentShoppingList.getTitle());
     }
+
     /**
      * Changes status of shoppingitem from not shopped to shopped 
      * 
      * @param shoppingElement
      * 
      */
+
     @FXML
     void handleItemShopped(ShoppingElement shoppingElement) {
         shoppingElement.toggleShopped();
@@ -326,18 +328,18 @@ public class AppController {
             listName.setOnMouseClicked(event -> handleListButtonClicked(l));
         }
     }
+
     /**
      * Finds and displays the lists of a given person
      * 
      * @param enter key to press to evoke method
      */
+
     @FXML
     void handlePersonInput(KeyEvent enter) {
-
         if (enter.getCode() == KeyCode.ENTER) {
             fillTitleList();
         }
-    	
     }
 
     /**
@@ -345,6 +347,7 @@ public class AppController {
      * 
      * @param shoppingList The ShoppingList to load
      */
+
     @FXML 
     void handleListButtonClicked(ShoppingList shoppingList) {
         currentShoppingList = shoppingList;
@@ -378,9 +381,10 @@ public class AppController {
      * @param e the event that calls the scenechange
      * @throws IOException
      */
+
     @FXML
     void loginScreen(ActionEvent e) throws IOException {
-        Parent loginParent =   FXMLLoader.load(getClass().getResource("/resources/shoppinglist/gui/LoginScreen.fxml"));
+        Parent loginParent = FXMLLoader.load(getClass().getResource("/resources/shoppinglist/gui/LoginScreen.fxml"));
         Scene loginScene = new Scene(loginParent);
         loginScene.getStylesheets().add(getClass().getResource("/resources/shoppinglist/gui/style.css").toExternalForm());
         Stage appStage = (Stage) ((Node)e.getSource()).getScene().getWindow();

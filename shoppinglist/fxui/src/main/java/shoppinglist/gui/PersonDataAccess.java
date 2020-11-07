@@ -4,8 +4,10 @@ import com.fasterxml.jackson.core.JsonParseException;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.JsonMappingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
+import java.io.InputStreamReader;
 import java.net.URI;
 import java.net.URISyntaxException;
 import java.net.http.HttpClient;
@@ -15,8 +17,6 @@ import java.net.http.HttpResponse;
 import java.util.Collection;
 import java.util.Collections;
 import shoppinglist.core.Person;
-import java.io.BufferedReader;
-import java.io.InputStreamReader;
 
 
 public class PersonDataAccess  {
