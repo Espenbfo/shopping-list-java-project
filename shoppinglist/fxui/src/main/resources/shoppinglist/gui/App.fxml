@@ -36,6 +36,11 @@
 
       <TextField fx:id="peopleInputField" layoutX="150.0" layoutY="420.0" prefHeight="27.0" prefWidth="140.0" promptText="Person2, Person3, ..." />
 
+      <!--
+      <CheckBox fx:id="privateCheckBox" layoutX="300.0" layoutY="420.0"  prefHeight="27.0" prefWidth="50.0" onAction="#saveShoppingList"/>
+
+      <Label fx:id="privateLabel" id="privateLabel" layoutX="50.0" layoutY="420.0" prefHeight="27.0" prefWidth="90.0" />
+      -->
       <Button fx:id="saveButton" layoutX="300.0" layoutY="420.0"  prefHeight="27.0" prefWidth="50.0" onAction="#saveShoppingList" text="Save"/>
 
       <Pane layoutX="461.0" layoutY="6.0" prefHeight="462.0" prefWidth="299.0">
