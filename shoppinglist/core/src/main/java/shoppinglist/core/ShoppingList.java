@@ -70,6 +70,17 @@ public class ShoppingList {
     }
 
     /**
+     * Initialize a ShoppingList with a title and an owner 
+     *
+     * @param title the title
+     * @param owner the owner of the list 
+     */
+    public ShoppingList(String title, Person owner) {
+        this(title);
+        this.owner = owner;
+    }
+
+    /**
      * Sets the maxID for all shoppingLists.
      * @param id the new max ID
      */
@@ -299,3 +310,4 @@ public class ShoppingList {
         return 4;
     }
 }
+

@@ -89,7 +89,6 @@ public class AppController {
             String userName = Client.getCurrentPerson().getUserName();
             userName = userName.substring(0, 1).toUpperCase() + userName.substring(1);
             currentShoppingList.setOwner(Client.getCurrentPerson());
-            System.out.println("c" + currentShoppingList.getOwner());
             personInputField.setText(userName);
             fillTitleList();
             loginNameLabel.setText(userName);
@@ -227,7 +226,6 @@ public class AppController {
         for (String p : currentShoppingList.getPersonList()) {
             try {
                 if (!peopleNames.contains(p)) {
-                    System.out.println(p);
                     Person person = FileHandler.readPerson(p);
                     person.removeShoppingListById(currentShoppingList.getId());
                     FileHandler.writePerson(person);
@@ -242,7 +240,6 @@ public class AppController {
         for (String name : peopleNames) {
             try {
                 Person p = dataAccess.getPerson(name);
-                System.out.println(p);
                 Integer prevList = currentShoppingList.getId();
                 if (!p.getShoppingLists().contains(prevList)) {
                     p.addShoppingList(prevList);
@@ -292,6 +289,7 @@ public class AppController {
         if (people.length() > 2) {
             people = people.substring(0, people.length()- 2);
         }
+        loginNameLabel.setText(currentShoppingList.getOwner().getUserName());
         peopleInputField.setText(people);
         shoppingTitleTextField.setText(currentShoppingList.getTitle());
     }
@@ -308,7 +306,7 @@ public class AppController {
     }
 
     /**
-     * Updates the list of shoppinglists, filtered by person, on the right side of the gui
+     * Updates the list of shoppinglists, filtered by person 
      */
     void fillTitleList() {
         String personString = personInputField.getText().toLowerCase();
@@ -326,6 +324,16 @@ public class AppController {
             listName.setOnMouseClicked(event -> handleListButtonClicked(l));
         }
     }
+    
+    /**
+     * Updates the list of shoppinglists, displays the lists of the person logged in
+     */
+    void fillTitleListByLogin() { 
+        String userName = Client.getCurrentPerson().getUserName();
+        userName = userName.substring(0, 1).toUpperCase() + userName.substring(1);
+        personInputField.setText(userName);
+        fillTitleList();
+    }
     /**
      * Finds and displays the lists of a given person
      * 
@@ -337,7 +345,7 @@ public class AppController {
         if (enter.getCode() == KeyCode.ENTER) {
             fillTitleList();
         }
-    	
+        
     }
 
     /**
@@ -360,7 +368,8 @@ public class AppController {
      */
     @FXML
     void newList() {
-        currentShoppingList = new ShoppingList("New List");
+        fillTitleListByLogin();
+        currentShoppingList = new ShoppingList("New List", Client.getCurrentPerson());
         loadShoppingListWithList(currentShoppingList);
         saveShoppingList();
     }
@@ -387,3 +396,4 @@ public class AppController {
         appStage.setScene(loginScene);
     }
 }
+
