@@ -315,13 +315,16 @@ public class AppController {
         listsOverview.getChildren().clear();
         for (Integer id : currenttPerson.getShoppingLists()) {
             ShoppingList l = shoppingAccess.getShoppingList(id);
-            Pane list = new Pane();
-            Label listName = new Label(l.getTitle());
-            listName.setPrefWidth(1000.);
-            listName.getStyleClass().add("listTitleListElement");
-            listsOverview.getChildren().add(listName);
+            if (l.listIsPublic()){
+                Pane list = new Pane();
+                Label listName = new Label(l.getTitle());
+                listName.setPrefWidth(1000.);
+                listName.getStyleClass().add("listTitleListElement");
+                listsOverview.getChildren().add(listName);
 
-            listName.setOnMouseClicked(event -> handleListButtonClicked(l));
+                listName.setOnMouseClicked(event -> handleListButtonClicked(l));
+            }
+            
         }
     }
     
