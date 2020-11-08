@@ -3,7 +3,6 @@ package shoppinglist.core;
 import java.lang.Math;
 import java.util.ArrayList;
 
-
 /**
  * Represents a list of ShoppingElements.
  */
@@ -85,7 +84,7 @@ public class ShoppingList {
    * @param id the new max ID
    */
    /* public static void setCurrentMaxID(int id) {
-        currentMaxID = id;
+      currentMaxID = id;
     }*/
 
   /**

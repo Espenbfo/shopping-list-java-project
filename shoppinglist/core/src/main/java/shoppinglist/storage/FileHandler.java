@@ -35,7 +35,6 @@ public class FileHandler {
       ShoppingList out = mapper.readValue(Paths.get("./shoppinglists/" + id + ".json").toFile(), ShoppingList.class);
       return out;
     } catch (Exception e) {
-
     }
     return null;
   }
