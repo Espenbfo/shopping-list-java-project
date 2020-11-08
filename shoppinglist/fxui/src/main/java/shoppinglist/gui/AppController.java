@@ -30,7 +30,10 @@ import javafx.scene.layout.TilePane;
 import javafx.scene.text.TextAlignment;
 import javafx.stage.Stage;
 import javafx.util.Callback;
-import shoppinglist.core.*;
+import shoppinglist.core.Client;
+import shoppinglist.core.ShoppingElement;
+import shoppinglist.core.ShoppingList;
+import shoppinglist.core.Person;
 import shoppinglist.storage.FileHandler;
 
 public class AppController {
@@ -74,14 +77,27 @@ public class AppController {
   private PersonDataAccess dataAccess;
   private ShoppingListDataAccess shoppingAccess;
 
+  /**
+   * Getter for the PersonDataAccess object.
+   * 
+   * @return dataAccess, the object
+   */
   protected PersonDataAccess getDataAccess() {
     return dataAccess;
   }
 
+  /**
+   * Setter for the PersonDataAccess object.
+   * 
+   * @param dataAccess the PersonDataAccess object.
+   */
   public void setDataAccess(final PersonDataAccess dataAccess) {
     this.dataAccess = dataAccess;
   }
 
+  /**
+   * Initializes the appscreen.
+   */
   @FXML
   public void initialize() {
     setDataAccess(new PersonDataAccess("http://localhost:8087/index"));
@@ -209,7 +225,7 @@ public class AppController {
   }
 
   /**
-   * Saves shoppinglist to server
+   * Saves shoppinglist to server.
    */
   @FXML
   void saveShoppingList() {
@@ -260,7 +276,7 @@ public class AppController {
 
 
   /**
-   * Loads existing shoppinglist from server
+   * Loads existing shoppinglist onto screen from server.
    */
   @FXML
   void loadShoppingList() {
@@ -268,14 +284,13 @@ public class AppController {
   }
 
   /**
-   * Loads existing shoppinglist from server
+   * Loads existing shoppinglist onto screen from server.
    *
    * @param l shoppinglist to load
    */
   @FXML
   void loadShoppingListWithList(ShoppingList l) {
     currentShoppingList = l;
-    //shoppingList.getChildren().clear();
     data.clear();
     for (ShoppingElement x : currentShoppingList.getElementList()) {
       data.add(x);
@@ -301,9 +316,9 @@ public class AppController {
   }
 
   /**
-   * Changes status of shoppingitem from not shopped to shopped
+   * Changes status of shoppingitem from not shopped to shopped.
    *
-   * @param shoppingElement
+   * @param shoppingElement the element to toggle
    */
   @FXML
   void handleItemShopped(ShoppingElement shoppingElement) {
@@ -312,11 +327,13 @@ public class AppController {
   }
 
   /**
-   * Updates the list of shoppinglists, filtered by person
+   * Updates the list of shoppinglists, filtered by the person given in the inputfield.
    */
   void fillTitleList() {
     String personString = personInputField.getText().toLowerCase();
-    if (personString.equals("")) return;
+    if (personString.equals("")) {
+      return;
+    }
     Person currenttPerson = dataAccess.getPerson(personString);
     listsOverview.getChildren().clear();
     for (Integer id : currenttPerson.getShoppingLists()) {
@@ -335,7 +352,7 @@ public class AppController {
   }
 
   /**
-   * Updates the list of shoppinglists, displays the lists of the person logged in
+   * Updates the list of shoppinglists, displays the lists of the person logged in.
    */
   void fillTitleListByLogin() {
     String userName = Client.getCurrentPerson().getUserName();
@@ -345,7 +362,7 @@ public class AppController {
   }
 
   /**
-   * Finds and displays the lists of a given person
+   * Finds and displays the lists of a given person.
    *
    * @param enter key to press to evoke method
    */
@@ -360,7 +377,7 @@ public class AppController {
 
 
   /**
-   * Loads the ShoppingList clicked
+   * Loads the ShoppingList clicked.
    *
    * @param shoppingList The ShoppingList to load
    */
@@ -376,7 +393,7 @@ public class AppController {
 
 
   /**
-   * Creates a new empty shoppinglist
+   * Creates a new empty shoppinglist.
    */
   @FXML
   void newList() {
