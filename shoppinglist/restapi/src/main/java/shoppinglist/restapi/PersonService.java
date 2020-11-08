@@ -12,6 +12,7 @@ import javax.ws.rs.Produces;
 import java.util.ArrayList;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.core.MediaType;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import shoppinglist.core.Person;
@@ -47,6 +48,7 @@ public class PersonService {
 
   /**
    * not used
+   *
    * @return
    */
   @GET
@@ -57,6 +59,7 @@ public class PersonService {
 
   /**
    * Recieved get for person
+   *
    * @param username
    * @return person with username username
    */
@@ -70,6 +73,7 @@ public class PersonService {
 
   /**
    * Recieved Put for Person
+   *
    * @param person
    * @return whether the person was saved or not
    */
@@ -85,6 +89,7 @@ public class PersonService {
 
   /**
    * Recieved Get for shoppinglist
+   *
    * @param id
    * @return the shoppinglist with id id
    */
@@ -101,15 +106,31 @@ public class PersonService {
 
   /**
    * Recieved Put for shoppinglist
+   *
    * @param shoppinglist the shoppinglist to save
    */
   @POST
   @Path("/ShoppingLists/{id}")
   @Consumes(MediaType.APPLICATION_JSON)
   @Produces(MediaType.APPLICATION_JSON)
-  public void addShoppingList(final ShoppingList shoppinglist) {
+  public int addShoppingList(final ShoppingList shoppinglist) {
+    int newId = shoppinglist.getId();
     System.out.println(shoppinglist);
+    if (newId == -1) {
+      newId = FileHandler.readMaxID();
+      newId++;
+      shoppinglist.setId(newId);
+      FileHandler.writeMaxID(newId);
+    }
+    for (String x : shoppinglist.getPersonList()) {
+      Person aperson = FileHandler.readPerson(x);
+      if (!aperson.getShoppingLists().contains(newId) && aperson != null) {
+        aperson.addShoppingList(newId);
+        FileHandler.writePerson(aperson);
+      }
+    }
     FileHandler.writeFile(shoppinglist);
+    return newId;
   }
 
 }

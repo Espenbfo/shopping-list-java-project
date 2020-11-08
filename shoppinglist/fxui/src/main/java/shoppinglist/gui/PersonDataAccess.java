@@ -4,8 +4,10 @@ import com.fasterxml.jackson.core.JsonParseException;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.JsonMappingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
+import java.io.InputStreamReader;
 import java.net.URI;
 import java.net.URISyntaxException;
 import java.net.http.HttpClient;
@@ -20,13 +22,13 @@ import java.io.BufferedReader;
 import java.io.InputStreamReader;
 
 
-public class PersonDataAccess  {
+public class PersonDataAccess {
 
-private final String baseUrlString;
+  private final String baseUrlString;
 
-    public PersonDataAccess(final String baseUrlString) {
-        this.baseUrlString = baseUrlString;
-    }
+  public PersonDataAccess(final String baseUrlString) {
+    this.baseUrlString = baseUrlString;
+  }
 
     private final static ObjectMapper mapper = new ObjectMapper();
 
@@ -61,12 +63,12 @@ private final String baseUrlString;
                             request, HttpResponse.BodyHandlers.ofInputStream()
                     );
 
-        } catch (final JsonProcessingException e) {
-            throw new RuntimeException(e);
-        } catch (IOException | InterruptedException e) {
-            throw new RuntimeException(e);
-        }
+    } catch (final JsonProcessingException e) {
+      throw new RuntimeException(e);
+    } catch (IOException | InterruptedException e) {
+      throw new RuntimeException(e);
     }
+  }
 
     /**
      * Gets the person with the given username.
