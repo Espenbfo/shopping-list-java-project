@@ -171,7 +171,7 @@ public class AppController {
    * Adds the CheckBoxrow to the TableView.
    */
   private void addCheckBoxToTable() {
-    TableColumn<ShoppingElement, Void> colCB = new TableColumn("Done");
+    TableColumn<ShoppingElement, Void> colCb = new TableColumn("Done");
     Callback<TableColumn<ShoppingElement, Void>, TableCell<ShoppingElement, Void>> cellFactory = new Callback<TableColumn<ShoppingElement, Void>, TableCell<ShoppingElement, Void>>() {
       @Override
       public TableCell<ShoppingElement, Void> call(final TableColumn<ShoppingElement, Void> param) {
@@ -202,9 +202,9 @@ public class AppController {
       }
     };
 
-    colCB.setCellFactory(cellFactory);
-    colCB.setPrefWidth(40);
-    shoppingList.getColumns().add(colCB);
+    colCb.setCellFactory(cellFactory);
+    colCb.setPrefWidth(40);
+    shoppingList.getColumns().add(colCb);
   }
 
     /**

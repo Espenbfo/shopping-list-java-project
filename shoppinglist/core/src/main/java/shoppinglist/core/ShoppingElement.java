@@ -3,10 +3,10 @@ package shoppinglist.core;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 @JsonIgnoreProperties(ignoreUnknown = true)
+
 /**
  * Represents an element in a shoppingList.
  */
-
 public class ShoppingElement {
   private String name;
   private MeasurementType measurementType;
@@ -166,9 +166,9 @@ public class ShoppingElement {
    */
   @Override
   public String toString() {
-    return "name='" + name + '\'' + "\n" +
-            "value=" + getValue() + " " + measurementType.getBaseName() + "\n" +
-            "shopped=" + shopped;
+    return "name='" + name + '\'' + "\n" 
+            + "value=" + getValue() + " " + measurementType.getBaseName() + "\n" 
+            + "shopped=" + shopped;
   }
 
   /**
