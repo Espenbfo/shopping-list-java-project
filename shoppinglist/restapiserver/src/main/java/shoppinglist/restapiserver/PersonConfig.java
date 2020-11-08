@@ -16,10 +16,9 @@ public class PersonConfig extends ResourceConfig {
 
     public PersonConfig() {
 
+        register(LoginService.class);
         register(TestPage.class);
         register(PersonService.class);
-        register(LoginService.class);
-
         register(new AbstractBinder() {
         @Override
         protected void configure() {

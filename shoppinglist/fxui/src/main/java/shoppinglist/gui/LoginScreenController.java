@@ -66,7 +66,7 @@ public class LoginScreenController {
      */
 
     /**
-     * Logs in a user
+     * Logs in a user.
      * @param e the event calling the login
      * @throws IOException if the user doesn't exist
      */
@@ -81,7 +81,7 @@ public class LoginScreenController {
         }
 
         try {
-            Person p = dataAccess.postLogin(name,password);
+            Person p = dataAccess.putLogin(name,password);
             if(p==null) {
                 errorLabel.setText("Login failed, is your password correct?");
             }
@@ -98,7 +98,7 @@ public class LoginScreenController {
     }
 
     /**
-     * Registers a user
+     * Registers a user.
      * @param e the event calling the registration
      * @throws IOException if the person couldn't be written or the login throws an exception
      */
@@ -114,7 +114,7 @@ public class LoginScreenController {
             Person p = new Person(name);
             byte[] salt = p.getSalt();
             Client.getPasswords().setPassword(p, password);
-            dataAccess.putPerson(p);
+            dataAccess.putRegister(p,password);
             FileHandler.writePasswords(Client.getPasswords());
             System.out.println("register");
             handleLogin(e); 

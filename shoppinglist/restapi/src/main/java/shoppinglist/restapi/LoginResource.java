@@ -20,7 +20,7 @@ public class LoginResource {
 
     private static final Logger LOG = LoggerFactory.getLogger(LoginResource.class);
 
-    private String person;
+    private Person person;
     private String password;
 
     /**
@@ -29,12 +29,17 @@ public class LoginResource {
      * @param person the person
      * @param password the password
      */
-    public LoginResource(String person, String password) {
+    public LoginResource(Person person, String password) {
         this.person = person;
         this.password = password;
     }
 
-    public String getPerson() {
+    public LoginResource() {
+        this.person = new Person();
+        this.password = "";
+    }
+
+    public Person getPerson() {
         return person;
     }
 
@@ -42,7 +47,7 @@ public class LoginResource {
         return password;
     }
 
-    public void setPerson(String person) {
+    public void setPerson(Person person) {
         this.person = person;
     }
 

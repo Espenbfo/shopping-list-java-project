@@ -99,24 +99,6 @@ public class PersonService {
     return shoppinglist;
   }
 
-
-  /**
-   *
-   * @param userName
-   * @return blablabla
-   */
-  @POST
-  @Path("/Login/login")
-  @Consumes(MediaType.APPLICATION_JSON)
-  @Produces(MediaType.APPLICATION_JSON)
-  public Person checkLogin(LoginResource loginResource) {
-    System.out.println("post :" + loginResource.getPerson() + " " + loginResource.getPassword());
-    if (true) {
-      return FileHandler.readPerson(loginResource.getPerson());
-    }
-    return null;
-  }
-
   /**
    * Recieved Put for shoppinglist
    * @param shoppinglist the shoppinglist to save
