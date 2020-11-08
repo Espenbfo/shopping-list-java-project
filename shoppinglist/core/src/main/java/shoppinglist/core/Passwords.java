@@ -5,6 +5,7 @@ import java.util.HashMap;
 import javax.crypto.SecretKey;
 import javax.crypto.SecretKeyFactory;
 import javax.crypto.spec.PBEKeySpec;
+
 import org.apache.commons.codec.binary.Base64;
 import shoppinglist.core.Person;
 

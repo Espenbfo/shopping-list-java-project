@@ -20,14 +20,14 @@ public class PersonConfig extends ResourceConfig {
 
   public PersonConfig() {
 
-        register(LoginService.class);
-        register(TestPage.class);
-        register(PersonService.class);
-        register(new AbstractBinder() {
-        @Override
-        protected void configure() {
-            bind(persons);
-        }
-      });
+    register(LoginService.class);
+    register(TestPage.class);
+    register(PersonService.class);
+    register(new AbstractBinder() {
+      @Override
+      protected void configure() {
+        bind(persons);
+      }
+    });
   }
 }

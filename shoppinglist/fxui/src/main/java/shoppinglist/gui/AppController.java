@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+
 import javafx.application.Application;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -79,7 +80,7 @@ public class AppController {
 
   /**
    * Getter for the PersonDataAccess object.
-   * 
+   *
    * @return dataAccess, the object
    */
   protected PersonDataAccess getDataAccess() {
@@ -88,7 +89,7 @@ public class AppController {
 
   /**
    * Setter for the PersonDataAccess object.
-   * 
+   *
    * @param dataAccess the PersonDataAccess object.
    */
   public void setDataAccess(final PersonDataAccess dataAccess) {

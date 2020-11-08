@@ -2,6 +2,7 @@ package shoppinglist.restapi;
 
 
 import com.fasterxml.jackson.databind.ObjectMapper;
+
 import javax.inject.Inject;
 import javax.ws.rs.GET;
 import javax.ws.rs.PUT;

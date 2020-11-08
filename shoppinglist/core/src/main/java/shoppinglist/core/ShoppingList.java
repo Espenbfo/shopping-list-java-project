@@ -336,7 +336,7 @@ public class ShoppingList {
 
     for (int i = 0; i < getElementList().size(); i++) {
       if (!getElement(i).equals(e.getElement(i))) {
-       return false;
+        return false;
       }
     }
 

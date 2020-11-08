@@ -2,6 +2,7 @@ package shoppinglist.restapi;
 
 
 import com.fasterxml.jackson.databind.ObjectMapper;
+
 import javax.inject.Inject;
 import javax.ws.rs.GET;
 import javax.ws.rs.PUT;
@@ -12,6 +13,7 @@ import javax.ws.rs.Produces;
 import java.util.ArrayList;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.core.MediaType;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import shoppinglist.core.Person;
@@ -42,6 +44,7 @@ public class LoginService {
 
   /**
    * Recieved Put for Person
+   *
    * @param loginResource the username, password combo
    * @return whether the person was saved or not
    */
@@ -65,6 +68,7 @@ public class LoginService {
 
   /**
    * Confirms a users password
+   *
    * @param loginResource the username, password combo
    * @return the correct person if the login succeeds
    */
