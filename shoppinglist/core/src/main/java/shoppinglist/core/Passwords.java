@@ -1,11 +1,13 @@
 package shoppinglist.core;
 
 import org.apache.commons.codec.binary.Base64;
+
 import java.security.SecureRandom;
 import java.util.HashMap;
 import javax.crypto.SecretKey;
 import javax.crypto.SecretKeyFactory;
 import javax.crypto.spec.PBEKeySpec;
+
 import shoppinglist.core.Person;
 
 /**

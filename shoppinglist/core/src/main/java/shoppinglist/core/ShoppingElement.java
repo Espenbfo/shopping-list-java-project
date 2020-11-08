@@ -166,8 +166,8 @@ public class ShoppingElement {
    */
   @Override
   public String toString() {
-    return "name='" + name + '\'' + "\n" 
-            + "value=" + getValue() + " " + measurementType.getBaseName() + "\n" 
+    return "name='" + name + '\'' + "\n"
+            + "value=" + getValue() + " " + measurementType.getBaseName() + "\n"
             + "shopped=" + shopped;
   }
 

@@ -1,6 +1,7 @@
 package shoppinglist.core;
 
 import java.util.ArrayList;
+
 import shoppinglist.core.Passwords;
 
 public class Person {
@@ -201,7 +202,7 @@ public class Person {
   @Override
   public boolean equals(Object o) {
     if (o == null) {
-        return false;
+      return false;
     }
     if (!o.getClass().equals(this.getClass())) {
       return false;
@@ -215,7 +216,7 @@ public class Person {
     }
     for (int i = 0; i < getShoppingLists().size(); i++) {
       if (!getShoppingList(i).equals(p.getShoppingList(i))) {
-          return false;
+        return false;
       }
     }
     return true;

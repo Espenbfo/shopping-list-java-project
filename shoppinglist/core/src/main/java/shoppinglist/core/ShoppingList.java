@@ -71,10 +71,10 @@ public class ShoppingList {
     //currentMaxID = Math.max(currentMaxID,id);
   }
 
-    /**
+  /**
    * Initialize a ShoppingList with a title and owner.
    */
-  public ShoppingList(String title, Person owner) { 
+  public ShoppingList(String title, Person owner) {
     this(title);
     this.owner = owner;
   }
@@ -280,17 +280,17 @@ public class ShoppingList {
   }
 
   /**
-   * 
+   *
    */
-  public boolean getPublicList(){
-      return publicList;
+  public boolean getPublicList() {
+    return publicList;
   }
 
   /**
-   * 
+   *
    */
-  public void setPublicList(boolean listIsPublic){
-      this.publicList = listIsPublic;
+  public void setPublicList(boolean listIsPublic) {
+    this.publicList = listIsPublic;
   }
 
   /**
@@ -304,9 +304,9 @@ public class ShoppingList {
       elementString += "\n\n";
       elementString += e.toString();
     }
-    return "---------------------\n" 
-            + "tittel: " + getTitle() + '\n' 
-            + "ID: " + getId() + '\n' 
+    return "---------------------\n"
+            + "tittel: " + getTitle() + '\n'
+            + "ID: " + getId() + '\n'
             + "elements:\n" + elementString;
   }
 
