@@ -18,35 +18,35 @@ import shoppinglist.core.ShoppingList;
 
 public class PersonResource {
 
-  private static final Logger LOG = LoggerFactory.getLogger(PersonResource.class);
+    private static final Logger LOG = LoggerFactory.getLogger(PersonResource.class);
 
-  private Person person;
-  private ShoppingList shoppingList;
+    private Person person;
+    private ShoppingList shoppingList;
 
-  /**
-   * Initializes PersonResource
-   *
-   * @param person       the person
-   * @param id           the id of the shoppinglist
-   * @param shoppingList the shoppingList, or null
-   */
-  public PersonResource(Person person, ShoppingList shoppingList) {
-    this.person = person;
-    this.shoppingList = shoppingList;
-  }
+    /**
+     * Initializes PersonResource
+     *
+     * @param person       the person
+     * @param id           the id of the shoppinglist
+     * @param shoppingList the shoppingList, or null
+     */
+    public PersonResource(Person person, ShoppingList shoppingList) {
+        this.person = person;
+        this.shoppingList = shoppingList;
+    }
 
-  public void setId(int id) {
-    shoppingList.setId(id);
-    person.addShoppingList(id);
-  }
+    public void setId(int id) {
+        shoppingList.setId(id);
+        person.addShoppingList(id);
+    }
 
-  public Person getPerson() {
-    return person;
-  }
+    public Person getPerson() {
+        return person;
+    }
 
-  public ShoppingList getShoppingList() {
-    return shoppingList;
-  }
+    public ShoppingList getShoppingList() {
+        return shoppingList;
+    }
 
 
 }

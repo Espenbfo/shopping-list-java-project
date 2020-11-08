@@ -13,11 +13,11 @@ import shoppinglist.core.MaxID;
 public class MaxIDTest {
 
 
-  @Test
-  public void MaxIDTestAll() {
-    MaxID m = new MaxID();
-    m.setId(3);
-    MaxID m2 = new MaxID(3);
-    assertTrue(m.getId() == m2.getId());
-  }
+    @Test
+    public void MaxIDTestAll() {
+        MaxID m = new MaxID();
+        m.setId(3);
+        MaxID m2 = new MaxID(3);
+        assertTrue(m.getId() == m2.getId());
+    }
 }

@@ -11,47 +11,47 @@ import java.io.FileNotFoundException;
 
 public class PersistencyTest {
 
-  private static ShoppingList l;
+    private static ShoppingList l;
 
-  @BeforeAll
-  public static void init() {
-    l = new ShoppingList();
-    l.setTitle("Andedam");
-    l.addElement("kaal", 34, "kg");
-    l.addElement("loek", 3, "stk");
-    l.addElement("And", 43, "unger");
-  }
-
-  @Test
-  public void testWriteFile() {
-    Assertions.assertTrue(FileHandler.writeFile(l));
-  }
-
-  @Test
-  public void testReadfile() {
-    System.out.println(l.toString());
-    ShoppingList tl = FileHandler.readFile(l.getId());
-    for (int i = 0; i < l.getElementList().size(); i++) {
-      Assertions.assertTrue(l.getElement(i).equals(tl.getElement(i)));
+    @BeforeAll
+    public static void init() {
+        l = new ShoppingList();
+        l.setTitle("Andedam");
+        l.addElement("kaal", 34, "kg");
+        l.addElement("loek", 3, "stk");
+        l.addElement("And", 43, "unger");
     }
-    Assertions.assertTrue(tl.equals(l));
-  }
 
-  @Test
-  public void testWriteReadPerson() {
-    Assertions.assertTrue(FileHandler.writePerson(new Person("TestIndivid")));
-    Assertions.assertFalse(FileHandler.writePerson(new Person("@<>/7.json")));
-    Person p = FileHandler.readPerson("TestIndivid");
-    Assertions.assertTrue(p.equals(new Person("TestIndivid")));
-  }
+    @Test
+    public void testWriteFile() {
+        Assertions.assertTrue(FileHandler.writeFile(l));
+    }
+
+    @Test
+    public void testReadfile() {
+        System.out.println(l.toString());
+        ShoppingList tl = FileHandler.readFile(l.getId());
+        for (int i = 0; i < l.getElementList().size(); i++) {
+            Assertions.assertTrue(l.getElement(i).equals(tl.getElement(i)));
+        }
+        Assertions.assertTrue(tl.equals(l));
+    }
+
+    @Test
+    public void testWriteReadPerson() {
+        Assertions.assertTrue(FileHandler.writePerson(new Person("TestIndivid")));
+        Assertions.assertFalse(FileHandler.writePerson(new Person("@<>/7.json")));
+        Person p = FileHandler.readPerson("TestIndivid");
+        Assertions.assertTrue(p.equals(new Person("TestIndivid")));
+    }
 
 
-  @Test
-  public void testWriteReadMaxID() {
+    @Test
+    public void testWriteReadMaxID() {
 
-    Assertions.assertTrue(FileHandler.writeMaxID(4));
-    Assertions.assertTrue(FileHandler.readMaxID() == 4);
-  }
+        Assertions.assertTrue(FileHandler.writeMaxID(4));
+        Assertions.assertTrue(FileHandler.readMaxID() == 4);
+    }
 
 
 }
