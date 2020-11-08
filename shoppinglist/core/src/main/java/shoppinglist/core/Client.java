@@ -3,7 +3,7 @@ package shoppinglist.core;
 /**
  * This class stores information between scenes in the App.
  */
-final public class Client {
+final class Client {
 
   private Client() {
     return;

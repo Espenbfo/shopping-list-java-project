@@ -277,10 +277,10 @@ public class ShoppingList {
       elementString += "\n\n";
       elementString += e.toString();
     }
-    return "---------------------\n" +
-            "tittel: " + getTitle() + '\n' +
-            "ID: " + getId() + '\n' +
-            "elements:\n" + elementString;
+    return "---------------------\n" 
+            + "tittel: " + getTitle() + '\n' 
+            + "ID: " + getId() + '\n' 
+            + "elements:\n" + elementString;
   }
 
   /**
