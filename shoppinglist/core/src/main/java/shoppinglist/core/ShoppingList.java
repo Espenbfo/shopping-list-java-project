@@ -14,7 +14,7 @@ public class ShoppingList {
     private ArrayList<ShoppingElement> elementList;
     private ArrayList<String> personList;
     private Person owner;
-    private boolean publicList = true;
+    private boolean publicList;
 
     /**
      * Initialize a ShoppingList with default values.
@@ -26,6 +26,7 @@ public class ShoppingList {
         this.personList = new ArrayList<String>();
         this.title = "";
         this.owner = null;
+        this.publicList = true;
     }
 
     /**
@@ -53,6 +54,7 @@ public class ShoppingList {
         this.personList = new ArrayList<String>();
         currentMaxID = Math.max(currentMaxID,id);
         this.owner = null;
+        this.publicList = true;
     }
 
     /**
@@ -68,6 +70,7 @@ public class ShoppingList {
         this.elementList = elementList;
         this.personList = personList;
         currentMaxID = Math.max(currentMaxID,id);
+        this.publicList = true;
     }
 
     /**
@@ -257,7 +260,7 @@ public class ShoppingList {
     }
 
     public void makeListPrivate(){
-        publicList = false;
+        this.publicList = false;
     }
 
     /**
