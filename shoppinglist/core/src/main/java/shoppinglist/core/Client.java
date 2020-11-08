@@ -15,12 +15,12 @@ final public class Client {
     private static Person currentPerson;
 
     /**
-     * The passwords (This will be stored on the server later)
+     * The passwords (This will be stored on the server later).
      */
     private static Passwords passwords;
 
     /**
-     * get passwords
+     * get passwords.
      *
      * @return passwords
      */
@@ -29,7 +29,7 @@ final public class Client {
     }
 
     /**
-     * set passwords
+     * set passwords.
      *
      * @param passwords new passwords
      */

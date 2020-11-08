@@ -1,7 +1,6 @@
 package shoppinglist.core;
 
 import java.util.ArrayList;
-
 import shoppinglist.core.Passwords;
 
 public class Person {
@@ -12,13 +11,13 @@ public class Person {
     private String userName;
 
     /**
-     * The salt for hashing this persons password
+     * The salt for hashing this persons password.
      */
     private byte[] salt;
 
 
     /**
-     * The ShoppingLists the Person participates in
+     * The ShoppingLists the Person participates in.
      */
     private ArrayList<Integer> shoppingLists;
 
@@ -89,7 +88,7 @@ public class Person {
     }
 
     /**
-     * Gets the salt
+     * Gets the salt.
      *
      * @return the salt
      */
@@ -98,7 +97,7 @@ public class Person {
     }
 
     /**
-     * Sets the salt
+     * Sets the salt.
      *
      * @param salt new salt
      */
@@ -108,7 +107,7 @@ public class Person {
 
 
     /**
-     * creates a random salt
+     * creates a random salt.
      */
 
     public void randomSalt() {
