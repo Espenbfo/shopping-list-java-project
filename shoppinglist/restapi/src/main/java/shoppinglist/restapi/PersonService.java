@@ -1,19 +1,23 @@
 package shoppinglist.restapi;
 
 
+import com.fasterxml.jackson.databind.ObjectMapper;
 import javax.inject.Inject;
 import javax.ws.rs.GET;
 import javax.ws.rs.PUT;
 import javax.ws.rs.Path;
+import javax.ws.rs.POST;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 import java.util.ArrayList;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.core.MediaType;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import shoppinglist.core.Person;
 import shoppinglist.core.ShoppingList;
+import shoppinglist.core.Passwords;
 import shoppinglist.restapi.PersonResource;
 import shoppinglist.storage.FileHandler;
 
@@ -32,6 +36,11 @@ public class PersonService {
    * logger for logging server issues
    */
   private static final Logger LOG = LoggerFactory.getLogger(PersonService.class);
+
+  /**
+   * Maps objects to json
+   */
+  private static final ObjectMapper mapper = new ObjectMapper();
   /*
   @Inject
   private Person person;
@@ -39,6 +48,7 @@ public class PersonService {
 
   /**
    * not used
+   *
    * @return
    */
   @GET
@@ -49,6 +59,7 @@ public class PersonService {
 
   /**
    * Recieved get for person
+   *
    * @param username
    * @return person with username username
    */
@@ -62,6 +73,7 @@ public class PersonService {
 
   /**
    * Recieved Put for Person
+   *
    * @param person
    * @return whether the person was saved or not
    */
@@ -77,6 +89,7 @@ public class PersonService {
 
   /**
    * Recieved Get for shoppinglist
+   *
    * @param id
    * @return the shoppinglist with id id
    */
@@ -91,18 +104,33 @@ public class PersonService {
     return shoppinglist;
   }
 
-
   /**
    * Recieved Put for shoppinglist
+   *
    * @param shoppinglist the shoppinglist to save
    */
   @PUT
   @Path("/ShoppingLists/{id}")
   @Consumes(MediaType.APPLICATION_JSON)
   @Produces(MediaType.APPLICATION_JSON)
-  public void addShoppingList(final ShoppingList shoppinglist) {
+  public int addShoppingList(final ShoppingList shoppinglist) {
+    int newId = shoppinglist.getId();
     System.out.println(shoppinglist);
+    if (newId == -1) {
+      newId = FileHandler.readMaxID();
+      newId++;
+      shoppinglist.setId(newId);
+      FileHandler.writeMaxID(newId);
+    }
+    for (String x : shoppinglist.getPersonList()) {
+      Person aperson = FileHandler.readPerson(x);
+      if (!aperson.getShoppingLists().contains(newId) && aperson != null) {
+        aperson.addShoppingList(newId);
+        FileHandler.writePerson(aperson);
+      }
+    }
     FileHandler.writeFile(shoppinglist);
+    return newId;
   }
 
 }

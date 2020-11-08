@@ -1,4 +1,5 @@
 package shoppinglist.restapiserver;
+
 import com.fasterxml.jackson.core.JsonGenerationException;
 import com.fasterxml.jackson.core.JsonParseException;
 import com.fasterxml.jackson.core.JsonProcessingException;
@@ -6,9 +7,11 @@ import com.fasterxml.jackson.databind.JsonMappingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.junit.jupiter.api.Assertions.fail;
+
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.io.OutputStream;
@@ -36,36 +39,35 @@ import shoppinglist.restapi.PersonService;
 import shoppinglist.core.*;
 
 
-public class ServerTest extends JerseyTest{
+public class ServerTest extends JerseyTest {
 
 
-    @Override
-    protected ResourceConfig configure() {
-        final ResourceConfig config = new ResourceConfig();
-        return config;
+  @Override
+  protected ResourceConfig configure() {
+    final ResourceConfig config = new ResourceConfig();
+    return config;
+  }
+
+  @Override
+  protected TestContainerFactory getTestContainerFactory() throws TestContainerException {
+    return new GrizzlyTestContainerFactory();
+  }
+
+  @Test
+  public void testServerStart() {
+    HttpServer h;
+    try {
+      h = ShoppingGrizzlyApp.start();
+      URL clientUrl = new URL("http://localhost:8087/index/Gud");
+      HttpURLConnection connection = (HttpURLConnection) clientUrl.openConnection();
+      int response = connection.getResponseCode();
+      assertEquals(response, 200);
+      ShoppingGrizzlyApp.stop(h);
+    } catch (Exception e) {
+      e.printStackTrace();
+      assertTrue(false);
     }
-
-    @Override
-    protected TestContainerFactory getTestContainerFactory() throws TestContainerException {
-        return new GrizzlyTestContainerFactory();
-    }
-
-    @Test
-    public void testServerStart(){
-        HttpServer h;
-        try {
-            h = ShoppingGrizzlyApp.start();
-            URL clientUrl = new URL("http://localhost:8087/index/Gud");
-            HttpURLConnection connection = (HttpURLConnection) clientUrl.openConnection();
-            int response = connection.getResponseCode();
-            assertEquals(response, 200);
-            ShoppingGrizzlyApp.stop(h);
-        }
-        catch(Exception e){
-            e.printStackTrace();
-            assertTrue(false);
-        }
-    }
+  }
 /*
     @Test
     public void testPost(){
