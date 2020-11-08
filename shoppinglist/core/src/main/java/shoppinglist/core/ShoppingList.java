@@ -321,7 +321,6 @@ public class ShoppingList {
     if (!o.getClass().equals(this.getClass())) {
       return false;
     }
-
     ShoppingList e = (ShoppingList) o;
 
     if (!getTitle().equals(e.getTitle())) {
@@ -337,7 +336,9 @@ public class ShoppingList {
     }
 
     for (int i = 0; i < getElementList().size(); i++) {
-      if (!getElement(i).equals(e.getElement(i))) return false;
+      if (!getElement(i).equals(e.getElement(i))) {
+       return false;
+      }
     }
 
 
