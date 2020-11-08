@@ -25,6 +25,7 @@ import javafx.scene.text.TextAlignment;
 import javafx.stage.Stage;
 import shoppinglist.core.*;
 import shoppinglist.storage.FileHandler;
+import shoppinglist.restapi.LoginResource;
 
 public class LoginScreenController {
   private static Person currentPerson;
@@ -77,49 +78,49 @@ public class LoginScreenController {
       return;
     }
 
-    try {
-      Person p = dataAccess.getPerson(name);
-      System.out.println(dataAccess.getPerson(name));
-      Client.setCurrentPerson(p);
-      if (Client.getPasswords().checkPassword(Client.getCurrentPerson(), password)) {
-        mainScreen(e);
-      } else {
-        errorLabel.setText("Login failed, is your password correct?");
-      }
-    } catch (Exception ex) {
-      ex.printStackTrace();
-      errorLabel.setText("Login failed. Are you registred?");
+        try {
+            Person p = dataAccess.putLogin(name,password);
+            if(p==null) {
+                errorLabel.setText("Login failed, is your password correct?");
+            }
+            else {
+                Client.setCurrentPerson(p);
+                mainScreen(e);
+            }
+        }
+        catch (Exception ex){
+            ex.printStackTrace();
+            errorLabel.setText("Login failed. Are you registred?");
+        }
+        System.out.println("login");
     }
-    System.out.println("login");
 
-  }
-
-  /**
-   * Registers a user.
-   *
-   * @param e the event calling the registration.
-   * @throws IOException if the person couldn't be written or the login throws an exception
-   */
-  @FXML
-  void handleRegister(ActionEvent e) throws IOException {
-    String name = usernameInputField.getText().toLowerCase();
-    if (dataAccess.getPerson(name) == null) {
-      String password = passwordInputField.getText();
-      if (name.length() == 0 || password.length() == 0) {
-        errorLabel.setText("Could not register with empty field(s)");
-        return;
-      }
-      Person p = new Person(name);
-      byte[] salt = p.getSalt();
-      Client.getPasswords().setPassword(p, password);
-      dataAccess.putPerson(p);
-      FileHandler.writePasswords(Client.getPasswords());
-      System.out.println("register");
-      handleLogin(e);
-    } else {
-      errorLabel.setText("Username taken");
+    /**
+     * Registers a user.
+     * @param e the event calling the registration
+     * @throws IOException if the person couldn't be written or the login throws an exception
+     */
+    @FXML
+    void handleRegister(ActionEvent e) throws IOException {
+        String name = usernameInputField.getText().toLowerCase();
+        if (dataAccess.getPerson(name) == null) {
+            String password = passwordInputField.getText();
+            if (name.length() == 0 || password.length() == 0) {
+                errorLabel.setText("Could not register with empty field(s)");
+                return;
+            }
+            Person p = new Person(name);
+            byte[] salt = p.getSalt();
+            Client.getPasswords().setPassword(p, password);
+            dataAccess.putRegister(p,password);
+            FileHandler.writePasswords(Client.getPasswords());
+            System.out.println("register");
+            handleLogin(e); 
+        }
+        else {
+            errorLabel.setText("Username taken");
+        }
     }
-  }
 
   /**
    * Loads the main screen of the gui.

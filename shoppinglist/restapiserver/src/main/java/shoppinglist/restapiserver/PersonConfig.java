@@ -12,6 +12,7 @@ import java.util.ArrayList;
 
 import shoppinglist.core.Person;
 import shoppinglist.restapi.PersonService;
+import shoppinglist.restapi.LoginService;
 
 public class PersonConfig extends ResourceConfig {
 
@@ -19,15 +20,14 @@ public class PersonConfig extends ResourceConfig {
 
   public PersonConfig() {
 
-    register(TestPage.class);
-    register(PersonService.class);
-
-    register(new AbstractBinder() {
-      @Override
-      protected void configure() {
-        bind(persons);
-      }
-    });
-
+        register(LoginService.class);
+        register(TestPage.class);
+        register(PersonService.class);
+        register(new AbstractBinder() {
+        @Override
+        protected void configure() {
+            bind(persons);
+        }
+      });
   }
 }
