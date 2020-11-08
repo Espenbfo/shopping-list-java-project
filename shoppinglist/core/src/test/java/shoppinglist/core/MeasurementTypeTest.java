@@ -2,13 +2,10 @@ package shoppinglist.core;
 
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.junit.jupiter.api.Assertions.fail;
-
 import org.assertj.core.api.Fail;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-
 import shoppinglist.core.MeasurementType;
-
 
 public class MeasurementTypeTest {
 

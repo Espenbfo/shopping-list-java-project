@@ -8,7 +8,6 @@ import shoppinglist.core.ShoppingList;
 
 public class ShoppingListTest {
 
-
     @Test
     public void testShoppingList() {
         ShoppingList l2 = new ShoppingList("Liste 2");
