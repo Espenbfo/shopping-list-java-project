@@ -35,7 +35,13 @@ public class ShoppingListDataAccess  {
         }
     }
 
-    public void putShoppingList(final ShoppingList shoppingList) {
+    /**
+     * PUTs a shoppinglist to server
+     * @param shoppingList the shoppinglist to PUT
+     * @return the id of the ShoppingList that was PUT after the PUT
+     */
+    public int putShoppingList(final ShoppingList shoppingList) {
+        int id = shoppingList.getId();
         try {
             int index = shoppingList.getId();
             ObjectMapper mapper = new ObjectMapper();
@@ -49,14 +55,21 @@ public class ShoppingListDataAccess  {
                     HttpClient.newBuilder().build().send(
                             request, HttpResponse.BodyHandlers.ofInputStream()
                     );
-
+            id = mapper.readValue(response.body(), int.class);
         } catch (final JsonProcessingException e) {
             throw new RuntimeException(e);
         } catch (IOException | InterruptedException e) {
             throw new RuntimeException(e);
         }
+        return id;
+
     }
 
+    /**
+     * GETs a shoppinglist from server
+     * @param id the id of the shoppinglist to GET
+     * @return the shoppinglist with the id
+     */
     public ShoppingList getShoppingList(final int id) {
 
         final HttpRequest request =

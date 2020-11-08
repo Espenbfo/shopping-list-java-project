@@ -243,19 +243,15 @@ public class AppController {
             try {
                 Person p = dataAccess.getPerson(name);
                 System.out.println(p);
-                Integer prevList = currentShoppingList.getId();
-                if (!p.getShoppingLists().contains(prevList)) {
-                    p.addShoppingList(prevList);
-                    dataAccess.putPerson(p);
-                }
                 currentShoppingList.addPerson(name);
             } catch (Exception ex) {
                 System.out.println(ex);
             }
         }
         currentShoppingList.setTitle(shoppingTitleTextField.getText());
-        shoppingAccess.putShoppingList(currentShoppingList);
+        int newint = shoppingAccess.putShoppingList(currentShoppingList);
         fillTitleList();
+        loadShoppingListWithList(shoppingAccess.getShoppingList(newint));
     }
 
     /**
