@@ -13,6 +13,7 @@ public class ShoppingList {
   ArrayList<ShoppingElement> elementList;
   ArrayList<String> personList;
   private Person owner;
+  private boolean publicList;
 
   /**
    * Initialize a ShoppingList with default values.
@@ -23,6 +24,7 @@ public class ShoppingList {
     this.personList = new ArrayList<String>();
     this.title = "";
     this.owner = null;
+    this.publicList = true;
   }
 
   /**
@@ -49,6 +51,7 @@ public class ShoppingList {
     this.elementList = elementList;
     this.personList = new ArrayList<String>();
     this.owner = null;
+    this.publicList = true;
   }
 
   /**
@@ -63,8 +66,18 @@ public class ShoppingList {
     this.id = id;
     this.elementList = elementList;
     this.personList = personList;
+    this.publicList = true;
     //currentMaxID = Math.max(currentMaxID,id);
   }
+
+    /**
+   * Initialize a ShoppingList with a title and owner.
+   */
+  public ShoppingList(String title, Person owner) { 
+    this(title);
+    this.owner = owner;
+  }
+
 
   /**
    * Sets the maxID for all shoppingLists.
@@ -263,6 +276,20 @@ public class ShoppingList {
    */
   public Person getOwner() {
     return this.owner;
+  }
+
+  /**
+   * 
+   */
+  public boolean getPublicList(){
+      return publicList;
+  }
+
+  /**
+   * 
+   */
+  public void setPublicList(boolean listIsPublic){
+      this.publicList = listIsPublic;
   }
 
   /**
