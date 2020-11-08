@@ -1,29 +1,26 @@
 package shoppinglist.storage;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import java.nio.file.Paths;
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
-import java.util.ArrayList;
+import java.io.File;
 import java.io.FileReader;
 import java.io.FileWriter;
-import java.io.File;
 import java.io.IOException;
-
+import java.util.ArrayList;
 import shoppinglist.core.ShoppingList;
 import shoppinglist.core.MeasurementType;
 import shoppinglist.core.ShoppingElement;
 import shoppinglist.core.Person;
 import shoppinglist.core.MaxID;
 import shoppinglist.core.Passwords;
-import com.fasterxml.jackson.databind.ObjectMapper;
-
-import java.nio.file.Paths;
-
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class FileHandler {
     /**
-     * This is a method to read the saved shoppinglists
+     * This is a method to read the saved shoppinglists.
      *
      * @param id the id of the ShoppingList that should be read
      * @return the Shoppinglist which has been read
@@ -44,7 +41,7 @@ public class FileHandler {
     }
 
     /**
-     * a method to save a Shoppinglist as a file
+     * a method to save a Shoppinglist as a file.
      *
      * @param listToWrite the shoppinglist which should be written to a file
      * @return true if the file was written, false if it was not
@@ -65,7 +62,7 @@ public class FileHandler {
     }
 
     /**
-     * A method to write a person to JSON
+     * A method to write a person to JSON.
      *
      * @param persToWrite the instance of Person to be written
      * @return true if successful
@@ -86,7 +83,7 @@ public class FileHandler {
     }
 
     /**
-     * Reads a Person from file
+     * Reads a Person from file.
      *
      * @param personName the name of the Person to be read
      * @return read Person
@@ -109,7 +106,7 @@ public class FileHandler {
     }
 
     /**
-     * Writes the MaxID of shoppinglists to file
+     * Writes the MaxID of shoppinglists to file.
      *
      * @param id the MaxID to be written
      * @return true if successful
@@ -130,7 +127,7 @@ public class FileHandler {
     }
 
     /**
-     * reads the max id
+     * reads the max id.
      *
      * @return the MaxID
      */
@@ -153,7 +150,7 @@ public class FileHandler {
     }
 
     /**
-     * A method to write the passwords to JSON
+     * A method to write the passwords to JSON.
      *
      * @param passwordsToWrite the instance of Passwords to write
      * @return true if successful
@@ -174,7 +171,7 @@ public class FileHandler {
     }
 
     /**
-     * Reads passwords from file
+     * Reads passwords from file.
      *
      * @return read Passwords
      */
