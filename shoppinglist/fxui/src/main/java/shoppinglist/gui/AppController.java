@@ -218,8 +218,9 @@ public class AppController {
         peopleText = peopleText.replaceAll("\\s","");
 
         if (privateCheckBox.isSelected()){
-            System.out.println("boksen er sjekket av");
             currentShoppingList.setPublicList(false);
+        } else {
+            currentShoppingList.setPublicList(true);
         }
 
         List<String> peopleNames = Arrays.asList(peopleText.split(","));
@@ -294,13 +295,11 @@ public class AppController {
         if (people.length() > 2) {
             people = people.substring(0, people.length()- 2);
         }
-        loginNameLabel.setText(currentShoppingList.getOwner().getUserName());
+        String ownerUserName = currentShoppingList.getOwner().getUserName();
+        loginNameLabel.setText(ownerUserName.substring(0, 1).toUpperCase() + ownerUserName.substring(1));
         peopleInputField.setText(people);
         shoppingTitleTextField.setText(currentShoppingList.getTitle());
         privateCheckBox.setSelected(!currentShoppingList.getPublicList());
-    
-
-        System.out.println("list is public: " + currentShoppingList.getPublicList());
     }
     /**
      * Changes status of shoppingitem from not shopped to shopped 
@@ -324,7 +323,7 @@ public class AppController {
         listsOverview.getChildren().clear();
         for (Integer id : currenttPerson.getShoppingLists()) {
             ShoppingList l = shoppingAccess.getShoppingList(id);
-            if (l.getPublicList() || l.getOwner().equals(currentPerson)){
+            if (l.getPublicList() || l.getOwner().getUserName().equals(Client.getCurrentPerson().getUserName())){
                 Pane list = new Pane();
                 Label listName = new Label(l.getTitle());
                 listName.setPrefWidth(1000.);
