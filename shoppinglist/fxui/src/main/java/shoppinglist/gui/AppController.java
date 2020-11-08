@@ -63,6 +63,8 @@ public class AppController {
     TextField peopleInputField;
     @FXML
     Label loginNameLabel;
+    @FXML
+    CheckBox privateCheckBox;
 
     public ShoppingList currentShoppingList; 
     private final ObservableList<ShoppingElement> data = FXCollections.observableArrayList();
@@ -214,6 +216,9 @@ public class AppController {
         String peopleText = personInputField.getText().toLowerCase() + "," + peopleInputField.getText().toLowerCase();
         peopleText = peopleText.replaceAll("\\s","");
 
+        if (privateCheckBox.isSelected()){
+            currentShoppingList.makeListPrivate();
+        }
 
         List<String> peopleNames = Arrays.asList(peopleText.split(","));
         ArrayList<String> toBeRemoved = new ArrayList<String>();
@@ -292,6 +297,8 @@ public class AppController {
         loginNameLabel.setText(currentShoppingList.getOwner().getUserName());
         peopleInputField.setText(people);
         shoppingTitleTextField.setText(currentShoppingList.getTitle());
+
+        System.out.println("list is public: " + currentShoppingList.listIsPublic());
     }
     /**
      * Changes status of shoppingitem from not shopped to shopped 
