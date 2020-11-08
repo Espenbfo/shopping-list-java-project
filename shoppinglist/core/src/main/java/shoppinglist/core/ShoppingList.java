@@ -14,7 +14,7 @@ public class ShoppingList {
     private ArrayList<ShoppingElement> elementList;
     private ArrayList<String> personList;
     private Person owner;
-    //private boolean publicList;
+    private boolean publicList = true;
 
     /**
      * Initialize a ShoppingList with default values.
@@ -256,11 +256,15 @@ public class ShoppingList {
         return this.owner;
     }
 
+    public void makeListPrivate(){
+        publicList = false;
+    }
+
     /**
      * 
      */
     public boolean listIsPublic(){
-        return true;
+        return publicList;
     }
 
     /**
