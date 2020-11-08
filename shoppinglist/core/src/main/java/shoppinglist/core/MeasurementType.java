@@ -125,11 +125,9 @@ public class MeasurementType {
     if (o == null) {
       return false;
     }
-
     if (!o.getClass().equals(this.getClass())) {
       return false;
     }
-
     MeasurementType m = (MeasurementType) o;
     if (!getBaseName().equals(m.getBaseName())) {
       return false;
@@ -137,7 +135,6 @@ public class MeasurementType {
     if (getValue() != m.getValue()) {
       return false;
     }
-
     if (allowDouble() != m.allowDouble()) {
       return false;
     }

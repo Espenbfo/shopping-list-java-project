@@ -4,7 +4,6 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
-
 import javafx.application.Application;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -16,13 +15,13 @@ import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
-import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.control.CheckBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.TableCell;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
+import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.HBox;
@@ -115,7 +114,7 @@ public class AppController {
         addButtonToTable();
     }
   /**
-   * Add element to shoppinglist when button is clicked
+   * Add element to shoppinglist when button is clicked.
    */
 
   @FXML
@@ -127,7 +126,7 @@ public class AppController {
   }
 
   /**
-   * Adds the buttonrow to the TableView
+   * Adds the buttonrow to the TableView.
    */
   private void addButtonToTable() {
     TableColumn<ShoppingElement, Void> colBtn = new TableColumn("Delete?");
@@ -169,11 +168,10 @@ public class AppController {
   }
 
   /**
-   * Adds the CheckBoxrow to the TableView
+   * Adds the CheckBoxrow to the TableView.
    */
   private void addCheckBoxToTable() {
     TableColumn<ShoppingElement, Void> colCB = new TableColumn("Done");
-
     Callback<TableColumn<ShoppingElement, Void>, TableCell<ShoppingElement, Void>> cellFactory = new Callback<TableColumn<ShoppingElement, Void>, TableCell<ShoppingElement, Void>>() {
       @Override
       public TableCell<ShoppingElement, Void> call(final TableColumn<ShoppingElement, Void> param) {
@@ -388,7 +386,7 @@ public class AppController {
   }
 
   /**
-   * Filters the list of shoppinglists
+   * Filters the list of shoppinglists.
    */
   @FXML
   void sokList() {
@@ -397,13 +395,12 @@ public class AppController {
 
 
   /**
-   * Loads the loginscreen
+   * Loads the loginscreen.
    *
    * @param e the event that calls the scenechange
    * @throws IOException
    */
-
-  @FXML
+ @FXML
   void loginScreen(ActionEvent e) throws IOException {
     Parent loginParent = FXMLLoader.load(getClass().getResource("/resources/shoppinglist/gui/LoginScreen.fxml"));
     Scene loginScene = new Scene(loginParent);

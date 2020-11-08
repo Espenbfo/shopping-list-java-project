@@ -1,18 +1,18 @@
 package shoppinglist.core;
 
+import org.apache.commons.codec.binary.Base64;
+
 import java.util.HashMap;
+import java.security.SecureRandom;
 import javax.crypto.SecretKey;
 import javax.crypto.SecretKeyFactory;
 import javax.crypto.spec.PBEKeySpec;
-import java.security.SecureRandom;
-
-import org.apache.commons.codec.binary.Base64;
 
 import shoppinglist.core.Person;
 
 /**
  * This class contains a hashmap of username passwords combinations,
- * and has multiple static methods for passwords handling
+ * and has multiple static methods for passwords handling.
  */
 public class Passwords {
 
@@ -22,14 +22,14 @@ public class Passwords {
   private static int saltLength = 16;
 
   /**
-   * Constructor for empty passwords instance
+   * Constructor for empty passwords instance.
    */
   public Passwords() {
     hashes = new HashMap<String, String>();
   }
 
   /**
-   * Construktor of existing password instance
+   * Construktor of existing password instance.
    *
    * @param hashes the username-password hashmap
    */
@@ -38,7 +38,7 @@ public class Passwords {
   }
 
   /**
-   * Sets all the username-password pairs
+   * Sets all the username-password pairs.
    *
    * @param hashes the hasmap to be set
    */
@@ -47,7 +47,7 @@ public class Passwords {
   }
 
   /**
-   * Gets the username-password hashmap
+   * Gets the username-password hashmap.
    *
    * @return the username-password hashmap
    */
@@ -56,7 +56,7 @@ public class Passwords {
   }
 
   /**
-   * Sets a username-password pair
+   * Sets a username-password pair.
    *
    * @param p        the Person
    * @param password the password
@@ -67,7 +67,7 @@ public class Passwords {
   }
 
   /**
-   * Gets a password belonging til user P
+   * Gets a password belonging til user P.
    *
    * @param p the Person
    */
@@ -76,7 +76,7 @@ public class Passwords {
   }
 
   /**
-   * Checks if a password is valid with a username
+   * Checks if a password is valid with a username.
    *
    * @param userName The username
    * @param password The password to be checked
@@ -95,7 +95,7 @@ public class Passwords {
   }
 
   /**
-   * Checks the password of an instance of person
+   * Checks the password of an instance of person.
    *
    * @param p        the Person to check
    * @param password the password to check
@@ -106,7 +106,7 @@ public class Passwords {
   }
 
   /**
-   * Hashes a password with the supplied salt
+   * Hashes a password with the supplied salt.
    *
    * @param password The password to be hashed
    * @param salt     The salt to apply to the password
@@ -125,7 +125,7 @@ public class Passwords {
   }
 
   /**
-   * Returns a randomly generated salt to be used in a Person instance
+   * Returns a randomly generated salt to be used in a Person instance.
    *
    * @return a randomly generated salt to be used in a Person instance
    */

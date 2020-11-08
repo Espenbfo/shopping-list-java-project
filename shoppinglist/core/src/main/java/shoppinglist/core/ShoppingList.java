@@ -1,7 +1,8 @@
 package shoppinglist.core;
 
-import java.util.ArrayList;
 import java.lang.Math;
+import java.util.ArrayList;
+
 
 /**
  * Represents a list of ShoppingElements.

@@ -18,7 +18,6 @@ import java.util.Collection;
 import java.util.Collections;
 import shoppinglist.core.Person;
 
-
 public class PersonDataAccess {
 
   private final String baseUrlString;
@@ -36,7 +35,7 @@ public class PersonDataAccess {
   }
 
   /**
-   * PUTs a person to the server
+   * PUTs a person to the server.
    *
    * @param person the Person to PUT
    */
@@ -62,15 +61,15 @@ public class PersonDataAccess {
   }
 
   /**
-   * getPerson from the server
+   * getPerson from the server.
    *
    * @param person the username of the person to get
    * @return the Person with corresponding username
    */
   public Person getPerson(final String person) {
-    String personLC = person.toLowerCase();
+    String personL_C = person.toLowerCase();
     final HttpRequest request =
-            HttpRequest.newBuilder(getRequestUri("/Persons/" + personLC))
+            HttpRequest.newBuilder(getRequestUri("/Persons/" + personL_C))
                     .header("Accept", "application/json").GET().build();
     try {
       final HttpResponse<InputStream> response =
