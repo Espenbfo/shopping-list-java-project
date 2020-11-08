@@ -60,9 +60,6 @@ public class LoginScreenController {
     public void initialize() {
         setDataAccess(new PersonDataAccess("http://localhost:8087/index"));
     }
-    /**
-     * Add element to shoppinglist when button is clicked
-     */
 
     /**
      * Logs in a user
@@ -101,7 +98,7 @@ public class LoginScreenController {
     /**
      * Registers a user
      *
-     * @param e the event calling the registration
+     * @param e the event calling the registration.
      * @throws IOException if the person couldn't be written or the login throws an exception
      */
     @FXML
@@ -126,7 +123,7 @@ public class LoginScreenController {
     }
 
     /**
-     * Loads the main screen of the gui
+     * Loads the main screen of the gui.
      *
      * @param e the event calling the method
      * @throws IOException

@@ -16,13 +16,13 @@ import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
-import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.control.CheckBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.TableCell;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
+import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.HBox;
@@ -115,7 +115,7 @@ public class AppController {
     }
 
     /**
-     * Add element to shoppinglist when button is clicked
+     * Add element to shoppinglist when button is clicked.
      */
 
     @FXML
@@ -127,7 +127,7 @@ public class AppController {
     }
 
     /**
-     * Adds the buttonrow to the TableView
+     * Adds the buttonrow to the TableView.
      */
     private void addButtonToTable() {
         TableColumn<ShoppingElement, Void> colBtn = new TableColumn("Delete?");
@@ -169,10 +169,10 @@ public class AppController {
     }
 
     /**
-     * Adds the CheckBoxrow to the TableView
+     * Adds the CheckBoxrow to the TableView.
      */
     private void addCheckBoxToTable() {
-        TableColumn<ShoppingElement, Void> colCB = new TableColumn("Done");
+        TableColumn<ShoppingElement, Void> colC_B = new TableColumn("Done");
 
         Callback<TableColumn<ShoppingElement, Void>, TableCell<ShoppingElement, Void>> cellFactory = new Callback<TableColumn<ShoppingElement, Void>, TableCell<ShoppingElement, Void>>() {
             @Override
@@ -204,13 +204,13 @@ public class AppController {
             }
         };
 
-        colCB.setCellFactory(cellFactory);
-        colCB.setPrefWidth(40);
-        shoppingList.getColumns().add(colCB);
+        colC_B.setCellFactory(cellFactory);
+        colC_B.setPrefWidth(40);
+        shoppingList.getColumns().add(colC_B);
     }
 
     /**
-     * Saves shoppinglist to server
+     * Saves shoppinglist to server.
      */
     @FXML
     void saveShoppingList() {
@@ -256,7 +256,7 @@ public class AppController {
     }
 
     /**
-     * Loads existing shoppinglist from server
+     * Loads existing shoppinglist from server.
      */
     @FXML
     void loadShoppingList() {
@@ -264,7 +264,7 @@ public class AppController {
     }
 
     /**
-     * Loads existing shoppinglist from server
+     * Loads existing shoppinglist from server.
      *
      * @param l shoppinglist to load
      */
@@ -295,7 +295,7 @@ public class AppController {
     }
 
     /**
-     * Changes status of shoppingitem from not shopped to shopped
+     * Changes status of shoppingitem from not shopped to shopped.
      *
      * @param shoppingElement
      */
@@ -307,7 +307,7 @@ public class AppController {
     }
 
     /**
-     * Updates the list of shoppinglists, filtered by person, on the right side of the gui
+     * Updates the list of shoppinglists, filtered by person, on the right side of the gui.
      */
     void fillTitleList() {
         String personString = personInputField.getText().toLowerCase();
@@ -327,7 +327,7 @@ public class AppController {
     }
 
     /**
-     * Finds and displays the lists of a given person
+     * Finds and displays the lists of a given person.
      *
      * @param enter key to press to evoke method
      */
@@ -340,7 +340,7 @@ public class AppController {
     }
 
     /**
-     * Loads the ShoppingList clicked
+     * Loads the ShoppingList clicked.
      *
      * @param shoppingList The ShoppingList to load
      */
@@ -356,7 +356,7 @@ public class AppController {
     }
 
     /**
-     * Creates a new empty shoppinglist
+     * Creates a new empty shoppinglist.
      */
     @FXML
     void newList() {
@@ -366,7 +366,7 @@ public class AppController {
     }
 
     /**
-     * Filters the list of shoppinglists
+     * Filters the list of shoppinglists.
      */
     @FXML
     void sokList() {
@@ -374,7 +374,7 @@ public class AppController {
     }
 
     /**
-     * Loads the loginscreen
+     * Loads the loginscreen.
      *
      * @param e the event that calls the scenechange
      * @throws IOException
