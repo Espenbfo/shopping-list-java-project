@@ -1,7 +1,6 @@
 package shoppinglist.core;
 
 import java.util.ArrayList;
-
 import shoppinglist.core.Passwords;
 
 public class Person {
@@ -61,7 +60,7 @@ public class Person {
   /**
    * a constructor for a new Person who has not created any shoppinglists formerly.
    *
-   * @param userName the name of the user
+   * @param userName       the name of the user
    */
   public Person() {
     this.userName = "";

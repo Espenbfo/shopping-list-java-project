@@ -1,19 +1,19 @@
 package shoppinglist.storage;
 
-import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-import java.nio.file.Paths;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.nio.file.Paths;
 import java.util.ArrayList;
-import shoppinglist.core.Passwords;
-import shoppinglist.core.Person;
 import shoppinglist.core.MaxID;
 import shoppinglist.core.MeasurementType;
+import shoppinglist.core.Passwords;
+import shoppinglist.core.Person;
 import shoppinglist.core.ShoppingElement;
 import shoppinglist.core.ShoppingList;
 
