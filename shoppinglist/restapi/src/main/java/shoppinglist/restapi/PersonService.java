@@ -109,7 +109,7 @@ public class PersonService {
    *
    * @param shoppinglist the shoppinglist to save
    */
-  @POST
+  @PUT
   @Path("/ShoppingLists/{id}")
   @Consumes(MediaType.APPLICATION_JSON)
   @Produces(MediaType.APPLICATION_JSON)
