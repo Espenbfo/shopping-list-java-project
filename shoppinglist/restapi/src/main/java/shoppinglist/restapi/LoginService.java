@@ -31,7 +31,7 @@ public class LoginService {
   /**
    * logger for logging server issues
    */
-  private static final Logger LOG = LoggerFactory.getLogger(PersonService.class);
+  private static final Logger LOG = LoggerFactory.getLogger(LoginService.class);
 
 
   /**
@@ -40,7 +40,7 @@ public class LoginService {
    * @return blablabla
    */
   @POST
-  @Path("login")
+  @Path("/login")
   @Consumes(MediaType.APPLICATION_JSON)
   @Produces(MediaType.APPLICATION_JSON)
   public Person checkLogin(LoginResource loginResource) {
@@ -49,5 +49,11 @@ public class LoginService {
       return FileHandler.readPerson(loginResource.getPerson());
     }
     return null;
+  }
+
+  @GET
+  @Path("")
+  public int testLogin() {
+    return 0;
   }
 }
