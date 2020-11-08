@@ -4,7 +4,6 @@ import com.fasterxml.jackson.core.JsonParseException;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.JsonMappingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
-
 import java.io.IOException;
 import java.io.InputStream;
 import java.net.URI;
@@ -15,7 +14,6 @@ import java.net.http.HttpRequest.BodyPublishers;
 import java.net.http.HttpResponse;
 import java.util.Collection;
 import java.util.Collections;
-
 import shoppinglist.core.Person;
 import shoppinglist.core.ShoppingList;
 
@@ -37,7 +35,7 @@ public class ShoppingListDataAccess {
   }
 
   /**
-   * PUTs a shoppinglist to server
+   * PUTs a shoppinglist to server.
    *
    * @param shoppingList the shoppinglist to PUT
    * @return the id of the ShoppingList that was PUT after the PUT
@@ -68,7 +66,7 @@ public class ShoppingListDataAccess {
   }
 
   /**
-   * GETs a shoppinglist from server
+   * GETs a shoppinglist from server.
    *
    * @param id the id of the shoppinglist to GET
    * @return the shoppinglist with the id

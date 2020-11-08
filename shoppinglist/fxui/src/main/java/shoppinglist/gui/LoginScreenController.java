@@ -3,7 +3,6 @@ package shoppinglist.gui;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
-
 import javafx.application.Application;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -22,8 +21,8 @@ import javafx.scene.layout.Pane;
 import javafx.scene.layout.TilePane;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.stage.Stage;
 import javafx.scene.text.TextAlignment;
+import javafx.stage.Stage;
 import shoppinglist.core.*;
 import shoppinglist.storage.FileHandler;
 
@@ -62,7 +61,7 @@ public class LoginScreenController {
   }
 
   /**
-   * Logs in a user
+   * Logs in a user.
    *
    * @param e the event calling the login
    * @throws IOException if the user doesn't exist
@@ -96,7 +95,7 @@ public class LoginScreenController {
   }
 
   /**
-   * Registers a user
+   * Registers a user.
    *
    * @param e the event calling the registration.
    * @throws IOException if the person couldn't be written or the login throws an exception

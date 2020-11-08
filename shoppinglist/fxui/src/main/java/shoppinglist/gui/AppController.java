@@ -4,7 +4,6 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
-
 import javafx.application.Application;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -172,8 +171,7 @@ public class AppController {
    * Adds the CheckBoxrow to the TableView.
    */
   private void addCheckBoxToTable() {
-    TableColumn<ShoppingElement, Void> colC_B = new TableColumn("Done");
-
+    TableColumn<ShoppingElement, Void> colCB = new TableColumn("Done");
     Callback<TableColumn<ShoppingElement, Void>, TableCell<ShoppingElement, Void>> cellFactory = new Callback<TableColumn<ShoppingElement, Void>, TableCell<ShoppingElement, Void>>() {
       @Override
       public TableCell<ShoppingElement, Void> call(final TableColumn<ShoppingElement, Void> param) {
@@ -204,9 +202,9 @@ public class AppController {
       }
     };
 
-    colC_B.setCellFactory(cellFactory);
-    colC_B.setPrefWidth(40);
-    shoppingList.getColumns().add(colC_B);
+    colCB.setCellFactory(cellFactory);
+    colCB.setPrefWidth(40);
+    shoppingList.getColumns().add(colCB);
   }
 
   /**
@@ -303,7 +301,6 @@ public class AppController {
   @FXML
   void handleItemShopped(ShoppingElement shoppingElement) {
     shoppingElement.toggleShopped();
-
   }
 
   /**
@@ -379,8 +376,7 @@ public class AppController {
    * @param e the event that calls the scenechange
    * @throws IOException
    */
-
-  @FXML
+ @FXML
   void loginScreen(ActionEvent e) throws IOException {
     Parent loginParent = FXMLLoader.load(getClass().getResource("/resources/shoppinglist/gui/LoginScreen.fxml"));
     Scene loginScene = new Scene(loginParent);
