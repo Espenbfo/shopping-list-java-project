@@ -35,7 +35,6 @@ import shoppinglist.core.*;
 import shoppinglist.storage.FileHandler;
 
 public class AppController {
-<<<<<<< HEAD
     private static Person currentPerson;
 
 
@@ -114,87 +113,7 @@ public class AppController {
         shoppingList.getColumns().addAll(colNum, colType, colName);
         shoppingList.setItems(data);
         addButtonToTable();
-=======
-  private static Person currentPerson;
-
-
-  @FXML
-  Button addItemButton;
-  @FXML
-  TextField itemInputField;
-  @FXML
-  TextField shoppingTitleTextField;
-  @FXML
-  TextField amountInputField;
-  @FXML
-  TextField measurementInputField;
-  @FXML
-  TableView shoppingList;
-  @FXML
-  Label emptyListText;
-  @FXML
-  TextField loadId;
-  @FXML
-  TextField personInputField;
-  @FXML
-  TilePane listsOverview;
-  @FXML
-  HBox hbox;
-  @FXML
-  TextField peopleInputField;
-  @FXML
-  Label loginNameLabel;
-
-  public ShoppingList currentShoppingList;
-  private final ObservableList<ShoppingElement> data = FXCollections.observableArrayList();
-
-  String itemToAdd = null;
-
-  private PersonDataAccess dataAccess;
-  private ShoppingListDataAccess shoppingAccess;
-
-  protected PersonDataAccess getDataAccess() {
-    return dataAccess;
-  }
-
-  public void setDataAccess(final PersonDataAccess dataAccess) {
-    this.dataAccess = dataAccess;
-  }
-
-  @FXML
-  public void initialize() {
-    setDataAccess(new PersonDataAccess("http://localhost:8087/index"));
-    shoppingAccess = new ShoppingListDataAccess("http://localhost:8087/index");
-    currentShoppingList = new ShoppingList();
-    if (Client.getCurrentPerson() != null) {
-      String userName = Client.getCurrentPerson().getUserName();
-      userName = userName.substring(0, 1).toUpperCase() + userName.substring(1);
-      currentShoppingList.setOwner(Client.getCurrentPerson());
-      System.out.println("c" + currentShoppingList.getOwner());
-      personInputField.setText(userName);
-      fillTitleList();
-      loginNameLabel.setText(userName);
->>>>>>> 54ec29eae13b823dbc724742ae84fe1c053b96f8
     }
-
-
-    TableColumn<ShoppingElement, Double> colNum = new TableColumn<>("Num");
-    colNum.setCellValueFactory(new PropertyValueFactory<ShoppingElement, Double>("value"));
-
-    TableColumn<ShoppingElement, String> colName = new TableColumn<>("Name");
-    colName.setCellValueFactory(new PropertyValueFactory<ShoppingElement, String>("name"));
-
-    TableColumn<ShoppingElement, String> colType = new TableColumn<>("Type");
-    colType.setCellValueFactory(new PropertyValueFactory<ShoppingElement, String>("measurementName"));
-    colName.setPrefWidth(100);
-    colType.setPrefWidth(50);
-    colNum.setPrefWidth(50);
-    addCheckBoxToTable();
-    shoppingList.getColumns().addAll(colNum, colType, colName);
-    shoppingList.setItems(data);
-    addButtonToTable();
-  }
-
   /**
    * Add element to shoppinglist when button is clicked
    */
@@ -290,24 +209,6 @@ public class AppController {
     shoppingList.getColumns().add(colCB);
   }
 
-  /**
-   * Saves shoppinglist to server
-   */
-  @FXML
-  void saveShoppingList() {
-    String peopleText = personInputField.getText().toLowerCase() + "," + peopleInputField.getText().toLowerCase();
-    peopleText = peopleText.replaceAll("\\s", "");
-
-
-    List<String> peopleNames = Arrays.asList(peopleText.split(","));
-    ArrayList<String> toBeRemoved = new ArrayList<String>();
-
-    if (currentShoppingList.getOwner() == null) {
-      String ownerText = loginNameLabel.getText().toLowerCase() + "," + loginNameLabel.getText().toLowerCase();
-      currentShoppingList.setOwner(dataAccess.getPerson(ownerText));
-      currentShoppingList.addPerson(ownerText);
-    }
-<<<<<<< HEAD
     /**
      * Saves shoppinglist to server
      */
@@ -318,7 +219,7 @@ public class AppController {
 
         if (privateCheckBox.isSelected()){
             System.out.println("boksen er sjekket av");
-            currentShoppingList.makeListPrivate();
+            currentShoppingList.setPublicList(false);
         }
 
         List<String> peopleNames = Arrays.asList(peopleText.split(","));
@@ -346,11 +247,6 @@ public class AppController {
         for (String name : peopleNames) {
             try {
                 Person p = dataAccess.getPerson(name);
-                Integer prevList = currentShoppingList.getId();
-                if (!p.getShoppingLists().contains(prevList)) {
-                    p.addShoppingList(prevList);
-                    dataAccess.putPerson(p);
-                }
                 currentShoppingList.addPerson(name);
             }
             catch (Exception ex) {
@@ -358,34 +254,20 @@ public class AppController {
             }
         }
         currentShoppingList.setTitle(shoppingTitleTextField.getText());
-        shoppingAccess.putShoppingList(currentShoppingList);
+        int newint = shoppingAccess.putShoppingList(currentShoppingList);
         fillTitleList();
-=======
-    for (String p : currentShoppingList.getPersonList()) {
-      try {
-        if (!peopleNames.contains(p)) {
-          System.out.println(p);
-          Person person = FileHandler.readPerson(p);
-          person.removeShoppingListById(currentShoppingList.getId());
-          FileHandler.writePerson(person);
-          toBeRemoved.add(person.getUserName());
-        }
-      } catch (Exception ex) {
-        System.out.println(ex);
-      }
->>>>>>> 54ec29eae13b823dbc724742ae84fe1c053b96f8
+        loadShoppingListWithList(shoppingAccess.getShoppingList(newint));
+
     }
-    currentShoppingList.getPersonList().removeAll(toBeRemoved);
-    for (String name : peopleNames) {
-      try {
-        Person p = dataAccess.getPerson(name);
-        System.out.println(p);
-        currentShoppingList.addPerson(name);
-      } catch (Exception ex) {
-        System.out.println(ex);
-      }
+
+
+    /**
+     * Loads existing shoppinglist from server
+     */
+    @FXML
+    void loadShoppingList() {
+        loadShoppingListWithList(shoppingAccess.getShoppingList(Integer.parseInt(loadId.getText())));
     }
-<<<<<<< HEAD
 
     /**
      * Loads existing shoppinglist from server
@@ -415,10 +297,10 @@ public class AppController {
         loginNameLabel.setText(currentShoppingList.getOwner().getUserName());
         peopleInputField.setText(people);
         shoppingTitleTextField.setText(currentShoppingList.getTitle());
-        privateCheckBox.setSelected(!currentShoppingList.listIsPublic());
+        privateCheckBox.setSelected(!currentShoppingList.getPublicList());
     
 
-        System.out.println("list is public: " + currentShoppingList.listIsPublic());
+        System.out.println("list is public: " + currentShoppingList.getPublicList());
     }
     /**
      * Changes status of shoppingitem from not shopped to shopped 
@@ -442,7 +324,7 @@ public class AppController {
         listsOverview.getChildren().clear();
         for (Integer id : currenttPerson.getShoppingLists()) {
             ShoppingList l = shoppingAccess.getShoppingList(id);
-            if (l.listIsPublic()){
+            if (l.getPublicList() || l.getOwner().equals(currentPerson)){
                 Pane list = new Pane();
                 Label listName = new Label(l.getTitle());
                 listName.setPrefWidth(1000.);
@@ -476,47 +358,24 @@ public class AppController {
             fillTitleList();
         }
         
-=======
-    currentShoppingList.setTitle(shoppingTitleTextField.getText());
-    int newint = shoppingAccess.putShoppingList(currentShoppingList);
-    fillTitleList();
-    loadShoppingListWithList(shoppingAccess.getShoppingList(newint));
-  }
-
-  /**
-   * Loads existing shoppinglist from server
-   */
-  @FXML
-  void loadShoppingList() {
-    loadShoppingListWithList(shoppingAccess.getShoppingList(Integer.parseInt(loadId.getText())));
-  }
-
-  /**
-   * Loads existing shoppinglist from server
-   *
-   * @param l shoppinglist to load
-   */
-
-  @FXML
-  void loadShoppingListWithList(ShoppingList l) {
-    currentShoppingList = l;
-    //shoppingList.getChildren().clear();
-    data.clear();
-    for (ShoppingElement x : currentShoppingList.getElementList()) {
-      data.add(x);
     }
-    String currentUser = Client.getCurrentPerson().getUserName();
-    if (currentShoppingList.getPersonList().contains(Client.getCurrentPerson())) {
-      personInputField.setText(currentUser);
->>>>>>> 54ec29eae13b823dbc724742ae84fe1c053b96f8
+
+
+    /**
+     * Loads the ShoppingList clicked
+     *
+     * @param shoppingList The ShoppingList to load
+     */
+
+    @FXML
+    void handleListButtonClicked(ShoppingList shoppingList) {
+        currentShoppingList = shoppingList;
+        String ownerUserName = shoppingList.getOwner().getUserName();
+        loginNameLabel.setText(ownerUserName.substring(0, 1).toUpperCase() + ownerUserName.substring(1));
+        loadShoppingListWithList(shoppingAccess.getShoppingList(currentShoppingList.getId()));
+
     }
-    String people = "";
-    for (String name : currentShoppingList.getPersonList()) {
-      if (!name.equals(l.getOwner().getUserName().toLowerCase())) {
-        people += name.substring(0, 1).toUpperCase() + name.substring(1) + ", ";
-      }
-    }
-<<<<<<< HEAD
+
 
     /**
      * Creates a new empty shoppinglist
@@ -527,84 +386,6 @@ public class AppController {
         currentShoppingList = new ShoppingList("New List", Client.getCurrentPerson());
         loadShoppingListWithList(currentShoppingList);
         saveShoppingList();
-=======
-    if (people.length() > 2) {
-      people = people.substring(0, people.length() - 2);
->>>>>>> 54ec29eae13b823dbc724742ae84fe1c053b96f8
-    }
-    peopleInputField.setText(people);
-    shoppingTitleTextField.setText(currentShoppingList.getTitle());
-  }
-
-  /**
-   * Changes status of shoppingitem from not shopped to shopped
-   *
-   * @param shoppingElement
-   */
-
-  @FXML
-  void handleItemShopped(ShoppingElement shoppingElement) {
-    shoppingElement.toggleShopped();
-
-  }
-
-  /**
-   * Updates the list of shoppinglists, filtered by person, on the right side of the gui
-   */
-  void fillTitleList() {
-    String personString = personInputField.getText().toLowerCase();
-    if (personString.equals("")) return;
-    Person currenttPerson = dataAccess.getPerson(personString);
-    listsOverview.getChildren().clear();
-    for (Integer id : currenttPerson.getShoppingLists()) {
-      ShoppingList l = shoppingAccess.getShoppingList(id);
-      Pane list = new Pane();
-      Label listName = new Label(l.getTitle());
-      listName.setPrefWidth(1000.);
-      listName.getStyleClass().add("listTitleListElement");
-      listsOverview.getChildren().add(listName);
-
-      listName.setOnMouseClicked(event -> handleListButtonClicked(l));
-    }
-  }
-
-  /**
-   * Finds and displays the lists of a given person
-   *
-   * @param enter key to press to evoke method
-   */
-
-  @FXML
-  void handlePersonInput(KeyEvent enter) {
-    if (enter.getCode() == KeyCode.ENTER) {
-      fillTitleList();
-    }
-  }
-
-  /**
-   * Loads the ShoppingList clicked
-   *
-   * @param shoppingList The ShoppingList to load
-   */
-
-  @FXML
-  void handleListButtonClicked(ShoppingList shoppingList) {
-    currentShoppingList = shoppingList;
-    String ownerUserName = shoppingList.getOwner().getUserName();
-    loginNameLabel.setText(ownerUserName.substring(0, 1).toUpperCase() + ownerUserName.substring(1));
-    loadShoppingListWithList(shoppingAccess.getShoppingList(currentShoppingList.getId()));
-
-    //display clicked list
-  }
-
-  /**
-   * Creates a new empty shoppinglist
-   */
-  @FXML
-  void newList() {
-    currentShoppingList = new ShoppingList("New List");
-    loadShoppingListWithList(currentShoppingList);
-    saveShoppingList();
   }
 
   /**
@@ -614,6 +395,7 @@ public class AppController {
   void sokList() {
     fillTitleList();
   }
+
 
   /**
    * Loads the loginscreen
