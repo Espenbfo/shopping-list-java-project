@@ -42,32 +42,32 @@ import shoppinglist.core.*;
 public class ServerTest extends JerseyTest {
 
 
-    @Override
-    protected ResourceConfig configure() {
-        final ResourceConfig config = new ResourceConfig();
-        return config;
-    }
+  @Override
+  protected ResourceConfig configure() {
+    final ResourceConfig config = new ResourceConfig();
+    return config;
+  }
 
-    @Override
-    protected TestContainerFactory getTestContainerFactory() throws TestContainerException {
-        return new GrizzlyTestContainerFactory();
-    }
+  @Override
+  protected TestContainerFactory getTestContainerFactory() throws TestContainerException {
+    return new GrizzlyTestContainerFactory();
+  }
 
-    @Test
-    public void testServerStart() {
-        HttpServer h;
-        try {
-            h = ShoppingGrizzlyApp.start();
-            URL clientUrl = new URL("http://localhost:8087/index/Gud");
-            HttpURLConnection connection = (HttpURLConnection) clientUrl.openConnection();
-            int response = connection.getResponseCode();
-            assertEquals(response, 200);
-            ShoppingGrizzlyApp.stop(h);
-        } catch (Exception e) {
-            e.printStackTrace();
-            assertTrue(false);
-        }
+  @Test
+  public void testServerStart() {
+    HttpServer h;
+    try {
+      h = ShoppingGrizzlyApp.start();
+      URL clientUrl = new URL("http://localhost:8087/index/Gud");
+      HttpURLConnection connection = (HttpURLConnection) clientUrl.openConnection();
+      int response = connection.getResponseCode();
+      assertEquals(response, 200);
+      ShoppingGrizzlyApp.stop(h);
+    } catch (Exception e) {
+      e.printStackTrace();
+      assertTrue(false);
     }
+  }
 /*
     @Test
     public void testPost(){

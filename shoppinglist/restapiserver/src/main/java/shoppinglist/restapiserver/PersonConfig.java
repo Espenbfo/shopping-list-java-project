@@ -15,19 +15,19 @@ import shoppinglist.restapi.PersonService;
 
 public class PersonConfig extends ResourceConfig {
 
-    public static ArrayList<Person> persons = new ArrayList<>();
+  public static ArrayList<Person> persons = new ArrayList<>();
 
-    public PersonConfig() {
+  public PersonConfig() {
 
-        register(TestPage.class);
-        register(PersonService.class);
+    register(TestPage.class);
+    register(PersonService.class);
 
-        register(new AbstractBinder() {
-            @Override
-            protected void configure() {
-                bind(persons);
-            }
-        });
+    register(new AbstractBinder() {
+      @Override
+      protected void configure() {
+        bind(persons);
+      }
+    });
 
-    }
+  }
 }
