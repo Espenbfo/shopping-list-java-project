@@ -217,6 +217,7 @@ public class AppController {
         peopleText = peopleText.replaceAll("\\s","");
 
         if (privateCheckBox.isSelected()){
+            System.out.println("boksen er sjekket av");
             currentShoppingList.makeListPrivate();
         }
 
@@ -297,6 +298,8 @@ public class AppController {
         loginNameLabel.setText(currentShoppingList.getOwner().getUserName());
         peopleInputField.setText(people);
         shoppingTitleTextField.setText(currentShoppingList.getTitle());
+        privateCheckBox.setSelected(!currentShoppingList.listIsPublic());
+    
 
         System.out.println("list is public: " + currentShoppingList.listIsPublic());
     }
