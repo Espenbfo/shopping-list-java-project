@@ -15,6 +15,7 @@ import java.net.http.HttpResponse;
 import java.util.Collection;
 import java.util.Collections;
 import shoppinglist.core.Person;
+import shoppinglist.restapi.LoginResource;
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
 
@@ -27,6 +28,8 @@ private final String baseUrlString;
         this.baseUrlString = baseUrlString;
     }
 
+    private final static ObjectMapper mapper = new ObjectMapper();
+
     private URI getRequestUri(final String path) {
         try {
             return new URI(baseUrlString + path);
@@ -38,7 +41,6 @@ private final String baseUrlString;
     public void putPerson(final Person person) {
         try {
             String name = person.getUserName();
-            ObjectMapper mapper = new ObjectMapper();
             final HttpRequest request = HttpRequest.newBuilder(getRequestUri("/Persons/" + name))
                     .header("Content-Type", "application/json")
                     .header("Accept", "application/json")
@@ -76,6 +78,31 @@ private final String baseUrlString;
         return null;
     }
 
+    public Person postLogin(final String username, final String password) {
 
+        LoginResource loginResource = new LoginResource(username,password);
+        try {
+            System.out.println(mapper.writeValueAsString(loginResource));
+            final HttpRequest request =
+                    HttpRequest.newBuilder(getRequestUri("/Login/login"))
+                            .header("Content-Type", "application/json")
+                            .header("Accept", "application/json")
+                            .POST(BodyPublishers.ofString(mapper.writeValueAsString(loginResource)))
+                            .build();
 
+            final HttpResponse<InputStream> response =
+                    HttpClient.newBuilder().build().send(
+                            request, HttpResponse.BodyHandlers.ofInputStream()
+                    );
+            System.out.println("here");
+            System.out.println(response.body());
+            Person p = mapper.readValue(response.body(), Person.class);
+            return p;
+        } catch (JsonProcessingException e) {
+            System.err.println(e.toString());
+        } catch (IOException | InterruptedException e) {
+            System.err.println(e.toString());
+        }
+        return null;
+    }
 }

@@ -12,6 +12,7 @@ import org.glassfish.jersey.grizzly2.httpserver.GrizzlyHttpServerFactory;
 import org.glassfish.jersey.server.ResourceConfig;
 import shoppinglist.restapiserver.TestPage;
 import shoppinglist.restapi.PersonService;
+import shoppinglist.restapi.LoginService;
 import shoppinglist.core.Person;
 import org.glassfish.hk2.utilities.binding.AbstractBinder;
 
@@ -32,7 +33,7 @@ public class ShoppingGrizzlyApp {
 
         while (waitTime>0){
             try {
-                URL clientUrl = new URL(serverUri + PersonService.PERSON_SERVICE_PATH);
+                URL clientUrl = new URL(serverUri + LoginService.LOGIN_SERVICE_PATH);
                 HttpURLConnection connection = (HttpURLConnection) clientUrl.openConnection();
                 connection.connect();
                 int responseCode = connection.getResponseCode();
@@ -65,6 +66,7 @@ public class ShoppingGrizzlyApp {
     public static void main(final String[] args) throws IOException {
         try {
             final HttpServer server = start();
+
             Runtime.getRuntime().addShutdownHook(new Thread(server::stop));
             Thread.currentThread().join();
         } catch (final InterruptedException ex) {

@@ -8,6 +8,7 @@ import org.glassfish.jersey.server.ResourceConfig;
 import java.util.ArrayList;
 import shoppinglist.core.Person;
 import shoppinglist.restapi.PersonService;
+import shoppinglist.restapi.LoginService;
 
 public class PersonConfig extends ResourceConfig {
 
@@ -17,6 +18,7 @@ public class PersonConfig extends ResourceConfig {
 
         register(TestPage.class);
         register(PersonService.class);
+        register(LoginService.class);
 
         register(new AbstractBinder() {
         @Override
@@ -24,6 +26,5 @@ public class PersonConfig extends ResourceConfig {
             bind(persons);
         }
       });
-
   }
 }

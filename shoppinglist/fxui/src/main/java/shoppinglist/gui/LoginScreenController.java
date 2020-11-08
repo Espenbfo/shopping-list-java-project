@@ -26,6 +26,7 @@ import javafx.stage.Stage;
 import java.io.IOException;
 import shoppinglist.core.*;
 import shoppinglist.storage.FileHandler;
+import shoppinglist.restapi.LoginResource;
 
 public class LoginScreenController {
     private static Person currentPerson;
@@ -80,14 +81,13 @@ public class LoginScreenController {
         }
 
         try {
-            Person p = dataAccess.getPerson(name);
-            System.out.println(dataAccess.getPerson(name));
-            Client.setCurrentPerson(p);
-            if (Client.getPasswords().checkPassword(Client.getCurrentPerson(), password)) {
-                mainScreen(e);
+            Person p = dataAccess.postLogin(name,password);
+            if(p==null) {
+                errorLabel.setText("Login failed, is your password correct?");
             }
             else {
-                errorLabel.setText("Login failed, is your password correct?");
+                Client.setCurrentPerson(p);
+                mainScreen(e);
             }
         }
         catch (Exception ex){
@@ -95,7 +95,6 @@ public class LoginScreenController {
             errorLabel.setText("Login failed. Are you registred?");
         }
         System.out.println("login");
-
     }
 
     /**

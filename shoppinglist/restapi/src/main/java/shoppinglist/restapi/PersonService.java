@@ -1,10 +1,12 @@
 package shoppinglist.restapi;
 
 
+import com.fasterxml.jackson.databind.ObjectMapper;
 import javax.inject.Inject;
 import javax.ws.rs.GET;
 import javax.ws.rs.PUT;
 import javax.ws.rs.Path;
+import javax.ws.rs.POST;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 import java.util.ArrayList;
@@ -14,6 +16,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import shoppinglist.core.Person;
 import shoppinglist.core.ShoppingList;
+import shoppinglist.core.Passwords;
 import shoppinglist.restapi.PersonResource;
 import shoppinglist.storage.FileHandler;
 
@@ -32,6 +35,11 @@ public class PersonService {
    * logger for logging server issues
    */
   private static final Logger LOG = LoggerFactory.getLogger(PersonService.class);
+
+  /**
+   * Maps objects to json
+   */
+  private static final ObjectMapper mapper = new ObjectMapper();
   /*
   @Inject
   private Person person;
@@ -93,10 +101,27 @@ public class PersonService {
 
 
   /**
+   *
+   * @param userName
+   * @return blablabla
+   */
+  @POST
+  @Path("/Login/login")
+  @Consumes(MediaType.APPLICATION_JSON)
+  @Produces(MediaType.APPLICATION_JSON)
+  public Person checkLogin(LoginResource loginResource) {
+    System.out.println("post :" + loginResource.getPerson() + " " + loginResource.getPassword());
+    if (true) {
+      return FileHandler.readPerson(loginResource.getPerson());
+    }
+    return null;
+  }
+
+  /**
    * Recieved Put for shoppinglist
    * @param shoppinglist the shoppinglist to save
    */
-  @PUT
+  @POST
   @Path("/ShoppingLists/{id}")
   @Consumes(MediaType.APPLICATION_JSON)
   @Produces(MediaType.APPLICATION_JSON)
