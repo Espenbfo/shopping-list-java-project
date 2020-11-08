@@ -4,7 +4,7 @@
 
 Prosjektet til gruppe 49, liste-applikasjon. 
 Kode ligger i src-mappene.
-Test test
+
 
 
 [Google Disk](https://drive.google.com/drive/folders/10KHM6JSvfrWcrQkHPEovQ5cBZe_7T9WN?usp=sharing) 
