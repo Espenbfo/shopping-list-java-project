@@ -7,8 +7,6 @@ Kode ligger i src-mappene.
 
 
 
-[Google Disk](https://drive.google.com/drive/folders/10KHM6JSvfrWcrQkHPEovQ5cBZe_7T9WN?usp=sharing) 
-
 ```plantuml
 actor Person
 Person -> SaveButton: press
