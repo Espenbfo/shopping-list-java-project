@@ -3,6 +3,8 @@ package shoppinglist.gui;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 import javafx.application.Application;
 import javafx.event.ActionEvent;
@@ -98,6 +100,14 @@ public class LoginScreenController {
   @FXML
   void handleRegister(ActionEvent e) throws IOException {
     String name = usernameInputField.getText().toLowerCase();
+
+    Pattern pattern = Pattern.compile("[^0-9a-zA-Z*]");
+    Matcher matcher = pattern.matcher(name);
+    if(matcher.find()) {
+      errorLabel.setText("Illegal characters in username");
+      return;
+    }
+
     if (dataAccess.getPerson(name) == null) {
       String password = passwordInputField.getText();
       if (name.length() == 0 || password.length() == 0) {
