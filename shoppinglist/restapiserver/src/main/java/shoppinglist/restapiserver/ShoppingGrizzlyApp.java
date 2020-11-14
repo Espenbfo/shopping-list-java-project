@@ -25,13 +25,8 @@ public class ShoppingGrizzlyApp {
      */
     public static HttpServer start() throws IOException {
         int waitTime = 5;
-
-        
         ResourceConfig resourceConfig = new PersonConfig();
         HttpServer httpServer = GrizzlyHttpServerFactory.createHttpServer(serverUri, resourceConfig);
-
-        
-
         while (waitTime>0){
             try {
                 URL clientUrl = new URL(serverUri + PersonService.PERSON_SERVICE_PATH);
