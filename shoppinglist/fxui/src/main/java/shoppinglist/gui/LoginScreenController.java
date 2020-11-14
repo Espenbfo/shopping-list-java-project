@@ -3,6 +3,8 @@ package shoppinglist.gui;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 import javafx.application.Application;
 import javafx.event.ActionEvent;
@@ -66,13 +68,15 @@ public class LoginScreenController {
 
   @FXML
   void handleLogin(ActionEvent e) throws IOException {
-
-    String name = usernameInputField.getText().toLowerCase();
-    String password = passwordInputField.getText();
-    if (name.length() == 0 || password.length() == 0) {
-      errorLabel.setText("Could not log in with empty field(s)");
+    if (!isUserNameValid()) {
       return;
     }
+    if (!checkIfFilledFields()) {
+      return;
+    }
+    String name = usernameInputField.getText().toLowerCase();
+    String password = passwordInputField.getText();
+
 
     try {
       Person p = dataAccess.putLogin(name, password);
@@ -90,6 +94,71 @@ public class LoginScreenController {
   }
 
   /**
+   * Validates username.
+   *
+   * @return if username is valid
+   */
+  boolean isUserNameValid() {
+    String name = usernameInputField.getText().toLowerCase();
+
+    Pattern pattern = Pattern.compile("[^0-9a-zA-Z*]");
+    Matcher matcher = pattern.matcher(name);
+    if(matcher.find()) {
+      errorLabel.setText("Illegal characters in username");
+      setIllegalField(usernameInputField,true);
+      return false;
+    }
+    setIllegalField(usernameInputField,false);
+    return true;
+  }
+
+  /**
+   * Sets a field to an illegal css class if illegal, to show the user that their input is wrong.
+   * If it is not illegal, the method resets the field to normal.
+   *
+   * @param f the textbook to set
+   * @param illegal if it is illegal or not
+   */
+  void setIllegalField(final TextField f, boolean illegal) {
+    if (illegal) {
+      f.getStyleClass().add("illegal");
+    }
+    else {
+      f.getStyleClass().clear();
+      f.getStyleClass().addAll("text-field", "text-input");
+    }
+  }
+
+  /**
+   * Checks if the name- and passwordfields are filled in.
+   *
+   * @return if the name- and passwordfields are filled in.
+   */
+  boolean checkIfFilledFields() {
+    String name = usernameInputField.getText().toLowerCase();
+    String password = passwordInputField.getText();
+    if (name.length() == 0 && password.length() == 0) {
+      errorLabel.setText("Empty username and password fields. Please fill in before continuing");
+      setIllegalField(passwordInputField, true);
+      setIllegalField(usernameInputField, true);
+      return false;
+    }
+    else if (name.length() == 0) {
+      errorLabel.setText("Empty username field. Please fill in before continuing");
+      setIllegalField(passwordInputField, false);
+      setIllegalField(usernameInputField, true);
+      return false;
+    }
+    else if (password.length() == 0) {
+      errorLabel.setText("Empty password field. Please fill in before continuing");
+      setIllegalField(passwordInputField, true);
+      setIllegalField(usernameInputField, false);
+      return false;
+    }
+    return true;
+  }
+
+  /**
    * Registers a user.
    *
    * @param e the event calling the registration
@@ -98,12 +167,15 @@ public class LoginScreenController {
   @FXML
   void handleRegister(ActionEvent e) throws IOException {
     String name = usernameInputField.getText().toLowerCase();
+    if (!isUserNameValid()) {
+      return;
+    }
+    if (!checkIfFilledFields()) {
+      return;
+    }
+
     if (dataAccess.getPerson(name) == null) {
       String password = passwordInputField.getText();
-      if (name.length() == 0 || password.length() == 0) {
-        errorLabel.setText("Could not register with empty field(s)");
-        return;
-      }
       Person p = new Person(name);
       Client.getPasswords().setPassword(p, password);
       dataAccess.putRegister(p, password);
