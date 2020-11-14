@@ -1,24 +1,21 @@
 package shoppinglist.restapi;
 
-
 import com.fasterxml.jackson.databind.ObjectMapper;
-
+import java.util.ArrayList;
 import javax.inject.Inject;
+import javax.ws.rs.Consumes;
 import javax.ws.rs.GET;
+import javax.ws.rs.POST;
 import javax.ws.rs.PUT;
 import javax.ws.rs.Path;
-import javax.ws.rs.POST;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
-import java.util.ArrayList;
-import javax.ws.rs.Consumes;
 import javax.ws.rs.core.MediaType;
-
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import shoppinglist.core.Passwords;
 import shoppinglist.core.Person;
 import shoppinglist.core.ShoppingList;
-import shoppinglist.core.Passwords;
 import shoppinglist.restapi.PersonResource;
 import shoppinglist.storage.FileHandler;
 
@@ -26,20 +23,20 @@ import shoppinglist.storage.FileHandler;
 public class PersonService {
 
   /**
-   * the service path for the server
+   * the service path for the server.
    */
   public static final String PERSON_SERVICE_PATH = "Persons";
   /**
-   * Arraylist for caching persons in memory, not currently used
+   * Arraylist for caching persons in memory, not currently used.
    */
   private static ArrayList<Person> persons = new ArrayList<Person>();
   /**
-   * logger for logging server issues
+   * logger for logging server issues.
    */
   private static final Logger LOG = LoggerFactory.getLogger(PersonService.class);
 
   /**
-   * Maps objects to json
+   * Maps objects to json.
    */
   private static final ObjectMapper mapper = new ObjectMapper();
   /*
@@ -48,7 +45,7 @@ public class PersonService {
 */
 
   /**
-   * not used
+   * not used.
    *
    * @return
    */
@@ -59,10 +56,10 @@ public class PersonService {
   }
 
   /**
-   * Recieved get for person
-   *
-   * @param username
+   * Recieved get for person.
+   * 
    * @return person with username username
+   * 
    */
   @GET
   @Path("/{username}")
@@ -73,9 +70,8 @@ public class PersonService {
 
 
   /**
-   * Recieved Put for Person
+   * Recieved Put for Person.
    *
-   * @param person
    * @return whether the person was saved or not
    */
   @PUT
@@ -89,7 +85,7 @@ public class PersonService {
   }
 
   /**
-   * Recieved Get for shoppinglist
+   * Recieved Get for shoppinglist.
    *
    * @param id
    * @return the shoppinglist with id id
@@ -106,7 +102,7 @@ public class PersonService {
   }
 
   /**
-   * Recieved Put for shoppinglist
+   * Recieved Put for shoppinglist.
    *
    * @param shoppinglist the shoppinglist to save
    */

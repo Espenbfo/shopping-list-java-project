@@ -9,7 +9,6 @@ import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
 import javax.ws.rs.QueryParam;
 import javax.ws.rs.core.MediaType;
-
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import shoppinglist.core.Person;
@@ -24,10 +23,9 @@ public class PersonResource {
   private ShoppingList shoppingList;
 
   /**
-   * Initializes PersonResource
+   * Initializes PersonResource.
    *
    * @param person       the person
-   * @param id           the id of the shoppinglist
    * @param shoppingList the shoppingList, or null
    */
   public PersonResource(Person person, ShoppingList shoppingList) {
