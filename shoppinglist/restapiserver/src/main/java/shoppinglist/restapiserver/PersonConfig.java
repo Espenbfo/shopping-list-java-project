@@ -12,7 +12,10 @@ import shoppinglist.restapi.PersonService;
 public class PersonConfig extends ResourceConfig {
 
     public static  ArrayList<Person> persons = new ArrayList<>();
-
+    
+    /**
+     * Registrerer bruker til server.
+     */
     public PersonConfig() {
 
         register(TestPage.class);
