@@ -28,7 +28,7 @@ public class LoginService {
   public static final String LOGIN_SERVICE_PATH = "Login";
   public static Passwords passwords;
 
-  private final static ObjectMapper mapper = new ObjectMapper();
+  private static final  ObjectMapper mapper = new ObjectMapper();
   /**
    * logger for logging server issues.
    */

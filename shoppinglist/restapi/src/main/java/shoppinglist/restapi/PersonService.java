@@ -87,7 +87,7 @@ public class PersonService {
   /**
    * Recieved Get for shoppinglist.
    *
-   * @param id
+   * @param id the user-id
    * @return the shoppinglist with id id
    */
   @GET
