@@ -47,10 +47,10 @@ public class PersistencyTest {
 
 
   @Test
-  public void testWriteReadMaxID() {
+  public void testWriteReadMaxId() {
 
-    Assertions.assertTrue(FileHandler.writeMaxID(4));
-    Assertions.assertTrue(FileHandler.readMaxID() == 4);
+    Assertions.assertTrue(FileHandler.writeMaxId(4));
+    Assertions.assertTrue(FileHandler.readMaxId() == 4);
   }
 
   @Test

@@ -3,7 +3,7 @@ package shoppinglist.core;
 /**
  * This class is for storing the max ID of a shoppinglist.
  */
-public class MaxID {
+public class MaxId {
   /**
    * the highest id as of yet.
    */
@@ -12,7 +12,7 @@ public class MaxID {
   /**
    * Initialize a MaxID with the default value.
    */
-  public MaxID() {
+  public MaxId() {
     id = 0;
   }
 
@@ -21,7 +21,7 @@ public class MaxID {
    *
    * @param id the new id
    */
-  public MaxID(final int id) {
+  public MaxId(final int id) {
     this.id = id;
   }
 

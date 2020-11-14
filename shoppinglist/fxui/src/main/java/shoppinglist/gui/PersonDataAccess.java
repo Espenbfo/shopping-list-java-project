@@ -4,7 +4,6 @@ import com.fasterxml.jackson.core.JsonParseException;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.JsonMappingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
-
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
@@ -17,13 +16,8 @@ import java.net.http.HttpRequest.BodyPublishers;
 import java.net.http.HttpResponse;
 import java.util.Collection;
 import java.util.Collections;
-
 import shoppinglist.core.Person;
 import shoppinglist.restapi.LoginResource;
-
-import java.io.BufferedReader;
-import java.io.InputStreamReader;
-
 
 public class PersonDataAccess {
 
@@ -36,7 +30,7 @@ public class PersonDataAccess {
   private final static ObjectMapper mapper = new ObjectMapper();
 
   /**
-   * Gets the common Uri with an added part at the end
+   * Gets the common Uri with an added part at the end.
    *
    * @param path the path to add
    * @return the URI
@@ -50,7 +44,7 @@ public class PersonDataAccess {
   }
 
   /**
-   * Saves a person on the server
+   * Saves a person on the server.
    *
    * @param person the person to save
    */
@@ -101,7 +95,7 @@ public class PersonDataAccess {
   }
 
   /**
-   * Checks if a user logs in with the correct password
+   * Checks if a user logs in with the correct password.
    *
    * @param person   the username
    * @param password the password

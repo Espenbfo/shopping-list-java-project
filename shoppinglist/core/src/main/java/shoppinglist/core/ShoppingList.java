@@ -61,7 +61,8 @@ public class ShoppingList {
    * @param id          the ID
    * @param elementList the list of elements
    */
-  public ShoppingList(String title, int id, ArrayList<ShoppingElement> elementList, ArrayList<String> personList) {
+  public ShoppingList(String title, int id, 
+      ArrayList<ShoppingElement> elementList, ArrayList<String> personList) {
     this.title = title;
     this.id = id;
     this.elementList = elementList;
@@ -77,24 +78,6 @@ public class ShoppingList {
     this(title);
     this.owner = owner;
   }
-
-
-  /**
-   * Sets the maxID for all shoppingLists.
-   * @param id the new max ID
-   */
-   /* public static void setCurrentMaxID(int id) {
-      currentMaxID = id;
-    }*/
-
-  /**
-   * Gets the max ID for all shoppinglists.
-   * @return the currentMaxID
-   */
-    /*public static int getCurrentMaxID() {
-        return currentMaxID;
-    }*/
-
 
   /**
    * Gets the title.
@@ -133,7 +116,7 @@ public class ShoppingList {
   }
 
   /**
-   * Gets the list of userNames
+   * Gets the list of userNames.
    *
    * @return an arraylist of person usernames
    */
@@ -142,7 +125,7 @@ public class ShoppingList {
   }
 
   /**
-   * Sets a personlist
+   * Sets a personlist.
    *
    * @param personList the arraylist of username to be set
    */
@@ -151,7 +134,7 @@ public class ShoppingList {
   }
 
   /**
-   * Adds person with username p to the arrayList
+   * Adds person with username p to the arrayList.
    *
    * @param p the username
    */
@@ -162,7 +145,7 @@ public class ShoppingList {
   }
 
   /**
-   * Adds person p to the arrayList
+   * Adds person p to the arrayList.
    *
    * @param p the Person
    */
@@ -173,7 +156,7 @@ public class ShoppingList {
   }
 
   /**
-   * Remove person with a username p
+   * Remove person with a username p.
    *
    * @param p the username
    */
@@ -263,7 +246,7 @@ public class ShoppingList {
   }
 
   /**
-   * Sets owner to given person
+   * Sets owner to given person.
    *
    * @param owner the person to be set as owner
    */
@@ -272,21 +255,21 @@ public class ShoppingList {
   }
 
   /**
-   * Get the owner of the list
+   * Get the owner of the list.
    */
   public Person getOwner() {
     return this.owner;
   }
 
   /**
-   *
+   * Getter.
    */
   public boolean getPublicList() {
     return publicList;
   }
 
   /**
-   *
+   * Setter. 
    */
   public void setPublicList(boolean listIsPublic) {
     this.publicList = listIsPublic;
@@ -316,12 +299,13 @@ public class ShoppingList {
    */
   @Override
   public boolean equals(Object o) {
-    if (o == null) return false;
+    if (o == null) {
+      return false;
+    } 
     if (!o.getClass().equals(this.getClass())) {
       return false;
     }
     ShoppingList e = (ShoppingList) o;
-
     if (!getTitle().equals(e.getTitle())) {
       return false;
     }
@@ -339,8 +323,6 @@ public class ShoppingList {
         return false;
       }
     }
-
-
     return true;
   }
 

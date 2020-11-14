@@ -4,7 +4,6 @@ import com.fasterxml.jackson.core.JsonParseException;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.JsonMappingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
-
 import java.io.IOException;
 import java.io.InputStream;
 import java.net.URI;
@@ -15,10 +14,8 @@ import java.net.http.HttpRequest.BodyPublishers;
 import java.net.http.HttpResponse;
 import java.util.Collection;
 import java.util.Collections;
-
 import shoppinglist.core.Person;
 import shoppinglist.core.ShoppingList;
-
 
 public class ShoppingListDataAccess {
 
@@ -47,7 +44,8 @@ public class ShoppingListDataAccess {
     try {
       int index = shoppingList.getId();
       ObjectMapper mapper = new ObjectMapper();
-      final HttpRequest request = HttpRequest.newBuilder(getRequestUri("/Persons/ShoppingLists/" + index))
+      final HttpRequest request = HttpRequest
+              .newBuilder(getRequestUri("/Persons/ShoppingLists/" + index))
               .header("Content-Type", "application/json")
               .header("Accept", "application/json")
               .PUT(BodyPublishers.ofString(mapper.writeValueAsString(shoppingList)))
