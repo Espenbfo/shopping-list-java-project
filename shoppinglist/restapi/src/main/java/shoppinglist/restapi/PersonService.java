@@ -118,10 +118,10 @@ public class PersonService {
     int newId = shoppinglist.getId();
     System.out.println(shoppinglist);
     if (newId == -1) {
-      newId = FileHandler.readMaxID();
+      newId = FileHandler.readMaxId();
       newId++;
       shoppinglist.setId(newId);
-      FileHandler.writeMaxID(newId);
+      FileHandler.writeMaxId(newId);
     }
     for (String x : shoppinglist.getPersonList()) {
       Person aperson = FileHandler.readPerson(x);
