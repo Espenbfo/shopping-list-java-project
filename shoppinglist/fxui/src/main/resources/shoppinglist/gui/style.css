@@ -96,3 +96,7 @@
 .table-view .column-header-background .filler {
     -fx-background-color:  white;
 }
+
+.illegal {
+    -fx-border-color: red;
+}
