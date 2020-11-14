@@ -47,10 +47,10 @@ public class LoginService {
   @Produces(MediaType.APPLICATION_JSON)
   public int addPerson(final LoginResource loginResource) {
     Person person = loginResource.getPerson();
-    String password = loginResource.getPassword();
     LOG.debug("addShoppingList({})", person);
     System.out.println("person");
     Passwords passwords = FileHandler.readPasswords();
+    String password = loginResource.getPassword();
     if (passwords == null) {
       passwords = new Passwords();
     }
