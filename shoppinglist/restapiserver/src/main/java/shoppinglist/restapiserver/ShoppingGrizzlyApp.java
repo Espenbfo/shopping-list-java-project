@@ -21,7 +21,7 @@ public class ShoppingGrizzlyApp {
 
 
     /**
-     * Starter serveren.
+     * Starts the server.
      */
     public static HttpServer start() throws IOException {
         int waitTime = 5;
@@ -53,7 +53,7 @@ public class ShoppingGrizzlyApp {
     }
 
     /**
-     * Stopper serveren.
+     * Stops the server.
      */
 
     public static void stop(HttpServer server){

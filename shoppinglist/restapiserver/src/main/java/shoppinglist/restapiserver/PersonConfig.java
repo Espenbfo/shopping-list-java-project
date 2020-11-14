@@ -14,7 +14,7 @@ public class PersonConfig extends ResourceConfig {
     public static  ArrayList<Person> persons = new ArrayList<>();
     
     /**
-     * Registrerer bruker til server.
+     * Registrer the person to server.
      */
     public PersonConfig() {
 
