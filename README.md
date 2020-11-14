@@ -16,7 +16,7 @@ DataAccess -> RestApi: putShoppingList
 RestApi -> ShoppingList: setID
 RestApi -> FileHandler: WriteShoppinglist
 FileHandler -> ShoppingList: getId
-shoppingList -> FileHandler: Return id
+ShoppingList -> FileHandler: Return id
 FileHandler -> RestApi: Return successful
 RestApi -> DataAccess: Return id
 ```
