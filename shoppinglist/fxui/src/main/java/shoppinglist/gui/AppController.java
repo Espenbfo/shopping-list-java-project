@@ -134,9 +134,15 @@ public class AppController {
   @FXML
   void handleAddItemButtonClicked() {
 
-    ShoppingElement currentElement = new ShoppingElement(itemInputField.getText(), Double.parseDouble(amountInputField.getText()), measurementInputField.getText());
-    data.add(currentElement);
-    currentShoppingList.addElement(currentElement);
+    if (!(itemInputField.getText().equals("") | amountInputField.getText().equals("") | measurementInputField.getText().equals(""))) {
+      ShoppingElement currentElement = new ShoppingElement(itemInputField.getText(), Double.parseDouble(amountInputField.getText()), measurementInputField.getText());
+      data.add(currentElement);
+      currentShoppingList.addElement(currentElement);
+      itemInputField.setText("");
+      amountInputField.setText("");
+      measurementInputField.setText("");
+      amountInputField.requestFocus();
+    }
   }
 
   /**
