@@ -120,7 +120,8 @@ public class AppController {
     colName.setCellValueFactory(new PropertyValueFactory<ShoppingElement, String>("name"));
 
     TableColumn<ShoppingElement, String> colType = new TableColumn<>("Type");
-    colType.setCellValueFactory(new PropertyValueFactory<ShoppingElement, String>("measurementName"));
+    colType.setCellValueFactory(new PropertyValueFactory<ShoppingElement, 
+        String>("measurementName"));
     colName.setPrefWidth(100);
     colType.setPrefWidth(50);
     colNum.setPrefWidth(50);
@@ -137,7 +138,10 @@ public class AppController {
   @FXML
   void handleAddItemButtonClicked() {
 
-    ShoppingElement currentElement = new ShoppingElement(itemInputField.getText(), Double.parseDouble(amountInputField.getText()), measurementInputField.getText());
+    ShoppingElement currentElement = new ShoppingElement(
+        itemInputField.getText(),
+        Double.parseDouble(amountInputField.getText()),
+        measurementInputField.getText());
     data.add(currentElement);
     currentShoppingList.addElement(currentElement);
   }
@@ -148,7 +152,10 @@ public class AppController {
   private void addButtonToTable() {
     TableColumn<ShoppingElement, Void> colBtn = new TableColumn("Delete?");
 
-    Callback<TableColumn<ShoppingElement, Void>, TableCell<ShoppingElement, Void>> cellFactory = new Callback<TableColumn<ShoppingElement, Void>, TableCell<ShoppingElement, Void>>() {
+    Callback<TableColumn<ShoppingElement, Void>,
+        TableCell<ShoppingElement, Void>> cellFactory = new Callback
+          <TableColumn<ShoppingElement, Void>, 
+          TableCell<ShoppingElement, Void>>() {
       @Override
       public TableCell<ShoppingElement, Void> call(final TableColumn<ShoppingElement, Void> param) {
         final TableCell<ShoppingElement, Void> cell = new TableCell<ShoppingElement, Void>() {
@@ -189,7 +196,8 @@ public class AppController {
    */
   private void addCheckBoxToTable() {
     TableColumn<ShoppingElement, Void> colCb = new TableColumn("Done");
-    Callback<TableColumn<ShoppingElement, Void>, TableCell<ShoppingElement, Void>> cellFactory = new Callback<TableColumn<ShoppingElement, Void>, TableCell<ShoppingElement, Void>>() {
+    Callback<TableColumn<ShoppingElement, Void>, TableCell<ShoppingElement, Void>> cellFactory
+         = new Callback<TableColumn<ShoppingElement, Void>, TableCell<ShoppingElement, Void>>() {
       @Override
       public TableCell<ShoppingElement, Void> call(final TableColumn<ShoppingElement, Void> param) {
         final TableCell<ShoppingElement, Void> cell = new TableCell<ShoppingElement, Void>() {
@@ -229,7 +237,9 @@ public class AppController {
    */
   @FXML
   void saveShoppingList() {
-    String peopleText = personInputField.getText().toLowerCase() + "," + peopleInputField.getText().toLowerCase();
+    String peopleText = personInputField
+        .getText().toLowerCase() + "," 
+        + peopleInputField.getText().toLowerCase();
     peopleText = peopleText.replaceAll("\\s", "");
 
     if (privateCheckBox.isSelected()) {
@@ -242,7 +252,10 @@ public class AppController {
     ArrayList<String> toBeRemoved = new ArrayList<String>();
 
     if (currentShoppingList.getOwner() == null) {
-      String ownerText = loginNameLabel.getText().toLowerCase() + "," + loginNameLabel.getText().toLowerCase();
+      String ownerText = loginNameLabel
+          .getText().toLowerCase() + "," 
+          + loginNameLabel
+          .getText().toLowerCase();
       currentShoppingList.setOwner(dataAccess.getPerson(ownerText));
       currentShoppingList.addPerson(ownerText);
     }
@@ -309,7 +322,10 @@ public class AppController {
       people = people.substring(0, people.length() - 2);
     }
     String ownerUserName = currentShoppingList.getOwner().getUserName();
-    loginNameLabel.setText(ownerUserName.substring(0, 1).toUpperCase() + ownerUserName.substring(1));
+    loginNameLabel.setText(
+        ownerUserName.substring(0, 1)
+        .toUpperCase() + ownerUserName
+        .substring(1));
     peopleInputField.setText(people);
     shoppingTitleTextField.setText(currentShoppingList.getTitle());
     privateCheckBox.setSelected(!currentShoppingList.getPublicList());
@@ -339,13 +355,14 @@ public class AppController {
     for (Integer id : currenttPerson.getShoppingLists()) {
       ShoppingList l = shoppingAccess.getShoppingList(id);
       String loggedIn = Client.getCurrentPerson().getUserName();
-      if (l.getPublicList() || l.getOwner().getUserName().equals(loggedIn) || l.getPersonList().contains(loggedIn)) {
+      if (l.getPublicList() 
+          || l.getOwner().getUserName().equals(loggedIn) 
+          || l.getPersonList().contains(loggedIn)) {
         Pane list = new Pane();
         Label listName = new Label(l.getTitle());
         listName.setPrefWidth(1000.);
         listName.getStyleClass().add("listTitleListElement");
         listsOverview.getChildren().add(listName);
-
         listName.setOnMouseClicked(event -> handleListButtonClicked(l));
       }
 
@@ -387,9 +404,10 @@ public class AppController {
   void handleListButtonClicked(ShoppingList shoppingList) {
     currentShoppingList = shoppingList;
     String ownerUserName = shoppingList.getOwner().getUserName();
-    loginNameLabel.setText(ownerUserName.substring(0, 1).toUpperCase() + ownerUserName.substring(1));
+    loginNameLabel.setText(
+        ownerUserName.substring(0, 1)
+        .toUpperCase() + ownerUserName.substring(1));
     loadShoppingListWithList(shoppingAccess.getShoppingList(currentShoppingList.getId()));
-
   }
 
 
@@ -417,13 +435,16 @@ public class AppController {
    * Loads the loginscreen.
    *
    * @param e the event that calls the scenechange
-   * @throws IOException
    */
   @FXML
   void loginScreen(ActionEvent e) throws IOException {
-    Parent loginParent = FXMLLoader.load(getClass().getResource("/resources/shoppinglist/gui/LoginScreen.fxml"));
+    Parent loginParent = FXMLLoader
+        .load(getClass()
+        .getResource("/resources/shoppinglist/gui/LoginScreen.fxml"));
     Scene loginScene = new Scene(loginParent);
-    loginScene.getStylesheets().add(getClass().getResource("/resources/shoppinglist/gui/style.css").toExternalForm());
+    loginScene.getStylesheets()
+        .add(getClass().getResource("/resources/shoppinglist/gui/style.css")
+        .toExternalForm());
     Stage appStage = (Stage) ((Node) e.getSource()).getScene().getWindow();
     appStage.setScene(loginScene);
   }

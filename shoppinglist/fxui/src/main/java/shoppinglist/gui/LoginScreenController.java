@@ -23,6 +23,7 @@ import javafx.scene.layout.Pane;
 import javafx.scene.layout.TilePane;
 import javafx.scene.text.TextAlignment;
 import javafx.stage.Stage;
+import shoppinglist.core.Client;
 import shoppinglist.core.Person;
 import shoppinglist.restapi.LoginResource;
 import shoppinglist.storage.FileHandler;

@@ -30,7 +30,7 @@ public class PersonDataAccess {
   private final static ObjectMapper mapper = new ObjectMapper();
 
   /**
-   * Gets the common Uri with an added part at the end
+   * Gets the common Uri with an added part at the end.
    *
    * @param path the path to add
    * @return the URI
@@ -44,7 +44,7 @@ public class PersonDataAccess {
   }
 
   /**
-   * Saves a person on the server
+   * Saves a person on the server.
    *
    * @param person the person to save
    */
@@ -96,7 +96,7 @@ public class PersonDataAccess {
   }
 
   /**
-   * Checks if a user logs in with the correct password
+   * Checks if a user logs in with the correct password.
    *
    * @param person   the username
    * @param password the password

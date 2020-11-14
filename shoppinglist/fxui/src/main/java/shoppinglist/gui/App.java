@@ -16,10 +16,15 @@ public class App extends Application {
   @Override
   public void start(final Stage primaryStage) throws Exception {
     System.out.println(getClass().getResource("/resources/shoppinglist/gui/App.fxml"));
-    final Parent parent = FXMLLoader.load(getClass().getResource("/resources/shoppinglist/gui/LoginScreen.fxml"));
+    final Parent parent = FXMLLoader
+        .load(getClass()
+        .getResource("/resources/shoppinglist/gui/LoginScreen.fxml"));
     ;
     scene = new Scene(parent);
-    scene.getStylesheets().add(getClass().getResource("/resources/shoppinglist/gui/style.css").toExternalForm());
+    scene.getStylesheets()
+        .add(getClass()
+        .getResource("/resources/shoppinglist/gui/style.css")
+        .toExternalForm());
     primaryStage.setScene(scene);
     primaryStage.show();
 
@@ -27,7 +32,6 @@ public class App extends Application {
     if (Client.getPasswords() == null) {
       Client.setPasswords(new Passwords());
     }
-
   }
 
   public static void main(final String[] args) {
