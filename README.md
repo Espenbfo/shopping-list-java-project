@@ -13,6 +13,8 @@ Person -> SaveButton: press
 SaveButton -> Controller: pressed
 Controller -> DataAccess: putShoppingList
 DataAccess -> RestApi: putShoppingList
+RestApi -> ShoppingList: getID
+ShoppingList -> RestApi: Return id
 RestApi -> ShoppingList: setID
 RestApi -> FileHandler: WriteShoppinglist
 FileHandler -> ShoppingList: getId
