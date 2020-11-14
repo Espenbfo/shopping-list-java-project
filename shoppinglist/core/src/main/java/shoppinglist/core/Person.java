@@ -60,8 +60,6 @@ public class Person {
 
   /**
    * a constructor for a new Person who has not created any shoppinglists formerly.
-   *
-   * @param userName the name of the user
    */
   public Person() {
     this.userName = "";
