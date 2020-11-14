@@ -88,12 +88,31 @@ public class AppController {
   }
 
   /**
+   * Getter for the ShoppingListDataAccess object.
+   *
+   * @return dataAccess, the object
+   */
+  protected ShoppingListDataAccess getShoppingAccess() {
+    return shoppingAccess;
+  }
+  
+
+  /**
    * Setter for the PersonDataAccess object.
    *
    * @param dataAccess the PersonDataAccess object.
    */
   public void setDataAccess(final PersonDataAccess dataAccess) {
     this.dataAccess = dataAccess;
+  }
+
+  /**
+   * Setter for the ShoppingListDataAccess object.
+   *
+   * @param shoppingAccess the ShoppingListDataAccess object.
+   */
+  public void setShoppingDataAccess(final ShoppingListDataAccess shoppingDataAccess) {
+    this.shoppingAccess = shoppingDataAccess;
   }
 
   /**
