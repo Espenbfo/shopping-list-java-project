@@ -38,8 +38,6 @@ import shoppinglist.core.Person;
 import shoppinglist.storage.FileHandler;
 
 public class AppController {
-  private static Person currentPerson;
-
 
   @FXML
   Button addItemButton;
@@ -72,8 +70,6 @@ public class AppController {
 
   public ShoppingList currentShoppingList;
   private final ObservableList<ShoppingElement> data = FXCollections.observableArrayList();
-
-  String itemToAdd = null;
 
   private PersonDataAccess dataAccess;
   private ShoppingListDataAccess shoppingAccess;
@@ -297,7 +293,7 @@ public class AppController {
       data.add(x);
     }
     String currentUser = Client.getCurrentPerson().getUserName();
-    if (currentShoppingList.getPersonList().contains(Client.getCurrentPerson())) {
+    if (currentShoppingList.getPersonList().contains(Client.getCurrentPerson().getUserName())) {
       personInputField.setText(currentUser);
     }
     String people = "";
@@ -341,7 +337,6 @@ public class AppController {
       ShoppingList l = shoppingAccess.getShoppingList(id);
       String loggedIn = Client.getCurrentPerson().getUserName();
       if (l.getPublicList() || l.getOwner().getUserName().equals(loggedIn) || l.getPersonList().contains(loggedIn)) {
-        Pane list = new Pane();
         Label listName = new Label(l.getTitle());
         listName.setPrefWidth(1000.);
         listName.getStyleClass().add("listTitleListElement");
