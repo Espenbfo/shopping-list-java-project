@@ -34,7 +34,7 @@ public class FileHandler {
         dir.mkdir();
       }
       ObjectMapper mapper = new ObjectMapper();
-      ShoppingList out = mapper.readValue(Paths.get("./shoppinglists/" + id + ".json").toFile(), ShoppingList.class);
+      ShoppingList out = mapper.readValue(Paths.get("./shoppinglists/shoppinglist-" + id + ".json").toFile(), ShoppingList.class);
       return out;
     } catch (Exception e) {
     }
@@ -54,7 +54,7 @@ public class FileHandler {
         dir.mkdir();
       }
       ObjectMapper mapper = new ObjectMapper();
-      mapper.writeValue(Paths.get("./shoppinglists/" + listToWrite.getId() + ".json").toFile(), listToWrite);
+      mapper.writeValue(Paths.get("./shoppinglists/shoppinglist-" + listToWrite.getId() + ".json").toFile(), listToWrite);
       return true;
     } catch (Exception e) {
       e.printStackTrace();

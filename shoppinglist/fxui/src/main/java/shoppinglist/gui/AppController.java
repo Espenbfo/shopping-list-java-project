@@ -339,6 +339,7 @@ public class AppController {
     listsOverview.getChildren().clear();
     for (Integer id : currenttPerson.getShoppingLists()) {
       ShoppingList l = shoppingAccess.getShoppingList(id);
+      System.out.println(l);
       if (l.getPublicList() || l.getOwner().getUserName().equals(Client.getCurrentPerson().getUserName())) {
         Pane list = new Pane();
         Label listName = new Label(l.getTitle());
