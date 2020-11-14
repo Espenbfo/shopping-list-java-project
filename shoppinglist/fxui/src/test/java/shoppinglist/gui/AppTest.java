@@ -42,7 +42,7 @@ public class AppTest extends ApplicationTest {
     private Person testindivid;
     @Mock PersonDataAccess personDataAccess;
     @Mock ShoppingListDataAccess shoppingDataAccess;
-    @InjectMocks private AppController controller;
+    private AppController controller;
 
 
 
@@ -94,9 +94,11 @@ public class AppTest extends ApplicationTest {
     public void setUp() {
       personDataAccess = mock(PersonDataAccess.class);
       shoppingDataAccess = mock(ShoppingListDataAccess.class);
-      controller = mock(AppController.class);
+      controller.setDataAccess(personDataAccess);
+      controller.setShoppingDataAccess(shoppingDataAccess);
       testindivid = new Person("testindivid");
       personDataAccess.putRegister(testindivid, "password");
+      Client.setCurrentPerson(testindivid);
       //FileHandler.writePasswords(Client.getPasswords());
     }
 
@@ -124,7 +126,7 @@ public class AppTest extends ApplicationTest {
         write("testindivid");
         clickOn(peopleInputField);
         write("testindivid");
-        //clickOn(saveButton);
+        clickOn(saveButton);
         System.out.println(controller.currentShoppingList);
 
         //Assertions.assertTrue(oldText.equals(controller.currentShoppingList.getElement(0).getName()));
