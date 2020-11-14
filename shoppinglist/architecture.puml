@@ -14,11 +14,34 @@ component javafx {
 	}
 }
 
+component restapi{
+    package shoppinglist.restapi
+}
+
+component restapiserver{
+    package shoppinglist.restapiserver
+}
+
 component jackson{
 }
 
+component jersey{
+}
+
+component grizzly2{
+}
+
+component jaxrs{
+}
+
 shoppinglist.gui ..> shoppinglist.core
-shoppinglist.gui ..> shoppinglist.storage
+shoppinglist.restapi ..> shoppinglist.storage
+shoppinglist.restapi ..> shoppinglist.core
+shoppinglist.restapiserver ..>shoppinglist.restapi
+shoppinglist.restapiserver ..> shoppinglist.core
+restapi ..> jaxrs
+restapiserver ..> jersey
+restapiserver ..> grizzly2
 gui ..> javafx
 gui ..> fxml
 shoppinglist.storage ..> jackson
