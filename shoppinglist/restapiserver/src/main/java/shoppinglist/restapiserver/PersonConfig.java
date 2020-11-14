@@ -16,7 +16,7 @@ import shoppinglist.restapi.LoginService;
 
 public class PersonConfig extends ResourceConfig {
 
-  public static ArrayList<Person> persons = new ArrayList<>();
+  static final ArrayList<Person> persons = new ArrayList<>();
 
   public PersonConfig() {
 

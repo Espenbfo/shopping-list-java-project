@@ -33,7 +33,7 @@ public class LoginService {
   /**
    *
    */
-  public static Passwords passwords;
+  private Passwords passwords;
 
   private final static ObjectMapper mapper = new ObjectMapper();
   /**
@@ -77,7 +77,7 @@ public class LoginService {
   @Consumes(MediaType.APPLICATION_JSON)
   @Produces(MediaType.APPLICATION_JSON)
   public Person checkLogin(LoginResource loginResource) {
-    System.out.println("Post :" + loginResource.getPerson().getUserName() + " " + loginResource.getPassword());
+    System.out.println("Post :" + loginResource.getPerson().getUserName());
 
     passwords = FileHandler.readPasswords();
     if (passwords == null) {
