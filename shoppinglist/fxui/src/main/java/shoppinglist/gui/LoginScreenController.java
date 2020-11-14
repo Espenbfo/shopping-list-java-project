@@ -29,8 +29,6 @@ import shoppinglist.storage.FileHandler;
 import shoppinglist.restapi.LoginResource;
 
 public class LoginScreenController {
-  private static Person currentPerson;
-
 
   @FXML
   TextField usernameInputField;
@@ -42,9 +40,6 @@ public class LoginScreenController {
   Button registerButton;
   @FXML
   Label errorLabel;
-
-  String itemToAdd = null;
-
 
   private PersonDataAccess dataAccess;
 
@@ -110,7 +105,6 @@ public class LoginScreenController {
         return;
       }
       Person p = new Person(name);
-      byte[] salt = p.getSalt();
       Client.getPasswords().setPassword(p, password);
       dataAccess.putRegister(p, password);
       FileHandler.writePasswords(Client.getPasswords());

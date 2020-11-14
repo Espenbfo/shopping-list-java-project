@@ -63,10 +63,9 @@ public class PersonDataAccess {
               .PUT(BodyPublishers.ofString(mapper.writeValueAsString(person)))
               .build();
 
-      final HttpResponse<InputStream> response =
-              HttpClient.newBuilder().build().send(
-                      request, HttpResponse.BodyHandlers.ofInputStream()
-              );
+      HttpClient.newBuilder().build().send(
+              request, HttpResponse.BodyHandlers.ofInputStream()
+      );
 
     } catch (final JsonProcessingException e) {
       throw new RuntimeException(e);
@@ -153,10 +152,9 @@ public class PersonDataAccess {
               .PUT(BodyPublishers.ofString(mapper.writeValueAsString(loginResource)))
               .build();
 
-      final HttpResponse<InputStream> response =
-              HttpClient.newBuilder().build().send(
-                      request, HttpResponse.BodyHandlers.ofInputStream()
-              );
+      HttpClient.newBuilder().build().send(
+              request, HttpResponse.BodyHandlers.ofInputStream()
+      );
 
     } catch (final JsonProcessingException e) {
       throw new RuntimeException(e);
