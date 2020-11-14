@@ -24,17 +24,27 @@ import static org.mockito.ArgumentMatchers.anyInt;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
 
+import org.mockito.InjectMocks;
+import org.mockito.Mock;
+import org.junit.jupiter.api.extension.ExtendWith;
+import org.mockito.junit.jupiter.MockitoExtension;
+
+
 
 
 import java.awt.*;
 
+
+@ExtendWith(MockitoExtension.class)
 public class AppTest extends ApplicationTest {
 
     private Parent parent;
-    private AppController controller;
     private Person testindivid;
-    PersonDataAccess personDataAccess;
-    ShoppingListDataAccess shoppingDataAccess;
+    @Mock PersonDataAccess personDataAccess;
+    @Mock ShoppingListDataAccess shoppingDataAccess;
+    @InjectMocks private AppController controller;
+
+
 
 /*
     private ShoppingListDataAccess shoppingDataAccess;
@@ -84,7 +94,7 @@ public class AppTest extends ApplicationTest {
     public void setUp() {
       personDataAccess = mock(PersonDataAccess.class);
       shoppingDataAccess = mock(ShoppingListDataAccess.class);
-
+      controller = mock(AppController.class);
       testindivid = new Person("testindivid");
       personDataAccess.putRegister(testindivid, "password");
       //FileHandler.writePasswords(Client.getPasswords());
