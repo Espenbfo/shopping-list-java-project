@@ -339,7 +339,8 @@ public class AppController {
     listsOverview.getChildren().clear();
     for (Integer id : currenttPerson.getShoppingLists()) {
       ShoppingList l = shoppingAccess.getShoppingList(id);
-      if (l.getPublicList() || l.getOwner().getUserName().equals(Client.getCurrentPerson().getUserName())) {
+      String loggedIn = Client.getCurrentPerson().getUserName();
+      if (l.getPublicList() || l.getOwner().getUserName().equals(loggedIn) || l.getPersonList().contains(loggedIn)) {
         Pane list = new Pane();
         Label listName = new Label(l.getTitle());
         listName.setPrefWidth(1000.);
