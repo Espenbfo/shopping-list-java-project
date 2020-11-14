@@ -1,18 +1,18 @@
 package shoppinglist.gui;
 
+import java.awt.*;
 import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.testfx.framework.junit5.ApplicationTest;
-import org.junit.jupiter.api.BeforeEach;
-
-import shoppinglist.gui.LoginScreenController;
+import shoppinglist.core.Client;
 import shoppinglist.core.ShoppingList;
 import shoppinglist.core.Person;
-import shoppinglist.core.Client;
-import shoppinglist.restapi.PersonService;
+import shoppinglist.gui.LoginScreenController;
 import shoppinglist.gui.ShoppingListDataAccess;
+import shoppinglist.restapi.PersonService;
 
-import java.awt.*;
+
 
 public class ShoppingListDataAccessTest {
   final String baseURL = "http://localhost:8087/";
@@ -29,8 +29,6 @@ public class ShoppingListDataAccessTest {
     final String serverUrlString = baseURL;
     final String clientUrlString = serverUrlString + PersonService.PERSON_SERVICE_PATH;
     access = new ShoppingListDataAccess(clientUrlString);
-
-
   }
 
   @Test
