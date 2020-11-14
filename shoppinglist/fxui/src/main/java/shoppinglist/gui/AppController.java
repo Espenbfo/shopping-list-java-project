@@ -350,6 +350,14 @@ public class AppController {
     peopleInputField.setText(people);
     shoppingTitleTextField.setText(currentShoppingList.getTitle());
     privateCheckBox.setSelected(!currentShoppingList.getPublicList());
+
+    if (!currentShoppingList.getOwner().getUserName()
+            .equals(Client.getCurrentPerson().getUserName())) {
+      privateCheckBox.setDisable(true);
+    }
+    else {
+      privateCheckBox.setDisable(false);
+    }
   }
 
   /**
