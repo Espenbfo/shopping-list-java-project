@@ -97,7 +97,6 @@ public class PersonService {
     ShoppingList shoppinglist = FileHandler.readFile(id);
     LOG.debug("Sub-resource for Person " + id + ": " + shoppinglist);
     System.out.println(id);
-    Person person = new Person();
     return shoppinglist;
   }
 
@@ -121,7 +120,7 @@ public class PersonService {
     }
     for (String x : shoppinglist.getPersonList()) {
       Person aperson = FileHandler.readPerson(x);
-      if (!aperson.getShoppingLists().contains(newId) && aperson != null) {
+      if (aperson != null && !aperson.getShoppingLists().contains(newId)) {
         aperson.addShoppingList(newId);
         FileHandler.writePerson(aperson);
       }

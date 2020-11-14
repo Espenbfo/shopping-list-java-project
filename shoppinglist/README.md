@@ -28,6 +28,6 @@ Som bruker ønsker jeg å kunne redigere innholdet i lister ved supplering, avhu
 Som bruker ønsker jeg å kunne endre på elementer uten å slette den først.
 
 
-![](1.PNG) 
-![](2.PNG) 
+![](LoginScreen.PNG) 
+![](AppScreen.PNG) 
 

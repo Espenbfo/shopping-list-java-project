@@ -37,8 +37,6 @@ import shoppinglist.core.ShoppingList;
 import shoppinglist.storage.FileHandler;
 
 public class AppController {
-  private static Person currentPerson;
-
 
   @FXML
   Button addItemButton;
@@ -71,8 +69,6 @@ public class AppController {
 
   public ShoppingList currentShoppingList;
   private final ObservableList<ShoppingElement> data = FXCollections.observableArrayList();
-
-  String itemToAdd = null;
 
   private PersonDataAccess dataAccess;
   private ShoppingListDataAccess shoppingAccess;
@@ -138,12 +134,40 @@ public class AppController {
   @FXML
   void handleAddItemButtonClicked() {
 
-    ShoppingElement currentElement = new ShoppingElement(
-        itemInputField.getText(),
-        Double.parseDouble(amountInputField.getText()),
-        measurementInputField.getText());
-    data.add(currentElement);
-    currentShoppingList.addElement(currentElement);
+    boolean isAdding = true;
+    if (itemInputField.getText().equals("")) {
+      isAdding = false;
+      itemInputField.getStyleClass().add("illegal");
+    }
+    else {
+      itemInputField.getStyleClass().clear();
+      itemInputField.getStyleClass().addAll("text-field", "text-input");
+    }
+    if (amountInputField.getText().equals("")) {
+      isAdding = false;
+      amountInputField.getStyleClass().add("illegal");
+    }
+    else {
+      amountInputField.getStyleClass().clear();
+      amountInputField.getStyleClass().addAll("text-field", "text-input");
+    }
+    if (measurementInputField.getText().equals("")) {
+      isAdding = false;
+      measurementInputField.getStyleClass().add("illegal");
+    }
+    else {
+      measurementInputField.getStyleClass().clear();
+      measurementInputField.getStyleClass().addAll("text-field", "text-input");
+    }
+    if (isAdding) {
+      ShoppingElement currentElement = new ShoppingElement(itemInputField.getText(), Double.parseDouble(amountInputField.getText()), measurementInputField.getText());
+      data.add(currentElement);
+      currentShoppingList.addElement(currentElement);
+      itemInputField.setText("");
+      amountInputField.setText("");
+      measurementInputField.setText("");
+      amountInputField.requestFocus();
+    }
   }
 
   /**
@@ -237,9 +261,16 @@ public class AppController {
    */
   @FXML
   void saveShoppingList() {
-    String peopleText = personInputField
-        .getText().toLowerCase() + "," 
-        + peopleInputField.getText().toLowerCase();
+
+    if (shoppingTitleTextField.getText().equals("")) {
+      shoppingTitleTextField.getStyleClass().add("illegal");
+      return;
+    }
+    else {
+      shoppingTitleTextField.getStyleClass().clear();
+      shoppingTitleTextField.getStyleClass().addAll("text-field", "text-input");
+    }
+    String peopleText = personInputField.getText().toLowerCase() + "," + peopleInputField.getText().toLowerCase();
     peopleText = peopleText.replaceAll("\\s", "");
 
     if (privateCheckBox.isSelected()) {
@@ -309,7 +340,7 @@ public class AppController {
       data.add(x);
     }
     String currentUser = Client.getCurrentPerson().getUserName();
-    if (currentShoppingList.getPersonList().contains(Client.getCurrentPerson())) {
+    if (currentShoppingList.getPersonList().contains(Client.getCurrentPerson().getUserName())) {
       personInputField.setText(currentUser);
     }
     String people = "";
@@ -329,6 +360,14 @@ public class AppController {
     peopleInputField.setText(people);
     shoppingTitleTextField.setText(currentShoppingList.getTitle());
     privateCheckBox.setSelected(!currentShoppingList.getPublicList());
+
+    if (!currentShoppingList.getOwner().getUserName()
+            .equals(Client.getCurrentPerson().getUserName())) {
+      privateCheckBox.setDisable(true);
+    }
+    else {
+      privateCheckBox.setDisable(false);
+    }
   }
 
   /**
