@@ -299,7 +299,7 @@ public class ShoppingList {
    */
   @Override
   public boolean equals(Object o) {
-    if (o == null){
+    if (o == null) {
       return false;
     } 
     if (!o.getClass().equals(this.getClass())) {

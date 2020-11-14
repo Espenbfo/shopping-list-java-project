@@ -3,7 +3,6 @@ package shoppinglist.gui;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
-
 import javafx.application.Application;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -25,8 +24,8 @@ import javafx.scene.layout.TilePane;
 import javafx.scene.text.TextAlignment;
 import javafx.stage.Stage;
 import shoppinglist.core.*;
-import shoppinglist.storage.FileHandler;
 import shoppinglist.restapi.LoginResource;
+import shoppinglist.storage.FileHandler;
 
 public class LoginScreenController {
   private static Person currentPerson;
@@ -44,7 +43,6 @@ public class LoginScreenController {
   Label errorLabel;
 
   String itemToAdd = null;
-
 
   private PersonDataAccess dataAccess;
 
@@ -128,9 +126,11 @@ public class LoginScreenController {
    * @throws IOException
    */
   void mainScreen(ActionEvent e) throws IOException {
-    Parent loginParent = FXMLLoader.load(getClass().getResource("/resources/shoppinglist/gui/App.fxml"));
+    Parent loginParent = FXMLLoader.load(getClass()
+      .getResource("/resources/shoppinglist/gui/App.fxml"));
     Scene loginScene = new Scene(loginParent);
-    loginScene.getStylesheets().add(getClass().getResource("/resources/shoppinglist/gui/style.css").toExternalForm());
+    loginScene.getStylesheets().add(getClass()
+      .getResource("/resources/shoppinglist/gui/style.css").toExternalForm());
     Stage appStage = (Stage) ((Node) e.getSource()).getScene().getWindow();
     appStage.setScene(loginScene);
   }
