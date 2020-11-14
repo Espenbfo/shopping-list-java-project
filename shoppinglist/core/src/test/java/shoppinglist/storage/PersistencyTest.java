@@ -53,5 +53,17 @@ public class PersistencyTest {
     Assertions.assertTrue(FileHandler.readMaxID() == 4);
   }
 
+  @Test
+  public void testWriteReadPasswords() {
+    Passwords p = new Passwords();
+    Person testPerson = new Person("testperson");
+    p.setPassword(testPerson,"testpassord");
+    String hashedPassword = p.getPassword(testPerson);
+
+    Assertions.assertTrue(FileHandler.writePasswords(p));
+
+    //System.out.println("result: " + FileHandler.readPasswords().getPassword(testPerson));
+    Assertions.assertTrue(FileHandler.readPasswords().getPassword(testPerson).equals(hashedPassword));
+  }
 
 }
