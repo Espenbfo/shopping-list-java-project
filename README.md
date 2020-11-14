@@ -11,9 +11,14 @@ Kode ligger i src-mappene.
 actor Person
 Person -> SaveButton: press
 SaveButton -> Controller: pressed
-Controller -> FileHandler: write(shoppingList)
-FileHandler -> shoppingList: getId()
-shoppingList -> FileHandler: Return
-FileHandler -> Controller: Return
+Controller -> DataAccess: putShoppingList(ShoppingList)
+DataAccess -> RestApi: putShoppingList(ShoppingList)
+RestApi -> ShoppingList: setID(newId)
+RestApi -> FileHandler: WriteShoppinglist(ShoppingList)
+FileHandler -> ShoppingList: getId()
+shoppingList -> FileHandler: Return id
+FileHandler -> RestApi: Return successful
+RestApi -> DataAccess: Return id
 ```
+
 
