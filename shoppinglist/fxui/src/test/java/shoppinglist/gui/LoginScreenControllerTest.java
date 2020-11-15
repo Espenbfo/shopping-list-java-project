@@ -94,7 +94,7 @@ public class LoginScreenControllerTest extends ApplicationTest {
         final Label errorLabel = (Label) parent.lookup("#error");
         clickOn(loginButton);
         System.out.println(Client.getCurrentPerson().getUserName());
-        Assertions.assertTrue(errorLabel.getText().equals("Could not log in with empty field(s)"));
+        Assertions.assertTrue(errorLabel.getText().equals("Empty username and password fields. Please fill in before continuing"));
     }
 
     @Test
@@ -104,7 +104,7 @@ public class LoginScreenControllerTest extends ApplicationTest {
         final Label errorLabel = (Label) parent.lookup("#error");
         clickOn(registerButton);
         System.out.println(Client.getCurrentPerson().getUserName());
-        Assertions.assertTrue(errorLabel.getText().equals("Could not register with empty field(s)"));
+        Assertions.assertTrue(errorLabel.getText().equals("Empty username and password fields. Please fill in before continuing"));
     }
 
     @Test
@@ -121,6 +121,22 @@ public class LoginScreenControllerTest extends ApplicationTest {
         clickOn(loginButton);
         System.out.println(Client.getCurrentPerson().getUserName());
         Assertions.assertTrue(errorLabel.getText().equals("Login failed, is your password correct?"));
+    }
+
+    @Test
+    public void testLoginInvalidName(){
+        when(dataAccess.putLogin(anyString(),anyString())).thenReturn(null);
+        final Label errorLabel = (Label) parent.lookup("#error");
+        final Button loginButton = (Button) parent.lookup("#loginButton");
+        final TextField usernameInputField = (TextField) parent.lookup("#usernameInputField");
+        final TextField passwordInputField = (TextField) parent.lookup("#passwordInputField");
+        clickOn(usernameInputField);
+        write("@%32");
+        clickOn(passwordInputField);
+        write("duG");
+        clickOn(loginButton);
+        System.out.println(Client.getCurrentPerson().getUserName());
+        Assertions.assertTrue(errorLabel.getText().equals("Illegal characters in username"));
     }
     
 }
