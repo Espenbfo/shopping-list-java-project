@@ -15,6 +15,8 @@ import static org.junit.jupiter.api.Assertions.fail;
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.io.OutputStream;
+import java.lang.Thread;
+import java.net.BindException;
 import java.net.URI;
 import java.net.URL;
 import java.net.HttpURLConnection;
@@ -22,6 +24,7 @@ import java.net.MalformedURLException;
 import java.net.ProtocolException;
 import java.util.Collections;
 import javax.ws.rs.client.Entity;
+import javax.ws.rs.ProcessingException;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 
@@ -68,6 +71,32 @@ public class ServerTest extends JerseyTest {
       assertTrue(false);
     }
   }
+
+  @Test
+  void testMain() {
+    Thread t1 = new Thread(new Runnable() {
+      @Override
+      public void run() {
+        try {
+          ShoppingGrizzlyApp.main(new String[0]);
+        }
+        catch(IOException e) {
+          e.printStackTrace();
+          assertTrue(false);
+        }
+      }
+    });
+    t1.start();
+    try {
+      Thread.sleep(100);
+    }
+    catch (Exception e) {
+
+    }
+    t1.stop();
+
+  }
+
 /*
     @Test
     public void testPost(){
