@@ -19,4 +19,4 @@ Logikken støtter også opphenting av slike filer.
 ## Kodekvalitetsanalyse
 Jacoco produserer en rapport for testdekningsgrad av koden. Kjøres av mvn test, og produserer rapport ved mvn jacoco:report. Denne kan hentes ut under core. Spotbugs brukes for å gjennkjenne bugs og bugsmønster i koden. 
 Checkstyle produserer en rapport for Kodekvalitetsanalyse og detekterer syntax-feil og brudd på kodekonvensjon.
-Spotbugs detekterer koden for bugs og klassifiserer de etter grad av grovhet. 
+Spotbugs detekterer koden for bugs og klassifiserer de etter grovhetsgrad. 
