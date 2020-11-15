@@ -20,7 +20,7 @@ I denne mappen ligger også en egen fil for brukerhistorier, for videre forklari
 Prosjektet er konfigurert med Maven, og kan kjøres på følgende måte:
 1. *mvn clean install*  – kjøres i rotmappen shoppinglist 
 2. *mvn exec:java -f restapiserver* – starter serveren. Kjøres i egen terminal i mappen shoppinglist
-3. *mvn javafx:run* – åpner applikasjonen. Kjøres i fxui. 
+3. *mvn javafx:run -f fxui* – åpner applikasjonen.
 4. *mvn test* - kan kjøres for å teste applikasjonen
 
 
