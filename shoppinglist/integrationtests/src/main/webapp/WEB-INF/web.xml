@@ -8,15 +8,15 @@
 
   <!--  Dette er kokt, men skal endres -->
     <servlet>
-        <servlet-name>todo</servlet-name>
+        <servlet-name>shoppinglist</servlet-name>
         <servlet-class>org.glassfish.jersey.servlet.ServletContainer</servlet-class>
         <init-param>
             <param-name>javax.ws.rs.Application</param-name>
-            <param-value>todolist.restserver.TodoConfig</param-value>
+            <param-value>shoppinglist.restapiserver.PersonConfig</param-value>
         </init-param>
     </servlet>
     <servlet-mapping>
-        <servlet-name>todo</servlet-name>
+        <servlet-name>shoppinglist</servlet-name>
         <url-pattern>/*</url-pattern>
     </servlet-mapping>
 </web-app>
