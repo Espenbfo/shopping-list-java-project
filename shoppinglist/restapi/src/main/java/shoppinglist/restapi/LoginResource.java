@@ -32,23 +32,42 @@ public class LoginResource {
     this.password = password;
   }
 
+  /**
+   * Initializes PersonResource.
+   */
   public LoginResource() {
     this.person = new Person();
     this.password = "";
   }
 
+  /**
+   * Gets the current Person.
+   * @return the person 
+   */
   public Person getPerson() {
     return person;
   }
 
+  /**
+   * Gets the current Person's password.
+   * @return the password 
+   */
   public String getPassword() {
     return password;
   }
 
+  /**
+   * Sets the current person.
+   * @param person the person to set
+   */
   public void setPerson(Person person) {
     this.person = person;
   }
 
+  /**
+   * Sets the password of current person.
+   * @param password the password to set
+   */
   public void setPassword(String password) {
     this.password = password;
   }

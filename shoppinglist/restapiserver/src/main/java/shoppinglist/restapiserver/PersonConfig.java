@@ -14,7 +14,11 @@ public class PersonConfig extends ResourceConfig {
 
   static final ArrayList<Person> persons = new ArrayList<>();
 
-
+/**
+ * New config object.
+ * Registers the necessary classes for loading persons to server. 
+ * 
+ */
   public PersonConfig() {
     register(LoginService.class);
     register(TestPage.class);
