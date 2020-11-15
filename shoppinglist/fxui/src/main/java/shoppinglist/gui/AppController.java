@@ -131,6 +131,8 @@ public class AppController {
 
   /**
    * Add element to shoppinglist when button is clicked.
+   *
+   * @Param e necessary for the error tooltip
    */
 
   @FXML
@@ -264,6 +266,8 @@ public class AppController {
 
   /**
    * Saves shoppinglist to server.
+   *
+   * @Param e necessary for the error tooltip.
    */
   @FXML
   void saveShoppingList(ActionEvent e) {
@@ -459,6 +463,8 @@ public class AppController {
 
   /**
    * Creates a new empty shoppinglist.
+   *
+   * @Param e necessary for the error tooltip
    */
   @FXML
   void newList(ActionEvent e) {
@@ -498,9 +504,9 @@ public class AppController {
   /**
    * Shows an error message above a textfield.
    *
-   * @param textfield
-   * @param tooltipText
-   * @param e
+   * @param textfield The textfield
+   * @param tooltipText The text in the error message
+   * @param e the actionevent. This is used to find the right coordinates.
    */
   public static void showError(final TextField textfield, final String tooltipText, final ActionEvent e, final int yShift)
   {

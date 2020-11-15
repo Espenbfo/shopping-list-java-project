@@ -101,6 +101,7 @@ public class LoginScreenController {
   /**
    * Validates username.
    *
+   * @Param e necessary for the error tooltip.
    * @return if username is valid
    */
   boolean isUserNameValid(ActionEvent e) {
@@ -139,6 +140,7 @@ public class LoginScreenController {
   /**
    * Checks if the name- and passwordfields are filled in.
    *
+   * @Param e necessary for the error tooltip.
    * @return if the name- and passwordfields are filled in.
    */
   boolean checkIfFilledFields(ActionEvent e) {
@@ -216,9 +218,9 @@ public class LoginScreenController {
   /**
    * Shows an error message above a textfield.
    *
-   * @param textfield
-   * @param tooltipText
-   * @param e
+   * @param textfield The textfield
+   * @param tooltipText The text in the error message
+   * @param e the actionevent. This is used to find the right coordinates.
    */
   public static void showError(TextField textfield, String tooltipText, ActionEvent e, int yShift)
   {
