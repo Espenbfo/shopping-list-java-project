@@ -88,12 +88,12 @@ public class ServerTest extends JerseyTest {
     });
     t1.start();
     try {
-      Thread.sleep(100);
+      Thread.sleep(1000);
     }
     catch (Exception e) {
 
     }
-    t1.stop();
+    t1.interrupt();
 
   }
 
