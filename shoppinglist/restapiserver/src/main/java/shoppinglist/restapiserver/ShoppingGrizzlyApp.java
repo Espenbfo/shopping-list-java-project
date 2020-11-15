@@ -19,7 +19,12 @@ import shoppinglist.restapiserver.TestPage;
 public class ShoppingGrizzlyApp {
 
   private static URI serverUri = URI.create("http://localhost:8087/index/");
-    
+
+  /**
+   * Starts a server
+   * @return a server if everything is ok. If not, null.
+   * @throws IOException
+   */
   public static HttpServer start() throws IOException {
     int waitTime = 5;
 
@@ -51,11 +56,19 @@ public class ShoppingGrizzlyApp {
     return null;
   }
 
+  /**
+   * Stops a server
+   * @param server the server to stop
+   */
   public static void stop(HttpServer server) {
     server.shutdown();
   }
 
-
+  /**
+   * A main method to run our server
+   * @param args
+   * @throws IOException
+   */
   public static void main(final String[] args) throws IOException {
     try {
       final HttpServer server = start();
