@@ -62,6 +62,9 @@ public class PersistencyTest {
   public void testWriteReadMaxId() {
     Assertions.assertTrue(FileHandler.writeMaxId(4));
     Assertions.assertTrue(FileHandler.readMaxId() == 4);
+    File fileToDelte = new File("./shoppinglists/maxID.json");
+    fileToDelte.delete();
+    Assertions.assertFalse(FileHandler.readMaxId() == 4);
   }
 
   @Test
@@ -85,7 +88,7 @@ public class PersistencyTest {
       FileHandler.readPasswords().getPassword(testPerson);
       Assertions.fail();
     } catch (NullPointerException e) {
-
+      e.printStackTrace();    
     }
 
 
