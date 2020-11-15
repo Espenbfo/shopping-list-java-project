@@ -9,9 +9,9 @@ import javax.ws.rs.core.MediaType;
 @Path("Gud")
 public class TestPage {
 
-    @GET
-    @Produces(MediaType.TEXT_PLAIN)
-    public String getIt() {
-        return "Got it!";
-    }
+  @GET
+  @Produces(MediaType.TEXT_PLAIN)
+  public String getIt() {
+    return "Got it!";
+  }
 }

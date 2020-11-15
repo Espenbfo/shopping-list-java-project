@@ -21,17 +21,6 @@
     -fx-background-color:-pri-color-shadow;
 }
 
-.delete {
-    -fx-background-color: #e03939;
-}
-.delete:hover {
-    -fx-background-color:#e05050;
-}
-
-.delete:pressed {
-    -fx-background-color:#e02020;
-}
-
 .scroll-pane > .viewport {
     -fx-background-color: transparent;
 }
@@ -81,9 +70,17 @@
 .listTitleListElement {
     -fx-alignment: center;
     -fx-padding:10px;
-    -fx-background-radius:20px;
+    -fx-background-radius:6px;
     -fx-background-insets:5px;
     -fx-background-color: #F0F0F0;
+}
+
+.listTitleListElement:hover {
+    -fx-background-color: #f8f8f8;
+}
+
+.listTitleListElement:pressed {
+    -fx-background-color: #d9d9d9;
 }
 
 #loginNameLabel {
@@ -95,4 +92,30 @@
 .table-view .column-header,
 .table-view .column-header-background .filler {
     -fx-background-color:  white;
+}
+
+.delete {
+    -fx-background-color: #F0F0F0;
+    -fx-font-size:14;
+    -fx-font-weight:BOLD;
+    -fx-background-insets: 0 0 0 0;
+    -fx-insets: 0 0 0 0;
+    -fx-padding:0;
+    -fx-spacing: 0;
+    -fx-hgap: 0;
+    -fx-vgap: 0;
+    -fx-background-size: 1,1;
+    -fx-text-alignment: center;
+}
+.delete:hover {
+    -fx-background-color:  #eaeaea;
+    -fx-text-fill:red;
+    -fx-background-insets: 0;
+}
+.delete:pressed {
+    -fx-background-color: #cacaca;
+    -fx-background-insets: 0;
+}
+.illegal {
+    -fx-border-color: red;
 }

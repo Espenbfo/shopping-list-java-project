@@ -24,17 +24,21 @@
       <TableView layoutX="50.0" layoutY="75.0" prefHeight="250.0" prefWidth="300.0" fx:id="shoppingList">
 
       </TableView>
-      
-      <Button fx:id="addItemButton" layoutX="250.0" layoutY="350.0" mnemonicParsing="false" onAction="#handleAddItemButtonClicked" prefHeight="27.0" prefWidth="100.0" text="Add item"  id="addItemButton"/>
+
       <TextField fx:id="amountInputField" layoutX="50.0" layoutY="350.0" prefHeight="27.0" prefWidth="40.0" promptText="1" onAction="#handleAddItemButtonClicked" />
       <TextField fx:id="measurementInputField" layoutX="100.0" layoutY="350.0" prefHeight="27.0" prefWidth="40.0" promptText="unit"  onAction="#handleAddItemButtonClicked" />
       <TextField fx:id="itemInputField" layoutX="150.0" layoutY="350.0" prefHeight="27.0" prefWidth="90.0" promptText="milk" onAction="#handleAddItemButtonClicked" />
+      <Button fx:id="addItemButton" layoutX="250.0" layoutY="350.0" mnemonicParsing="false" onAction="#handleAddItemButtonClicked" prefHeight="27.0" prefWidth="100.0" text="Add item"  id="addItemButton"/>
 
       <Separator layoutX="100.0" layoutY="375.0"  prefHeight="27.0" prefWidth="200.0"></Separator>
 
       <Label fx:id="loginNameLabel" id ="loginNameLabel" layoutX="50.0" layoutY="420.0" prefHeight="27.0" prefWidth="90.0" />
 
       <TextField fx:id="peopleInputField" layoutX="150.0" layoutY="420.0" prefHeight="27.0" prefWidth="140.0" promptText="Person2, Person3, ..." />
+
+      <CheckBox fx:id="privateCheckBox" layoutX="70.0" layoutY="460.0"/>
+
+      <Label fx:id="privateLabel" text="Make list private" layoutX="100.0" layoutY="455.0" prefHeight="27.0" prefWidth="140.0" />
 
       <Button fx:id="saveButton" layoutX="300.0" layoutY="420.0"  prefHeight="27.0" prefWidth="50.0" onAction="#saveShoppingList" text="Save"/>
 
@@ -52,4 +56,3 @@
       </Pane>
    </children>
 </Pane>
-

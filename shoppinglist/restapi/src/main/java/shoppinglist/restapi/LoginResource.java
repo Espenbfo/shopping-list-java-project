@@ -14,37 +14,43 @@ import org.slf4j.LoggerFactory;
 import shoppinglist.core.Person;
 import shoppinglist.core.ShoppingList;
 
+public class LoginResource {
 
-public class PersonResource {
-
-  private static final Logger LOG = LoggerFactory.getLogger(PersonResource.class);
+  private static final Logger LOG = LoggerFactory.getLogger(LoginResource.class);
 
   private Person person;
-  private ShoppingList shoppingList;
+  private String password;
 
   /**
    * Initializes PersonResource.
    *
-   * @param person       the person
-   * @param shoppingList the shoppingList, or null
+   * @param person   the person
+   * @param password the password
    */
-  public PersonResource(Person person, ShoppingList shoppingList) {
+  public LoginResource(Person person, String password) {
     this.person = person;
-    this.shoppingList = shoppingList;
+    this.password = password;
   }
 
-  public void setId(int id) {
-    shoppingList.setId(id);
-    person.addShoppingList(id);
+  public LoginResource() {
+    this.person = new Person();
+    this.password = "";
   }
 
   public Person getPerson() {
     return person;
   }
 
-  public ShoppingList getShoppingList() {
-    return shoppingList;
+  public String getPassword() {
+    return password;
   }
 
+  public void setPerson(Person person) {
+    this.person = person;
+  }
+
+  public void setPassword(String password) {
+    this.password = password;
+  }
 
 }

@@ -6,13 +6,21 @@ Prosjektet til gruppe 49, liste-applikasjon klar for tredje og siste innlevering
 Kode ligger i src-mappene.
 
 
+
 ```plantuml
 actor Person
 Person -> SaveButton: press
 SaveButton -> Controller: pressed
-Controller -> FileHandler: write(shoppingList)
-FileHandler -> shoppingList: getId()
-shoppingList -> FileHandler: Return
-FileHandler -> Controller: Return
+Controller -> DataAccess: putShoppingList
+DataAccess -> RestApi: putShoppingList
+RestApi -> ShoppingList: getID
+ShoppingList -> RestApi: Return id
+RestApi -> ShoppingList: setID
+RestApi -> FileHandler: WriteShoppinglist
+FileHandler -> ShoppingList: getId
+ShoppingList -> FileHandler: Return id
+FileHandler -> RestApi: Return successful
+RestApi -> DataAccess: Return id
 ```
+
 
