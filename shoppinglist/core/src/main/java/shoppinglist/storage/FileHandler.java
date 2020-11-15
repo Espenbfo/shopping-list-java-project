@@ -17,8 +17,9 @@ import shoppinglist.core.Passwords;
 import shoppinglist.core.Person;
 import shoppinglist.core.ShoppingElement;
 import shoppinglist.core.ShoppingList;
-import java.io.IOException;
+
 @JsonIgnoreProperties(ignoreUnknown = true)
+
 public class FileHandler {
   /**
    * This is a method to read the saved shoppinglists.

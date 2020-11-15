@@ -55,7 +55,7 @@ public class Person {
    */
   public Person(final String userName, final ArrayList<Integer> shoppingLists, final byte[] salt) {
     this(userName, shoppingLists);
-    this.salt = Arrays.copyOf(salt,salt.length);
+    this.salt = Arrays.copyOf(salt, salt.length);
   }
 
   /**
@@ -92,7 +92,7 @@ public class Person {
    * @return the salt
    */
   public final byte[] getSalt() {
-    return Arrays.copyOf(salt,salt.length);
+    return Arrays.copyOf(salt, salt.length);
   }
 
   /**
@@ -101,7 +101,7 @@ public class Person {
    * @param salt new salt
    */
   public void setSalt(final byte[] salt) {
-    this.salt = Arrays.copyOf(salt,salt.length);
+    this.salt = Arrays.copyOf(salt, salt.length);
   }
 
 
