@@ -33,7 +33,7 @@ Prosjektet er konfigurert med Maven, og kan kjøres på følgende måte:
 ![](architecture.png)
 
 ## Appliksjonens brukergrensesnitt 
-
-
+<img src="LoginPageScreenshot.png" height="300">
+<img src="MainPageScreenshot.png" height="300">
 
 
