@@ -6,13 +6,18 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.testfx.framework.junit5.ApplicationTest;
 import java.net.URL;
+import java.util.ArrayList;
+import java.util.Arrays;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
+import javafx.scene.layout.TilePane;
 import shoppinglist.gui.AppController;
+import shoppinglist.core.ShoppingElement;
 import shoppinglist.core.ShoppingList;
 import shoppinglist.core.Person;
 import shoppinglist.core.Client;
@@ -21,6 +26,7 @@ import shoppinglist.restapi.PersonService;
 
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.ArgumentMatchers.anyInt;
+import static org.mockito.ArgumentMatchers.anyString;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
 
@@ -35,13 +41,12 @@ import org.mockito.junit.jupiter.MockitoExtension;
 import java.awt.*;
 
 
-@ExtendWith(MockitoExtension.class)
 public class AppTest extends ApplicationTest {
 
     private Parent parent;
     private Person testindivid;
-    @Mock PersonDataAccess personDataAccess;
-    @Mock ShoppingListDataAccess shoppingDataAccess;
+    private PersonDataAccess personDataAccess;
+    private ShoppingListDataAccess shoppingDataAccess;
     private AppController controller;
 
 
@@ -78,11 +83,7 @@ public class AppTest extends ApplicationTest {
     public void start(final Stage stage) throws Exception {
         final FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/resources/shoppinglist/gui/App.fxml"));
         parent = fxmlLoader.load();
-        this.controller = fxmlLoader.getController();
-        //setUpShoppingListDataAccess();
-        //setUpPersonDataAccess();
-        //this.controller.setShoppingDataAccess(getShoppingDataAccess());
-        //this.controller.setDataAccess(getPersonDataAccess());
+        controller = fxmlLoader.getController();
         Scene scene = new Scene(parent);
         scene.getStylesheets().add(getClass().getResource("/resources/shoppinglist/gui/style.css").toExternalForm());
 
@@ -99,7 +100,12 @@ public class AppTest extends ApplicationTest {
       testindivid = new Person("testindivid");
       personDataAccess.putRegister(testindivid, "password");
       Client.setCurrentPerson(testindivid);
-      //FileHandler.writePasswords(Client.getPasswords());
+      ShoppingList testlist =  new ShoppingList("testName",0,new ArrayList<>(Arrays.asList(new ShoppingElement("testName",1, "testMeasurement"))),new ArrayList(Arrays.asList("testindivid")));
+      testlist.setOwner(testindivid);
+      testindivid.addShoppingList(0);
+      when(shoppingDataAccess.getShoppingList(0)).thenReturn(testlist);
+      when(personDataAccess.getPerson(anyString())).thenReturn(testindivid);
+        //FileHandler.writePasswords(Client.getPasswords());
     }
 
     @Test
@@ -110,6 +116,7 @@ public class AppTest extends ApplicationTest {
         final TextField measurementInputField = (TextField) parent.lookup("#measurementInputField");
         final TextField peopleInputField = (TextField) parent.lookup("#peopleInputField");
         final Button saveButton = (Button)parent.lookup("#saveButton");
+        final TextField shoppingTitleTextField = (TextField) parent.lookup("#shoppingTitle");
         final TextField personInputField = (TextField)parent.lookup("#personInputField");
         clickOn(amountInputField);
         amountInputField.setText("");
@@ -121,16 +128,23 @@ public class AppTest extends ApplicationTest {
         String oldText = itemInputField.getText();
         clickOn(addItemButton);
         personInputField.setText("");
-
         clickOn(personInputField);
         write("testindivid");
         clickOn(peopleInputField);
         write("testindivid");
+        clickOn(shoppingTitleTextField);
+        shoppingTitleTextField.setText("testName");
         clickOn(saveButton);
         System.out.println(controller.currentShoppingList);
+        final TilePane listsOverview = (TilePane) parent.lookup("#listsOverview");
+        final Label listLabel = (Label)listsOverview.getChildren().get(0);
+        clickOn(listLabel);
+        Assertions.assertTrue(oldText.equals(controller.currentShoppingList.getElement(0).getName()));
+        System.out.println((controller.currentShoppingList + ";; \n"+controller.getShoppingAccess().getShoppingList(controller.currentShoppingList.getId())));
+        Assertions.assertTrue(controller.currentShoppingList.equals(controller.getShoppingAccess().getShoppingList(controller.currentShoppingList.getId())));
+        final Button backToLoginButton = (Button) parent.lookup("#backToLoginButton");
+        clickOn(backToLoginButton);
 
-        //Assertions.assertTrue(oldText.equals(controller.currentShoppingList.getElement(0).getName()));
-        //Assertions.assertTrue(controller.currentShoppingList.equals(dataAccess.(controller.currentShoppingList.getId())));
     }
 
     

@@ -75,6 +75,7 @@ public class LoginScreenController {
     String name = usernameInputField.getText().toLowerCase();
     String password = passwordInputField.getText();
     if (name.length() == 0 || password.length() == 0) {
+      System.out.println("did it");
       errorLabel.setText("Could not log in with empty field(s)");
       return;
     }
@@ -111,9 +112,7 @@ public class LoginScreenController {
       }
       Person p = new Person(name);
       byte[] salt = p.getSalt();
-      Client.getPasswords().setPassword(p, password);
       dataAccess.putRegister(p, password);
-      FileHandler.writePasswords(Client.getPasswords());
       System.out.println("register");
       handleLogin(e);
     } else {
