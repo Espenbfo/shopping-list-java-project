@@ -1,11 +1,13 @@
 package shoppinglist.core;
 
+import java.lang.RuntimeException;
+import java.security.NoSuchAlgorithmException;
+import java.security.spec.InvalidKeySpecException;
 import java.security.SecureRandom;
 import java.util.HashMap;
 import javax.crypto.SecretKey;
 import javax.crypto.SecretKeyFactory;
 import javax.crypto.spec.PBEKeySpec;
-
 import org.apache.commons.codec.binary.Base64;
 import shoppinglist.core.Person;
 
@@ -117,7 +119,7 @@ public class Passwords {
       SecretKey key = f.generateSecret(new PBEKeySpec(
               password.toCharArray(), salt, hashIterations, hashLength));
       return Base64.encodeBase64String(key.getEncoded());
-    } catch (Exception e) {
+    } catch (RuntimeException | NoSuchAlgorithmException | InvalidKeySpecException e) {
       System.out.println("Noe gikk feil med hashingen");
       return "";
     }

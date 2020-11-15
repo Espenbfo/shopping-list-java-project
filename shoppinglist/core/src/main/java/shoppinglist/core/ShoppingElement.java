@@ -2,11 +2,11 @@ package shoppinglist.core;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
-@JsonIgnoreProperties(ignoreUnknown = true)
-
 /**
  * Represents an element in a shoppingList.
  */
+
+@JsonIgnoreProperties(ignoreUnknown = true)
 public class ShoppingElement {
   private String name;
   private MeasurementType measurementType;
@@ -22,7 +22,9 @@ public class ShoppingElement {
   }
 
   /**
-   * Initialize a ShoppingElement with name, value, measurementName, and whether the element can be represented by non-integers.
+   * Initialize a ShoppingElement with name, 
+   * value, measurementName, and whether the element
+   *  can be represented by non-integers.
    *
    * @param name            the name
    * @param value           the value
@@ -47,7 +49,9 @@ public class ShoppingElement {
   }
 
   /**
-   * Initialize a ShoppingElement with name, a predefined MeasurementType, and if the item has been shopped.
+   * Initialize a ShoppingElement with name, 
+   * a predefined MeasurementType, 
+   * and if the item has been shopped.
    *
    * @param name    the name
    * @param m       the MeasurementType instance
@@ -178,7 +182,9 @@ public class ShoppingElement {
    */
   @Override
   public boolean equals(Object o) {
-    if (o == null) return false;
+    if (o == null) {
+      return false;
+    }
     if (!o.getClass().equals(this.getClass())) {
       return false;
     }
