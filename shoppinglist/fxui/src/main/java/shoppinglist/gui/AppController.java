@@ -12,6 +12,7 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.geometry.Insets;
+import javafx.geometry.Point2D;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
@@ -22,6 +23,7 @@ import javafx.scene.control.TableCell;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
+import javafx.scene.control.Tooltip;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
@@ -132,7 +134,7 @@ public class AppController {
    */
 
   @FXML
-  void handleAddItemButtonClicked() {
+  void handleAddItemButtonClicked(ActionEvent e) {
 
     boolean isAdding = true;
     if (itemInputField.getText().equals("")) {
@@ -168,6 +170,9 @@ public class AppController {
       measurementInputField.setText("");
       amountInputField.requestFocus();
     }
+    else {
+      showError(measurementInputField,"Please fill all fields", e,-20);
+    }
   }
 
   /**
@@ -181,7 +186,7 @@ public class AppController {
       public TableCell<ShoppingElement, Void> call(final TableColumn<ShoppingElement, Void> param) {
         final TableCell<ShoppingElement, Void> cell = new TableCell<ShoppingElement, Void>() {
 
-          private final Button btn = new Button("delete");
+          private final Button btn = new Button("x");
 
           {
             btn.setOnAction((ActionEvent event) -> {
@@ -197,7 +202,8 @@ public class AppController {
             if (empty) {
               setGraphic(null);
             } else {
-              btn.setPrefWidth(50);
+              btn.setPrefWidth(40);
+              btn.setPadding(Insets.EMPTY);
               btn.getStyleClass().add("delete");
               setGraphic(btn);
             }
@@ -256,10 +262,11 @@ public class AppController {
    * Saves shoppinglist to server.
    */
   @FXML
-  void saveShoppingList() {
+  void saveShoppingList(ActionEvent e) {
 
     if (shoppingTitleTextField.getText().equals("")) {
       shoppingTitleTextField.getStyleClass().add("illegal");
+      showError(shoppingTitleTextField,"This field is empty", e,-20);
       return;
     }
     else {
@@ -441,11 +448,11 @@ public class AppController {
    * Creates a new empty shoppinglist.
    */
   @FXML
-  void newList() {
+  void newList(ActionEvent e) {
     fillTitleListByLogin();
     currentShoppingList = new ShoppingList("New List", Client.getCurrentPerson());
     loadShoppingListWithList(currentShoppingList);
-    saveShoppingList();
+    saveShoppingList(e);
   }
 
   /**
@@ -470,6 +477,30 @@ public class AppController {
     loginScene.getStylesheets().add(getClass().getResource("/resources/shoppinglist/gui/style.css").toExternalForm());
     Stage appStage = (Stage) ((Node) e.getSource()).getScene().getWindow();
     appStage.setScene(loginScene);
+  }
+
+  /**
+   * Shows an error message above a textfield.
+   *
+   * @param textfield
+   * @param tooltipText
+   * @param e
+   */
+  public static void showError(final TextField textfield, final String tooltipText, final ActionEvent e, final int yShift)
+  {
+    Stage owner = (Stage) ((Node) e.getSource()).getScene().getWindow();
+    final Tooltip customTooltip = new Tooltip();
+    customTooltip.setText(tooltipText);
+    Point2D point2D = textfield.localToScene(0,0);
+
+    textfield.setTooltip(customTooltip);
+    customTooltip.setAutoHide(true);
+
+
+    customTooltip.show(owner,
+            point2D.getX() + textfield.getScene().getX() + textfield.getScene().getWindow().getX(),
+            point2D.getY() + textfield.getScene().getY() + textfield.getScene().getWindow().getY()+yShift);
+
   }
 }
 
