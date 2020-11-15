@@ -11,6 +11,7 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.geometry.Insets;
+import javafx.geometry.Point2D;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
@@ -19,6 +20,7 @@ import javafx.scene.control.CheckBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
+import javafx.scene.control.Tooltip;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.HBox;
@@ -71,10 +73,10 @@ public class LoginScreenController {
 
   @FXML
   void handleLogin(ActionEvent e) throws IOException {
-    if (!isUserNameValid()) {
+    if (!isUserNameValid(e)) {
       return;
     }
-    if (!checkIfFilledFields()) {
+    if (!checkIfFilledFields(e)) {
       return;
     }
     String name = usernameInputField.getText().toLowerCase();
@@ -101,13 +103,14 @@ public class LoginScreenController {
    *
    * @return if username is valid
    */
-  boolean isUserNameValid() {
+  boolean isUserNameValid(ActionEvent e) {
     String name = usernameInputField.getText().toLowerCase();
 
     Pattern pattern = Pattern.compile("[^0-9a-zA-Z*]");
     Matcher matcher = pattern.matcher(name);
     if(matcher.find()) {
       errorLabel.setText("Illegal characters in username");
+      showError(usernameInputField,"Invalid username", e,-20);
       setIllegalField(usernameInputField,true);
       return false;
     }
@@ -129,6 +132,7 @@ public class LoginScreenController {
     else {
       f.getStyleClass().clear();
       f.getStyleClass().addAll("text-field", "text-input");
+      f.setTooltip(null);
     }
   }
 
@@ -137,22 +141,26 @@ public class LoginScreenController {
    *
    * @return if the name- and passwordfields are filled in.
    */
-  boolean checkIfFilledFields() {
+  boolean checkIfFilledFields(ActionEvent e) {
     String name = usernameInputField.getText().toLowerCase();
     String password = passwordInputField.getText();
     if (name.length() == 0 && password.length() == 0) {
+      showError(usernameInputField,"This field is empty",e,-20);
+      showError(passwordInputField,"This field is empty",e,-10);
       errorLabel.setText("Empty username and password fields. Please fill in before continuing");
       setIllegalField(passwordInputField, true);
       setIllegalField(usernameInputField, true);
       return false;
     }
     else if (name.length() == 0) {
+      showError(usernameInputField,"This field is empty",e,-20);
       errorLabel.setText("Empty username field. Please fill in before continuing");
       setIllegalField(passwordInputField, false);
       setIllegalField(usernameInputField, true);
       return false;
     }
     else if (password.length() == 0) {
+      showError(passwordInputField,"This field is empty",e,-10);
       errorLabel.setText("Empty password field. Please fill in before continuing");
       setIllegalField(passwordInputField, true);
       setIllegalField(usernameInputField, false);
@@ -170,10 +178,10 @@ public class LoginScreenController {
   @FXML
   void handleRegister(ActionEvent e) throws IOException {
     String name = usernameInputField.getText().toLowerCase();
-    if (!isUserNameValid()) {
+    if (!isUserNameValid(e)) {
       return;
     }
-    if (!checkIfFilledFields()) {
+    if (!checkIfFilledFields(e)) {
       return;
     }
 
@@ -203,5 +211,29 @@ public class LoginScreenController {
         .getResource("/resources/shoppinglist/gui/style.css").toExternalForm());
     Stage appStage = (Stage) ((Node) e.getSource()).getScene().getWindow();
     appStage.setScene(loginScene);
+  }
+
+  /**
+   * Shows an error message above a textfield.
+   *
+   * @param textfield
+   * @param tooltipText
+   * @param e
+   */
+  public static void showError(TextField textfield, String tooltipText, ActionEvent e, int yShift)
+  {
+    Stage owner = (Stage) ((Node) e.getSource()).getScene().getWindow();
+    final Tooltip customTooltip = new Tooltip();
+    customTooltip.setText(tooltipText);
+    Point2D point2D = textfield.localToScene(0,0);
+
+    textfield.setTooltip(customTooltip);
+    customTooltip.setAutoHide(true);
+
+
+    customTooltip.show(owner,
+            point2D.getX() + textfield.getScene().getX() + textfield.getScene().getWindow().getX(),
+            point2D.getY() + textfield.getScene().getY() + textfield.getScene().getWindow().getY()+yShift);
+
   }
 }
