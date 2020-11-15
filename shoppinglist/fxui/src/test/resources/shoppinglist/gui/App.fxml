@@ -24,11 +24,11 @@
       <TableView layoutX="50.0" layoutY="75.0" prefHeight="250.0" prefWidth="300.0" fx:id="shoppingList">
 
       </TableView>
-      
-      <Button fx:id="addItemButton" layoutX="250.0" layoutY="350.0" mnemonicParsing="false" onAction="#handleAddItemButtonClicked" prefHeight="27.0" prefWidth="100.0" text="Add item"  id="addItemButton"/>
+
       <TextField fx:id="amountInputField" layoutX="50.0" layoutY="350.0" prefHeight="27.0" prefWidth="40.0" promptText="1" onAction="#handleAddItemButtonClicked" />
       <TextField fx:id="measurementInputField" layoutX="100.0" layoutY="350.0" prefHeight="27.0" prefWidth="40.0" promptText="unit"  onAction="#handleAddItemButtonClicked" />
       <TextField fx:id="itemInputField" layoutX="150.0" layoutY="350.0" prefHeight="27.0" prefWidth="90.0" promptText="milk" onAction="#handleAddItemButtonClicked" />
+      <Button fx:id="addItemButton" layoutX="250.0" layoutY="350.0" mnemonicParsing="false" onAction="#handleAddItemButtonClicked" prefHeight="27.0" prefWidth="100.0" text="Add item"  id="addItemButton"/>
 
       <Separator layoutX="100.0" layoutY="375.0"  prefHeight="27.0" prefWidth="200.0"></Separator>
 
@@ -56,4 +56,3 @@
       </Pane>
    </children>
 </Pane>
-
