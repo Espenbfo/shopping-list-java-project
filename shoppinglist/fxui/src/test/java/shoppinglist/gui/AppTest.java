@@ -1,44 +1,36 @@
 package shoppinglist.gui;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import org.junit.jupiter.api.Assertions;
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
-import org.testfx.framework.junit5.ApplicationTest;
+import java.awt.*;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.Arrays;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.stage.Stage;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.TilePane;
-import shoppinglist.gui.AppController;
+import javafx.stage.Stage;
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
+import org.testfx.framework.junit5.ApplicationTest;
 import shoppinglist.core.ShoppingElement;
 import shoppinglist.core.ShoppingList;
 import shoppinglist.core.Person;
 import shoppinglist.core.Client;
-import shoppinglist.storage.FileHandler;
+import shoppinglist.gui.AppController;
 import shoppinglist.restapi.PersonService;
-
+import shoppinglist.storage.FileHandler;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.ArgumentMatchers.anyInt;
 import static org.mockito.ArgumentMatchers.anyString;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
 
-import org.mockito.InjectMocks;
-import org.mockito.Mock;
-import org.junit.jupiter.api.extension.ExtendWith;
-import org.mockito.junit.jupiter.MockitoExtension;
 
-
-
-
-import java.awt.*;
 
 
 public class AppTest extends ApplicationTest {
