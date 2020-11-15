@@ -14,7 +14,7 @@ Som bruker ønsker jeg å ha en personlig bruker som kun jeg har tilgang til. De
 
 Som bruker ønsker jeg å kunne opprette lister med egendefinerte navn, og samle disse på min egen bruker. I listene ønsker jeg å legge til elementer som skal handles, med egendefinerte navn, mengder og enheter. 
 
-Listene som opprettes skal kunne endres, og elementene skal kunne fjernes, huskes av som handlet og redigeres. 
+Listene som opprettes skal kunne endres, og elementene skal kunne fjernes, hukes av som handlet og redigeres. 
 
 En handleliste som er lagret skal kunne hentes opp igjen, slik at man kan se handlelisten slik den var da den ble lagret. Denne oversikten skal være oversiktlig og gjøre det enkelt å hente opp alle tidligere lagrede handlelister. 
 
