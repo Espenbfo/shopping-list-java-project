@@ -33,13 +33,15 @@
                 https://pragmaticintegrator.wordpress.com/2010/10/22/using-a-war-module-as-dependency-in-maven/
                 <classifier>classes</classifier>
             -->
-        <!-- Test with TextFX -->
+        <!-- Test with TextFX 
 		<dependency>
 			<groupId>org.testfx</groupId>
 			<artifactId>testfx-core</artifactId>
 			<version>4.0.16-alpha</version>
 			<scope>test</scope>
-		</dependency>
+        </dependency>
+        -->
+        <!-- running test -->
 		<dependency>
 			<groupId>org.testfx</groupId>
 			<artifactId>testfx-junit5</artifactId>
