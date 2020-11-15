@@ -111,7 +111,6 @@ public class AppTest extends ApplicationTest {
         final TextField shoppingTitleTextField = (TextField) parent.lookup("#shoppingTitle");
         final TextField personInputField = (TextField)parent.lookup("#personInputField");
         clickOn(amountInputField);
-        amountInputField.setText("");
         write("1");
         clickOn(measurementInputField);
         write("testMeasurement");
@@ -125,7 +124,7 @@ public class AppTest extends ApplicationTest {
         clickOn(peopleInputField);
         write("testindivid");
         clickOn(shoppingTitleTextField);
-        shoppingTitleTextField.setText("testName");
+        write("testName");
         clickOn(saveButton);
         System.out.println(controller.currentShoppingList);
         final TilePane listsOverview = (TilePane) parent.lookup("#listsOverview");
