@@ -74,6 +74,9 @@ public class PersonTest {
     assertTrue(p1.getShoppingLists().contains(2));
     assertTrue(p1.getShoppingLists().contains(3));
     assertTrue(p1.getShoppingLists().contains(4));
+
+    System.out.println(p1.getShoppingListById(2));
+    //assertEquals(p1.getShoppingListById(2), 4);
   }
 
   @Test
