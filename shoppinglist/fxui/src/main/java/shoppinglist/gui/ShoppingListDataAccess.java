@@ -17,7 +17,6 @@ import java.util.Collections;
 import shoppinglist.core.Person;
 import shoppinglist.core.ShoppingList;
 
-
 public class ShoppingListDataAccess {
 
   private final String baseUrlString;
@@ -45,7 +44,8 @@ public class ShoppingListDataAccess {
     try {
       int index = shoppingList.getId();
       ObjectMapper mapper = new ObjectMapper();
-      final HttpRequest request = HttpRequest.newBuilder(getRequestUri("/Persons/ShoppingLists/" + index))
+      final HttpRequest request = HttpRequest
+              .newBuilder(getRequestUri("/Persons/ShoppingLists/" + index))
               .header("Content-Type", "application/json")
               .header("Accept", "application/json")
               .PUT(BodyPublishers.ofString(mapper.writeValueAsString(shoppingList)))

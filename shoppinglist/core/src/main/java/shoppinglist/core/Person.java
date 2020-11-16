@@ -1,6 +1,7 @@
 package shoppinglist.core;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import shoppinglist.core.Passwords;
 
 public class Person {
@@ -54,13 +55,11 @@ public class Person {
    */
   public Person(final String userName, final ArrayList<Integer> shoppingLists, final byte[] salt) {
     this(userName, shoppingLists);
-    this.salt = salt;
+    this.salt = Arrays.copyOf(salt, salt.length);
   }
 
   /**
    * a constructor for a new Person who has not created any shoppinglists formerly.
-   *
-   * @param userName       the name of the user
    */
   public Person() {
     this.userName = "";
@@ -92,8 +91,8 @@ public class Person {
    *
    * @return the salt
    */
-  public byte[] getSalt() {
-    return salt;
+  public final byte[] getSalt() {
+    return Arrays.copyOf(salt, salt.length);
   }
 
   /**
@@ -102,7 +101,7 @@ public class Person {
    * @param salt new salt
    */
   public void setSalt(final byte[] salt) {
-    this.salt = salt;
+    this.salt = Arrays.copyOf(salt, salt.length);
   }
 
 

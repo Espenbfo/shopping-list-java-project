@@ -11,6 +11,7 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.geometry.Insets;
+import javafx.geometry.Point2D;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
@@ -21,6 +22,7 @@ import javafx.scene.control.TableCell;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
+import javafx.scene.control.Tooltip;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
@@ -31,14 +33,12 @@ import javafx.scene.text.TextAlignment;
 import javafx.stage.Stage;
 import javafx.util.Callback;
 import shoppinglist.core.Client;
+import shoppinglist.core.Person;
 import shoppinglist.core.ShoppingElement;
 import shoppinglist.core.ShoppingList;
-import shoppinglist.core.Person;
 import shoppinglist.storage.FileHandler;
 
 public class AppController {
-  private static Person currentPerson;
-
 
   @FXML
   Button addItemButton;
@@ -72,14 +72,12 @@ public class AppController {
   public ShoppingList currentShoppingList;
   private final ObservableList<ShoppingElement> data = FXCollections.observableArrayList();
 
-  String itemToAdd = null;
-
   private PersonDataAccess dataAccess;
   private ShoppingListDataAccess shoppingAccess;
 
   /**
    * Getter for the PersonDataAccess object.
-   * 
+   *
    * @return dataAccess, the object
    */
   protected PersonDataAccess getDataAccess() {
@@ -87,8 +85,18 @@ public class AppController {
   }
 
   /**
+   * Getter for the ShoppingListDataAccess object.
+   *
+   * @return dataAccess, the object
+   */
+  protected ShoppingListDataAccess getShoppingAccess() {
+    return shoppingAccess;
+  }
+  
+
+  /**
    * Setter for the PersonDataAccess object.
-   * 
+   *
    * @param dataAccess the PersonDataAccess object.
    */
   public void setDataAccess(final PersonDataAccess dataAccess) {
@@ -96,12 +104,21 @@ public class AppController {
   }
 
   /**
+   * Setter for the ShoppingListDataAccess object.
+   *
+   * @param shoppingAccess the ShoppingListDataAccess object.
+   */
+  public void setShoppingDataAccess(final ShoppingListDataAccess shoppingDataAccess) {
+    this.shoppingAccess = shoppingDataAccess;
+  }
+
+  /**
    * Initializes the appscreen.
    */
   @FXML
   public void initialize() {
-    setDataAccess(new PersonDataAccess("http://localhost:8087/index"));
-    shoppingAccess = new ShoppingListDataAccess("http://localhost:8087/index");
+    setDataAccess(new PersonDataAccess("http://localhost:8087"));
+    shoppingAccess = new ShoppingListDataAccess("http://localhost:8087");
     currentShoppingList = new ShoppingList();
     if (Client.getCurrentPerson() != null) {
       String userName = Client.getCurrentPerson().getUserName();
@@ -120,7 +137,8 @@ public class AppController {
     colName.setCellValueFactory(new PropertyValueFactory<ShoppingElement, String>("name"));
 
     TableColumn<ShoppingElement, String> colType = new TableColumn<>("Type");
-    colType.setCellValueFactory(new PropertyValueFactory<ShoppingElement, String>("measurementName"));
+    colType.setCellValueFactory(new PropertyValueFactory<ShoppingElement, 
+        String>("measurementName"));
     colName.setPrefWidth(100);
     colType.setPrefWidth(50);
     colNum.setPrefWidth(50);
@@ -132,14 +150,50 @@ public class AppController {
 
   /**
    * Add element to shoppinglist when button is clicked.
+   *
+   * @Param e necessary for the error tooltip
    */
 
   @FXML
-  void handleAddItemButtonClicked() {
+  void handleAddItemButtonClicked(ActionEvent e) {
 
-    ShoppingElement currentElement = new ShoppingElement(itemInputField.getText(), Double.parseDouble(amountInputField.getText()), measurementInputField.getText());
-    data.add(currentElement);
-    currentShoppingList.addElement(currentElement);
+    boolean isAdding = true;
+    if (itemInputField.getText().equals("")) {
+      isAdding = false;
+      itemInputField.getStyleClass().add("illegal");
+    }
+    else {
+      itemInputField.getStyleClass().clear();
+      itemInputField.getStyleClass().addAll("text-field", "text-input");
+    }
+    if (amountInputField.getText().equals("")) {
+      isAdding = false;
+      amountInputField.getStyleClass().add("illegal");
+    }
+    else {
+      amountInputField.getStyleClass().clear();
+      amountInputField.getStyleClass().addAll("text-field", "text-input");
+    }
+    if (measurementInputField.getText().equals("")) {
+      isAdding = false;
+      measurementInputField.getStyleClass().add("illegal");
+    }
+    else {
+      measurementInputField.getStyleClass().clear();
+      measurementInputField.getStyleClass().addAll("text-field", "text-input");
+    }
+    if (isAdding) {
+      ShoppingElement currentElement = new ShoppingElement(itemInputField.getText(), Double.parseDouble(amountInputField.getText()), measurementInputField.getText());
+      data.add(currentElement);
+      currentShoppingList.addElement(currentElement);
+      itemInputField.setText("");
+      amountInputField.setText("");
+      measurementInputField.setText("");
+      amountInputField.requestFocus();
+    }
+    else {
+      showError(measurementInputField,"Please fill all fields", e,-20);
+    }
   }
 
   /**
@@ -148,12 +202,15 @@ public class AppController {
   private void addButtonToTable() {
     TableColumn<ShoppingElement, Void> colBtn = new TableColumn("Delete?");
 
-    Callback<TableColumn<ShoppingElement, Void>, TableCell<ShoppingElement, Void>> cellFactory = new Callback<TableColumn<ShoppingElement, Void>, TableCell<ShoppingElement, Void>>() {
+    Callback<TableColumn<ShoppingElement, Void>,
+        TableCell<ShoppingElement, Void>> cellFactory = new Callback
+          <TableColumn<ShoppingElement, Void>, 
+          TableCell<ShoppingElement, Void>>() {
       @Override
       public TableCell<ShoppingElement, Void> call(final TableColumn<ShoppingElement, Void> param) {
         final TableCell<ShoppingElement, Void> cell = new TableCell<ShoppingElement, Void>() {
 
-          private final Button btn = new Button("delete");
+          private final Button btn = new Button("x");
 
           {
             btn.setOnAction((ActionEvent event) -> {
@@ -169,7 +226,8 @@ public class AppController {
             if (empty) {
               setGraphic(null);
             } else {
-              btn.setPrefWidth(50);
+              btn.setPrefWidth(40);
+              btn.setPadding(Insets.EMPTY);
               btn.getStyleClass().add("delete");
               setGraphic(btn);
             }
@@ -189,7 +247,8 @@ public class AppController {
    */
   private void addCheckBoxToTable() {
     TableColumn<ShoppingElement, Void> colCb = new TableColumn("Done");
-    Callback<TableColumn<ShoppingElement, Void>, TableCell<ShoppingElement, Void>> cellFactory = new Callback<TableColumn<ShoppingElement, Void>, TableCell<ShoppingElement, Void>>() {
+    Callback<TableColumn<ShoppingElement, Void>, TableCell<ShoppingElement, Void>> cellFactory
+         = new Callback<TableColumn<ShoppingElement, Void>, TableCell<ShoppingElement, Void>>() {
       @Override
       public TableCell<ShoppingElement, Void> call(final TableColumn<ShoppingElement, Void> param) {
         final TableCell<ShoppingElement, Void> cell = new TableCell<ShoppingElement, Void>() {
@@ -226,9 +285,21 @@ public class AppController {
 
   /**
    * Saves shoppinglist to server.
+   *
+   * @Param e necessary for the error tooltip.
    */
   @FXML
-  void saveShoppingList() {
+  void saveShoppingList(ActionEvent e) {
+
+    if (shoppingTitleTextField.getText().equals("")) {
+      shoppingTitleTextField.getStyleClass().add("illegal");
+      showError(shoppingTitleTextField,"This field is empty", e,-20);
+      return;
+    }
+    else {
+      shoppingTitleTextField.getStyleClass().clear();
+      shoppingTitleTextField.getStyleClass().addAll("text-field", "text-input");
+    }
     String peopleText = personInputField.getText().toLowerCase() + "," + peopleInputField.getText().toLowerCase();
     peopleText = peopleText.replaceAll("\\s", "");
 
@@ -242,7 +313,10 @@ public class AppController {
     ArrayList<String> toBeRemoved = new ArrayList<String>();
 
     if (currentShoppingList.getOwner() == null) {
-      String ownerText = loginNameLabel.getText().toLowerCase() + "," + loginNameLabel.getText().toLowerCase();
+      String ownerText = loginNameLabel
+          .getText().toLowerCase() + "," 
+          + loginNameLabel
+          .getText().toLowerCase();
       currentShoppingList.setOwner(dataAccess.getPerson(ownerText));
       currentShoppingList.addPerson(ownerText);
     }
@@ -296,7 +370,7 @@ public class AppController {
       data.add(x);
     }
     String currentUser = Client.getCurrentPerson().getUserName();
-    if (currentShoppingList.getPersonList().contains(Client.getCurrentPerson())) {
+    if (currentShoppingList.getPersonList().contains(Client.getCurrentPerson().getUserName())) {
       personInputField.setText(currentUser);
     }
     String people = "";
@@ -309,10 +383,21 @@ public class AppController {
       people = people.substring(0, people.length() - 2);
     }
     String ownerUserName = currentShoppingList.getOwner().getUserName();
-    loginNameLabel.setText(ownerUserName.substring(0, 1).toUpperCase() + ownerUserName.substring(1));
+    loginNameLabel.setText(
+        ownerUserName.substring(0, 1)
+        .toUpperCase() + ownerUserName
+        .substring(1));
     peopleInputField.setText(people);
     shoppingTitleTextField.setText(currentShoppingList.getTitle());
     privateCheckBox.setSelected(!currentShoppingList.getPublicList());
+
+    if (!currentShoppingList.getOwner().getUserName()
+            .equals(Client.getCurrentPerson().getUserName())) {
+      privateCheckBox.setDisable(true);
+    }
+    else {
+      privateCheckBox.setDisable(false);
+    }
   }
 
   /**
@@ -338,13 +423,15 @@ public class AppController {
     listsOverview.getChildren().clear();
     for (Integer id : currenttPerson.getShoppingLists()) {
       ShoppingList l = shoppingAccess.getShoppingList(id);
-      if (l.getPublicList() || l.getOwner().getUserName().equals(Client.getCurrentPerson().getUserName())) {
+      String loggedIn = Client.getCurrentPerson().getUserName();
+      if (l.getPublicList() 
+          || l.getOwner().getUserName().equals(loggedIn) 
+          || l.getPersonList().contains(loggedIn)) {
         Pane list = new Pane();
         Label listName = new Label(l.getTitle());
         listName.setPrefWidth(1000.);
         listName.getStyleClass().add("listTitleListElement");
         listsOverview.getChildren().add(listName);
-
         listName.setOnMouseClicked(event -> handleListButtonClicked(l));
       }
 
@@ -386,21 +473,24 @@ public class AppController {
   void handleListButtonClicked(ShoppingList shoppingList) {
     currentShoppingList = shoppingList;
     String ownerUserName = shoppingList.getOwner().getUserName();
-    loginNameLabel.setText(ownerUserName.substring(0, 1).toUpperCase() + ownerUserName.substring(1));
+    loginNameLabel.setText(
+        ownerUserName.substring(0, 1)
+        .toUpperCase() + ownerUserName.substring(1));
     loadShoppingListWithList(shoppingAccess.getShoppingList(currentShoppingList.getId()));
-
   }
 
 
   /**
    * Creates a new empty shoppinglist.
+   *
+   * @Param e necessary for the error tooltip
    */
   @FXML
-  void newList() {
+  void newList(ActionEvent e) {
     fillTitleListByLogin();
     currentShoppingList = new ShoppingList("New List", Client.getCurrentPerson());
     loadShoppingListWithList(currentShoppingList);
-    saveShoppingList();
+    saveShoppingList(e);
   }
 
   /**
@@ -416,15 +506,42 @@ public class AppController {
    * Loads the loginscreen.
    *
    * @param e the event that calls the scenechange
-   * @throws IOException
    */
   @FXML
   void loginScreen(ActionEvent e) throws IOException {
-    Parent loginParent = FXMLLoader.load(getClass().getResource("/resources/shoppinglist/gui/LoginScreen.fxml"));
+    Parent loginParent = FXMLLoader
+        .load(getClass()
+        .getResource("/resources/shoppinglist/gui/LoginScreen.fxml"));
     Scene loginScene = new Scene(loginParent);
-    loginScene.getStylesheets().add(getClass().getResource("/resources/shoppinglist/gui/style.css").toExternalForm());
+    loginScene.getStylesheets()
+        .add(getClass().getResource("/resources/shoppinglist/gui/style.css")
+        .toExternalForm());
     Stage appStage = (Stage) ((Node) e.getSource()).getScene().getWindow();
     appStage.setScene(loginScene);
+  }
+
+  /**
+   * Shows an error message above a textfield.
+   *
+   * @param textfield The textfield
+   * @param tooltipText The text in the error message
+   * @param e the actionevent. This is used to find the right coordinates.
+   */
+  public static void showError(final TextField textfield, final String tooltipText, final ActionEvent e, final int yShift)
+  {
+    Stage owner = (Stage) ((Node) e.getSource()).getScene().getWindow();
+    final Tooltip customTooltip = new Tooltip();
+    customTooltip.setText(tooltipText);
+    Point2D point2D = textfield.localToScene(0,0);
+
+    textfield.setTooltip(customTooltip);
+    customTooltip.setAutoHide(true);
+
+
+    customTooltip.show(owner,
+            point2D.getX() + textfield.getScene().getX() + textfield.getScene().getWindow().getX(),
+            point2D.getY() + textfield.getScene().getY() + textfield.getScene().getWindow().getY()+yShift);
+
   }
 }
 

@@ -3,12 +3,16 @@
 Denne modulen inneholder domene- og persistenslaget
 
 ## Domenelaget
-I domenelaget ligger logikken knyttet til applikasjonen. Her ligger logikk for ShoppingList, ShoppingElement, Person og Measurement. 
+I domenelaget ligger logikken knyttet til applikasjonen. 
+Her ligger logikk for:
+- Person
+- Password
+- MeasurementType
+- ShoppingList
+- ShoppingElement
+
 
 ## Persistenslaget 
-Persistenslaget inneholder logikk for lagring med JSON. Det kan da produseres tekstfiler med et ShoppingList-objekt, med tilhørende Person (evt. flere) og ShoppingElement(s).
+Persistenslaget inneholder logikk for lagring med JSON. Det kan da produseres tekstfiler med et ShoppingList-objekt, med tilhørende Person (evt. flere) og ShoppingElement(s). Det er også implementert lagring av personer med tilhørende data.
+Passordinformasjon lagres også på JSON-format.
 Logikken støtter også opphenting av slike filer. 
-
-## Kodekvalitetsanalyse
-Jacoco produserer en rapport for testdekningsgrad av koden. Kjøres av mvn test, og produserer rapport ved mvn jacoco:report. Denne kan hentes ut under core. Spotbugs brukes for å gjennkjenne bugs og bugsmønster i koden. 
-

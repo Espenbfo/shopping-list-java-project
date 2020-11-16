@@ -2,20 +2,25 @@
 
 # Gr2049
 
-Prosjektet til gruppe 49, liste-applikasjon. 
+Prosjektet til gruppe 49, liste-applikasjon klar for tredje og siste innlevering. 
 Kode ligger i src-mappene.
 
 
-
-[Google Disk](https://drive.google.com/drive/folders/10KHM6JSvfrWcrQkHPEovQ5cBZe_7T9WN?usp=sharing) 
 
 ```plantuml
 actor Person
 Person -> SaveButton: press
 SaveButton -> Controller: pressed
-Controller -> FileHandler: write(shoppingList)
-FileHandler -> shoppingList: getId()
-shoppingList -> FileHandler: Return
-FileHandler -> Controller: Return
+Controller -> DataAccess: putShoppingList
+DataAccess -> RestApi: putShoppingList
+RestApi -> ShoppingList: getID
+ShoppingList -> RestApi: Return id
+RestApi -> ShoppingList: setID
+RestApi -> FileHandler: WriteShoppinglist
+FileHandler -> ShoppingList: getId
+ShoppingList -> FileHandler: Return id
+FileHandler -> RestApi: Return successful
+RestApi -> DataAccess: Return id
 ```
+
 

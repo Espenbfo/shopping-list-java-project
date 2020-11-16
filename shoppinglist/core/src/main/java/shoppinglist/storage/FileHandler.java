@@ -8,9 +8,10 @@ import java.io.File;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.lang.RuntimeException;
 import java.nio.file.Paths;
 import java.util.ArrayList;
-import shoppinglist.core.MaxID;
+import shoppinglist.core.MaxId;
 import shoppinglist.core.MeasurementType;
 import shoppinglist.core.Passwords;
 import shoppinglist.core.Person;
@@ -18,6 +19,7 @@ import shoppinglist.core.ShoppingElement;
 import shoppinglist.core.ShoppingList;
 
 @JsonIgnoreProperties(ignoreUnknown = true)
+
 public class FileHandler {
   /**
    * This is a method to read the saved shoppinglists.
@@ -29,12 +31,18 @@ public class FileHandler {
     try {
       File dir = new File("./shoppinglists/");
       if (!dir.exists()) {
-        dir.mkdir();
+        if (!dir.mkdir()) {
+          System.out.println("Could not create directory");
+          return null;
+        }
       }
       ObjectMapper mapper = new ObjectMapper();
-      ShoppingList out = mapper.readValue(Paths.get("./shoppinglists/" + id + ".json").toFile(), ShoppingList.class);
+      ShoppingList out = mapper.readValue(Paths
+          .get("./shoppinglists/" + id + ".json")
+          .toFile(), ShoppingList.class);
       return out;
     } catch (Exception e) {
+      System.out.println("e");
     }
     return null;
   }
@@ -49,10 +57,15 @@ public class FileHandler {
     try {
       File dir = new File("./shoppinglists/");
       if (!dir.exists()) {
-        dir.mkdir();
+        if (!dir.mkdir()) {
+          System.out.println("Could not create directory");
+          return false;
+        }
       }
       ObjectMapper mapper = new ObjectMapper();
-      mapper.writeValue(Paths.get("./shoppinglists/" + listToWrite.getId() + ".json").toFile(), listToWrite);
+      mapper.writeValue(Paths
+          .get("./shoppinglists/" + listToWrite.getId() + ".json")
+          .toFile(), listToWrite);
       return true;
     } catch (Exception e) {
       e.printStackTrace();
@@ -70,10 +83,16 @@ public class FileHandler {
     try {
       File dir = new File("./persons/");
       if (!dir.exists()) {
-        dir.mkdir();
+        if (!dir.mkdir()) {
+          System.out.println("Could not create directory");
+          return false;
+        }
       }
       ObjectMapper mapper = new ObjectMapper();
-      mapper.writeValue(Paths.get("./persons/" + persToWrite.getUserName() + ".json").toFile(), persToWrite);
+      mapper.writeValue(Paths
+          .get("./persons/" 
+          + persToWrite.getUserName() 
+          + ".json").toFile(), persToWrite);
       return true;
     } catch (Exception e) {
       e.printStackTrace();
@@ -91,7 +110,10 @@ public class FileHandler {
     try {
       File dir = new File("./persons/");
       if (!dir.exists()) {
-        dir.mkdir();
+        if (!dir.mkdir()) {
+          System.out.println("Could not create directory");
+          return null;
+        }
       }
       String filename = "./persons/" + personName + ".json";
       ObjectMapper mapper = new ObjectMapper();
@@ -99,7 +121,7 @@ public class FileHandler {
       System.out.println(out);
       return out;
     } catch (Exception e) {
-
+      System.out.println("e");
     }
     return null;
   }
@@ -110,14 +132,17 @@ public class FileHandler {
    * @param id the MaxID to be written
    * @return true if successful
    */
-  public static boolean writeMaxID(int id) {
+  public static boolean writeMaxId(int id) {
     try {
       File dir = new File("./shoppinglists/");
       if (!dir.exists()) {
-        dir.mkdir();
+        if (!dir.mkdir()) {
+          System.out.println("Could not create directory");
+          return false;
+        }
       }
       ObjectMapper mapper = new ObjectMapper();
-      mapper.writeValue(Paths.get("./shoppinglists/maxID.json").toFile(), new MaxID(id));
+      mapper.writeValue(Paths.get("./shoppinglists/maxID.json").toFile(), new MaxId(id));
       return true;
     } catch (Exception e) {
       e.printStackTrace();
@@ -130,17 +155,20 @@ public class FileHandler {
    *
    * @return the MaxID
    */
-  public static int readMaxID() {
+  public static int readMaxId() {
     try {
       File dir = new File("./shoppinglists/");
       if (!dir.exists()) {
-        dir.mkdir();
+        if (!dir.mkdir()) {
+          System.out.println("Could not create directory");
+          return -1;
+        }
       }
       ObjectMapper mapper = new ObjectMapper();
-      MaxID out = mapper.readValue(Paths.get("./shoppinglists/maxID.json").toFile(), MaxID.class);
+      MaxId out = mapper.readValue(Paths.get("./shoppinglists/maxID.json").toFile(), MaxId.class);
       return out.getId();
     } catch (IOException e) {
-      writeMaxID(0);
+      writeMaxId(0);
       return 0;
     } catch (Exception e) {
       e.printStackTrace();
@@ -158,7 +186,10 @@ public class FileHandler {
     try {
       File dir = new File("./shoppinglists/");
       if (!dir.exists()) {
-        dir.mkdir();
+        if (!dir.mkdir()) {
+          System.out.println("Could not create directory");
+          return false;
+        }
       }
       ObjectMapper mapper = new ObjectMapper();
       mapper.writeValue(Paths.get("./shoppinglists/passwords.json").toFile(), passwordsToWrite);
@@ -181,7 +212,10 @@ public class FileHandler {
       ObjectMapper mapper = new ObjectMapper();
       File dir = new File("./shoppinglists/");
       if (!dir.exists()) {
-        dir.mkdir();
+        if (!dir.mkdir()) {
+          System.out.println("Could not create directory");
+          return null;
+        }
       }
       Passwords out = mapper.readValue(Paths.get(filename).toFile(), Passwords.class);
       System.out.println(out);
