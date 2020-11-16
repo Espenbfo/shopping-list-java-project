@@ -90,6 +90,7 @@
                 <directory>src/main</directory>
                 <includes>
                     <include>**/*.fxml</include>
+                    <include>**/*.xml</include>
                     <include>**/*.png</include>
                     <include>**/*.css</include>
                     <include>**/resources/*</include>
@@ -119,12 +120,6 @@
                 <groupId>org.codehaus.mojo</groupId>
                 <artifactId>build-helper-maven-plugin</artifactId>
                 <version>3.2.0</version>
-                <configuration>
-                    <portNames>
-                        <portName>jetty.port</portName>
-                        <portName>jetty.port.stop</portName>
-                    </portNames>
-                </configuration>
                 <executions>
                     <execution>
                         <id>reserve-port</id>
@@ -144,7 +139,7 @@
                         <port>8087</port>
                     </httpConnector>
                     <stopKey>quit</stopKey>
-                    <stopPort>${jetty.port.stop}</stopPort>
+                    <stopPort>8088</stopPort>
                 </configuration>
                 <executions>
                     <execution>
@@ -173,11 +168,6 @@
                             <goal>integration-test</goal>
                             <goal>verify</goal>
                         </goals>
-                        <configuration>
-                            <systemPropertyVariables>
-                                <todo.port>8087</todo.port>
-                            </systemPropertyVariables>
-                        </configuration>
                     </execution>
                 </executions>
             </plugin>

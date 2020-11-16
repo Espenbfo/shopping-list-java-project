@@ -61,7 +61,7 @@ public class LoginScreenController {
 
   @FXML
   public void initialize() {
-    setDataAccess(new PersonDataAccess("http://localhost:8087/index"));
+    setDataAccess(new PersonDataAccess("http://localhost:8087"));
   }
 
   /**

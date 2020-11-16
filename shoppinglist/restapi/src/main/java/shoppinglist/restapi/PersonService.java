@@ -65,6 +65,10 @@ public class PersonService {
   @Path("/{username}")
   @Produces(MediaType.APPLICATION_JSON)
   public Person getPerson(@PathParam("username") String username) {
+    LOG.debug("addShoppingList({})", username);
+    System.out.println("hæ");
+    System.out.println(username);
+    System.out.println(FileHandler.readPerson(username));
     return FileHandler.readPerson(username);
   }
 

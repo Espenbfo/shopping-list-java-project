@@ -76,14 +76,17 @@ public class PersonDataAccess {
    */
   public Person getPerson(final String person) {
 
+
     final HttpRequest request =
             HttpRequest.newBuilder(getRequestUri("/Persons/" + person))
                     .header("Accept", "application/json").GET().build();
     try {
-      final HttpResponse<InputStream> response =
+      final HttpResponse<String> response =
               HttpClient.newBuilder().build().send(
-                      request, HttpResponse.BodyHandlers.ofInputStream()
+                      request, HttpResponse.BodyHandlers.ofString()
               );
+      System.out.println(response.statusCode());
+      System.out.println(response.body());
       ObjectMapper mapper = new ObjectMapper();
       Person out = mapper.readValue(response.body(), Person.class);
       return out;
@@ -149,7 +152,6 @@ public class PersonDataAccess {
       HttpClient.newBuilder().build().send(
               request, HttpResponse.BodyHandlers.ofInputStream()
       );
-
     } catch (final JsonProcessingException e) {
       throw new RuntimeException(e);
     } catch (IOException | InterruptedException e) {

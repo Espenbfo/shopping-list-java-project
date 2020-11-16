@@ -18,7 +18,7 @@ import shoppinglist.restapiserver.TestPage;
 
 public class ShoppingGrizzlyApp {
 
-  private static URI serverUri = URI.create("http://localhost:8087/index/");
+  private static URI serverUri = URI.create("http://localhost:8087/");
     
   public static HttpServer start() throws IOException {
     int waitTime = 5;

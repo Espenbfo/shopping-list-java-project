@@ -86,9 +86,4 @@ public class LoginService {
     return null;
   }
 
-  @GET
-  @Path("")
-  public int testLogin() {
-    return 0;
-  }
 }
