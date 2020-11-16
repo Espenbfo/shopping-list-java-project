@@ -8,4 +8,4 @@
 
 ## Class diagram of the core module
 
-![](diagram.PNG)
+![](diagram.JPG)
