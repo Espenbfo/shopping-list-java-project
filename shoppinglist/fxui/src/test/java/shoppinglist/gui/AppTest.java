@@ -1,12 +1,10 @@
 package shoppinglist.gui;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-
 import java.awt.*;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.Arrays;
-
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
@@ -26,12 +24,13 @@ import shoppinglist.core.Client;
 import shoppinglist.gui.AppController;
 import shoppinglist.restapi.PersonService;
 import shoppinglist.storage.FileHandler;
-
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.ArgumentMatchers.anyInt;
 import static org.mockito.ArgumentMatchers.anyString;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
+
+
 
 
 public class AppTest extends ApplicationTest {
@@ -70,7 +69,7 @@ public class AppTest extends ApplicationTest {
    }
 
    */
-
+    
 
     @Override
     public void start(final Stage stage) throws Exception {
@@ -86,18 +85,18 @@ public class AppTest extends ApplicationTest {
 
     @BeforeEach
     public void setUp() {
-        personDataAccess = mock(PersonDataAccess.class);
-        shoppingDataAccess = mock(ShoppingListDataAccess.class);
-        controller.setDataAccess(personDataAccess);
-        controller.setShoppingDataAccess(shoppingDataAccess);
-        testindivid = new Person("testindivid");
-        personDataAccess.putRegister(testindivid, "password");
-        Client.setCurrentPerson(testindivid);
-        ShoppingList testlist = new ShoppingList("testName", 0, new ArrayList<>(Arrays.asList(new ShoppingElement("testName", 1, "testMeasurement"))), new ArrayList(Arrays.asList("testindivid")));
-        testlist.setOwner(testindivid);
-        testindivid.addShoppingList(0);
-        when(shoppingDataAccess.getShoppingList(0)).thenReturn(testlist);
-        when(personDataAccess.getPerson(anyString())).thenReturn(testindivid);
+      personDataAccess = mock(PersonDataAccess.class);
+      shoppingDataAccess = mock(ShoppingListDataAccess.class);
+      controller.setDataAccess(personDataAccess);
+      controller.setShoppingDataAccess(shoppingDataAccess);
+      testindivid = new Person("testindivid");
+      personDataAccess.putRegister(testindivid, "password");
+      Client.setCurrentPerson(testindivid);
+      ShoppingList testlist =  new ShoppingList("testName",0,new ArrayList<>(Arrays.asList(new ShoppingElement("testName",1, "testMeasurement"))),new ArrayList(Arrays.asList("testindivid")));
+      testlist.setOwner(testindivid);
+      testindivid.addShoppingList(0);
+      when(shoppingDataAccess.getShoppingList(0)).thenReturn(testlist);
+      when(personDataAccess.getPerson(anyString())).thenReturn(testindivid);
         //FileHandler.writePasswords(Client.getPasswords());
     }
 
@@ -108,9 +107,9 @@ public class AppTest extends ApplicationTest {
         final TextField amountInputField = (TextField) parent.lookup("#amountInputField");
         final TextField measurementInputField = (TextField) parent.lookup("#measurementInputField");
         final TextField peopleInputField = (TextField) parent.lookup("#peopleInputField");
-        final Button saveButton = (Button) parent.lookup("#saveButton");
+        final Button saveButton = (Button)parent.lookup("#saveButton");
         final TextField shoppingTitleTextField = (TextField) parent.lookup("#shoppingTitle");
-        final TextField personInputField = (TextField) parent.lookup("#personInputField");
+        final TextField personInputField = (TextField)parent.lookup("#personInputField");
         clickOn(amountInputField);
         write("1");
         clickOn(measurementInputField);
@@ -129,15 +128,15 @@ public class AppTest extends ApplicationTest {
         clickOn(saveButton);
         System.out.println(controller.currentShoppingList);
         final TilePane listsOverview = (TilePane) parent.lookup("#listsOverview");
-        final Label listLabel = (Label) listsOverview.getChildren().get(0);
+        final Label listLabel = (Label)listsOverview.getChildren().get(0);
         clickOn(listLabel);
         Assertions.assertTrue(oldText.equals(controller.currentShoppingList.getElement(0).getName()));
-        System.out.println((controller.currentShoppingList + ";; \n" + controller.getShoppingAccess().getShoppingList(controller.currentShoppingList.getId())));
+        System.out.println((controller.currentShoppingList + ";; \n"+controller.getShoppingAccess().getShoppingList(controller.currentShoppingList.getId())));
         Assertions.assertTrue(controller.currentShoppingList.equals(controller.getShoppingAccess().getShoppingList(controller.currentShoppingList.getId())));
         final Button backToLoginButton = (Button) parent.lookup("#backToLoginButton");
         clickOn(backToLoginButton);
 
     }
 
-
+    
 }

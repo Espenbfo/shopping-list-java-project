@@ -45,55 +45,57 @@ import shoppinglist.core.*;
 public class ServerTest extends JerseyTest {
 
 
-    @Override
-    protected ResourceConfig configure() {
-        final ResourceConfig config = new ResourceConfig();
-        return config;
-    }
+  @Override
+  protected ResourceConfig configure() {
+    final ResourceConfig config = new ResourceConfig();
+    return config;
+  }
 
-    @Override
-    protected TestContainerFactory getTestContainerFactory() throws TestContainerException {
-        return new GrizzlyTestContainerFactory();
-    }
+  @Override
+  protected TestContainerFactory getTestContainerFactory() throws TestContainerException {
+    return new GrizzlyTestContainerFactory();
+  }
 
-    @Test
-    public void testServerStart() {
-        HttpServer h;
+  @Test
+  public void testServerStart() {
+    HttpServer h;
+    try {
+      h = ShoppingGrizzlyApp.start();
+      URL clientUrl = new URL("http://localhost:8087/index/Gud");
+      HttpURLConnection connection = (HttpURLConnection) clientUrl.openConnection();
+      int response = connection.getResponseCode();
+      assertEquals(response, 200);
+      ShoppingGrizzlyApp.stop(h);
+    } catch (Exception e) {
+      e.printStackTrace();
+      assertTrue(false);
+    }
+  }
+
+  @Test
+  void testMain() {
+    Thread t1 = new Thread(new Runnable() {
+      @Override
+      public void run() {
         try {
-            h = ShoppingGrizzlyApp.start();
-            URL clientUrl = new URL("http://localhost:8087/index/Gud");
-            HttpURLConnection connection = (HttpURLConnection) clientUrl.openConnection();
-            int response = connection.getResponseCode();
-            assertEquals(response, 200);
-            ShoppingGrizzlyApp.stop(h);
-        } catch (Exception e) {
-            e.printStackTrace();
-            assertTrue(false);
+          ShoppingGrizzlyApp.main(new String[0]);
         }
+        catch(IOException e) {
+          e.printStackTrace();
+          assertTrue(false);
+        }
+      }
+    });
+    t1.start();
+    try {
+      Thread.sleep(1000);
     }
-
-    @Test
-    void testMain() {
-        Thread t1 = new Thread(new Runnable() {
-            @Override
-            public void run() {
-                try {
-                    ShoppingGrizzlyApp.main(new String[0]);
-                } catch (IOException e) {
-                    e.printStackTrace();
-                    assertTrue(false);
-                }
-            }
-        });
-        t1.start();
-        try {
-            Thread.sleep(1000);
-        } catch (Exception e) {
-
-        }
-        t1.interrupt();
+    catch (Exception e) {
 
     }
+    t1.interrupt();
+
+  }
 
 /*
     @Test
