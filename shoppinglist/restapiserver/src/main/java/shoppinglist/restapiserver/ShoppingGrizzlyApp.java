@@ -7,6 +7,7 @@ import java.net.URL;
 import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+
 import org.glassfish.grizzly.http.server.HttpServer;
 import org.glassfish.hk2.utilities.binding.AbstractBinder;
 import org.glassfish.jersey.grizzly2.httpserver.GrizzlyHttpServerFactory;
@@ -18,65 +19,68 @@ import shoppinglist.restapiserver.TestPage;
 
 public class ShoppingGrizzlyApp {
 
-  private static URI serverUri = URI.create("http://localhost:8087/index/");
+    private static URI serverUri = URI.create("http://localhost:8087/index/");
 
-  /**
-   * Starts a server
-   * @return a server if everything is ok. If not, null.
-   * @throws IOException
-   */
-  public static HttpServer start() throws IOException {
-    int waitTime = 5;
+    /**
+     * Starts a server
+     *
+     * @return a server if everything is ok. If not, null.
+     * @throws IOException
+     */
+    public static HttpServer start() throws IOException {
+        int waitTime = 5;
 
-    ResourceConfig resourceConfig = new PersonConfig();
-    HttpServer httpServer = GrizzlyHttpServerFactory.createHttpServer(serverUri, resourceConfig);
+        ResourceConfig resourceConfig = new PersonConfig();
+        HttpServer httpServer = GrizzlyHttpServerFactory.createHttpServer(serverUri, resourceConfig);
 
-    while (waitTime > 0) {
-      try {
-        URL clientUrl = new URL(serverUri + PersonService.PERSON_SERVICE_PATH);
-        HttpURLConnection connection = (HttpURLConnection) clientUrl.openConnection();
-        connection.connect();
-        int responseCode = connection.getResponseCode();
-        System.out.println("Trying " + clientUrl + ": " + responseCode);
-        connection.disconnect();
-        if (responseCode == 200) {
-          return httpServer;
+        while (waitTime > 0) {
+            try {
+                URL clientUrl = new URL(serverUri + PersonService.PERSON_SERVICE_PATH);
+                HttpURLConnection connection = (HttpURLConnection) clientUrl.openConnection();
+                connection.connect();
+                int responseCode = connection.getResponseCode();
+                System.out.println("Trying " + clientUrl + ": " + responseCode);
+                connection.disconnect();
+                if (responseCode == 200) {
+                    return httpServer;
+                }
+            } catch (final RuntimeException e) {
+                e.printStackTrace();
+            }
+            try {
+                Thread.sleep(1000);
+                waitTime -= 1;
+            } catch (final InterruptedException e) {
+                e.printStackTrace();
+                return null;
+            }
         }
-      } catch (final RuntimeException e) {
-        e.printStackTrace();
-      }
-      try {
-        Thread.sleep(1000);
-        waitTime -= 1;
-      } catch (final InterruptedException e) {
-        e.printStackTrace();
         return null;
-      }
     }
-    return null;
-  }
 
-  /**
-   * Stops a server
-   * @param server the server to stop
-   */
-  public static void stop(HttpServer server) {
-    server.shutdown();
-  }
-
-  /**
-   * A main method to run our server
-   * @param args
-   * @throws IOException
-   */
-  public static void main(final String[] args) throws IOException {
-    try {
-      final HttpServer server = start();
-      Runtime.getRuntime().addShutdownHook(new Thread(server::stop));
-      Thread.currentThread().join();
-    } catch (final InterruptedException ex) {
-      Logger.getLogger(ShoppingGrizzlyApp.class.getName()).log(Level.SEVERE, null, ex);
+    /**
+     * Stops a server
+     *
+     * @param server the server to stop
+     */
+    public static void stop(HttpServer server) {
+        server.shutdown();
     }
-  }
+
+    /**
+     * A main method to run our server
+     *
+     * @param args
+     * @throws IOException
+     */
+    public static void main(final String[] args) throws IOException {
+        try {
+            final HttpServer server = start();
+            Runtime.getRuntime().addShutdownHook(new Thread(server::stop));
+            Thread.currentThread().join();
+        } catch (final InterruptedException ex) {
+            Logger.getLogger(ShoppingGrizzlyApp.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
 
 }

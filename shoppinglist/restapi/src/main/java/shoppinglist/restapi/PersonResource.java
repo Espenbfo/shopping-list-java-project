@@ -9,6 +9,7 @@ import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
 import javax.ws.rs.QueryParam;
 import javax.ws.rs.core.MediaType;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import shoppinglist.core.Person;
@@ -17,34 +18,34 @@ import shoppinglist.core.ShoppingList;
 
 public class PersonResource {
 
-  private static final Logger LOG = LoggerFactory.getLogger(PersonResource.class);
+    private static final Logger LOG = LoggerFactory.getLogger(PersonResource.class);
 
-  private Person person;
-  private ShoppingList shoppingList;
+    private Person person;
+    private ShoppingList shoppingList;
 
-  /**
-   * Initializes PersonResource.
-   *
-   * @param person       the person
-   * @param shoppingList the shoppingList, or null
-   */
-  public PersonResource(Person person, ShoppingList shoppingList) {
-    this.person = person;
-    this.shoppingList = shoppingList;
-  }
+    /**
+     * Initializes PersonResource.
+     *
+     * @param person       the person
+     * @param shoppingList the shoppingList, or null
+     */
+    public PersonResource(Person person, ShoppingList shoppingList) {
+        this.person = person;
+        this.shoppingList = shoppingList;
+    }
 
-  public void setId(int id) {
-    shoppingList.setId(id);
-    person.addShoppingList(id);
-  }
+    public void setId(int id) {
+        shoppingList.setId(id);
+        person.addShoppingList(id);
+    }
 
-  public Person getPerson() {
-    return person;
-  }
+    public Person getPerson() {
+        return person;
+    }
 
-  public ShoppingList getShoppingList() {
-    return shoppingList;
-  }
+    public ShoppingList getShoppingList() {
+        return shoppingList;
+    }
 
 
 }

@@ -2,6 +2,7 @@ package shoppinglist.gui;
 
 import java.awt.*;
 import java.io.File;
+
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
@@ -19,6 +20,7 @@ import shoppinglist.core.Passwords;
 import shoppinglist.gui.LoginScreenController;
 import shoppinglist.gui.PersonDataAccess;
 import shoppinglist.storage.FileHandler;
+
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.ArgumentMatchers.anyInt;
 import static org.mockito.ArgumentMatchers.anyString;
@@ -48,11 +50,10 @@ public class LoginScreenControllerTest extends ApplicationTest {
     }
 
 
-    
     @Test
     public void testRegister() {
         when(dataAccess.getPerson(any())).thenReturn(null);
-        when(dataAccess.putLogin("testindivid","duG")).thenReturn(new Person("testindivid"));
+        when(dataAccess.putLogin("testindivid", "duG")).thenReturn(new Person("testindivid"));
         final Button registerButton = (Button) parent.lookup("#registerButton");
         final TextField usernameInputField = (TextField) parent.lookup("#usernameInputField");
         final TextField passwordInputField = (TextField) parent.lookup("#passwordInputField");
@@ -66,8 +67,8 @@ public class LoginScreenControllerTest extends ApplicationTest {
     }
 
     @Test
-    public void testLogin(){
-        when(dataAccess.putLogin("testindivid","duG")).thenReturn(new Person("testindivid"));
+    public void testLogin() {
+        when(dataAccess.putLogin("testindivid", "duG")).thenReturn(new Person("testindivid"));
         final Button loginButton = (Button) parent.lookup("#loginButton");
         final TextField usernameInputField = (TextField) parent.lookup("#usernameInputField");
         final TextField passwordInputField = (TextField) parent.lookup("#passwordInputField");
@@ -81,8 +82,8 @@ public class LoginScreenControllerTest extends ApplicationTest {
     }
 
     @Test
-    public void testLoginNoName(){
-        when(dataAccess.putLogin(anyString(),anyString())).thenReturn(new Person("failed"));
+    public void testLoginNoName() {
+        when(dataAccess.putLogin(anyString(), anyString())).thenReturn(new Person("failed"));
         final Button loginButton = (Button) parent.lookup("#loginButton");
         final Label errorLabel = (Label) parent.lookup("#error");
         clickOn(loginButton);
@@ -91,8 +92,8 @@ public class LoginScreenControllerTest extends ApplicationTest {
     }
 
     @Test
-    public void testRegisterNoName(){
-        when(dataAccess.putLogin(anyString(),anyString())).thenReturn(new Person("failed"));
+    public void testRegisterNoName() {
+        when(dataAccess.putLogin(anyString(), anyString())).thenReturn(new Person("failed"));
         final Button registerButton = (Button) parent.lookup("#registerButton");
         final Label errorLabel = (Label) parent.lookup("#error");
         clickOn(registerButton);
@@ -101,8 +102,8 @@ public class LoginScreenControllerTest extends ApplicationTest {
     }
 
     @Test
-    public void testLoginWrongName(){
-        when(dataAccess.putLogin(anyString(),anyString())).thenReturn(null);
+    public void testLoginWrongName() {
+        when(dataAccess.putLogin(anyString(), anyString())).thenReturn(null);
         final Label errorLabel = (Label) parent.lookup("#error");
         final Button loginButton = (Button) parent.lookup("#loginButton");
         final TextField usernameInputField = (TextField) parent.lookup("#usernameInputField");
@@ -117,8 +118,8 @@ public class LoginScreenControllerTest extends ApplicationTest {
     }
 
     @Test
-    public void testLoginInvalidName(){
-        when(dataAccess.putLogin(anyString(),anyString())).thenReturn(null);
+    public void testLoginInvalidName() {
+        when(dataAccess.putLogin(anyString(), anyString())).thenReturn(null);
         final Label errorLabel = (Label) parent.lookup("#error");
         final Button loginButton = (Button) parent.lookup("#loginButton");
         final TextField usernameInputField = (TextField) parent.lookup("#usernameInputField");
@@ -131,5 +132,5 @@ public class LoginScreenControllerTest extends ApplicationTest {
         System.out.println(Client.getCurrentPerson().getUserName());
         Assertions.assertTrue(errorLabel.getText().equals("Illegal characters in username"));
     }
-    
+
 }
