@@ -190,9 +190,9 @@ public class LoginScreenController {
     if (dataAccess.getPerson(name) == null) {
       String password = passwordInputField.getText();
       Person p = new Person(name);
-      Client.getPasswords().setPassword(p, password);
+
       dataAccess.putRegister(p, password);
-      FileHandler.writePasswords(Client.getPasswords());
+
       System.out.println("register");
       handleLogin(e);
     } else {
