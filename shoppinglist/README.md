@@ -34,4 +34,4 @@ Prosjektet er konfigurert med Maven, og kan kjøres på følgende måte:
 
 ## Appliksjonens brukergrensesnitt 
 <img src="./LoginPage.PNG" height="300">
-<img src="./MainPage.PNG" height="300">
+<img src="./MainPage.png" height="300">
