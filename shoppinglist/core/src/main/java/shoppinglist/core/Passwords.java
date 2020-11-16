@@ -2,8 +2,8 @@ package shoppinglist.core;
 
 import java.lang.RuntimeException;
 import java.security.NoSuchAlgorithmException;
-import java.security.spec.InvalidKeySpecException;
 import java.security.SecureRandom;
+import java.security.spec.InvalidKeySpecException;
 import java.util.HashMap;
 import javax.crypto.SecretKey;
 import javax.crypto.SecretKeyFactory;

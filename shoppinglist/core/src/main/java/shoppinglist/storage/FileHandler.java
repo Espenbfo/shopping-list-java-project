@@ -17,8 +17,9 @@ import shoppinglist.core.Passwords;
 import shoppinglist.core.Person;
 import shoppinglist.core.ShoppingElement;
 import shoppinglist.core.ShoppingList;
-import java.io.IOException;
+
 @JsonIgnoreProperties(ignoreUnknown = true)
+
 public class FileHandler {
   /**
    * This is a method to read the saved shoppinglists.
@@ -37,11 +38,11 @@ public class FileHandler {
       }
       ObjectMapper mapper = new ObjectMapper();
       ShoppingList out = mapper.readValue(Paths
-        .get("./shoppinglists/" + id + ".json")
-        .toFile(), ShoppingList.class);
+          .get("./shoppinglists/" + id + ".json")
+          .toFile(), ShoppingList.class);
       return out;
     } catch (Exception e) {
-        System.out.println("e");
+      System.out.println("e");
     }
     return null;
   }
@@ -63,8 +64,8 @@ public class FileHandler {
       }
       ObjectMapper mapper = new ObjectMapper();
       mapper.writeValue(Paths
-        .get("./shoppinglists/" + listToWrite.getId() + ".json")
-        .toFile(), listToWrite);
+          .get("./shoppinglists/" + listToWrite.getId() + ".json")
+          .toFile(), listToWrite);
       return true;
     } catch (Exception e) {
       e.printStackTrace();
@@ -89,9 +90,9 @@ public class FileHandler {
       }
       ObjectMapper mapper = new ObjectMapper();
       mapper.writeValue(Paths
-        .get("./persons/" 
-        + persToWrite.getUserName() 
-        + ".json").toFile(), persToWrite);
+          .get("./persons/" 
+          + persToWrite.getUserName() 
+          + ".json").toFile(), persToWrite);
       return true;
     } catch (Exception e) {
       e.printStackTrace();
@@ -120,7 +121,7 @@ public class FileHandler {
       System.out.println(out);
       return out;
     } catch (Exception e) {
-        System.out.println("e");
+      System.out.println("e");
     }
     return null;
   }
