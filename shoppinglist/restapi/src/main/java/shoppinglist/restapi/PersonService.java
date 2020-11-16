@@ -66,9 +66,6 @@ public class PersonService {
   @Produces(MediaType.APPLICATION_JSON)
   public Person getPerson(@PathParam("username") String username) {
     LOG.debug("addShoppingList({})", username);
-    System.out.println("hæ");
-    System.out.println(username);
-    System.out.println(FileHandler.readPerson(username));
     return FileHandler.readPerson(username);
   }
 
@@ -84,7 +81,6 @@ public class PersonService {
   @Produces(MediaType.APPLICATION_JSON)
   public int addPerson(final Person person) {
     LOG.debug("addShoppingList({})", person);
-    System.out.println("person");
     return FileHandler.writePerson(person) ? 1 : 0;
   }
 
@@ -100,7 +96,6 @@ public class PersonService {
   public ShoppingList getShoppingList(@PathParam("id") int id) {
     ShoppingList shoppinglist = FileHandler.readFile(id);
     LOG.debug("Sub-resource for Person " + id + ": " + shoppinglist);
-    System.out.println(id);
     return shoppinglist;
   }
 
@@ -115,7 +110,6 @@ public class PersonService {
   @Produces(MediaType.APPLICATION_JSON)
   public int addShoppingList(final ShoppingList shoppinglist) {
     int newId = shoppinglist.getId();
-    System.out.println(shoppinglist);
     if (newId == -1) {
       newId = FileHandler.readMaxId();
       newId++;
