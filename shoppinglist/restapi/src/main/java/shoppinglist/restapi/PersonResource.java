@@ -33,15 +33,26 @@ public class PersonResource {
     this.shoppingList = shoppingList;
   }
 
+  /**
+   * Sets id to the current ShoppingList.
+   * @param id the id to set
+   */
   public void setId(int id) {
     shoppingList.setId(id);
     person.addShoppingList(id);
   }
 
+  /**
+   * Gets the current Person.
+   * @return the person 
+   */
   public Person getPerson() {
     return person;
   }
-
+  /**
+   * Gets the current ShoppingList.
+   * @return the shoppinglist 
+   */
   public ShoppingList getShoppingList() {
     return shoppingList;
   }

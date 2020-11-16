@@ -2,7 +2,7 @@
 
 # Gr2049
 
-Prosjektet til gruppe 49, liste-applikasjon. 
+Prosjektet til gruppe 49, liste-applikasjon klar for tredje og siste innlevering. 
 Kode ligger i src-mappene.
 
 
