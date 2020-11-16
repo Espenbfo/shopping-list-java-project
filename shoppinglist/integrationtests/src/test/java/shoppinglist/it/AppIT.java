@@ -51,10 +51,10 @@ public class AppIT extends ApplicationTest {
     public void testController() {
         PersonDataAccess dataAccess = new PersonDataAccess("http://localhost:8087");
         Person p = new Person("per");
-        System.out.println(p);
+
         dataAccess.putPerson(p);
         Person p2 = dataAccess.getPerson("per");
-        System.out.println(p2);
+
 
         TextField usernameInputField = (TextField) parent.lookup("#usernameInputField");
         TextField passwordInputField = (TextField) parent.lookup("#passwordInputField");
