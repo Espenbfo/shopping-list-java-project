@@ -108,7 +108,7 @@ public class LoginScreenController {
 
     Pattern pattern = Pattern.compile("[^0-9a-zA-Z*]");
     Matcher matcher = pattern.matcher(name);
-    if 3(matcher.find()) {
+    if (matcher.find()) {
       errorLabel.setText("Illegal characters in username");
       showError(usernameInputField,"Invalid username", e,-20);
       setIllegalField(usernameInputField, true);
