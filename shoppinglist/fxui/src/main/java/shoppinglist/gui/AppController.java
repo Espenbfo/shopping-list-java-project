@@ -117,8 +117,8 @@ public class AppController {
    */
   @FXML
   public void initialize() {
-    setDataAccess(new PersonDataAccess("http://localhost:8087/index"));
-    shoppingAccess = new ShoppingListDataAccess("http://localhost:8087/index");
+    setDataAccess(new PersonDataAccess("http://localhost:8087"));
+    shoppingAccess = new ShoppingListDataAccess("http://localhost:8087");
     currentShoppingList = new ShoppingList();
     if (Client.getCurrentPerson() != null) {
       String userName = Client.getCurrentPerson().getUserName();

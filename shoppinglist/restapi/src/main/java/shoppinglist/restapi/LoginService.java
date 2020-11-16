@@ -48,7 +48,6 @@ public class LoginService {
   public int addPerson(final LoginResource loginResource) {
     Person person = loginResource.getPerson();
     LOG.debug("addShoppingList({})", person);
-    System.out.println("person");
     Passwords passwords = FileHandler.readPasswords();
     String password = loginResource.getPassword();
     if (passwords == null) {
@@ -71,7 +70,6 @@ public class LoginService {
   @Consumes(MediaType.APPLICATION_JSON)
   @Produces(MediaType.APPLICATION_JSON)
   public Person checkLogin(LoginResource loginResource) {
-    System.out.println("Post :" + loginResource.getPerson().getUserName());
 
     passwords = FileHandler.readPasswords();
     if (passwords == null) {
@@ -86,9 +84,4 @@ public class LoginService {
     return null;
   }
 
-  @GET
-  @Path("")
-  public int testLogin() {
-    return 0;
-  }
 }

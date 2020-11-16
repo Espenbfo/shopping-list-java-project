@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
+
 import javafx.application.Application;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -60,7 +61,7 @@ public class LoginScreenController {
 
   @FXML
   public void initialize() {
-    setDataAccess(new PersonDataAccess("http://localhost:8087/index"));
+    setDataAccess(new PersonDataAccess("http://localhost:8087"));
   }
 
   /**
@@ -108,13 +109,13 @@ public class LoginScreenController {
 
     Pattern pattern = Pattern.compile("[^0-9a-zA-Z*]");
     Matcher matcher = pattern.matcher(name);
-    if (matcher.find()) {
+    if(matcher.find()) {
       errorLabel.setText("Illegal characters in username");
       showError(usernameInputField,"Invalid username", e,-20);
-      setIllegalField(usernameInputField, true);
+      setIllegalField(usernameInputField,true);
       return false;
     }
-    setIllegalField(usernameInputField, false);
+    setIllegalField(usernameInputField,false);
     return true;
   }
 
@@ -146,8 +147,8 @@ public class LoginScreenController {
     String name = usernameInputField.getText().toLowerCase();
     String password = passwordInputField.getText();
     if (name.length() == 0 && password.length() == 0) {
-      showError(usernameInputField,"This field is empty", e,-20);
-      showError(passwordInputField,"This field is empty", e,-10);
+      showError(usernameInputField,"This field is empty",e,-20);
+      showError(passwordInputField,"This field is empty",e,-10);
       errorLabel.setText("Empty username and password fields. Please fill in before continuing");
       setIllegalField(passwordInputField, true);
       setIllegalField(usernameInputField, true);
@@ -161,7 +162,7 @@ public class LoginScreenController {
       return false;
     }
     else if (password.length() == 0) {
-      showError(passwordInputField,"This field is empty", e, -10);
+      showError(passwordInputField,"This field is empty",e,-10);
       errorLabel.setText("Empty password field. Please fill in before continuing");
       setIllegalField(passwordInputField, true);
       setIllegalField(usernameInputField, false);
@@ -189,7 +190,9 @@ public class LoginScreenController {
     if (dataAccess.getPerson(name) == null) {
       String password = passwordInputField.getText();
       Person p = new Person(name);
+
       dataAccess.putRegister(p, password);
+
       System.out.println("register");
       handleLogin(e);
     } else {
@@ -232,8 +235,7 @@ public class LoginScreenController {
 
     customTooltip.show(owner,
             point2D.getX() + textfield.getScene().getX() + textfield.getScene().getWindow().getX(),
-            point2D.getY() 
-                + textfield.getScene().getY() + textfield.getScene().getWindow().getY()+yShift);
+            point2D.getY() + textfield.getScene().getY() + textfield.getScene().getWindow().getY()+yShift);
 
   }
 }

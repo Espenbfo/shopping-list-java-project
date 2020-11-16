@@ -76,19 +76,19 @@ public class PersonDataAccess {
    */
   public Person getPerson(final String person) {
 
+
     final HttpRequest request =
             HttpRequest.newBuilder(getRequestUri("/Persons/" + person))
                     .header("Accept", "application/json").GET().build();
     try {
-      final HttpResponse<InputStream> response =
+      final HttpResponse<String> response =
               HttpClient.newBuilder().build().send(
-                      request, HttpResponse.BodyHandlers.ofInputStream()
+                      request, HttpResponse.BodyHandlers.ofString()
               );
       ObjectMapper mapper = new ObjectMapper();
       Person out = mapper.readValue(response.body(), Person.class);
       return out;
     } catch (IOException | InterruptedException e) {
-      System.out.println("3");
       System.err.println(e.toString());
     }
     return null;
@@ -105,7 +105,6 @@ public class PersonDataAccess {
 
     LoginResource loginResource = new LoginResource(new Person(person), password);
     try {
-      System.out.println(mapper.writeValueAsString(loginResource));
       final HttpRequest request =
               HttpRequest.newBuilder(getRequestUri("/Login/login"))
                       .header("Content-Type", "application/json")
@@ -118,8 +117,6 @@ public class PersonDataAccess {
                       request,
                       HttpResponse.BodyHandlers.ofString()
               );
-      System.out.println("here");
-      System.out.println(response.body());
       Person p = mapper.readValue(response.body(), Person.class);
       return p;
     } catch (JsonProcessingException e) {
@@ -149,7 +146,6 @@ public class PersonDataAccess {
       HttpClient.newBuilder().build().send(
               request, HttpResponse.BodyHandlers.ofInputStream()
       );
-
     } catch (final JsonProcessingException e) {
       throw new RuntimeException(e);
     } catch (IOException | InterruptedException e) {

@@ -186,5 +186,6 @@
         <module>fxui</module>
         <module>restapi</module>
         <module>restapiserver</module>
+        <module>integrationtests</module>
     </modules>
 </project>

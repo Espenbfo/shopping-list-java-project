@@ -1,0 +1,121 @@
+* {
+    -pri-color: rgb(143, 186, 255);
+    -pri-color-highlight: rgb(163, 206, 255);
+    -pri-color-shadow: rgb(123, 166, 235);
+    -sec-color: rgb(50, 50, 50);
+    -bg-color: rgb(250, 250, 250);
+}
+
+#window {
+    -fx-background-color:-bg-color;
+}
+
+.button {
+    -fx-background-color:-pri-color;
+}
+.button:hover {
+    -fx-background-color:-pri-color-highlight;
+}
+
+.button:pressed {
+    -fx-background-color:-pri-color-shadow;
+}
+
+.scroll-pane > .viewport {
+    -fx-background-color: transparent;
+}
+
+#scroll {
+    -fx-border-color: -sec-color;
+    -fx-background-color:#FFFFFF;
+}
+
+#scrollRight {
+    -fx-border-color: -sec-color;
+    -fx-background-color:#FFFFFF;
+}
+
+.scroll-bar:vertical {
+    color: #FFFFFF;
+    -fx-background-color:#FFFFFF;
+}
+
+.scroll-bar:vertical .thumb {
+    -fx-background-color:#F0F0F0;
+}
+
+.scroll-bar:horizontal {
+    -fx-background-color: null;
+}
+#shoppingList {
+    -fx-insets:20;
+    -fx-background-color:#FFFFFF;
+}
+
+.check-box {
+
+    -fx-background-color: #F0F0F0;
+
+}
+
+#shoppingTitle {
+    -fx-font-size: 20px;
+    -fx-text-fill: -sec-color;
+}
+
+#listTitleList {
+    -fx-background-color: #FFFFFF;
+}
+
+.listTitleListElement {
+    -fx-alignment: center;
+    -fx-padding:10px;
+    -fx-background-radius:6px;
+    -fx-background-insets:5px;
+    -fx-background-color: #F0F0F0;
+}
+
+.listTitleListElement:hover {
+    -fx-background-color: #f8f8f8;
+}
+
+.listTitleListElement:pressed {
+    -fx-background-color: #d9d9d9;
+}
+
+#loginNameLabel {
+    -fx-alignment: center;
+    -fx-border-color: #CCCCCC;
+    -fx-background-color: #FFFFFF;
+}
+
+.table-view .column-header,
+.table-view .column-header-background .filler {
+    -fx-background-color:  white;
+}
+
+.delete {
+    -fx-background-color: #F0F0F0;
+    -fx-font-size:14;
+    -fx-font-weight:BOLD;
+    -fx-background-insets: 0 0 0 0;
+    -fx-insets: 0 0 0 0;
+    -fx-padding:0;
+    -fx-spacing: 0;
+    -fx-hgap: 0;
+    -fx-vgap: 0;
+    -fx-background-size: 1,1;
+    -fx-text-alignment: center;
+}
+.delete:hover {
+    -fx-background-color:  #eaeaea;
+    -fx-text-fill:red;
+    -fx-background-insets: 0;
+}
+.delete:pressed {
+    -fx-background-color: #cacaca;
+    -fx-background-insets: 0;
+}
+.illegal {
+    -fx-border-color: red;
+}
