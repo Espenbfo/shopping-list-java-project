@@ -32,14 +32,15 @@ Prosjektet er konfigurert med Maven, og kan kjøres på følgende måte:
 ## Brukerhistorier
 Brukerhistorier for applikasjonen ligger i [Brukerhistorier.md](https://gitlab.stud.idi.ntnu.no/it1901/groups-2020/gr2049/gr2049/-/blob/master/shoppinglist/Brukerhistorier.md)
 
-## Arkitekturdiagram
-![](architecture.png)
-
 ## Utforske funksjonalitet
 For å få innsikt i appens funksjonalitet har vi gjort det mulig å logge inn på brukeren "Sensor" med passordet "Passord". 
 Etter at man har logget inn med riktig brukernavn og passord kan man prøve å lage både privat og offentlig liste (satt som standard). 
 For å ta del i andres offentlige  lister er brukeren "MariasMat" opprettet.
 Videre kan man søke opp "MariasMat" i søkefeltet og lagre seg selv i hennes offentlige liste "Taco-fredag".
+
+## Arkitekturdiagram
+![](architecture.png)
+
 
 ## Appliksjonens brukergrensesnitt 
 <img src="./LoginPage.PNG" height="300">
