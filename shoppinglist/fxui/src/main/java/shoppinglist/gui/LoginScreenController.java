@@ -4,7 +4,6 @@ import java.io.IOException;
 import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
-
 import javafx.application.Application;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -108,13 +107,13 @@ public class LoginScreenController {
 
     Pattern pattern = Pattern.compile("[^0-9a-zA-Z*]");
     Matcher matcher = pattern.matcher(name);
-    if(matcher.find()) {
+    if (matcher.find()) {
       errorLabel.setText("Illegal characters in username");
-      showError(usernameInputField,"Invalid username", e,-20);
-      setIllegalField(usernameInputField,true);
+      showError(usernameInputField, "Invalid username", e, -20);
+      setIllegalField(usernameInputField, true);
       return false;
     }
-    setIllegalField(usernameInputField,false);
+    setIllegalField(usernameInputField, false);
     return true;
   }
 
@@ -128,8 +127,7 @@ public class LoginScreenController {
   void setIllegalField(final TextField f, boolean illegal) {
     if (illegal) {
       f.getStyleClass().add("illegal");
-    }
-    else {
+    } else {
       f.getStyleClass().clear();
       f.getStyleClass().addAll("text-field", "text-input");
       f.setTooltip(null);
@@ -146,22 +144,20 @@ public class LoginScreenController {
     String name = usernameInputField.getText().toLowerCase();
     String password = passwordInputField.getText();
     if (name.length() == 0 && password.length() == 0) {
-      showError(usernameInputField,"This field is empty",e,-20);
-      showError(passwordInputField,"This field is empty",e,-10);
+      showError(usernameInputField, "This field is empty", e, -20);
+      showError(passwordInputField, "This field is empty", e, -10);
       errorLabel.setText("Empty username and password fields. Please fill in before continuing");
       setIllegalField(passwordInputField, true);
       setIllegalField(usernameInputField, true);
       return false;
-    }
-    else if (name.length() == 0) {
-      showError(usernameInputField,"This field is empty",e,-20);
+    } else if (name.length() == 0) {
+      showError(usernameInputField, "This field is empty", e, -20);
       errorLabel.setText("Empty username field. Please fill in before continuing");
       setIllegalField(passwordInputField, false);
       setIllegalField(usernameInputField, true);
       return false;
-    }
-    else if (password.length() == 0) {
-      showError(passwordInputField,"This field is empty",e,-10);
+    } else if (password.length() == 0) {
+      showError(passwordInputField, "This field is empty", e, -10);
       errorLabel.setText("Empty password field. Please fill in before continuing");
       setIllegalField(passwordInputField, true);
       setIllegalField(usernameInputField, false);
@@ -221,20 +217,34 @@ public class LoginScreenController {
    * @param tooltipText The text in the error message
    * @param e the actionevent. This is used to find the right coordinates.
    */
-  public static void showError(TextField textfield, String tooltipText, ActionEvent e, int yShift)
-  {
-    Stage owner = (Stage) ((Node) e.getSource()).getScene().getWindow();
-    final Tooltip customTooltip = new Tooltip();
-    customTooltip.setText(tooltipText);
-    Point2D point2D = textfield.localToScene(0,0);
+  public static void showError(final TextField textfield,
+                               final String tooltipText,
+                               final ActionEvent e,
+                               final int yshift) {
 
+    //Creates a new tooltip
+    final Tooltip customTooltip = new Tooltip();
+
+    //Sets the text to the tooltip
+    customTooltip.setText(tooltipText);
+
+    //Gets the point2d of the textfield, used to find the coordinates later
+    Point2D point2D = textfield.localToScene(0, 0);
+
+    //Sets the tooltip to our textfield
     textfield.setTooltip(customTooltip);
+
+    //Sets the tooltip to autohide
     customTooltip.setAutoHide(true);
 
+    //Gets the current stage
+    Stage owner = (Stage) ((Node) e.getSource()).getScene().getWindow();
 
+    //Shows the tooltip at the textfield, shifted by yShift pixels in the y direction
     customTooltip.show(owner,
             point2D.getX() + textfield.getScene().getX() + textfield.getScene().getWindow().getX(),
-            point2D.getY() + textfield.getScene().getY() + textfield.getScene().getWindow().getY()+yShift);
+            point2D.getY() + textfield.getScene().getY() + textfield.getScene().getWindow().getY()
+                    + yshift);
 
   }
 }
