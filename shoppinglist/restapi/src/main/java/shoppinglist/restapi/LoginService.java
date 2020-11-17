@@ -25,7 +25,6 @@ public class LoginService {
    * the service path for the server.
    */
   public static final String LOGIN_SERVICE_PATH = "Login";
-  public static Passwords passwords;
 
   private static final  ObjectMapper mapper = new ObjectMapper();
   /**
@@ -84,7 +83,7 @@ public class LoginService {
   @Produces(MediaType.APPLICATION_JSON)
   public Person checkLogin(LoginResource loginResource) {
     //Reads in the passwords
-    passwords = FileHandler.readPasswords();
+    Passwords passwords = FileHandler.readPasswords();
 
     //Creates a new password file if there are no old passwords on file.
     if (passwords == null) {

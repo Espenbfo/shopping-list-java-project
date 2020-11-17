@@ -517,7 +517,6 @@ public class AppController {
           || l.getPersonList().contains(loggedIn)) {
 
         //Sets up the list to be added to the TilePane
-        Pane list = new Pane();
         Label listName = new Label(l.getTitle());
         listName.setPrefWidth(1000.);
 
