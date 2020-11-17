@@ -38,7 +38,6 @@ public class FileHandler {
       }
       ObjectMapper mapper = new ObjectMapper();
       ShoppingList out = mapper.readValue(Paths
-      ShoppingList out = mapper.readValue(Paths
           .get("./shoppinglists/" + id + ".json")
           .toFile(), ShoppingList.class);
       return out;
