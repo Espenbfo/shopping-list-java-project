@@ -118,13 +118,13 @@ public class ServerTest extends JerseyTest {
   @Test
   void testPutGetPerson() {
     ObjectMapper om = new ObjectMapper();
-    Person testindivid = new Person("Testindivid");
+    Person testindivid = new Person("Testtindivid");
     try {
-      final Response putResponse = target(PersonService.PERSON_SERVICE_PATH).path("Testindivid")
+      final Response putResponse = target(PersonService.PERSON_SERVICE_PATH).path("Testtindivid")
               .request(MediaType.APPLICATION_JSON + ";" + MediaType.CHARSET_PARAMETER + "=UTF-8")
               .put(Entity.entity(om.writeValueAsString(testindivid), MediaType.APPLICATION_JSON));
       assertEquals(200, putResponse.getStatus());
-      final Response getResponse = target(PersonService.PERSON_SERVICE_PATH).path("Testindivid")
+      final Response getResponse = target(PersonService.PERSON_SERVICE_PATH).path("Testtindivid")
               .request(MediaType.APPLICATION_JSON + ";" + MediaType.CHARSET_PARAMETER + "=UTF-8")
               .get();
       assertEquals(200, getResponse.getStatus());
@@ -139,7 +139,7 @@ public class ServerTest extends JerseyTest {
   @Test
   void testPutGetShoppingList() {
     ObjectMapper om = new ObjectMapper();
-    Person testindivid = new Person("Testindivid");
+    Person testindivid = new Person("Testtindivid");
     ShoppingList testlist = new ShoppingList("testlist",testindivid);
     try {
       final Response putResponse = target(PersonService.PERSON_SERVICE_PATH).path("/ShoppingLists/" + testlist.getId())
@@ -160,7 +160,7 @@ public class ServerTest extends JerseyTest {
   }
   void testRegisterLogon(){
     ObjectMapper om = new ObjectMapper();
-    Person testindivid = new Person("Testindivid");
+    Person testindivid = new Person("Testtindivid");
     LoginResource testResource = new LoginResource(testindivid, "test");
     try {
       final Response putResponse = target(LoginService.LOGIN_SERVICE_PATH).path("/register/" + testindivid.getUserName())
