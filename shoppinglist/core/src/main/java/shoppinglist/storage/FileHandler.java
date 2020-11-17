@@ -30,12 +30,14 @@ public class FileHandler {
   public static ShoppingList readFile(int id) {
     try {
       File dir = new File("./shoppinglists/");
+      //checks if directory shoppinglists exists, and creates it if necessary
       if (!dir.exists()) {
         if (!dir.mkdir()) {
           System.out.println("Could not create directory");
           return null;
         }
       }
+      //uses the Jackson ObjectMapper to read and deserialize the shoppinglist at ./shoppinglists/id.json
       ObjectMapper mapper = new ObjectMapper();
       ShoppingList out = mapper.readValue(Paths
           .get("./shoppinglists/" + id + ".json")
@@ -56,12 +58,14 @@ public class FileHandler {
   public static boolean writeFile(ShoppingList listToWrite) {
     try {
       File dir = new File("./shoppinglists/");
+      //checks if directory shoppinglists exists, and creates it if necessary
       if (!dir.exists()) {
         if (!dir.mkdir()) {
           System.out.println("Could not create directory");
           return false;
         }
       }
+      //uses the Jackson ObjectMapper to serialize and write the shoppinglist to file
       ObjectMapper mapper = new ObjectMapper();
       mapper.writeValue(Paths
           .get("./shoppinglists/" + listToWrite.getId() + ".json")
@@ -82,12 +86,14 @@ public class FileHandler {
   public static boolean writePerson(Person persToWrite) {
     try {
       File dir = new File("./persons/");
+      //checks if directory persons exists, and creates it if necessary
       if (!dir.exists()) {
         if (!dir.mkdir()) {
           System.out.println("Could not create directory");
           return false;
         }
       }
+      //uses the Jackson ObjectMapper to serialize and write the person to file at location ./persons/username.json
       ObjectMapper mapper = new ObjectMapper();
       mapper.writeValue(Paths
           .get("./persons/" 
@@ -109,6 +115,7 @@ public class FileHandler {
   public static Person readPerson(String personName) {
     try {
       File dir = new File("./persons/");
+      //checks if directory persons exists, and creates it if necessary
       if (!dir.exists()) {
         if (!dir.mkdir()) {
           System.out.println("Could not create directory");
@@ -116,6 +123,7 @@ public class FileHandler {
         }
       }
       String filename = "./persons/" + personName + ".json";
+      //uses the Jackson ObjectMapper to read and deserialize the person at ./persons/personname.json
       ObjectMapper mapper = new ObjectMapper();
       Person out = mapper.readValue(Paths.get(filename).toFile(), Person.class);
       return out;
@@ -134,12 +142,14 @@ public class FileHandler {
   public static boolean writeMaxId(int id) {
     try {
       File dir = new File("./shoppinglists/");
+      //checks if directory shoppinglists exists, and creates it if necessary
       if (!dir.exists()) {
         if (!dir.mkdir()) {
           System.out.println("Could not create directory");
           return false;
         }
       }
+      //uses the Jackson ObjectMapper to serialize the number id as a MaxId instance and write it to the file ./shoppinglists/maxID.json
       ObjectMapper mapper = new ObjectMapper();
       mapper.writeValue(Paths.get("./shoppinglists/maxID.json").toFile(), new MaxId(id));
       return true;
@@ -157,12 +167,14 @@ public class FileHandler {
   public static int readMaxId() {
     try {
       File dir = new File("./shoppinglists/");
+      //checks if directory shoppinglists exists, and creates it if necessary
       if (!dir.exists()) {
         if (!dir.mkdir()) {
           System.out.println("Could not create directory");
           return -1;
         }
       }
+      //uses the Jackson ObjectMapper to read and deserialize the stored MaxId, which should be at ./shoppinglists/maxID.json
       ObjectMapper mapper = new ObjectMapper();
       MaxId out = mapper.readValue(Paths.get("./shoppinglists/maxID.json").toFile(), MaxId.class);
       return out.getId();
@@ -184,12 +196,14 @@ public class FileHandler {
   public static boolean writePasswords(Passwords passwordsToWrite) {
     try {
       File dir = new File("./shoppinglists/");
+      //checks if directory shoppinglists exists, and creates it if necessary
       if (!dir.exists()) {
         if (!dir.mkdir()) {
           System.out.println("Could not create directory");
           return false;
         }
       }
+      //uses the Jackson ObjectMapper to serialize and write the Passwords instance to the file ./shoppinglist/passwords.json
       ObjectMapper mapper = new ObjectMapper();
       mapper.writeValue(Paths.get("./shoppinglists/passwords.json").toFile(), passwordsToWrite);
       return true;
@@ -210,12 +224,14 @@ public class FileHandler {
       String filename = "./shoppinglists/passwords.json";
       ObjectMapper mapper = new ObjectMapper();
       File dir = new File("./shoppinglists/");
+      //checks if directory shoppinglists exists, and creates it if necessary
       if (!dir.exists()) {
         if (!dir.mkdir()) {
           System.out.println("Could not create directory");
           return null;
         }
       }
+      //uses the Jackson ObjectMapper to read and deserializes the passwords from the file ./shoppinglist/passwords.json
       Passwords out = mapper.readValue(Paths.get(filename).toFile(), Passwords.class);
       return out;
     } catch (RuntimeException | IOException  e) {
