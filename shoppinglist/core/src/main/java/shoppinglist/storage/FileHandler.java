@@ -38,6 +38,7 @@ public class FileHandler {
       }
       ObjectMapper mapper = new ObjectMapper();
       ShoppingList out = mapper.readValue(Paths
+      ShoppingList out = mapper.readValue(Paths
           .get("./shoppinglists/" + id + ".json")
           .toFile(), ShoppingList.class);
       return out;
@@ -118,7 +119,6 @@ public class FileHandler {
       String filename = "./persons/" + personName + ".json";
       ObjectMapper mapper = new ObjectMapper();
       Person out = mapper.readValue(Paths.get(filename).toFile(), Person.class);
-      System.out.println(out);
       return out;
     } catch (Exception e) {
       System.out.println("e");
@@ -218,7 +218,6 @@ public class FileHandler {
         }
       }
       Passwords out = mapper.readValue(Paths.get(filename).toFile(), Passwords.class);
-      System.out.println(out);
       return out;
     } catch (Exception e) {
       e.printStackTrace();
