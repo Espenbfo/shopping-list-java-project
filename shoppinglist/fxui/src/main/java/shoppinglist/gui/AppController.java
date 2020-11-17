@@ -117,19 +117,33 @@ public class AppController {
    */
   @FXML
   public void initialize() {
+
+    //Setting up dataaccess.
     setDataAccess(new PersonDataAccess("http://localhost:8087"));
     shoppingAccess = new ShoppingListDataAccess("http://localhost:8087");
+
+    //Creates an empty shoppinglist.
     currentShoppingList = new ShoppingList();
+
+    //Checks if the client is logged in, and initializes all user-related fields.
     if (Client.getCurrentPerson() != null) {
       String userName = Client.getCurrentPerson().getUserName();
+
+      //Capitalizes the first letter in the username
       userName = userName.substring(0, 1).toUpperCase() + userName.substring(1);
+
+      //Sets the current user as the owner of the empty list
       currentShoppingList.setOwner(Client.getCurrentPerson());
+
+      //Fills in all related fields
       personInputField.setText(userName);
       fillTitleList();
       loginNameLabel.setText(userName);
     }
 
+    //The rest of the method initializes the TableView where the user can view their shoppinglist.
 
+    //Sets up each column
     TableColumn<ShoppingElement, Double> colNum = new TableColumn<>("Num");
     colNum.setCellValueFactory(new PropertyValueFactory<ShoppingElement, Double>("value"));
 
@@ -139,13 +153,23 @@ public class AppController {
     TableColumn<ShoppingElement, String> colType = new TableColumn<>("Type");
     colType.setCellValueFactory(new PropertyValueFactory<ShoppingElement, 
         String>("measurementName"));
+
+    //Sets the width of the columns
     colName.setPrefWidth(100);
     colType.setPrefWidth(50);
     colNum.setPrefWidth(50);
+
+    //Adds the checkbox column
     addCheckBoxToTable();
+
+    //Adds the middle columns
     shoppingList.getColumns().addAll(colNum, colType, colName);
-    shoppingList.setItems(data);
+
+    //Adds the button column
     addButtonToTable();
+
+    //Sets the list of elements, data, as the content of the TableView
+    shoppingList.setItems(data);
   }
 
   /**
