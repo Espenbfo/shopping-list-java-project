@@ -71,29 +71,36 @@ public class LoginScreenController {
 
   @FXML
   void handleLogin(ActionEvent e) throws IOException {
+
+    //Checks if the username has illegal characters
     if (!isUserNameValid(e)) {
       return;
     }
+
+    //Checks if both the user- and passwordfields are filled in
     if (!checkIfFilledFields(e)) {
       return;
     }
+
+    //Gets the valid name and password from their fields
     String name = usernameInputField.getText().toLowerCase();
     String password = passwordInputField.getText();
 
 
     try {
+      //Send the login information to the server
       Person p = dataAccess.putLogin(name, password);
+
+      //if p == null, the login has failed
       if (p == null) {
-        errorLabel.setText("Login failed, is your password correct?");
+        errorLabel.setText("Login failed, is your username and password correct?");
       } else {
         Client.setCurrentPerson(p);
         mainScreen(e);
       }
     } catch (Exception ex) {
       ex.printStackTrace();
-      errorLabel.setText("Login failed. Are you registred?");
     }
-    System.out.println("login");
   }
 
   /**
@@ -103,17 +110,27 @@ public class LoginScreenController {
    * @return if username is valid
    */
   boolean isUserNameValid(ActionEvent e) {
+    //The written username
     String name = usernameInputField.getText().toLowerCase();
 
+    //The regex pattern the username has to not follow.
+    //[^0-9a-zA-Z*] means no characters in the groups 0-9, a-z and A-Z.
     Pattern pattern = Pattern.compile("[^0-9a-zA-Z*]");
     Matcher matcher = pattern.matcher(name);
+
+    //Sees if the username follows the illegal pattern
     if (matcher.find()) {
       errorLabel.setText("Illegal characters in username");
+
+      //Creates a tooltip above the username input field.
       showError(usernameInputField, "Invalid username", e, -20);
       setIllegalField(usernameInputField, true);
       return false;
     }
+
+    //Validates the usernamefield
     setIllegalField(usernameInputField, false);
+
     return true;
   }
 
@@ -128,8 +145,14 @@ public class LoginScreenController {
     if (illegal) {
       f.getStyleClass().add("illegal");
     } else {
+
+      //Clears all css classes
       f.getStyleClass().clear();
+
+      //Adds the default classes back
       f.getStyleClass().addAll("text-field", "text-input");
+
+      //Removes all tooltips
       f.setTooltip(null);
     }
   }
@@ -141,9 +164,13 @@ public class LoginScreenController {
    * @return if the name- and passwordfields are filled in.
    */
   boolean checkIfFilledFields(ActionEvent e) {
+    //Gets the username and the password
     String name = usernameInputField.getText().toLowerCase();
     String password = passwordInputField.getText();
+
     if (name.length() == 0 && password.length() == 0) {
+      //If they both are empty:
+
       showError(usernameInputField, "This field is empty", e, -20);
       showError(passwordInputField, "This field is empty", e, -10);
       errorLabel.setText("Empty username and password fields. Please fill in before continuing");
@@ -151,12 +178,16 @@ public class LoginScreenController {
       setIllegalField(usernameInputField, true);
       return false;
     } else if (name.length() == 0) {
+      //If only the username is empty:
+
       showError(usernameInputField, "This field is empty", e, -20);
       errorLabel.setText("Empty username field. Please fill in before continuing");
       setIllegalField(passwordInputField, false);
       setIllegalField(usernameInputField, true);
       return false;
     } else if (password.length() == 0) {
+      //If just the password is empty:
+
       showError(passwordInputField, "This field is empty", e, -10);
       errorLabel.setText("Empty password field. Please fill in before continuing");
       setIllegalField(passwordInputField, true);
@@ -174,21 +205,32 @@ public class LoginScreenController {
    */
   @FXML
   void handleRegister(ActionEvent e) throws IOException {
-    String name = usernameInputField.getText().toLowerCase();
+    //Checks if the username has illegal characters
     if (!isUserNameValid(e)) {
       return;
     }
+
+    //Checks if all field are filled
     if (!checkIfFilledFields(e)) {
       return;
     }
 
+    //Gets the name
+    String name = usernameInputField.getText().toLowerCase();
+
+    //Checks if the person already exists
     if (dataAccess.getPerson(name) == null) {
+
+      //Gets the password
       String password = passwordInputField.getText();
+
+      //Creates a new Person
       Person p = new Person(name);
 
+      //Registers the user-password combo to the server.
       dataAccess.putRegister(p, password);
 
-      System.out.println("register");
+      //Logs in automatically with the new user.
       handleLogin(e);
     } else {
       errorLabel.setText("Username taken");
@@ -201,12 +243,21 @@ public class LoginScreenController {
    * @param e the event calling the method
    */
   void mainScreen(ActionEvent e) throws IOException {
+    //Gets the new parent.
     Parent loginParent = FXMLLoader.load(getClass()
         .getResource("/resources/shoppinglist/gui/App.fxml"));
+
+    //Creates a new scene with the new parent.
     Scene loginScene = new Scene(loginParent);
+
+    //Loads the stylecheet.
     loginScene.getStylesheets().add(getClass()
         .getResource("/resources/shoppinglist/gui/style.css").toExternalForm());
+
+    //Gets the current stage.
     Stage appStage = (Stage) ((Node) e.getSource()).getScene().getWindow();
+
+    //Sets the new scene
     appStage.setScene(loginScene);
   }
 

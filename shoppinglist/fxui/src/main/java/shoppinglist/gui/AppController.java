@@ -614,12 +614,12 @@ public class AppController {
     //Creates a new scene with the new parent.
     Scene loginScene = new Scene(loginParent);
 
-    //Loads the stylecheat.
+    //Loads the stylecheet.
     loginScene.getStylesheets()
         .add(getClass().getResource("/resources/shoppinglist/gui/style.css")
         .toExternalForm());
 
-    //Gets the current stylecheat.
+    //Gets the current stage.
     Stage appStage = (Stage) ((Node) e.getSource()).getScene().getWindow();
 
     //Sets the new scene.
