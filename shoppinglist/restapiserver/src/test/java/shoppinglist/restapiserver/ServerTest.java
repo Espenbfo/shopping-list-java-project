@@ -40,6 +40,7 @@ import org.glassfish.grizzly.http.server.HttpServer;
 import org.glassfish.jersey.grizzly2.httpserver.GrizzlyHttpServerFactory;
 import shoppinglist.restapiserver.ShoppingGrizzlyApp;
 import shoppinglist.restapi.PersonService;
+import shoppinglist.restapi.LoginResource;
 import shoppinglist.restapi.LoginService;
 import shoppinglist.core.*;
 
@@ -157,6 +158,28 @@ public class ServerTest extends JerseyTest {
       assertTrue(false);
     }
   }
+  void testRegisterLogon(){
+    ObjectMapper om = new ObjectMapper();
+    Person testindivid = new Person("Testindivid");
+    LoginResource testResource = new LoginResource(testindivid, "test");
+    try {
+      final Response putResponse = target(LoginService.LOGIN_SERVICE_PATH).path("/register/" + testindivid.getUserName())
+              .request("application/json; charset=UTF-8")
+              .put(Entity.entity(om.writeValueAsString(testResource), MediaType.APPLICATION_JSON));
+      assertEquals(200, putResponse.getStatus());
+      assertEquals(1,om.readValue(putResponse.readEntity(String.class),Integer.class));
+      final Response getResponse = target(LoginService.LOGIN_SERVICE_PATH).path("/login")
+              .request(MediaType.APPLICATION_JSON + ";" + MediaType.CHARSET_PARAMETER + "=UTF-8")
+              .put(Entity.entity(om.writeValueAsString(testResource), MediaType.APPLICATION_JSON));
+      assertEquals(200, getResponse.getStatus());
+      assertEquals(testindivid, om.readValue(getResponse.readEntity(String.class), Person.class));
+
+    }catch (com.fasterxml.jackson.core.JsonProcessingException e){
+      e.printStackTrace();
+      assertTrue(false);
+    }
+  }
+
 }
 
 
