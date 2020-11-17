@@ -61,7 +61,6 @@ public class LoginScreenControllerTest extends ApplicationTest {
         clickOn(passwordInputField);
         write("duG");
         clickOn(registerButton);
-        System.out.println(Client.getCurrentPerson().getUserName());
         Assertions.assertTrue(Client.getCurrentPerson().getUserName().equals("testindivid"));
     }
 
@@ -76,7 +75,6 @@ public class LoginScreenControllerTest extends ApplicationTest {
         clickOn(passwordInputField);
         write("duG");
         clickOn(loginButton);
-        System.out.println(Client.getCurrentPerson().getUserName());
         Assertions.assertTrue(Client.getCurrentPerson().getUserName().equals("testindivid"));
     }
 
@@ -86,7 +84,6 @@ public class LoginScreenControllerTest extends ApplicationTest {
         final Button loginButton = (Button) parent.lookup("#loginButton");
         final Label errorLabel = (Label) parent.lookup("#error");
         clickOn(loginButton);
-        System.out.println(Client.getCurrentPerson().getUserName());
         Assertions.assertTrue(errorLabel.getText().equals("Empty username and password fields. Please fill in before continuing"));
     }
 
@@ -95,8 +92,7 @@ public class LoginScreenControllerTest extends ApplicationTest {
         when(dataAccess.putLogin(anyString(),anyString())).thenReturn(new Person("failed"));
         final Button registerButton = (Button) parent.lookup("#registerButton");
         final Label errorLabel = (Label) parent.lookup("#error");
-        clickOn(registerButton);
-        System.out.println(Client.getCurrentPerson().getUserName());
+        clickOn(registerButton);;
         Assertions.assertTrue(errorLabel.getText().equals("Empty username and password fields. Please fill in before continuing"));
     }
 
@@ -112,7 +108,6 @@ public class LoginScreenControllerTest extends ApplicationTest {
         clickOn(passwordInputField);
         write("duG");
         clickOn(loginButton);
-        System.out.println(Client.getCurrentPerson().getUserName());
         Assertions.assertTrue(errorLabel.getText().equals("Login failed, is your username and password correct?"));
     }
 
@@ -128,7 +123,6 @@ public class LoginScreenControllerTest extends ApplicationTest {
         clickOn(passwordInputField);
         write("duG");
         clickOn(loginButton);
-        System.out.println(Client.getCurrentPerson().getUserName());
         Assertions.assertTrue(errorLabel.getText().equals("Illegal characters in username"));
     }
     
