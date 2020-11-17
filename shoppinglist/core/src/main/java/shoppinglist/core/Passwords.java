@@ -63,7 +63,10 @@ public class Passwords {
    * @param password the password
    */
   public void setPassword(Person p, String password) {
+    //Gets the hash
     String hashedPassword = Passwords.hash(password, p.getSalt());
+
+    //Stores it in the hasmap
     hashes.put(p.getUserName(), hashedPassword);
   }
 
@@ -85,10 +88,15 @@ public class Passwords {
    * @return whether the password was correct or not
    */
   public boolean checkPassword(String userName, String password, byte[] salt) {
+    //Hashes the sent in password
     String hashedPassword = Passwords.hash(password, salt);
+
+    //Checks if the user has a password
     if (hashes.get(userName) == null) {
       return false;
     }
+
+    //Checks if the password's hash is equal to the stored password's hash
     if (hashes.get(userName).equals(hashedPassword)) {
       return true;
     }
@@ -115,9 +123,14 @@ public class Passwords {
    */
   public static String hash(String password, byte[] salt) {
     try {
+      //Gets the Sha512 instance
       SecretKeyFactory f = SecretKeyFactory.getInstance("PBKDF2WithHmacSHA512");
+
+      //Hashes the password with the given salt
       SecretKey key = f.generateSecret(new PBEKeySpec(
               password.toCharArray(), salt, hashIterations, hashLength));
+
+      //Converts the SecretKey encoded hash to a String
       return Base64.encodeBase64String(key.getEncoded());
     } catch (RuntimeException | NoSuchAlgorithmException | InvalidKeySpecException e) {
       System.out.println("Noe gikk feil med hashingen");
