@@ -97,44 +97,6 @@ public class ServerTest extends JerseyTest {
 
   }
 
-/*
-    @Test
-    public void testPost(){
-        Person p = new Person("testperson");
-        try {
-            ObjectMapper mapper = new ObjectMapper();
-            final Response postResponse = target(PersonService.PERSON_SERVICE_PATH+ "testperson")
-                    .request(MediaType.APPLICATION_JSON + ";" + MediaType.CHARSET_PARAMETER + "-UTF-8")
-                    .post(Entity.entity(mapper.writeValueAsString(p), MediaType.APPLICATION_JSON));
-            assertEquals(200, postResponse.getStatus());
-            // Må muligens legge til postresponse getEntity
-        }
-        catch (Exception e) {
-            fail(e.getMessage());
-        }
-    }
-
-    @Test
-    public void testGet() {
-        try {
-            Response getResponse = target(PersonService.PERSON_SERVICE_PATH)
-                    .path("testPerson")
-                    .request(MediaType.APPLICATION_JSON + ";" + MediaType.CHARSET_PARAMETER + "-UTF-8")
-                    .get();
-            assertEquals(200, getResponse.getStatus());
-            try {
-                ObjectMapper mapper = new ObjectMapper();
-                Person person = mapper.readValue(getResponse.readEntity(String.class), Person.class);
-                assertEquals("testPerson", person.getUserName());
-            } catch (JsonProcessingException e) {
-                fail(e.getMessage());
-            }
-        } catch (Exception e){
-            fail(e.getMessage());
-        }
-    }
-
- */
 }
 
 
