@@ -44,8 +44,6 @@ public class LoginScreenController {
   @FXML
   Label errorLabel;
 
-  String itemToAdd = null;
-
   private PersonDataAccess dataAccess;
 
   protected PersonDataAccess getDataAccess() {
