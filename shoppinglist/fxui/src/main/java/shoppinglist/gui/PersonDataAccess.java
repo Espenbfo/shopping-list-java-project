@@ -27,7 +27,7 @@ public class PersonDataAccess {
     this.baseUrlString = baseUrlString;
   }
 
-  private final static ObjectMapper mapper = new ObjectMapper();
+  private static final ObjectMapper mapper = new ObjectMapper();
 
   /**
    * Gets the common Uri with an added part at the end.
