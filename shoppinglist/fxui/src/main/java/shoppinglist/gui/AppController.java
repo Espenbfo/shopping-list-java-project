@@ -175,13 +175,17 @@ public class AppController {
   /**
    * Add element to shoppinglist when button is clicked.
    *
-   * @Param e necessary for the error tooltip
+   * @Param e necessary for the error tooltip.
    */
 
   @FXML
   void handleAddItemButtonClicked(ActionEvent e) {
 
+    //If any field is empty, isAdding turns false;
     boolean isAdding = true;
+
+    //Checks if field is empty, and sets it to a visual illegal state if empty.
+    //Else resets it to normal.
     if (itemInputField.getText().equals("")) {
       isAdding = false;
       itemInputField.getStyleClass().add("illegal");
@@ -190,6 +194,7 @@ public class AppController {
       itemInputField.getStyleClass().clear();
       itemInputField.getStyleClass().addAll("text-field", "text-input");
     }
+
     if (amountInputField.getText().equals("")) {
       isAdding = false;
       amountInputField.getStyleClass().add("illegal");
@@ -198,6 +203,7 @@ public class AppController {
       amountInputField.getStyleClass().clear();
       amountInputField.getStyleClass().addAll("text-field", "text-input");
     }
+
     if (measurementInputField.getText().equals("")) {
       isAdding = false;
       measurementInputField.getStyleClass().add("illegal");
@@ -206,16 +212,26 @@ public class AppController {
       measurementInputField.getStyleClass().clear();
       measurementInputField.getStyleClass().addAll("text-field", "text-input");
     }
+
+
     if (isAdding) {
+      //Adds a new element
       ShoppingElement currentElement = new ShoppingElement(itemInputField.getText(), Double.parseDouble(amountInputField.getText()), measurementInputField.getText());
+      //To the list the user sees
       data.add(currentElement);
+      //And to the list that may be saved to the server.
       currentShoppingList.addElement(currentElement);
+
+      //Resets the text if the input fields
       itemInputField.setText("");
       amountInputField.setText("");
       measurementInputField.setText("");
+
+      //Sets the focus to the first field, making it easy for the user to quickly write many elements in a row.
       amountInputField.requestFocus();
     }
     else {
+      //Shows a tooltip with an error message if there are any errors.
       showError(measurementInputField,"Please fill all fields", e,-20);
     }
   }
@@ -226,18 +242,21 @@ public class AppController {
   private void addButtonToTable() {
     TableColumn<ShoppingElement, Void> colBtn = new TableColumn("Delete?");
 
+    //Creates a TableCell with a button that automatically deletes when pressed
     Callback<TableColumn<ShoppingElement, Void>,
-        TableCell<ShoppingElement, Void>> cellFactory = new Callback
+        TableCell<ShoppingElement, Void>> BtnCell = new Callback
           <TableColumn<ShoppingElement, Void>, 
           TableCell<ShoppingElement, Void>>() {
       @Override
       public TableCell<ShoppingElement, Void> call(final TableColumn<ShoppingElement, Void> param) {
         final TableCell<ShoppingElement, Void> cell = new TableCell<ShoppingElement, Void>() {
 
+          //Button with text x
           private final Button btn = new Button("x");
 
           {
             btn.setOnAction((ActionEvent event) -> {
+              //Removes the element with the button that was clicked on.
               ShoppingElement e = getTableView().getItems().get(getIndex());
               currentShoppingList.removeElement(e);
               data.remove(e);
@@ -250,6 +269,7 @@ public class AppController {
             if (empty) {
               setGraphic(null);
             } else {
+              //Sets the width and style of the button
               btn.setPrefWidth(40);
               btn.setPadding(Insets.EMPTY);
               btn.getStyleClass().add("delete");
@@ -261,8 +281,13 @@ public class AppController {
       }
     };
 
-    colBtn.setCellFactory(cellFactory);
+    //Sets the cellfacotry
+    colBtn.setCellFactory(BtnCell);
+
+    //Sets the width of the cell factory
     colBtn.setPrefWidth(60);
+
+    //Adds the column
     shoppingList.getColumns().add(colBtn);
   }
 
@@ -271,16 +296,20 @@ public class AppController {
    */
   private void addCheckBoxToTable() {
     TableColumn<ShoppingElement, Void> colCb = new TableColumn("Done");
-    Callback<TableColumn<ShoppingElement, Void>, TableCell<ShoppingElement, Void>> cellFactory
+
+    //Creates a cell with a checkbox that toggles if a shoppingelement is shopped when checked
+    Callback<TableColumn<ShoppingElement, Void>, TableCell<ShoppingElement, Void>> CbCell
          = new Callback<TableColumn<ShoppingElement, Void>, TableCell<ShoppingElement, Void>>() {
       @Override
       public TableCell<ShoppingElement, Void> call(final TableColumn<ShoppingElement, Void> param) {
         final TableCell<ShoppingElement, Void> cell = new TableCell<ShoppingElement, Void>() {
 
+          //The checkbox
           private final CheckBox cb = new CheckBox();
 
           {
             cb.setOnAction((ActionEvent event) -> {
+              //Toggles shopped of the item
               ShoppingElement e = getTableView().getItems().get(getIndex());
               e.toggleShopped();
             });
@@ -292,6 +321,7 @@ public class AppController {
             if (empty) {
               setGraphic(null);
             } else {
+              //Sets if the checkbox is checked or not based on the shoppingElement.
               ShoppingElement e = getTableView().getItems().get(getIndex());
               cb.setSelected(e.isShopped());
               setGraphic(cb);
@@ -302,8 +332,13 @@ public class AppController {
       }
     };
 
-    colCb.setCellFactory(cellFactory);
+    //Sets the cellfactory
+    colCb.setCellFactory(CbCell);
+
+    //Sets the width
     colCb.setPrefWidth(40);
+
+    //Adds the column
     shoppingList.getColumns().add(colCb);
   }
 
@@ -315,27 +350,33 @@ public class AppController {
   @FXML
   void saveShoppingList(ActionEvent e) {
 
+    //Checks if the title is filled in, this is a requirement.
     if (shoppingTitleTextField.getText().equals("")) {
       shoppingTitleTextField.getStyleClass().add("illegal");
       showError(shoppingTitleTextField,"This field is empty", e,-20);
+      //Returns if nor filled in.
       return;
     }
     else {
       shoppingTitleTextField.getStyleClass().clear();
       shoppingTitleTextField.getStyleClass().addAll("text-field", "text-input");
     }
+
+    //Gets alle the people in the new list. personInputField is the owner and peopleInputField are the guest owners.
     String peopleText = personInputField.getText().toLowerCase() + "," + peopleInputField.getText().toLowerCase();
     peopleText = peopleText.replaceAll("\\s", "");
 
+    //Sets whether the list is public
     if (privateCheckBox.isSelected()) {
       currentShoppingList.setPublicList(false);
     } else {
       currentShoppingList.setPublicList(true);
     }
 
+    //The users of the list, seperated by comma.
     List<String> peopleNames = Arrays.asList(peopleText.split(","));
-    List<String> toBeRemoved = new ArrayList<String>();
 
+    //Sets the owner.
     if (currentShoppingList.getOwner() == null) {
       String ownerText = loginNameLabel
           .getText().toLowerCase() + "," 
@@ -344,28 +385,10 @@ public class AppController {
       currentShoppingList.setOwner(dataAccess.getPerson(ownerText));
       currentShoppingList.addPerson(ownerText);
     }
-    for (String p : currentShoppingList.getPersonList()) {
-      try {
-        if (!peopleNames.contains(p)) {
-          Person person = FileHandler.readPerson(p);
-          person.removeShoppingListById(currentShoppingList.getId());
-          FileHandler.writePerson(person);
-          toBeRemoved.add(person.getUserName());
-        }
-      } catch (Exception ex) {
-        System.out.println(ex);
-      }
-    }
-    for (String username : toBeRemoved) {
-      currentShoppingList.removePerson(username);
-    }
+
+    currentShoppingList.setPersonList(new ArrayList<String>());
     for (String name : peopleNames) {
-      try {
-        Person p = dataAccess.getPerson(name);
         currentShoppingList.addPerson(name);
-      } catch (Exception ex) {
-        System.out.println(ex);
-      }
     }
     currentShoppingList.setTitle(shoppingTitleTextField.getText());
     int newint = shoppingAccess.putShoppingList(currentShoppingList);

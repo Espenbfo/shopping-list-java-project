@@ -113,6 +113,35 @@ public class PersonService {
       shoppinglist.setId(newId);
       FileHandler.writeMaxId(newId);
     }
+    else {
+      //The list prevously saved to file.
+      ShoppingList oldList = FileHandler.readFile(newId);
+
+      if (oldList != null) {
+        //The users of the list, seperated by comma.
+        List<String> peopleNames = shoppinglist.getPersonList();
+
+        //The users that are no longer on the list must be removed.
+        List<String> toBeRemoved = new ArrayList<String>();
+
+        for (String p : oldList.getPersonList()) {
+          System.out.println(p);
+          try {
+            if (!peopleNames.contains(p)) {
+              Person person = FileHandler.readPerson(p);
+              person.removeShoppingListById(newId);
+              FileHandler.writePerson(person);
+              toBeRemoved.add(person.getUserName());
+            }
+          } catch (Exception ex) {
+            System.out.println(ex);
+          }
+        }
+        for (String username : toBeRemoved) {
+          shoppinglist.removePerson(username);
+        }
+      }
+    }
     for (String x : shoppinglist.getPersonList()) {
       Person aperson = FileHandler.readPerson(x);
       if (aperson != null && !aperson.getShoppingLists().contains(newId)) {
