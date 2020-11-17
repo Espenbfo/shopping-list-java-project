@@ -40,35 +40,6 @@ public class AppTest extends ApplicationTest {
     private PersonDataAccess personDataAccess;
     private ShoppingListDataAccess shoppingDataAccess;
     private AppController controller;
-
-
-
-/*
-    private ShoppingListDataAccess shoppingDataAccess;
-
-    protected ShoppingListDataAccess getShoppingDataAccess() {
-      return shoppingDataAccess;
-    }
-
-   protected void setUpShoppingListDataAccess() {
-     final String serverUrlString = "http://localhost:8087/index/";
-     final String clientUrlString = serverUrlString + PersonService.PERSON_SERVICE_PATH;
-     shoppingDataAccess = new ShoppingListDataAccess(clientUrlString);
-   }
-
-   private PersonDataAccess personDataAccess;
-
-    protected PersonDataAccess getPersonDataAccess() {
-      return personDataAccess;
-    }
-
-   protected void setUpPersonDataAccess() {
-     final String serverUrlString = "http://localhost:8087/index/";
-     final String clientUrlString = serverUrlString + PersonService.PERSON_SERVICE_PATH;
-     personDataAccess = new PersonDataAccess(clientUrlString);
-   }
-
-   */
     
 
     @Override
@@ -97,7 +68,6 @@ public class AppTest extends ApplicationTest {
       testindivid.addShoppingList(0);
       when(shoppingDataAccess.getShoppingList(0)).thenReturn(testlist);
       when(personDataAccess.getPerson(anyString())).thenReturn(testindivid);
-        //FileHandler.writePasswords(Client.getPasswords());
     }
 
     @Test
