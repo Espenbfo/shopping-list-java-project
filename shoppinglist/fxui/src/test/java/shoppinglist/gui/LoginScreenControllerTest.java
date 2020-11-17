@@ -113,7 +113,7 @@ public class LoginScreenControllerTest extends ApplicationTest {
         write("duG");
         clickOn(loginButton);
         System.out.println(Client.getCurrentPerson().getUserName());
-        Assertions.assertTrue(errorLabel.getText().equals("Login failed, is your password correct?"));
+        Assertions.assertTrue(errorLabel.getText().equals("Login failed, is your username and password correct?"));
     }
 
     @Test
