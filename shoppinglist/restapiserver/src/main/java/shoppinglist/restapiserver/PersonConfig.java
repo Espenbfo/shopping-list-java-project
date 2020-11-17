@@ -18,7 +18,6 @@ public class PersonConfig extends ResourceConfig {
   */
   public PersonConfig() {
     register(LoginService.class);
-    register(TestPage.class);
     register(PersonService.class);
   }
 }

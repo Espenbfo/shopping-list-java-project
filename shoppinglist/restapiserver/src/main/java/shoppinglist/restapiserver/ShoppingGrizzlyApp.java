@@ -13,7 +13,6 @@ import org.glassfish.jersey.server.ResourceConfig;
 import shoppinglist.core.Person;
 import shoppinglist.restapi.LoginService;
 import shoppinglist.restapi.PersonService;
-import shoppinglist.restapiserver.TestPage;
 
 public class ShoppingGrizzlyApp {
 

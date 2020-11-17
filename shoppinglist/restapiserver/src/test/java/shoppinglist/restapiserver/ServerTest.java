@@ -61,7 +61,7 @@ public class ServerTest extends JerseyTest {
     HttpServer h;
     try {
       h = ShoppingGrizzlyApp.start();
-      URL clientUrl = new URL("http://localhost:8087/Gud");
+      URL clientUrl = new URL("http://localhost:8087/" + PersonService.PERSON_SERVICE_PATH);
       HttpURLConnection connection = (HttpURLConnection) clientUrl.openConnection();
       int response = connection.getResponseCode();
       assertEquals(response, 200);
