@@ -1,11 +1,9 @@
 package shoppinglist.gui;
 
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
-
 import javafx.application.Application;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -46,8 +44,6 @@ public class LoginScreenController {
   @FXML
   Label errorLabel;
 
-  String itemToAdd = null;
-
   private PersonDataAccess dataAccess;
 
   protected PersonDataAccess getDataAccess() {
@@ -73,29 +69,36 @@ public class LoginScreenController {
 
   @FXML
   void handleLogin(ActionEvent e) throws IOException {
+
+    //Checks if the username has illegal characters
     if (!isUserNameValid(e)) {
       return;
     }
+
+    //Checks if both the user- and passwordfields are filled in
     if (!checkIfFilledFields(e)) {
       return;
     }
+
+    //Gets the valid name and password from their fields
     String name = usernameInputField.getText().toLowerCase();
     String password = passwordInputField.getText();
 
 
     try {
+      //Send the login information to the server
       Person p = dataAccess.putLogin(name, password);
+
+      //if p == null, the login has failed
       if (p == null) {
-        errorLabel.setText("Login failed, is your password correct?");
+        errorLabel.setText("Login failed, is your username and password correct?");
       } else {
         Client.setCurrentPerson(p);
         mainScreen(e);
       }
     } catch (Exception ex) {
       ex.printStackTrace();
-      errorLabel.setText("Login failed. Are you registred?");
     }
-    System.out.println("login");
   }
 
   /**
@@ -105,17 +108,27 @@ public class LoginScreenController {
    * @return if username is valid
    */
   boolean isUserNameValid(ActionEvent e) {
+    //The written username
     String name = usernameInputField.getText().toLowerCase();
 
+    //The regex pattern the username has to not follow.
+    //[^0-9a-zA-Z*] means no characters in the groups 0-9, a-z and A-Z.
     Pattern pattern = Pattern.compile("[^0-9a-zA-Z*]");
     Matcher matcher = pattern.matcher(name);
-    if(matcher.find()) {
+
+    //Sees if the username follows the illegal pattern
+    if (matcher.find()) {
       errorLabel.setText("Illegal characters in username");
-      showError(usernameInputField,"Invalid username", e,-20);
-      setIllegalField(usernameInputField,true);
+
+      //Creates a tooltip above the username input field.
+      showError(usernameInputField, "Invalid username", e, -20);
+      setIllegalField(usernameInputField, true);
       return false;
     }
-    setIllegalField(usernameInputField,false);
+
+    //Validates the usernamefield
+    setIllegalField(usernameInputField, false);
+
     return true;
   }
 
@@ -129,10 +142,15 @@ public class LoginScreenController {
   void setIllegalField(final TextField f, boolean illegal) {
     if (illegal) {
       f.getStyleClass().add("illegal");
-    }
-    else {
+    } else {
+
+      //Clears all css classes
       f.getStyleClass().clear();
+
+      //Adds the default classes back
       f.getStyleClass().addAll("text-field", "text-input");
+
+      //Removes all tooltips
       f.setTooltip(null);
     }
   }
@@ -144,25 +162,31 @@ public class LoginScreenController {
    * @return if the name- and passwordfields are filled in.
    */
   boolean checkIfFilledFields(ActionEvent e) {
+    //Gets the username and the password
     String name = usernameInputField.getText().toLowerCase();
     String password = passwordInputField.getText();
+
     if (name.length() == 0 && password.length() == 0) {
-      showError(usernameInputField,"This field is empty",e,-20);
-      showError(passwordInputField,"This field is empty",e,-10);
+      //If they both are empty:
+
+      showError(usernameInputField, "This field is empty", e, -20);
+      showError(passwordInputField, "This field is empty", e, -10);
       errorLabel.setText("Empty username and password fields. Please fill in before continuing");
       setIllegalField(passwordInputField, true);
       setIllegalField(usernameInputField, true);
       return false;
-    }
-    else if (name.length() == 0) {
-      showError(usernameInputField,"This field is empty",e,-20);
+    } else if (name.length() == 0) {
+      //If only the username is empty:
+
+      showError(usernameInputField, "This field is empty", e, -20);
       errorLabel.setText("Empty username field. Please fill in before continuing");
       setIllegalField(passwordInputField, false);
       setIllegalField(usernameInputField, true);
       return false;
-    }
-    else if (password.length() == 0) {
-      showError(passwordInputField,"This field is empty",e,-10);
+    } else if (password.length() == 0) {
+      //If just the password is empty:
+
+      showError(passwordInputField, "This field is empty", e, -10);
       errorLabel.setText("Empty password field. Please fill in before continuing");
       setIllegalField(passwordInputField, true);
       setIllegalField(usernameInputField, false);
@@ -179,21 +203,32 @@ public class LoginScreenController {
    */
   @FXML
   void handleRegister(ActionEvent e) throws IOException {
-    String name = usernameInputField.getText().toLowerCase();
+    //Checks if the username has illegal characters
     if (!isUserNameValid(e)) {
       return;
     }
+
+    //Checks if all field are filled
     if (!checkIfFilledFields(e)) {
       return;
     }
 
+    //Gets the name
+    String name = usernameInputField.getText().toLowerCase();
+
+    //Checks if the person already exists
     if (dataAccess.getPerson(name) == null) {
+
+      //Gets the password
       String password = passwordInputField.getText();
+
+      //Creates a new Person
       Person p = new Person(name);
 
+      //Registers the user-password combo to the server.
       dataAccess.putRegister(p, password);
 
-      System.out.println("register");
+      //Logs in automatically with the new user.
       handleLogin(e);
     } else {
       errorLabel.setText("Username taken");
@@ -206,12 +241,21 @@ public class LoginScreenController {
    * @param e the event calling the method
    */
   void mainScreen(ActionEvent e) throws IOException {
+    //Gets the new parent.
     Parent loginParent = FXMLLoader.load(getClass()
         .getResource("/resources/shoppinglist/gui/App.fxml"));
+
+    //Creates a new scene with the new parent.
     Scene loginScene = new Scene(loginParent);
+
+    //Loads the stylecheet.
     loginScene.getStylesheets().add(getClass()
         .getResource("/resources/shoppinglist/gui/style.css").toExternalForm());
+
+    //Gets the current stage.
     Stage appStage = (Stage) ((Node) e.getSource()).getScene().getWindow();
+
+    //Sets the new scene
     appStage.setScene(loginScene);
   }
 
@@ -222,20 +266,34 @@ public class LoginScreenController {
    * @param tooltipText The text in the error message
    * @param e the actionevent. This is used to find the right coordinates.
    */
-  public static void showError(TextField textfield, String tooltipText, ActionEvent e, int yShift)
-  {
-    Stage owner = (Stage) ((Node) e.getSource()).getScene().getWindow();
-    final Tooltip customTooltip = new Tooltip();
-    customTooltip.setText(tooltipText);
-    Point2D point2D = textfield.localToScene(0,0);
+  public static void showError(final TextField textfield,
+                               final String tooltipText,
+                               final ActionEvent e,
+                               final int yshift) {
 
+    //Creates a new tooltip
+    final Tooltip customTooltip = new Tooltip();
+
+    //Sets the text to the tooltip
+    customTooltip.setText(tooltipText);
+
+    //Gets the point2d of the textfield, used to find the coordinates later
+    Point2D point2D = textfield.localToScene(0, 0);
+
+    //Sets the tooltip to our textfield
     textfield.setTooltip(customTooltip);
+
+    //Sets the tooltip to autohide
     customTooltip.setAutoHide(true);
 
+    //Gets the current stage
+    Stage owner = (Stage) ((Node) e.getSource()).getScene().getWindow();
 
+    //Shows the tooltip at the textfield, shifted by yShift pixels in the y direction
     customTooltip.show(owner,
             point2D.getX() + textfield.getScene().getX() + textfield.getScene().getWindow().getX(),
-            point2D.getY() + textfield.getScene().getY() + textfield.getScene().getWindow().getY()+yShift);
+            point2D.getY() + textfield.getScene().getY() + textfield.getScene().getWindow().getY()
+                    + yshift);
 
   }
 }

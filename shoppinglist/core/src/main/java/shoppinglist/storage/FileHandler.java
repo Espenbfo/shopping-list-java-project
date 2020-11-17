@@ -41,7 +41,7 @@ public class FileHandler {
           .get("./shoppinglists/" + id + ".json")
           .toFile(), ShoppingList.class);
       return out;
-    } catch (Exception e) {
+    } catch (RuntimeException | IOException e) {
       System.out.println("e");
     }
     return null;
@@ -67,7 +67,7 @@ public class FileHandler {
           .get("./shoppinglists/" + listToWrite.getId() + ".json")
           .toFile(), listToWrite);
       return true;
-    } catch (Exception e) {
+    } catch (RuntimeException | IOException e) {
       e.printStackTrace();
     }
     return false;
@@ -94,7 +94,7 @@ public class FileHandler {
           + persToWrite.getUserName() 
           + ".json").toFile(), persToWrite);
       return true;
-    } catch (Exception e) {
+    } catch (RuntimeException | IOException e) {
       e.printStackTrace();
     }
     return false;
@@ -118,9 +118,8 @@ public class FileHandler {
       String filename = "./persons/" + personName + ".json";
       ObjectMapper mapper = new ObjectMapper();
       Person out = mapper.readValue(Paths.get(filename).toFile(), Person.class);
-      System.out.println(out);
       return out;
-    } catch (Exception e) {
+    } catch (RuntimeException | IOException e) {
       System.out.println("e");
     }
     return null;
@@ -144,7 +143,7 @@ public class FileHandler {
       ObjectMapper mapper = new ObjectMapper();
       mapper.writeValue(Paths.get("./shoppinglists/maxID.json").toFile(), new MaxId(id));
       return true;
-    } catch (Exception e) {
+    } catch (RuntimeException | IOException e) {
       e.printStackTrace();
     }
     return false;
@@ -170,7 +169,7 @@ public class FileHandler {
     } catch (IOException e) {
       writeMaxId(0);
       return 0;
-    } catch (Exception e) {
+    } catch (RuntimeException e) {
       e.printStackTrace();
     }
     return -1;
@@ -194,7 +193,7 @@ public class FileHandler {
       ObjectMapper mapper = new ObjectMapper();
       mapper.writeValue(Paths.get("./shoppinglists/passwords.json").toFile(), passwordsToWrite);
       return true;
-    } catch (Exception e) {
+    } catch (RuntimeException | IOException e) {
       e.printStackTrace();
     }
     return false;
@@ -218,9 +217,8 @@ public class FileHandler {
         }
       }
       Passwords out = mapper.readValue(Paths.get(filename).toFile(), Passwords.class);
-      System.out.println(out);
       return out;
-    } catch (Exception e) {
+    } catch (RuntimeException | IOException  e) {
       e.printStackTrace();
     }
     return null;

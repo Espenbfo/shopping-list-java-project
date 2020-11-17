@@ -4,7 +4,6 @@ import java.io.IOException;
 import java.net.HttpURLConnection;
 import java.net.URI;
 import java.net.URL;
-import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import org.glassfish.grizzly.http.server.HttpServer;
@@ -19,7 +18,13 @@ import shoppinglist.restapiserver.TestPage;
 public class ShoppingGrizzlyApp {
 
   private static URI serverUri = URI.create("http://localhost:8087/");
-    
+
+  /**
+   * Returns a running HttpServer.
+   *
+   * @return a running HttpServer
+   * @throws IOException gets thrown if the server throws an IOException
+   */
   public static HttpServer start() throws IOException {
     int waitTime = 5;
 
@@ -51,11 +56,22 @@ public class ShoppingGrizzlyApp {
     return null;
   }
 
+  /**
+   * Stops a running HttpServer.
+   *
+   * @param server the server to be stopped
+   */
   public static void stop(HttpServer server) {
     server.shutdown();
   }
 
 
+  /**
+   * Used to start the server.
+   *
+   * @param args main function args, serves no purpose
+   * @throws IOException thrown if server raises an IOException
+   */
   public static void main(final String[] args) throws IOException {
     try {
       final HttpServer server = start();

@@ -22,30 +22,17 @@ public class ShoppingElement {
   }
 
   /**
-   * Initialize a ShoppingElement with name, 
-   * value, measurementName, and whether the element
-   *  can be represented by non-integers.
-   *
-   * @param name            the name
-   * @param value           the value
-   * @param measurementName the measurement name
-   * @param allowDouble     whether the element can be represented by non-integers
-   */
-  public ShoppingElement(String name, double value, String measurementName, boolean allowDouble) {
-    this.name = name;
-    measurementType = new MeasurementType(measurementName, value, allowDouble);
-    this.shopped = false;
-  }
-
-  /**
-   * Initialize a ShoppingElement with name, value, measurementName.
+   * Initialize a ShoppingElement with name,
+   * value, and measurementName.
    *
    * @param name            the name
    * @param value           the value
    * @param measurementName the measurement name
    */
   public ShoppingElement(String name, double value, String measurementName) {
-    this(name, value, measurementName, true);
+    this.name = name;
+    measurementType = new MeasurementType(measurementName, value);
+    this.shopped = false;
   }
 
   /**
@@ -61,6 +48,17 @@ public class ShoppingElement {
     this.name = name;
     measurementType = m;
     this.shopped = shopped;
+  }
+
+  /**
+   * Initialize a ShoppingElement as a deep copy of another ShoppingElement.
+   *
+   * @param e    the ShoppingElement
+   */
+  public ShoppingElement(ShoppingElement e) {
+    name = e.getName();
+    measurementType = e.getMeasurementType();
+    shopped = e.isShopped();
   }
 
   /**

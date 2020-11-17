@@ -50,7 +50,6 @@ public class ShoppingListDataAccess {
               .header("Accept", "application/json")
               .PUT(BodyPublishers.ofString(mapper.writeValueAsString(shoppingList)))
               .build();
-      System.out.println(mapper.writeValueAsString(shoppingList));
       final HttpResponse<InputStream> response =
               HttpClient.newBuilder().build().send(
                       request, HttpResponse.BodyHandlers.ofInputStream()
@@ -85,7 +84,6 @@ public class ShoppingListDataAccess {
       ShoppingList out = mapper.readValue(response.body(), ShoppingList.class);
       return out;
     } catch (IOException | InterruptedException e) {
-      System.out.println("6");
       System.err.println(e.toString());
     }
     return null;

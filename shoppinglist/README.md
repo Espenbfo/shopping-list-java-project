@@ -29,9 +29,12 @@ Prosjektet er konfigurert med Maven, og kan kjøres på følgende måte:
 * Checkstyle: sjekker for uregelmessigheter i koden som tekstelement
 * Jacoco: gir informasjon om kodens testdekningsgrad 
 
+## Brukerhistorier
+Brukerhistorier for applikasjonen ligger i [Brukerhistorier.md](https://gitlab.stud.idi.ntnu.no/it1901/groups-2020/gr2049/gr2049/-/blob/master/shoppinglist/Brukerhistorier.md)
+
 ## Arkitekturdiagram
 ![](architecture.png)
 
 ## Appliksjonens brukergrensesnitt 
-<img src="LoginPage.png" height="300">
-<img src="MainPage.png" height="300">
+<img src="./LoginPage.PNG" height="300">
+<img src="./MainPage.png" height="300">

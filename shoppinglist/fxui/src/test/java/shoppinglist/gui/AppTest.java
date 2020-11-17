@@ -126,12 +126,10 @@ public class AppTest extends ApplicationTest {
         clickOn(shoppingTitleTextField);
         write("testName");
         clickOn(saveButton);
-        System.out.println(controller.currentShoppingList);
         final TilePane listsOverview = (TilePane) parent.lookup("#listsOverview");
         final Label listLabel = (Label)listsOverview.getChildren().get(0);
         clickOn(listLabel);
         Assertions.assertTrue(oldText.equals(controller.currentShoppingList.getElement(0).getName()));
-        System.out.println((controller.currentShoppingList + ";; \n"+controller.getShoppingAccess().getShoppingList(controller.currentShoppingList.getId())));
         Assertions.assertTrue(controller.currentShoppingList.equals(controller.getShoppingAccess().getShoppingList(controller.currentShoppingList.getId())));
         final Button backToLoginButton = (Button) parent.lookup("#backToLoginButton");
         clickOn(backToLoginButton);

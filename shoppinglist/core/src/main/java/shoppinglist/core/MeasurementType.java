@@ -7,11 +7,6 @@ package shoppinglist.core;
 public class MeasurementType {
 
   /**
-   * Whether the measurement can be written with decimals.
-   */
-  private boolean allowDouble = true;
-
-  /**
    * The name of the measurementtype.
    */
   private String baseName;
@@ -30,26 +25,24 @@ public class MeasurementType {
   }
 
   /**
-   * Initialize a MeasurementType with provided baseName, value and allowDouble.
+   * Initialize a MeasurementType with provided baseName, value.
    *
    * @param baseName    the measurement name
    * @param value       the measurement value
-   * @param allowDouble allow double values?
    */
-  public MeasurementType(final String baseName, final double value, final boolean allowDouble) {
+  public MeasurementType(final String baseName, final double value) {
     this.baseName = baseName;
-    this.allowDouble = allowDouble;
     setValue(value);
   }
 
   /**
-   * Initialize a MeasurementType with provided baseName, value.
+   * Initialize a MeasurementType as a copy of another MeasurementType.
    *
-   * @param baseName the measurement name
-   * @param value    the measurement value
+   * @param m the MeasurementType
    */
-  public MeasurementType(final String baseName, final double value) {
-    this(baseName, value, true);
+  public MeasurementType(final MeasurementType m) {
+    baseName = m.getBaseName();
+    value = m.getValue();
   }
 
   /**
@@ -69,11 +62,6 @@ public class MeasurementType {
   public void setValue(final double newValue) {
     if (newValue < 0.0) {
       throw new IllegalArgumentException();
-    }
-    if (!allowDouble) {
-      if (newValue % 1 != 0.0) {
-        throw new IllegalArgumentException();
-      }
     }
     value = newValue;
   }
@@ -106,14 +94,6 @@ public class MeasurementType {
     return baseName;
   }
 
-  /**
-   * whether value can be double.
-   *
-   * @return whether value can be double
-   */
-  public boolean allowDouble() {
-    return allowDouble;
-  }
 
   /**
    * Checks if instance equals another.
@@ -133,9 +113,6 @@ public class MeasurementType {
       return false;
     }
     if (getValue() != m.getValue()) {
-      return false;
-    }
-    if (allowDouble() != m.allowDouble()) {
       return false;
     }
     return true;
