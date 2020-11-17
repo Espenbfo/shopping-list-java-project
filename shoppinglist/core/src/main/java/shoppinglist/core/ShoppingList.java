@@ -175,7 +175,7 @@ public class ShoppingList {
   public List<ShoppingElement> getElementList() {
     List<ShoppingElement> returnList = new ArrayList<ShoppingElement>();
     for (ShoppingElement e : elementList) {
-      newList.add(new ShoppingElement(e));
+      returnList.add(new ShoppingElement(e));
     }
     return returnList;
   }
@@ -219,21 +219,9 @@ public class ShoppingList {
    * @param name            the name
    * @param value           the value
    * @param measurementName the measurement name
-   * @param allowDouble     whether the element can be represented by non-integers
-   */
-  public void addElement(String name, double value, String measurementName, boolean allowDouble) {
-    elementList.add(new ShoppingElement(name, value, measurementName, allowDouble));
-  }
-
-  /**
-   * Adds a new element with the specified values.
-   *
-   * @param name            the name
-   * @param value           the value
-   * @param measurementName the measurement name
    */
   public void addElement(String name, double value, String measurementName) {
-    elementList.add(new ShoppingElement(name, value, measurementName, true));
+    elementList.add(new ShoppingElement(name, value, measurementName));
   }
 
   /**

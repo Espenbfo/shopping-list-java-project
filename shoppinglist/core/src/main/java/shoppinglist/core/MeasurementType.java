@@ -36,22 +36,13 @@ public class MeasurementType {
   }
 
   /**
-   * Initialize a MeasurementType with provided baseName, value.
-   *
-   * @param baseName the measurement name
-   * @param value    the measurement value
-   */
-  public MeasurementType(final String baseName, final double value) {
-    this(baseName, value);
-  }
-
-  /**
    * Initialize a MeasurementType as a copy of another MeasurementType.
    *
    * @param baseName the MeasurementType
    */
   public MeasurementType(final MeasurementType m) {
-    this(m.getBaseName, m.getValue());
+    baseName = m.getBaseName();
+    value = m.getValue();
   }
 
   /**

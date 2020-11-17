@@ -356,7 +356,9 @@ public class AppController {
         System.out.println(ex);
       }
     }
-    currentShoppingList.getPersonList().removeAll(toBeRemoved);
+    for (String username : toBeRemoved) {
+      currentShoppingList.removePerson(username);
+    }
     for (String name : peopleNames) {
       try {
         Person p = dataAccess.getPerson(name);

@@ -130,7 +130,7 @@ public class Person {
    * @param shoppingLists the new shoppingLists
    */
   public void setShoppingLists(final List<Integer> shoppingLists) {
-    this.shoppingLists = List.copyOf(shoppingLists);
+    this.shoppingLists = new ArrayList<Integer>(shoppingLists);
   }
 
   /**
@@ -154,7 +154,7 @@ public class Person {
    * @return list of shoppingLists
    */
   public List<Integer> getShoppingLists() {
-    return List.copyOf(shoppingLists);
+    return new ArrayList<Integer>(shoppingLists);
   }
 
   /**
