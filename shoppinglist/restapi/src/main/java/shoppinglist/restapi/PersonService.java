@@ -54,9 +54,8 @@ public class PersonService {
 
   /**
    * Recieved get for person.
-   * 
-   * @return person with username username
-   * 
+   *
+   *  @return person with username username
    */
   @GET
   @Path("/{username}")
@@ -112,8 +111,7 @@ public class PersonService {
       newId++;
       shoppinglist.setId(newId);
       FileHandler.writeMaxId(newId);
-    }
-    else {
+    } else {
       //The list prevously saved to file.
       ShoppingList oldList = FileHandler.readFile(newId);
 
