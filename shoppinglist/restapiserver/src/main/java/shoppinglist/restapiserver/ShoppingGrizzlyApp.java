@@ -20,10 +20,10 @@ public class ShoppingGrizzlyApp {
   private static URI serverUri = URI.create("http://localhost:8087/");
 
   /**
-   * Returns a running HttpServer
+   * Returns a running HttpServer.
    *
    * @return a running HttpServer
-   * @throws IOException
+   * @throws IOException gets thrown if the server throws an IOException
    */
   public static HttpServer start() throws IOException {
     int waitTime = 5;
@@ -67,10 +67,10 @@ public class ShoppingGrizzlyApp {
 
 
   /**
-   * Used to start the server
+   * Used to start the server.
    *
-   * @param args
-   * @throws IOException
+   * @param args main function args, serves no purpose
+   * @throws IOException thrown if server raises an IOException
    */
   public static void main(final String[] args) throws IOException {
     try {

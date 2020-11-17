@@ -11,12 +11,11 @@ import shoppinglist.restapi.PersonService;
 
 public class PersonConfig extends ResourceConfig {
 
-
-/**
- * New config object.
- * Registers the necessary classes for loading persons to server. 
- * 
- */
+  /**
+  * New config object.
+  * Registers the necessary classes for loading persons to server.
+  *
+  */
   public PersonConfig() {
     register(LoginService.class);
     register(TestPage.class);
