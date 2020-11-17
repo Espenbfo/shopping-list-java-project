@@ -2,6 +2,7 @@ package shoppinglist.core;
 
 import java.lang.Math;
 import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Represents a list of ShoppingElements.
@@ -10,8 +11,8 @@ import java.util.ArrayList;
 public class ShoppingList {
   String title;
   int id;
-  ArrayList<ShoppingElement> elementList;
-  ArrayList<String> personList;
+  List<ShoppingElement> elementList;
+  List<String> personList;
   private Person owner;
   private boolean publicList;
 
@@ -45,7 +46,7 @@ public class ShoppingList {
    * @param id          the ID
    * @param elementList the list of elements
    */
-  public ShoppingList(String title, int id, ArrayList<ShoppingElement> elementList) {
+  public ShoppingList(String title, int id, List<ShoppingElement> elementList) {
     this.title = title;
     this.id = id;
     this.elementList = elementList;
@@ -62,7 +63,7 @@ public class ShoppingList {
    * @param elementList the list of elements
    */
   public ShoppingList(String title, int id, 
-      ArrayList<ShoppingElement> elementList, ArrayList<String> personList) {
+      List<ShoppingElement> elementList, List<String> personList) {
     this.title = title;
     this.id = id;
     this.elementList = elementList;
@@ -118,23 +119,23 @@ public class ShoppingList {
   /**
    * Gets the list of userNames.
    *
-   * @return an arraylist of person usernames
+   * @return an List of person usernames
    */
-  public ArrayList<String> getPersonList() {
-    return personList;
+  public List<String> getPersonList() {
+    return new ArrayList<String>(personList);
   }
 
   /**
    * Sets a personlist.
    *
-   * @param personList the arraylist of username to be set
+   * @param personList the List of username to be set
    */
-  public void setPersonList(ArrayList<String> personList) {
-    this.personList = personList;
+  public void setPersonList(List<String> personList) {
+    this.personList = new ArrayList<String>(personList);
   }
 
   /**
-   * Adds person with username p to the arrayList.
+   * Adds person with username p to the List.
    *
    * @param p the username
    */
@@ -145,7 +146,7 @@ public class ShoppingList {
   }
 
   /**
-   * Adds person p to the arrayList.
+   * Adds person p to the List.
    *
    * @param p the Person
    */
@@ -167,21 +168,29 @@ public class ShoppingList {
   }
 
   /**
-   * Gets the list of elements.
+   * Gets a deep copy of the list of elements.
    *
-   * @return the elementList
+   * @return the copied elementList
    */
-  public ArrayList<ShoppingElement> getElementList() {
-    return elementList;
+  public List<ShoppingElement> getElementList() {
+    List<ShoppingElement> returnList = new ArrayList<ShoppingElement>();
+    for (ShoppingElement e : elementList) {
+      returnList.add(new ShoppingElement(e));
+    }
+    return returnList;
   }
 
   /**
-   * Sets the list of elements.
+   * Sets the list of elements as a deep copy of the inputlist.
    *
-   * @param elementList the list to set to
+   * @param elementList the list copy
    */
-  public void setElementList(ArrayList<ShoppingElement> elementList) {
-    this.elementList = elementList;
+  public void setElementList(List<ShoppingElement> elementList) {
+    List<ShoppingElement> newList = new ArrayList<ShoppingElement>();
+    for (ShoppingElement e : elementList) {
+      newList.add(new ShoppingElement(e));
+    }
+    this.elementList = newList;
   }
 
   /**
@@ -210,21 +219,9 @@ public class ShoppingList {
    * @param name            the name
    * @param value           the value
    * @param measurementName the measurement name
-   * @param allowDouble     whether the element can be represented by non-integers
-   */
-  public void addElement(String name, double value, String measurementName, boolean allowDouble) {
-    elementList.add(new ShoppingElement(name, value, measurementName, allowDouble));
-  }
-
-  /**
-   * Adds a new element with the specified values.
-   *
-   * @param name            the name
-   * @param value           the value
-   * @param measurementName the measurement name
    */
   public void addElement(String name, double value, String measurementName) {
-    elementList.add(new ShoppingElement(name, value, measurementName, true));
+    elementList.add(new ShoppingElement(name, value, measurementName));
   }
 
   /**
