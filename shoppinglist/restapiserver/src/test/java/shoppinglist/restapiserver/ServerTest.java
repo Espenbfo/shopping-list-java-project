@@ -115,7 +115,7 @@ public class ServerTest extends JerseyTest {
 
 
   @Test
-  void testPutGet() {
+  void testPutGetPerson() {
     ObjectMapper om = new ObjectMapper();
     Person testindivid = new Person("Testindivid");
     try {
@@ -135,6 +135,28 @@ public class ServerTest extends JerseyTest {
     }
   }
 
+  @Test
+  void testPutGetShoppingList() {
+    ObjectMapper om = new ObjectMapper();
+    Person testindivid = new Person("Testindivid");
+    ShoppingList testlist = new ShoppingList("testlist",testindivid);
+    try {
+      final Response putResponse = target(PersonService.PERSON_SERVICE_PATH).path("/ShoppingLists/" + testlist.getId())
+              .request("application/json; charset=UTF-8")
+              .put(Entity.entity(om.writeValueAsString(testlist), MediaType.APPLICATION_JSON));
+      assertEquals(200, putResponse.getStatus());
+      testlist.setId(om.readValue(putResponse.readEntity(String.class),Integer.class));
+      final Response getResponse = target(PersonService.PERSON_SERVICE_PATH).path("/ShoppingLists/"+testlist.getId())
+              .request(MediaType.APPLICATION_JSON + ";" + MediaType.CHARSET_PARAMETER + "=UTF-8")
+              .get();
+      assertEquals(200, getResponse.getStatus());
+      assertEquals(testlist, om.readValue(getResponse.readEntity(String.class), ShoppingList.class));
+
+    }catch (com.fasterxml.jackson.core.JsonProcessingException e){
+      e.printStackTrace();
+      assertTrue(false);
+    }
+  }
 }
 
 
