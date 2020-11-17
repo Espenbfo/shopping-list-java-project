@@ -22,8 +22,8 @@ public class ShoppingElement {
   }
 
   /**
-   * Initialize a ShoppingElement with name, 
-   * value, and measurementName
+   * Initialize a ShoppingElement with name,
+   * value, and measurementName.
    *
    * @param name            the name
    * @param value           the value
@@ -51,9 +51,9 @@ public class ShoppingElement {
   }
 
   /**
-   * Initialize a ShoppingElement as a deep copy of another ShoppingElement,
+   * Initialize a ShoppingElement as a deep copy of another ShoppingElement.
    *
-   * @param ShoppingElement    the ShoppingElement
+   * @param e    the ShoppingElement
    */
   public ShoppingElement(ShoppingElement e) {
     name = e.getName();

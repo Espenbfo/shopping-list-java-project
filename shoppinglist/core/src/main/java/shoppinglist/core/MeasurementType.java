@@ -38,7 +38,7 @@ public class MeasurementType {
   /**
    * Initialize a MeasurementType as a copy of another MeasurementType.
    *
-   * @param baseName the MeasurementType
+   * @param m the MeasurementType
    */
   public MeasurementType(final MeasurementType m) {
     baseName = m.getBaseName();
