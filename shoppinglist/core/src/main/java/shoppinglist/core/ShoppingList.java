@@ -122,7 +122,7 @@ public class ShoppingList {
    * @return an List of person usernames
    */
   public List<String> getPersonList() {
-    return personList;
+    return new ArrayList<String>(personList);
   }
 
   /**
@@ -131,7 +131,7 @@ public class ShoppingList {
    * @param personList the List of username to be set
    */
   public void setPersonList(List<String> personList) {
-    this.personList = personList;
+    this.personList = new ArrayList<String>(personList);
   }
 
   /**
@@ -168,21 +168,29 @@ public class ShoppingList {
   }
 
   /**
-   * Gets the list of elements.
+   * Gets a deep copy of the list of elements.
    *
-   * @return the elementList
+   * @return the copied elementList
    */
   public List<ShoppingElement> getElementList() {
-    return elementList;
+    List<ShoppingElement> returnList = new ArrayList<ShoppingElement>();
+    for (ShoppingElement e : elementList) {
+      newList.add(new ShoppingElement(e));
+    }
+    return returnList;
   }
 
   /**
-   * Sets the list of elements.
+   * Sets the list of elements as a deep copy of the inputlist.
    *
-   * @param elementList the list to set to
+   * @param elementList the list copy
    */
   public void setElementList(List<ShoppingElement> elementList) {
-    this.elementList = elementList;
+    List<ShoppingElement> newList = new ArrayList<ShoppingElement>();
+    for (ShoppingElement e : elementList) {
+      newList.add(new ShoppingElement(e));
+    }
+    this.elementList = newList;
   }
 
   /**

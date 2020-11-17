@@ -64,6 +64,15 @@ public class ShoppingElement {
   }
 
   /**
+   * Initialize a ShoppingElement as a deep copy of another ShoppingElement,
+   *
+   * @param ShoppingElement    the ShoppingElement
+   */
+  public ShoppingElement(ShoppingElement e) {
+    this(e.getName(), new MeasurmentType(e.getMeasurementType()), this.shopped = e.isShopped());
+  }
+
+  /**
    * Gets the value.
    *
    * @return the value
