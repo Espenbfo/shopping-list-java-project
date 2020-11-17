@@ -2,6 +2,7 @@ package shoppinglist.core;
 
 import java.lang.Math;
 import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Represents a list of ShoppingElements.
@@ -10,8 +11,8 @@ import java.util.ArrayList;
 public class ShoppingList {
   String title;
   int id;
-  ArrayList<ShoppingElement> elementList;
-  ArrayList<String> personList;
+  List<ShoppingElement> elementList;
+  List<String> personList;
   private Person owner;
   private boolean publicList;
 
@@ -45,7 +46,7 @@ public class ShoppingList {
    * @param id          the ID
    * @param elementList the list of elements
    */
-  public ShoppingList(String title, int id, ArrayList<ShoppingElement> elementList) {
+  public ShoppingList(String title, int id, List<ShoppingElement> elementList) {
     this.title = title;
     this.id = id;
     this.elementList = elementList;
@@ -62,7 +63,7 @@ public class ShoppingList {
    * @param elementList the list of elements
    */
   public ShoppingList(String title, int id, 
-      ArrayList<ShoppingElement> elementList, ArrayList<String> personList) {
+      List<ShoppingElement> elementList, List<String> personList) {
     this.title = title;
     this.id = id;
     this.elementList = elementList;
@@ -118,23 +119,23 @@ public class ShoppingList {
   /**
    * Gets the list of userNames.
    *
-   * @return an arraylist of person usernames
+   * @return an List of person usernames
    */
-  public ArrayList<String> getPersonList() {
+  public List<String> getPersonList() {
     return personList;
   }
 
   /**
    * Sets a personlist.
    *
-   * @param personList the arraylist of username to be set
+   * @param personList the List of username to be set
    */
-  public void setPersonList(ArrayList<String> personList) {
+  public void setPersonList(List<String> personList) {
     this.personList = personList;
   }
 
   /**
-   * Adds person with username p to the arrayList.
+   * Adds person with username p to the List.
    *
    * @param p the username
    */
@@ -145,7 +146,7 @@ public class ShoppingList {
   }
 
   /**
-   * Adds person p to the arrayList.
+   * Adds person p to the List.
    *
    * @param p the Person
    */
@@ -171,7 +172,7 @@ public class ShoppingList {
    *
    * @return the elementList
    */
-  public ArrayList<ShoppingElement> getElementList() {
+  public List<ShoppingElement> getElementList() {
     return elementList;
   }
 
@@ -180,7 +181,7 @@ public class ShoppingList {
    *
    * @param elementList the list to set to
    */
-  public void setElementList(ArrayList<ShoppingElement> elementList) {
+  public void setElementList(List<ShoppingElement> elementList) {
     this.elementList = elementList;
   }
 

@@ -2,6 +2,7 @@ package shoppinglist.restapi;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import java.util.ArrayList;
+import java.util.List;
 import javax.inject.Inject;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.GET;
@@ -26,10 +27,6 @@ public class PersonService {
    * the service path for the server.
    */
   public static final String PERSON_SERVICE_PATH = "Persons";
-  /**
-   * Arraylist for caching persons in memory, not currently used.
-   */
-  private static ArrayList<Person> persons = new ArrayList<Person>();
   /**
    * logger for logging server issues.
    */

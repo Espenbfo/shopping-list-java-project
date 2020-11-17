@@ -334,7 +334,7 @@ public class AppController {
     }
 
     List<String> peopleNames = Arrays.asList(peopleText.split(","));
-    ArrayList<String> toBeRemoved = new ArrayList<String>();
+    List<String> toBeRemoved = new ArrayList<String>();
 
     if (currentShoppingList.getOwner() == null) {
       String ownerText = loginNameLabel

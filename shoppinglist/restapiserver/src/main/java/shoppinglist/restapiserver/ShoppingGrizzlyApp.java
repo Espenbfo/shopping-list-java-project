@@ -4,7 +4,6 @@ import java.io.IOException;
 import java.net.HttpURLConnection;
 import java.net.URI;
 import java.net.URL;
-import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import org.glassfish.grizzly.http.server.HttpServer;

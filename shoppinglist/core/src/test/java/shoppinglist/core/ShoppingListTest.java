@@ -1,6 +1,7 @@
 package shoppinglist.core;
 
 import java.util.ArrayList;
+import java.util.List;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import shoppinglist.core.ShoppingList;
@@ -35,9 +36,9 @@ public class ShoppingListTest {
     Assertions.assertTrue(l2.getPersonList().contains("Lise"));
 
     ShoppingElement e1 = new ShoppingElement("ballonger", 10.0, "stk");
-    ArrayList<ShoppingElement> elementList = new ArrayList<ShoppingElement>();
+    List<ShoppingElement> elementList = new ArrayList<ShoppingElement>();
     elementList.add(e1);
-    ArrayList<String> personList = new ArrayList<String>();
+    List<String> personList = new ArrayList<String>();
     personList.add("Per");
     ShoppingList l3 = new ShoppingList("Liste 3", 1, elementList, personList);
     Assertions.assertTrue(l3.getElementList().contains(e1));

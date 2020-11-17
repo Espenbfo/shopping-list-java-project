@@ -1,7 +1,6 @@
 package shoppinglist.restapi;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import java.util.ArrayList;
 import javax.inject.Inject;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.GET;
