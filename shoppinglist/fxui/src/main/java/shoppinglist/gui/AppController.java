@@ -353,7 +353,7 @@ public class AppController {
     if (shoppingTitleTextField.getText().equals("")) {
       shoppingTitleTextField.getStyleClass().add("illegal");
       showError(shoppingTitleTextField, "This field is empty", e, -20);
-      //Returns if nor filled in.
+      //Returns if not filled in.
       return;
     } else {
       shoppingTitleTextField.getStyleClass().clear();
@@ -373,7 +373,7 @@ public class AppController {
       currentShoppingList.setPublicList(true);
     }
 
-    //The users of the list, seperated by comma.
+    //The users of the list, separated by comma.
     List<String> peopleNames = Arrays.asList(peopleText.split(","));
 
     //Sets the owner.
