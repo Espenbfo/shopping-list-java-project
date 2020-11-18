@@ -15,6 +15,7 @@ import javafx.scene.layout.TilePane;
 import javafx.stage.Stage;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 import org.testfx.framework.junit5.ApplicationTest;
 import shoppinglist.core.ShoppingElement;
@@ -42,34 +43,18 @@ public class AppTest extends ApplicationTest {
     private AppController controller;
 
 
-
-/*
-    private ShoppingListDataAccess shoppingDataAccess;
-
-    protected ShoppingListDataAccess getShoppingDataAccess() {
-      return shoppingDataAccess;
-    }
-
-   protected void setUpShoppingListDataAccess() {
-     final String serverUrlString = "http://localhost:8087/index/";
-     final String clientUrlString = serverUrlString + PersonService.PERSON_SERVICE_PATH;
-     shoppingDataAccess = new ShoppingListDataAccess(clientUrlString);
-   }
-
-   private PersonDataAccess personDataAccess;
-
-    protected PersonDataAccess getPersonDataAccess() {
-      return personDataAccess;
-    }
-
-   protected void setUpPersonDataAccess() {
-     final String serverUrlString = "http://localhost:8087/index/";
-     final String clientUrlString = serverUrlString + PersonService.PERSON_SERVICE_PATH;
-     personDataAccess = new PersonDataAccess(clientUrlString);
-   }
-
-   */
-    
+    Button addItemButton;
+    TextField itemInputField;
+    TextField amountInputField;
+    TextField measurementInputField;
+    TextField peopleInputField;
+    Button saveButton;
+    TextField shoppingTitleTextField;
+    TextField personInputField;
+    Label listLabel;
+    TilePane listsOverview;
+    Button backToLoginButton;
+    Button newListButton;
 
     @Override
     public void start(final Stage stage) throws Exception {
@@ -81,6 +66,17 @@ public class AppTest extends ApplicationTest {
 
         stage.setScene(scene);
         stage.show();
+        addItemButton = controller.addItemButton;
+        itemInputField = controller.itemInputField;
+        amountInputField = controller.amountInputField;
+        measurementInputField = controller.measurementInputField;;
+        peopleInputField = controller.peopleInputField;
+        saveButton = controller.saveButton;
+        shoppingTitleTextField = controller.shoppingTitleTextField;
+        personInputField = controller.personInputField;
+        listsOverview = controller.listsOverview;
+        backToLoginButton = controller.backToLoginButton;
+        newListButton = controller.newListButton;
     }
 
     @BeforeEach
@@ -102,14 +98,6 @@ public class AppTest extends ApplicationTest {
 
     @Test
     public void testController() {
-        final Button addItemButton = (Button) parent.lookup("#addItemButton");
-        final TextField itemInputField = (TextField) parent.lookup("#itemInputField");
-        final TextField amountInputField = (TextField) parent.lookup("#amountInputField");
-        final TextField measurementInputField = (TextField) parent.lookup("#measurementInputField");
-        final TextField peopleInputField = (TextField) parent.lookup("#peopleInputField");
-        final Button saveButton = (Button)parent.lookup("#saveButton");
-        final TextField shoppingTitleTextField = (TextField) parent.lookup("#shoppingTitle");
-        final TextField personInputField = (TextField)parent.lookup("#personInputField");
         clickOn(amountInputField);
         write("1");
         clickOn(measurementInputField);
@@ -126,15 +114,10 @@ public class AppTest extends ApplicationTest {
         clickOn(shoppingTitleTextField);
         write("testName");
         clickOn(saveButton);
-        final TilePane listsOverview = (TilePane) parent.lookup("#listsOverview");
-        final Label listLabel = (Label)listsOverview.getChildren().get(0);
+        final Label listLabel = (Label) listsOverview.getChildren().get(0);
         clickOn(listLabel);
         Assertions.assertTrue(oldText.equals(controller.currentShoppingList.getElement(0).getName()));
         Assertions.assertTrue(controller.currentShoppingList.equals(controller.getShoppingAccess().getShoppingList(controller.currentShoppingList.getId())));
-        final Button backToLoginButton = (Button) parent.lookup("#backToLoginButton");
         clickOn(backToLoginButton);
-
     }
-
-    
 }

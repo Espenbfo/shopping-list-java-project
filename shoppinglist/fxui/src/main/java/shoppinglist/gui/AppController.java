@@ -43,6 +43,12 @@ public class AppController {
   @FXML
   Button addItemButton;
   @FXML
+  Button newListButton;
+  @FXML
+  Button backToLoginButton;
+  @FXML
+  Button saveButton;
+  @FXML
   TextField itemInputField;
   @FXML
   TextField shoppingTitleTextField;
