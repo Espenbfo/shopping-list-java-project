@@ -42,6 +42,7 @@ public class LoginScreenControllerTest extends ApplicationTest {
     @Override
     public void start(final Stage stage) throws Exception {
         final FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/resources/shoppinglist/gui/LoginScreen.fxml"));
+        fxmlLoader.setController(new LoginScreenController());
         parent = fxmlLoader.load();
         controller = fxmlLoader.getController();
         dataAccess = mock(PersonDataAccess.class);

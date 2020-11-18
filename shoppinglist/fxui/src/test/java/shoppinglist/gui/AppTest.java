@@ -59,6 +59,7 @@ public class AppTest extends ApplicationTest {
     @Override
     public void start(final Stage stage) throws Exception {
         final FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/resources/shoppinglist/gui/App.fxml"));
+        fxmlLoader.setController(new AppController());
         parent = fxmlLoader.load();
         controller = fxmlLoader.getController();
         Scene scene = new Scene(parent);

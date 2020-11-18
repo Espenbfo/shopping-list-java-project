@@ -15,6 +15,7 @@ import shoppinglist.core.Person;
 import shoppinglist.core.Client;
 import shoppinglist.storage.FileHandler;
 import shoppinglist.gui.PersonDataAccess;
+import shoppinglist.gui.LoginScreenController;
 import java.awt.*;
 
 public class AppIT extends ApplicationTest {
@@ -38,6 +39,7 @@ public class AppIT extends ApplicationTest {
     @Override
     public void start(final Stage stage) throws Exception {
         final FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/resources/shoppinglist/gui/LoginScreen.fxml"));
+        fxmlLoader.setController(new LoginScreenController());
         parent = fxmlLoader.load();
         //controller = fxmlLoader.getController();
         scene = new Scene(parent);

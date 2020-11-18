@@ -16,9 +16,9 @@ public class App extends Application {
   @Override
   public void start(final Stage primaryStage) throws Exception {
     //Gets the parent with our fxml file
-    final Parent parent = FXMLLoader
-        .load(getClass()
-        .getResource("/resources/shoppinglist/gui/LoginScreen.fxml"));
+    FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/resources/shoppinglist/gui/LoginScreen.fxml"));
+    fxmlLoader.setController(new LoginScreenController());
+    Parent parent = fxmlLoader.load();
 
     //Creates a new scene with the parent
     scene = new Scene(parent);
