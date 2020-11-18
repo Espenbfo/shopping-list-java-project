@@ -5,6 +5,7 @@ import com.fasterxml.jackson.core.JsonParseException;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.JsonMappingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -39,6 +40,8 @@ import org.glassfish.grizzly.http.server.HttpServer;
 import org.glassfish.jersey.grizzly2.httpserver.GrizzlyHttpServerFactory;
 import shoppinglist.restapiserver.ShoppingGrizzlyApp;
 import shoppinglist.restapi.PersonService;
+import shoppinglist.restapi.LoginResource;
+import shoppinglist.restapi.LoginService;
 import shoppinglist.core.*;
 
 
@@ -47,7 +50,7 @@ public class ServerTest extends JerseyTest {
 
   @Override
   protected ResourceConfig configure() {
-    final ResourceConfig config = new ResourceConfig();
+    final ResourceConfig config = new PersonConfig();
     return config;
   }
 
@@ -55,6 +58,19 @@ public class ServerTest extends JerseyTest {
   protected TestContainerFactory getTestContainerFactory() throws TestContainerException {
     return new GrizzlyTestContainerFactory();
   }
+
+
+  @Override
+  @BeforeEach
+  public void setUp() throws Exception {
+    super.setUp();
+  }
+
+  @AfterEach
+  public void tearDown() throws Exception {
+    super.tearDown();
+  }
+
 
   @Test
   public void testServerStart() {
@@ -71,6 +87,7 @@ public class ServerTest extends JerseyTest {
       assertTrue(false);
     }
   }
+
 
   @Test
   void testMain() {
@@ -95,6 +112,72 @@ public class ServerTest extends JerseyTest {
     }
     t1.interrupt();
 
+  }
+
+
+  @Test
+  void testPutGetPerson() {
+    ObjectMapper om = new ObjectMapper();
+    Person testindivid = new Person("Testtindivid");
+    try {
+      final Response putResponse = target(PersonService.PERSON_SERVICE_PATH).path("Testtindivid")
+              .request(MediaType.APPLICATION_JSON + ";" + MediaType.CHARSET_PARAMETER + "=UTF-8")
+              .put(Entity.entity(om.writeValueAsString(testindivid), MediaType.APPLICATION_JSON));
+      assertEquals(200, putResponse.getStatus());
+      final Response getResponse = target(PersonService.PERSON_SERVICE_PATH).path("Testtindivid")
+              .request(MediaType.APPLICATION_JSON + ";" + MediaType.CHARSET_PARAMETER + "=UTF-8")
+              .get();
+      assertEquals(200, getResponse.getStatus());
+      assertEquals(testindivid, om.readValue(getResponse.readEntity(String.class), Person.class));
+
+    }catch (com.fasterxml.jackson.core.JsonProcessingException e){
+      e.printStackTrace();
+      assertTrue(false);
+    }
+  }
+
+  @Test
+  void testPutGetShoppingList() {
+    ObjectMapper om = new ObjectMapper();
+    Person testindivid = new Person("Testtindivid");
+    ShoppingList testlist = new ShoppingList("testlist",testindivid);
+    try {
+      final Response putResponse = target(PersonService.PERSON_SERVICE_PATH).path("/ShoppingLists/" + testlist.getId())
+              .request("application/json; charset=UTF-8")
+              .put(Entity.entity(om.writeValueAsString(testlist), MediaType.APPLICATION_JSON));
+      assertEquals(200, putResponse.getStatus());
+      testlist.setId(om.readValue(putResponse.readEntity(String.class),Integer.class));
+      final Response getResponse = target(PersonService.PERSON_SERVICE_PATH).path("/ShoppingLists/"+testlist.getId())
+              .request(MediaType.APPLICATION_JSON + ";" + MediaType.CHARSET_PARAMETER + "=UTF-8")
+              .get();
+      assertEquals(200, getResponse.getStatus());
+      assertEquals(testlist, om.readValue(getResponse.readEntity(String.class), ShoppingList.class));
+
+    }catch (com.fasterxml.jackson.core.JsonProcessingException e){
+      e.printStackTrace();
+      assertTrue(false);
+    }
+  }
+  void testRegisterLogon(){
+    ObjectMapper om = new ObjectMapper();
+    Person testindivid = new Person("Testtindivid");
+    LoginResource testResource = new LoginResource(testindivid, "test");
+    try {
+      final Response putResponse = target(LoginService.LOGIN_SERVICE_PATH).path("/register/" + testindivid.getUserName())
+              .request("application/json; charset=UTF-8")
+              .put(Entity.entity(om.writeValueAsString(testResource), MediaType.APPLICATION_JSON));
+      assertEquals(200, putResponse.getStatus());
+      assertEquals(1,om.readValue(putResponse.readEntity(String.class),Integer.class));
+      final Response getResponse = target(LoginService.LOGIN_SERVICE_PATH).path("/login")
+              .request(MediaType.APPLICATION_JSON + ";" + MediaType.CHARSET_PARAMETER + "=UTF-8")
+              .put(Entity.entity(om.writeValueAsString(testResource), MediaType.APPLICATION_JSON));
+      assertEquals(200, getResponse.getStatus());
+      assertEquals(testindivid, om.readValue(getResponse.readEntity(String.class), Person.class));
+
+    }catch (com.fasterxml.jackson.core.JsonProcessingException e){
+      e.printStackTrace();
+      assertTrue(false);
+    }
   }
 
 }
