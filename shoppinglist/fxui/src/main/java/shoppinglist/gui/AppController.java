@@ -112,15 +112,23 @@ public class AppController {
     this.shoppingAccess = shoppingDataAccess;
   }
 
+
+  public AppController() {
+    //Setting up dataaccess.
+    setDataAccess(new PersonDataAccess("http://localhost:8087"));
+    setShoppingDataAccess(new ShoppingListDataAccess("http://localhost:8087"));
+  }
+
+
+  public AppController(final PersonDataAccess dataAccess, final ShoppingListDataAccess shoppingDataAccess) {
+    setDataAccess(dataAccess);
+    setShoppingDataAccess(shoppingDataAccess));
+  }
   /**
    * Initializes the appscreen.
    */
   @FXML
   public void initialize() {
-
-    //Setting up dataaccess.
-    setDataAccess(new PersonDataAccess("http://localhost:8087"));
-    shoppingAccess = new ShoppingListDataAccess("http://localhost:8087");
 
     //Creates an empty shoppinglist.
     currentShoppingList = new ShoppingList();
