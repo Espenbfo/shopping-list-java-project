@@ -63,6 +63,8 @@ public class AppTest extends ApplicationTest {
         personDataAccess = mock(PersonDataAccess.class);
         shoppingDataAccess = mock(ShoppingListDataAccess.class);
 
+        setUp();
+
         fxmlLoader.setController(new AppController(personDataAccess,shoppingDataAccess));
         parent = fxmlLoader.load();
         controller = fxmlLoader.getController();
@@ -84,7 +86,6 @@ public class AppTest extends ApplicationTest {
         newListButton = controller.newListButton;
     }
 
-    @BeforeEach
     public void setUp() {
       testindivid = new Person("testindivid");
       personDataAccess.putRegister(testindivid, "password");
