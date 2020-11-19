@@ -86,7 +86,7 @@ public class AppIT extends ApplicationTest {
         final Button saveButton = (Button)parent.lookup("#saveButton");
         final Button backToLoginButton = (Button)parent.lookup("#backToLoginButton");
         final TextField personInputField = (TextField)parent.lookup("#personInputField");
-        final TextField shoppingTitleTextField = (TextField)parent.lookup("#shoppingTitle");
+        final TextField shoppingTitleTextField = (TextField)parent.lookup("#shoppingTitleTextField");
 
         clickOn(shoppingTitleTextField);
         write("testTitle");

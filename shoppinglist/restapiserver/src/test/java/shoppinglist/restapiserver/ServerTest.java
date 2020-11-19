@@ -98,7 +98,6 @@ public class ServerTest extends JerseyTest {
           ShoppingGrizzlyApp.main(new String[0]);
         }
         catch(IOException e) {
-          e.printStackTrace();
           assertTrue(false);
         }
       }
