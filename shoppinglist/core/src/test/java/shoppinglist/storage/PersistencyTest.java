@@ -46,7 +46,7 @@ public class PersistencyTest {
   @Test
   public void testWriteReadPerson() {
     Assertions.assertTrue(FileHandler.writePerson(new Person("TestIndivid")));
-    Assertions.assertFalse(FileHandler.writePerson(new Person("@<>/7.json")));
+    Assertions.assertFalse(FileHandler.writePerson(new Person("@<>/7.json"))); 
     Person p = FileHandler.readPerson("TestIndivid");
     Assertions.assertTrue(p.equals(new Person("TestIndivid")));
     
@@ -75,24 +75,17 @@ public class PersistencyTest {
     String hashedPassword = p.getPassword(testPerson);
 
     Assertions.assertTrue(FileHandler.writePasswords(p));
+    
 
     Assertions.assertTrue(FileHandler.readPasswords().getPassword(testPerson).equals(hashedPassword));
-
     Person notRegisteredPerson = new Person("testpersonUtenPassord");
     Assertions.assertNull(FileHandler.readPasswords().getPassword(notRegisteredPerson));
-
     File fileToDelte = new File("./shoppinglists/passwords.json");
     fileToDelte.delete();
-
-    try {
-      FileHandler.readPasswords().getPassword(testPerson);
-      Assertions.fail();
-    } catch (NullPointerException e) {
-      e.printStackTrace();    
-    }
-
-
+ 
+    Assertions.assertNull(FileHandler.readPasswords());
     
   }
 
 }
+
