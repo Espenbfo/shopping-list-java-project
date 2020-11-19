@@ -59,7 +59,11 @@ public class AppTest extends ApplicationTest {
     @Override
     public void start(final Stage stage) throws Exception {
         final FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("App.fxml"));
-        fxmlLoader.setController(new AppController());
+
+        personDataAccess = mock(PersonDataAccess.class);
+        shoppingDataAccess = mock(ShoppingListDataAccess.class);
+
+        fxmlLoader.setController(new AppController(personDataAccess,shoppingDataAccess));
         parent = fxmlLoader.load();
         controller = fxmlLoader.getController();
         Scene scene = new Scene(parent);
@@ -82,10 +86,6 @@ public class AppTest extends ApplicationTest {
 
     @BeforeEach
     public void setUp() {
-      personDataAccess = mock(PersonDataAccess.class);
-      shoppingDataAccess = mock(ShoppingListDataAccess.class);
-      controller.setDataAccess(personDataAccess);
-      controller.setShoppingDataAccess(shoppingDataAccess);
       testindivid = new Person("testindivid");
       personDataAccess.putRegister(testindivid, "password");
       Client.setCurrentPerson(testindivid);

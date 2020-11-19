@@ -128,7 +128,7 @@ public class AppController {
 
   public AppController(final PersonDataAccess dataAccess, final ShoppingListDataAccess shoppingDataAccess) {
     setDataAccess(dataAccess);
-    setShoppingDataAccess(shoppingDataAccess));
+    setShoppingDataAccess(shoppingDataAccess);
   }
   /**
    * Initializes the appscreen.
