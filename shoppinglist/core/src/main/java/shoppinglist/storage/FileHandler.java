@@ -5,6 +5,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.File;
+import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
@@ -72,9 +73,8 @@ public class FileHandler {
           .toFile(), listToWrite);
       return true;
     } catch (RuntimeException | IOException e) {
-      e.printStackTrace();
+      return false;
     }
-    return false;
   }
 
   /**
@@ -101,9 +101,8 @@ public class FileHandler {
           + ".json").toFile(), persToWrite);
       return true;
     } catch (RuntimeException | IOException e) {
-      e.printStackTrace();
+      return false;
     }
-    return false;
   }
 
   /**
@@ -128,9 +127,8 @@ public class FileHandler {
       Person out = mapper.readValue(Paths.get(filename).toFile(), Person.class);
       return out;
     } catch (RuntimeException | IOException e) {
-      System.out.println("e");
+         return null;
     }
-    return null;
   }
 
   /**
@@ -154,9 +152,8 @@ public class FileHandler {
       mapper.writeValue(Paths.get("./shoppinglists/maxID.json").toFile(), new MaxId(id));
       return true;
     } catch (RuntimeException | IOException e) {
-      e.printStackTrace();
+      return false;
     }
-    return false;
   }
 
   /**
@@ -182,9 +179,8 @@ public class FileHandler {
       writeMaxId(0);
       return 0;
     } catch (RuntimeException e) {
-      e.printStackTrace();
+      return -1;
     }
-    return -1;
   }
 
   /**
@@ -208,9 +204,8 @@ public class FileHandler {
       mapper.writeValue(Paths.get("./shoppinglists/passwords.json").toFile(), passwordsToWrite);
       return true;
     } catch (RuntimeException | IOException e) {
-      e.printStackTrace();
+      return false;
     }
-    return false;
   }
 
   /**
@@ -235,8 +230,7 @@ public class FileHandler {
       Passwords out = mapper.readValue(Paths.get(filename).toFile(), Passwords.class);
       return out;
     } catch (RuntimeException | IOException  e) {
-      e.printStackTrace();
+      return null;
     }
-    return null;
   }
 }
