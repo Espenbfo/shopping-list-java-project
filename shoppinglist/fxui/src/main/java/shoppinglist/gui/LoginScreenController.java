@@ -241,9 +241,9 @@ public class LoginScreenController {
    * @param e the event calling the method
    */
   void mainScreen(ActionEvent e) throws IOException {
-    //Gets the new parent.
-    Parent loginParent = FXMLLoader.load(getClass()
-        .getResource("App.fxml"));
+    FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("App.fxml"));
+    fxmlLoader.setController(new AppController());
+    Parent loginParent = fxmlLoader.load();
 
     //Creates a new scene with the new parent.
     Scene loginScene = new Scene(loginParent);

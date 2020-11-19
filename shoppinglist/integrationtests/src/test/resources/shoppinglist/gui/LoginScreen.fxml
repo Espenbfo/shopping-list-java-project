@@ -16,7 +16,7 @@
 <?import javafx.scene.control.Separator?>
 
 <?import javafx.scene.control.PasswordField?>
-<Pane prefHeight="500.0" prefWidth="400.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="shoppinglist.gui.LoginScreenController" id="window">
+<Pane prefHeight="500.0" prefWidth="400.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" id="window">
     <children>
         <Label id="shoppingTitle" layoutX="0.0" prefWidth="400.0" layoutY="25.0" text="Login" alignment="CENTER"></Label>
         <TextField fx:id="usernameInputField" layoutX="100.0" layoutY="150.0" prefHeight="27.0" prefWidth="200.0" promptText="username" onAction="#handleLogin"/>

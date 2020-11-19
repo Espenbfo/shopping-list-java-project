@@ -43,6 +43,12 @@ public class AppController {
   @FXML
   Button addItemButton;
   @FXML
+  Button newListButton;
+  @FXML
+  Button backToLoginButton;
+  @FXML
+  Button saveButton;
+  @FXML
   TextField itemInputField;
   @FXML
   TextField shoppingTitleTextField;
@@ -361,7 +367,7 @@ public class AppController {
     if (shoppingTitleTextField.getText().equals("")) {
       shoppingTitleTextField.getStyleClass().add("illegal");
       showError(shoppingTitleTextField, "This field is empty", e, -20);
-      //Returns if not filled in.
+      //Returns if nor filled in.
       return;
     } else {
       shoppingTitleTextField.getStyleClass().clear();
@@ -381,7 +387,7 @@ public class AppController {
       currentShoppingList.setPublicList(true);
     }
 
-    //The users of the list, separated by comma.
+    //The users of the list, seperated by comma.
     List<String> peopleNames = Arrays.asList(peopleText.split(","));
 
     //Sets the owner.
@@ -613,10 +619,9 @@ public class AppController {
    */
   @FXML
   void loginScreen(ActionEvent e) throws IOException {
-    //Gets the new parent.
-    Parent loginParent = FXMLLoader
-        .load(getClass()
-        .getResource("LoginScreen.fxml"));
+    FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("LoginScreen.fxml"));
+    fxmlLoader.setController(new LoginScreenController());
+    Parent loginParent = fxmlLoader.load();
 
     //Creates a new scene with the new parent.
     Scene loginScene = new Scene(loginParent);
