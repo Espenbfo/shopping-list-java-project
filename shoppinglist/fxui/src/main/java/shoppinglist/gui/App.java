@@ -26,7 +26,7 @@ public class App extends Application {
     //Loads the stylecheet
     scene.getStylesheets()
         .add(getClass()
-        .getResource("/resources/shoppinglist/gui/style.css")
+        .getResource("style.css")
         .toExternalForm());
 
     //Sets the scene
