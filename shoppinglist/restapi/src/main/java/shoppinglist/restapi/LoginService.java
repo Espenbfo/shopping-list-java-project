@@ -43,8 +43,6 @@ public class LoginService {
     //Gets the password from the loginresource
     String password = loginResource.getPassword();
 
-    LOG.debug("addPerson({})", person);
-
     //Reads in the passwords
     Passwords passwords = FileHandler.readPasswords();
 
