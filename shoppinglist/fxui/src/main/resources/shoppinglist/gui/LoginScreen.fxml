@@ -9,11 +9,9 @@
 <?import javafx.scene.layout.TilePane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.text.Text?>
-
-
 <?import javafx.scene.control.ScrollPane?>
-<?import javafx.scene.text.TextFlow?>
 <?import javafx.scene.control.Separator?>
+<?import javafx.scene.text.TextFlow?>
 
 <?import javafx.scene.control.PasswordField?>
 <Pane prefHeight="500.0" prefWidth="400.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" id="window">

@@ -134,13 +134,15 @@ public class AppController {
    * @param dataAccess The standard data access
    * @param shoppingDataAccess the shopping data access
    */
-  public AppController(final PersonDataAccess dataAccess, final ShoppingListDataAccess shoppingDataAccess) {
+  public AppController(final PersonDataAccess dataAccess,
+                       final ShoppingListDataAccess shoppingDataAccess) {
     setDataAccess(dataAccess);
     setShoppingDataAccess(shoppingDataAccess);
   }
   /**
    * Initializes the appscreen.
    */
+
   @FXML
   public void initialize() {
 
