@@ -88,7 +88,7 @@ public class LoginScreenControllerTest extends ApplicationTest {
     @Test
     public void testLoginNoName(){
         when(dataAccess.putLogin(anyString(),anyString())).thenReturn(new Person("failed"));
-
+        usernameInputField.setText("");
         clickOn(loginButton);
         Assertions.assertTrue(errorLabel.getText().equals("Empty username and password fields. Please fill in before continuing"));
     }
@@ -96,6 +96,7 @@ public class LoginScreenControllerTest extends ApplicationTest {
     @Test
     public void testRegisterNoName(){
         when(dataAccess.putLogin(anyString(),anyString())).thenReturn(new Person("failed"));
+        usernameInputField.setText("");
         clickOn(registerButton);;
         Assertions.assertTrue(errorLabel.getText().equals("Empty username and password fields. Please fill in before continuing"));
     }
