@@ -10,8 +10,6 @@ import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import shoppinglist.core.Passwords;
 import shoppinglist.core.Person;
 import shoppinglist.core.ShoppingList;
@@ -27,11 +25,6 @@ public class LoginService {
   public static final String LOGIN_SERVICE_PATH = "Login";
 
   private static final  ObjectMapper mapper = new ObjectMapper();
-  /**
-   * logger for logging server issues.
-   */
-  private static final Logger LOG = LoggerFactory.getLogger(LoginService.class);
-
 
   /**
    * Recieved Put for Person.

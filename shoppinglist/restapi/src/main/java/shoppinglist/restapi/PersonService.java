@@ -12,8 +12,6 @@ import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import shoppinglist.core.Passwords;
 import shoppinglist.core.Person;
 import shoppinglist.core.ShoppingList;
@@ -27,10 +25,6 @@ public class PersonService {
    * the service path for the server.
    */
   public static final String PERSON_SERVICE_PATH = "Persons";
-  /**
-   * logger for logging server issues.
-   */
-  private static final Logger LOG = LoggerFactory.getLogger(PersonService.class);
 
   /**
    * Maps objects to json.
@@ -61,7 +55,6 @@ public class PersonService {
   @Path("/{username}")
   @Produces(MediaType.APPLICATION_JSON)
   public Person getPerson(@PathParam("username") String username) {
-    LOG.debug("addShoppingList({})", username);
     return FileHandler.readPerson(username);
   }
 
@@ -76,7 +69,6 @@ public class PersonService {
   @Consumes(MediaType.APPLICATION_JSON)
   @Produces(MediaType.APPLICATION_JSON)
   public int addPerson(final Person person) {
-    LOG.debug("addShoppingList({})", person);
     return FileHandler.writePerson(person) ? 1 : 0;
   }
 
@@ -91,7 +83,6 @@ public class PersonService {
   @Produces(MediaType.APPLICATION_JSON)
   public ShoppingList getShoppingList(@PathParam("id") int id) {
     ShoppingList shoppinglist = FileHandler.readFile(id);
-    LOG.debug("Sub-resource for Person " + id + ": " + shoppinglist);
     return shoppinglist;
   }
 
