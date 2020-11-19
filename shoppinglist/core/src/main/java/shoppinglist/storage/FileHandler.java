@@ -45,9 +45,8 @@ public class FileHandler {
           .toFile(), ShoppingList.class);
       return out;
     } catch (RuntimeException | IOException e) {
-      System.out.println("e");
+      return null;
     }
-    return null;
   }
 
   /**
@@ -127,7 +126,7 @@ public class FileHandler {
       Person out = mapper.readValue(Paths.get(filename).toFile(), Person.class);
       return out;
     } catch (RuntimeException | IOException e) {
-         return null;
+      return null;
     }
   }
 
