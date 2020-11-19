@@ -119,13 +119,21 @@ public class AppController {
   }
 
 
+  /**
+   * Sets the dataAccess' to default values.
+   */
   public AppController() {
     //Setting up dataaccess.
     setDataAccess(new PersonDataAccess("http://localhost:8087"));
     setShoppingDataAccess(new ShoppingListDataAccess("http://localhost:8087"));
   }
 
-
+  /**
+   * Sets the dataAccess to given values.
+   *
+   * @param dataAccess The standard data access
+   * @param shoppingDataAccess the shopping data access
+   */
   public AppController(final PersonDataAccess dataAccess, final ShoppingListDataAccess shoppingDataAccess) {
     setDataAccess(dataAccess);
     setShoppingDataAccess(shoppingDataAccess);
