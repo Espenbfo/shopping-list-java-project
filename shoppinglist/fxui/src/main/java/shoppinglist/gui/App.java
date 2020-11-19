@@ -18,7 +18,7 @@ public class App extends Application {
     //Gets the parent with our fxml file
     final Parent parent = FXMLLoader
         .load(getClass()
-        .getResource("/resources/shoppinglist/gui/LoginScreen.fxml"));
+        .getResource("LoginScreen.fxml"));
 
     //Creates a new scene with the parent
     scene = new Scene(parent);
@@ -26,7 +26,7 @@ public class App extends Application {
     //Loads the stylecheet
     scene.getStylesheets()
         .add(getClass()
-        .getResource("/resources/shoppinglist/gui/style.css")
+        .getResource("style.css")
         .toExternalForm());
 
     //Sets the scene

@@ -243,14 +243,14 @@ public class LoginScreenController {
   void mainScreen(ActionEvent e) throws IOException {
     //Gets the new parent.
     Parent loginParent = FXMLLoader.load(getClass()
-        .getResource("/resources/shoppinglist/gui/App.fxml"));
+        .getResource("App.fxml"));
 
     //Creates a new scene with the new parent.
     Scene loginScene = new Scene(loginParent);
 
     //Loads the stylecheet.
     loginScene.getStylesheets().add(getClass()
-        .getResource("/resources/shoppinglist/gui/style.css").toExternalForm());
+        .getResource("style.css").toExternalForm());
 
     //Gets the current stage.
     Stage appStage = (Stage) ((Node) e.getSource()).getScene().getWindow();

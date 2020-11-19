@@ -608,14 +608,14 @@ public class AppController {
     //Gets the new parent.
     Parent loginParent = FXMLLoader
         .load(getClass()
-        .getResource("/resources/shoppinglist/gui/LoginScreen.fxml"));
+        .getResource("LoginScreen.fxml"));
 
     //Creates a new scene with the new parent.
     Scene loginScene = new Scene(loginParent);
 
     //Loads the stylecheet.
     loginScene.getStylesheets()
-        .add(getClass().getResource("/resources/shoppinglist/gui/style.css")
+        .add(getClass().getResource("style.css")
         .toExternalForm());
 
     //Gets the current stage.
