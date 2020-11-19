@@ -43,6 +43,12 @@ public class AppController {
   @FXML
   Button addItemButton;
   @FXML
+  Button newListButton;
+  @FXML
+  Button backToLoginButton;
+  @FXML
+  Button saveButton;
+  @FXML
   TextField itemInputField;
   @FXML
   TextField shoppingTitleTextField;
@@ -112,15 +118,31 @@ public class AppController {
     this.shoppingAccess = shoppingDataAccess;
   }
 
+
+  /**
+   * Sets the dataAccess' to default values.
+   */
+  public AppController() {
+    //Setting up dataaccess.
+    setDataAccess(new PersonDataAccess("http://localhost:8087"));
+    setShoppingDataAccess(new ShoppingListDataAccess("http://localhost:8087"));
+  }
+
+  /**
+   * Sets the dataAccess to given values.
+   *
+   * @param dataAccess The standard data access
+   * @param shoppingDataAccess the shopping data access
+   */
+  public AppController(final PersonDataAccess dataAccess, final ShoppingListDataAccess shoppingDataAccess) {
+    setDataAccess(dataAccess);
+    setShoppingDataAccess(shoppingDataAccess);
+  }
   /**
    * Initializes the appscreen.
    */
   @FXML
   public void initialize() {
-
-    //Setting up dataaccess.
-    setDataAccess(new PersonDataAccess("http://localhost:8087"));
-    shoppingAccess = new ShoppingListDataAccess("http://localhost:8087");
 
     //Creates an empty shoppinglist.
     currentShoppingList = new ShoppingList();
@@ -353,7 +375,7 @@ public class AppController {
     if (shoppingTitleTextField.getText().equals("")) {
       shoppingTitleTextField.getStyleClass().add("illegal");
       showError(shoppingTitleTextField, "This field is empty", e, -20);
-      //Returns if not filled in.
+      //Returns if nor filled in.
       return;
     } else {
       shoppingTitleTextField.getStyleClass().clear();
@@ -373,7 +395,7 @@ public class AppController {
       currentShoppingList.setPublicList(true);
     }
 
-    //The users of the list, separated by comma.
+    //The users of the list, seperated by comma.
     List<String> peopleNames = Arrays.asList(peopleText.split(","));
 
     //Sets the owner.
@@ -605,17 +627,16 @@ public class AppController {
    */
   @FXML
   void loginScreen(ActionEvent e) throws IOException {
-    //Gets the new parent.
-    Parent loginParent = FXMLLoader
-        .load(getClass()
-        .getResource("/resources/shoppinglist/gui/LoginScreen.fxml"));
+    FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("LoginScreen.fxml"));
+    fxmlLoader.setController(new LoginScreenController());
+    Parent loginParent = fxmlLoader.load();
 
     //Creates a new scene with the new parent.
     Scene loginScene = new Scene(loginParent);
 
     //Loads the stylecheet.
     loginScene.getStylesheets()
-        .add(getClass().getResource("/resources/shoppinglist/gui/style.css")
+        .add(getClass().getResource("style.css")
         .toExternalForm());
 
     //Gets the current stage.
