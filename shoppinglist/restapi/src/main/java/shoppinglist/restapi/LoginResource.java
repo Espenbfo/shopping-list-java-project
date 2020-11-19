@@ -42,6 +42,7 @@ public class LoginResource {
 
   /**
    * Gets the current Person.
+   *
    * @return the person 
    */
   public Person getPerson() {
@@ -50,6 +51,7 @@ public class LoginResource {
 
   /**
    * Gets the current Person's password.
+   *
    * @return the password 
    */
   public String getPassword() {
@@ -58,6 +60,7 @@ public class LoginResource {
 
   /**
    * Sets the current person.
+   *
    * @param person the person to set
    */
   public void setPerson(Person person) {
@@ -66,6 +69,7 @@ public class LoginResource {
 
   /**
    * Sets the password of current person.
+   *
    * @param password the password to set
    */
   public void setPassword(String password) {

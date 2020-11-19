@@ -84,31 +84,6 @@
     </dependencies>
 
     <build>
-        <sourceDirectory>src/main</sourceDirectory>
-        <resources>
-            <resource>
-                <directory>src/main</directory>
-                <includes>
-                    <include>**/*.fxml</include>
-                    <include>**/*.xml</include>
-                    <include>**/*.png</include>
-                    <include>**/*.css</include>
-                    <include>**/resources/*</include>
-                </includes>
-            </resource>
-        </resources>
-        <testSourceDirectory>src/test</testSourceDirectory>
-        <testResources>
-            <testResource>
-                <directory>src/test</directory>
-                <includes>
-                    <include>**/*.fxml</include>
-                    <include>**/*.png</include>
-                    <include>**/*.css</include>
-                    <include>**/resources/*</include>
-                </includes>
-            </testResource>
-        </testResources>
 
         <plugins>
             <plugin>

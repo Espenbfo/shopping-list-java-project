@@ -35,17 +35,4 @@ public class MeasurementTypeTest {
     assertTrue(m1.getValue() == (1.0));
   }
 
-  @Test
-  public void testAllowDouble1() {
-    try {
-      MeasurementType mDouble = new MeasurementType("D", 0.0, true);
-      mDouble.setValue(2.2);
-      MeasurementType mNDouble = new MeasurementType("N", 0.0, false);
-      mNDouble.setValue(2.2);
-      fail();
-    } catch (Exception e) {
-
-    }
-
-  }
 }

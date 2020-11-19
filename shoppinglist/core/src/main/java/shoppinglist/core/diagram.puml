@@ -45,9 +45,9 @@ class ShoppingElement {
     - boolean shopped
     
     + ShoppingElement()
-    + ShoppingElement(String name, double value, String measurementName, boolean allowDouble)
     + ShoppingElement(String name, double value, String measurementName)
     + ShoppingElement(String name, MeasurementType m, boolean shopped)
+    + ShoppingElement(ShoppingElement e)
     + double getValue()
     + void setValue(double newValue)
     + void changeValue(double difference)
@@ -93,19 +93,17 @@ class Person {
 }
 
 class MeasurementType {
-    - boolean allowDouble
     - String baseName
     - double value
     
     + MeasurementType()
-    + MeasurementType(final String baseName, final double value, final boolean allowDouble)
     + MeasurementType(final String baseName, final double value)
+    + MeasurementType(MeasurementType m)
     + double getValue()
     + void setValue(final double newValue)
     + void changeValue(final double difference)
     + void setBaseName(final String name)
     + String getBaseName()
-    + boolean allowDouble()
     + boolean equals(final Object o)
     + int hashCode()
 }

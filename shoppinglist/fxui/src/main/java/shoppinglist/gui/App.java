@@ -15,23 +15,23 @@ public class App extends Application {
 
   @Override
   public void start(final Stage primaryStage) throws Exception {
-    System.out.println(getClass().getResource("/resources/shoppinglist/gui/App.fxml"));
-    final Parent parent = FXMLLoader
-        .load(getClass()
-        .getResource("/resources/shoppinglist/gui/LoginScreen.fxml"));
-    ;
+    //Gets the parent with our fxml file
+    FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("LoginScreen.fxml"));
+    fxmlLoader.setController(new LoginScreenController());
+    Parent parent = fxmlLoader.load();
+
+    //Creates a new scene with the parent
     scene = new Scene(parent);
+
+    //Loads the stylecheet
     scene.getStylesheets()
         .add(getClass()
-        .getResource("/resources/shoppinglist/gui/style.css")
+        .getResource("style.css")
         .toExternalForm());
+
+    //Sets the scene
     primaryStage.setScene(scene);
     primaryStage.show();
-
-    Client.setPasswords(FileHandler.readPasswords());
-    if (Client.getPasswords() == null) {
-      Client.setPasswords(new Passwords());
-    }
   }
 
   public static void main(final String[] args) {

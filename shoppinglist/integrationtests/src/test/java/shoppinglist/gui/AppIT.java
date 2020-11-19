@@ -1,4 +1,4 @@
-package shoppinglist.it;
+package shoppinglist.gui;
 
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
@@ -15,6 +15,7 @@ import shoppinglist.core.Person;
 import shoppinglist.core.Client;
 import shoppinglist.storage.FileHandler;
 import shoppinglist.gui.PersonDataAccess;
+import shoppinglist.gui.LoginScreenController;
 import java.awt.*;
 
 public class AppIT extends ApplicationTest {
@@ -24,24 +25,15 @@ public class AppIT extends ApplicationTest {
     private Stage stage;
     private Scene scene;
 
-    public void startApp(final Stage stage) throws Exception {
-        final FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/resources/shoppinglist/gui/App.fxml"));
-        parent = fxmlLoader.load();
-        controller = fxmlLoader.getController();
-        Scene scene = new Scene(parent);
-        scene.getStylesheets().add(getClass().getResource("/resources/shoppinglist/gui/style.css").toExternalForm());
-        this.stage = stage;
-        stage.setScene(scene);
-        stage.show();
-    }
 
     @Override
     public void start(final Stage stage) throws Exception {
-        final FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/resources/shoppinglist/gui/LoginScreen.fxml"));
+        final FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("LoginScreen.fxml"));
+        fxmlLoader.setController(new LoginScreenController());
         parent = fxmlLoader.load();
         //controller = fxmlLoader.getController();
         scene = new Scene(parent);
-        scene.getStylesheets().add(getClass().getResource("/resources/shoppinglist/gui/style.css").toExternalForm());
+        scene.getStylesheets().add(getClass().getResource("style.css").toExternalForm());
         this.stage = stage;
         stage.setScene(scene);
         stage.show();
@@ -94,7 +86,7 @@ public class AppIT extends ApplicationTest {
         final Button saveButton = (Button)parent.lookup("#saveButton");
         final Button backToLoginButton = (Button)parent.lookup("#backToLoginButton");
         final TextField personInputField = (TextField)parent.lookup("#personInputField");
-        final TextField shoppingTitleTextField = (TextField)parent.lookup("#shoppingTitle");
+        final TextField shoppingTitleTextField = (TextField)parent.lookup("#shoppingTitleTextField");
 
         clickOn(shoppingTitleTextField);
         write("testTitle");

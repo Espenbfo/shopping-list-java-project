@@ -2,6 +2,7 @@ package shoppinglist.core;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
 import shoppinglist.core.Passwords;
 
 public class Person {
@@ -20,7 +21,7 @@ public class Person {
   /**
    * The ShoppingLists the Person participates in.
    */
-  private ArrayList<Integer> shoppingLists;
+  private List<Integer> shoppingLists;
 
 
   /**
@@ -29,7 +30,7 @@ public class Person {
    * @param userName      the name of the user
    * @param shoppingLists the shoppinglists this Person has made formerly
    */
-  public Person(final String userName, final ArrayList<Integer> shoppingLists) {
+  public Person(final String userName, final List<Integer> shoppingLists) {
     this.userName = userName;
     this.shoppingLists = shoppingLists;
     randomSalt();
@@ -53,7 +54,7 @@ public class Person {
    * @param shoppingLists the shoppinglists this Person has made formerly
    * @param salt          the salt for hashing this persons password
    */
-  public Person(final String userName, final ArrayList<Integer> shoppingLists, final byte[] salt) {
+  public Person(final String userName, final List<Integer> shoppingLists, final byte[] salt) {
     this(userName, shoppingLists);
     this.salt = Arrays.copyOf(salt, salt.length);
   }
@@ -128,8 +129,8 @@ public class Person {
    *
    * @param shoppingLists the new shoppingLists
    */
-  public void setShoppingLists(final ArrayList<Integer> shoppingLists) {
-    this.shoppingLists = shoppingLists;
+  public void setShoppingLists(final List<Integer> shoppingLists) {
+    this.shoppingLists = new ArrayList<Integer>(shoppingLists);
   }
 
   /**
@@ -152,8 +153,8 @@ public class Person {
    *
    * @return list of shoppingLists
    */
-  public ArrayList<Integer> getShoppingLists() {
-    return shoppingLists;
+  public List<Integer> getShoppingLists() {
+    return new ArrayList<Integer>(shoppingLists);
   }
 
   /**
