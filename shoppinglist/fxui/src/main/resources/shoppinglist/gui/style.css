@@ -58,7 +58,7 @@
 
 }
 
-#shoppingTitle {
+#shoppingTitleTextField {
     -fx-font-size: 20px;
     -fx-text-fill: -sec-color;
 }
