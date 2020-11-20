@@ -39,7 +39,7 @@ public class ShoppingListDataAccess {
    * @param shoppingList the shoppinglist to PUT
    * @return the id of the ShoppingList that was PUT after the PUT
    */
-  public int putShoppingList(final ShoppingList shoppingList) {
+  public int postShoppingList(final ShoppingList shoppingList) {
     int id = shoppingList.getId();
     try {
       int index = shoppingList.getId();
@@ -48,7 +48,7 @@ public class ShoppingListDataAccess {
               .newBuilder(getRequestUri("/Persons/ShoppingLists/" + index))
               .header("Content-Type", "application/json")
               .header("Accept", "application/json")
-              .PUT(BodyPublishers.ofString(mapper.writeValueAsString(shoppingList)))
+              .POST(BodyPublishers.ofString(mapper.writeValueAsString(shoppingList)))
               .build();
       final HttpResponse<InputStream> response =
               HttpClient.newBuilder().build().send(

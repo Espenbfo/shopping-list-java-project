@@ -118,11 +118,13 @@ public class ServerTest extends JerseyTest {
   void testPutGetPerson() {
     ObjectMapper om = new ObjectMapper();
     Person testindivid = new Person("Testtindivid");
+    LoginResource testResource = new LoginResource(testindivid, "test");
     try {
-      final Response putResponse = target(PersonService.PERSON_SERVICE_PATH).path("Testtindivid")
-              .request(MediaType.APPLICATION_JSON + ";" + MediaType.CHARSET_PARAMETER + "=UTF-8")
-              .put(Entity.entity(om.writeValueAsString(testindivid), MediaType.APPLICATION_JSON));
+      final Response putResponse = target(LoginService.LOGIN_SERVICE_PATH).path("/register/" + testindivid.getUserName())
+              .request("application/json; charset=UTF-8")
+              .put(Entity.entity(om.writeValueAsString(testResource), MediaType.APPLICATION_JSON));
       assertEquals(200, putResponse.getStatus());
+      assertEquals(1,om.readValue(putResponse.readEntity(String.class),Integer.class));
       final Response getResponse = target(PersonService.PERSON_SERVICE_PATH).path("Testtindivid")
               .request(MediaType.APPLICATION_JSON + ";" + MediaType.CHARSET_PARAMETER + "=UTF-8")
               .get();
@@ -136,14 +138,14 @@ public class ServerTest extends JerseyTest {
   }
 
   @Test
-  void testPutGetShoppingList() {
+  void testPostGetShoppingList() {
     ObjectMapper om = new ObjectMapper();
     Person testindivid = new Person("Testtindivid");
     ShoppingList testlist = new ShoppingList("testlist",testindivid);
     try {
       final Response putResponse = target(PersonService.PERSON_SERVICE_PATH).path("/ShoppingLists/" + testlist.getId())
               .request("application/json; charset=UTF-8")
-              .put(Entity.entity(om.writeValueAsString(testlist), MediaType.APPLICATION_JSON));
+              .post(Entity.entity(om.writeValueAsString(testlist), MediaType.APPLICATION_JSON));
       assertEquals(200, putResponse.getStatus());
       testlist.setId(om.readValue(putResponse.readEntity(String.class),Integer.class));
       final Response getResponse = target(PersonService.PERSON_SERVICE_PATH).path("/ShoppingLists/"+testlist.getId())
@@ -169,7 +171,7 @@ public class ServerTest extends JerseyTest {
       assertEquals(1,om.readValue(putResponse.readEntity(String.class),Integer.class));
       final Response getResponse = target(LoginService.LOGIN_SERVICE_PATH).path("/login")
               .request(MediaType.APPLICATION_JSON + ";" + MediaType.CHARSET_PARAMETER + "=UTF-8")
-              .put(Entity.entity(om.writeValueAsString(testResource), MediaType.APPLICATION_JSON));
+              .post(Entity.entity(om.writeValueAsString(testResource), MediaType.APPLICATION_JSON));
       assertEquals(200, getResponse.getStatus());
       assertEquals(testindivid, om.readValue(getResponse.readEntity(String.class), Person.class));
 

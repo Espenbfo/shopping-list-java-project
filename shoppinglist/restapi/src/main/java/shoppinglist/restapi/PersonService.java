@@ -60,19 +60,6 @@ public class PersonService {
 
 
   /**
-   * Recieved Put for Person.
-   *
-   * @return whether the person was saved or not
-   */
-  @PUT
-  @Path("/{username}")
-  @Consumes(MediaType.APPLICATION_JSON)
-  @Produces(MediaType.APPLICATION_JSON)
-  public int addPerson(final Person person) {
-    return FileHandler.writePerson(person) ? 1 : 0;
-  }
-
-  /**
    * Recieved Get for shoppinglist.
    *
    * @param id the user-id
@@ -91,7 +78,7 @@ public class PersonService {
    *
    * @param shoppinglist the shoppinglist to save
    */
-  @PUT
+  @POST
   @Path("/ShoppingLists/{id}")
   @Consumes(MediaType.APPLICATION_JSON)
   @Produces(MediaType.APPLICATION_JSON)
@@ -99,7 +86,7 @@ public class PersonService {
     //Gets the id of the consumed shoppinglist
     int newId = shoppinglist.getId();
 
-    //If the newID is -1, it means the clint sent in a completely new list
+    //If the newID is -1, it means the client sent in a completely new list
     if (newId == -1) {
       //Gets the current max ID
       newId = FileHandler.readMaxId();
