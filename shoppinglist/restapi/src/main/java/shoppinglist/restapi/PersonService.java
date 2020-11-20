@@ -82,7 +82,7 @@ public class PersonService {
   @Path("/ShoppingLists/{id}")
   @Produces(MediaType.APPLICATION_JSON)
   public ShoppingList getShoppingList(@PathParam("id") int id) {
-    ShoppingList shoppinglist = FileHandler.readFile(id);
+    ShoppingList shoppinglist = FileHandler.readShoppingList(id);
     return shoppinglist;
   }
 
@@ -114,7 +114,7 @@ public class PersonService {
       FileHandler.writeMaxId(newId);
     } else {
       //The list prevously saved to file.
-      ShoppingList oldList = FileHandler.readFile(newId);
+      ShoppingList oldList = FileHandler.readShoppingList(newId);
 
       if (oldList != null) {
         //The users of the list, seperated by comma.
@@ -166,7 +166,7 @@ public class PersonService {
     }
 
     //Save the shoppinglist
-    FileHandler.writeFile(shoppinglist);
+    FileHandler.writeShoppingList(shoppinglist);
 
     //returns the new ID of the shoppinglist
     return newId;

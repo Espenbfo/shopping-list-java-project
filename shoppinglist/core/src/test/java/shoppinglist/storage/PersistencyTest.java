@@ -29,9 +29,9 @@ public class PersistencyTest {
   }
 
   @Test
-  public void testWriteReadfile() {
-    Assertions.assertTrue(FileHandler.writeFile(l));
-    ShoppingList tl = FileHandler.readFile(l.getId());
+  public void testWriteReadShoppingList() {
+    Assertions.assertTrue(FileHandler.writeShoppingList(l));
+    ShoppingList tl = FileHandler.readShoppingList(l.getId());
     for (int i = 0; i < l.getElementList().size(); i++) {
       Assertions.assertTrue(l.getElement(i).equals(tl.getElement(i)));
     }
@@ -40,7 +40,7 @@ public class PersistencyTest {
 
   @Test
   public void testReadUnwrittenFile() {
-    Assertions.assertNull(FileHandler.readFile(m.getId()));
+    Assertions.assertNull(FileHandler.readShoppingList(m.getId()));
   }
 
   @Test
