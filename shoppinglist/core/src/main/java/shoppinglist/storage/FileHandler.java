@@ -28,7 +28,7 @@ public class FileHandler {
    * @param id the id of the ShoppingList that should be read
    * @return the Shoppinglist which has been read
    */
-  public static ShoppingList readFile(int id) {
+  public static ShoppingList readShoppingList(int id) {
     try {
       File dir = new File("./shoppinglists/");
       //checks if directory shoppinglists exists, and creates it if necessary
@@ -55,7 +55,7 @@ public class FileHandler {
    * @param listToWrite the shoppinglist which should be written to a file
    * @return true if the file was written, false if it was not
    */
-  public static boolean writeFile(ShoppingList listToWrite) {
+  public static boolean writeShoppingList(ShoppingList listToWrite) {
     try {
       File dir = new File("./shoppinglists/");
       //checks if directory shoppinglists exists, and creates it if necessary
