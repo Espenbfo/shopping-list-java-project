@@ -87,7 +87,7 @@ public class LoginScreenController {
 
     try {
       //Send the login information to the server
-      Person p = dataAccess.putLogin(name, password);
+      Person p = dataAccess.postLogin(name, password);
 
       //if p == null, the login has failed
       if (p == null) {

@@ -420,7 +420,7 @@ public class AppController {
     currentShoppingList.setTitle(shoppingTitleTextField.getText());
 
     //Saves the shoppinglist to server
-    int newint = shoppingAccess.putShoppingList(currentShoppingList);
+    int newint = shoppingAccess.postShoppingList(currentShoppingList);
 
     //Updates the list of shoppinglists to the right
     fillTitleList();

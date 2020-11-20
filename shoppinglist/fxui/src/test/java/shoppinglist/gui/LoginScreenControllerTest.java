@@ -76,7 +76,7 @@ public class LoginScreenControllerTest extends ApplicationTest {
             //if this happens the test should still finish albeit with some extra exceptions
             e.printStackTrace();
         }
-        when(dataAccess.putLogin("testindivid","duG")).thenReturn(new Person("testindivid"));
+        when(dataAccess.postLogin("testindivid","duG")).thenReturn(new Person("testindivid"));
         clickOn(usernameInputField);
         write("testindivid");
         clickOn(passwordInputField);
@@ -87,7 +87,7 @@ public class LoginScreenControllerTest extends ApplicationTest {
 
     @Test
     public void testLogin(){
-        when(dataAccess.putLogin("testindivid","duG")).thenReturn(new Person("testindivid"));
+        when(dataAccess.postLogin("testindivid","duG")).thenReturn(new Person("testindivid"));
         //preventing it from trying to change screen to App.fxml
         try {
             doNothing().when(controller).mainScreen(any());
@@ -105,7 +105,7 @@ public class LoginScreenControllerTest extends ApplicationTest {
 
     @Test
     public void testLoginNoName(){
-        when(dataAccess.putLogin(anyString(),anyString())).thenReturn(new Person("failed"));
+        when(dataAccess.postLogin(anyString(),anyString())).thenReturn(new Person("failed"));
         usernameInputField.setText("");
         clickOn(loginButton);
         Assertions.assertTrue(errorLabel.getText().equals("Empty username and password fields. Please fill in before continuing"));
@@ -113,7 +113,7 @@ public class LoginScreenControllerTest extends ApplicationTest {
 
     @Test
     public void testRegisterNoName(){
-        when(dataAccess.putLogin(anyString(),anyString())).thenReturn(new Person("failed"));
+        when(dataAccess.postLogin(anyString(),anyString())).thenReturn(new Person("failed"));
         usernameInputField.setText("");
         clickOn(registerButton);;
         Assertions.assertTrue(errorLabel.getText().equals("Empty username and password fields. Please fill in before continuing"));
@@ -121,7 +121,7 @@ public class LoginScreenControllerTest extends ApplicationTest {
 
     @Test
     public void testLoginWrongName(){
-        when(dataAccess.putLogin(anyString(),anyString())).thenReturn(null);
+        when(dataAccess.postLogin(anyString(),anyString())).thenReturn(null);
 
         clickOn(usernameInputField);
         write("testindivid");
@@ -133,7 +133,7 @@ public class LoginScreenControllerTest extends ApplicationTest {
 
     @Test
     public void testLoginInvalidName(){
-        when(dataAccess.putLogin(anyString(),anyString())).thenReturn(null);
+        when(dataAccess.postLogin(anyString(),anyString())).thenReturn(null);
 
         clickOn(usernameInputField);
         write("@%32");

@@ -101,7 +101,7 @@ public class PersonDataAccess {
    * @param password the password
    * @return the Person class of the username if the password is correct
    */
-  public Person putLogin(final String person, final String password) {
+  public Person postLogin(final String person, final String password) {
 
     LoginResource loginResource = new LoginResource(new Person(person), password);
     try {
@@ -109,7 +109,7 @@ public class PersonDataAccess {
               HttpRequest.newBuilder(getRequestUri("/Login/login"))
                       .header("Content-Type", "application/json")
                       .header("Accept", "application/json")
-                      .PUT(BodyPublishers.ofString(mapper.writeValueAsString(loginResource)))
+                      .POST(BodyPublishers.ofString(mapper.writeValueAsString(loginResource)))
                       .build();
 
       final HttpResponse<String> response =

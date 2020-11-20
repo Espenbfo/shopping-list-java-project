@@ -68,7 +68,7 @@ public class LoginService {
    * @return the correct person if the login succeeds
    * 
    */
-  @PUT
+  @POST
   @Path("/login")
   @Consumes(MediaType.APPLICATION_JSON)
   @Produces(MediaType.APPLICATION_JSON)
