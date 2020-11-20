@@ -4,6 +4,8 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 import javafx.application.Application;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -208,6 +210,7 @@ public class AppController {
     //If any field is empty, isAdding turns false;
     boolean isAdding = true;
 
+    boolean amountNotNumber = false;
     //Checks if field is empty, and sets it to a visual illegal state if empty.
     //Else resets it to normal.
     if (itemInputField.getText().equals("")) {
@@ -218,12 +221,27 @@ public class AppController {
       itemInputField.getStyleClass().addAll("text-field", "text-input");
     }
 
+
+    //If not all numbers or empty, then set to illegal field
+
     if (amountInputField.getText().equals("")) {
       isAdding = false;
       amountInputField.getStyleClass().add("illegal");
     } else {
-      amountInputField.getStyleClass().clear();
-      amountInputField.getStyleClass().addAll("text-field", "text-input");
+      //Checks if the measurementvalue is all numbers
+      Pattern pattern = Pattern.compile("[^0-9\\.]");
+      Matcher matcher = pattern.matcher(amountInputField.getText());
+
+      if (matcher.find()) {
+        amountNotNumber = true;
+        amountInputField.getStyleClass().add("illegal");
+
+        //Shows a tooltip if the amount is not a number
+        showError(amountInputField, "The amount must be a number", e, 10);
+      } else {
+        amountInputField.getStyleClass().clear();
+        amountInputField.getStyleClass().addAll("text-field", "text-input");
+      }
     }
 
     if (measurementInputField.getText().equals("")) {
@@ -235,7 +253,7 @@ public class AppController {
     }
 
 
-    if (isAdding) {
+    if (isAdding && !amountNotNumber) {
       //Adds a new element
       ShoppingElement currentElement = new ShoppingElement(itemInputField.getText(),
               Double.parseDouble(amountInputField.getText()), measurementInputField.getText());
@@ -253,9 +271,12 @@ public class AppController {
       // making it easy for the user to quickly write many elements in a row.
       amountInputField.requestFocus();
     } else {
-      //Shows a tooltip with an error message if there are any errors.
-      showError(measurementInputField,
-              "Please fill all fields", e, -20);
+
+      //Shows a tooltip with an error message any fields are ampty.
+      if (!isAdding) {
+        showError(measurementInputField,
+                "Please fill all fields", e, -20);
+      }
     }
   }
 
